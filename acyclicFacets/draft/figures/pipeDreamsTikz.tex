@@ -1,0 +1,191 @@
+\newcommand{\boxsize}{.35}
+\newlength{\verticalOffset}
+\setlength{\verticalOffset}{.3cm}
+\newlength{\verticalShift}
+\setlength{\verticalShift}{-.15cm}
+
+\newcounter{length}
+\newcommand{\length}[1]{%
+	\setcounter{length}{0}%
+	\foreach \x in {#1} {%
+		\stepcounter{length}%
+	}%
+}
+
+\newcommand{\pipeDreamMonoColor}[3]{% #1 = color
+									% #2 = boundary color
+                                    % #3 = list of types (c = cross, e = elbow, t = top, b = bottom, tb = top-bottom, or n = nothing)
+	\length{#3}%
+	\begin{tikzpicture}[baseline = \value{length}*\verticalShift+\verticalOffset, scale=1]
+		\coordinate (origin) at (0,0);
+		\newcount{\y} \y=0
+		\newcount{\x}
+		\foreach \line in {#3} {
+			\x=0
+			\foreach \t in \line {
+				\coordinate (W) at ($ (origin) + ( \boxsize * \x , -\boxsize * \y ) + ( 0      , \boxsize / 2 ) $);
+				\coordinate (E) at ($ (origin) + ( \boxsize * \x , -\boxsize * \y ) + ( \boxsize     , \boxsize / 2 ) $);
+				\coordinate (N) at ($ (origin) + ( \boxsize * \x , -\boxsize * \y ) + ( \boxsize / 2 , \boxsize     ) $);
+				\coordinate (S) at ($ (origin) + ( \boxsize * \x , -\boxsize * \y ) + ( \boxsize / 2 , 0 ) $);
+				\coordinate (C) at ($ (origin) + ( \boxsize * \x , -\boxsize * \y ) + ( \boxsize / 2 , \boxsize / 2 ) $);
+				\ifthenelse{\equal{\t}{e}}{
+					\draw[rounded corners=\boxsize * 8, color=#1, thick] (W) -- (C) -- (N);
+					\draw[rounded corners=\boxsize * 8, color=#1, thick] (S) -- (C) -- (E);			
+				}{
+        				\ifthenelse{\equal{\t}{c}}{
+        					\draw[color=#1, thick] (W) -- (E);
+        					\draw[color=#1, thick] (S) -- (N);
+        				}{
+        				\ifthenelse{\equal{\t}{t}}{
+        					\draw[rounded corners=\boxsize * 8, color=#2] (W) -- (C) -- (N);
+        					\draw[rounded corners=\boxsize * 8, color=#1, thick] (S) -- (C) -- (E);			
+        				}{
+        				\ifthenelse{\equal{\t}{b}}{
+        					\draw[rounded corners=\boxsize * 8, color=#1, thick] (W) -- (C) -- (N);
+        					\draw[rounded corners=\boxsize * 8, color=#2] (S) -- (C) -- (E);			
+        				}{
+        				\ifthenelse{\equal{\t}{tb}}{
+        					\draw[rounded corners=\boxsize * 8, color=#2] (W) -- (C) -- (N);
+        					\draw[rounded corners=\boxsize * 8, color=#2] (S) -- (C) -- (E);			
+        				}{
+        				\ifthenelse{\equal{\t}{n}}{}{\node at (C) {$\small \t$};}}}}}}
+        				\global\advance\x by 1
+			}
+			\global\advance\y by 1
+		}
+	\end{tikzpicture}%
+}
+
+\newcommand{\pipeDreamBiColor}[4]{% #1 = colorA
+                                   % #2 = colorB
+                                   % #3 = boundary color
+                                   % #4 = list of type/colorW/colorS (c = cross, e = elbow, or n = nothing)
+	\length{#4}%
+	\begin{tikzpicture}[baseline = \value{length}*\verticalShift+\verticalOffset, scale=1]
+		\coordinate (origin) at (0,0);
+		\newcount{\y} \y=0
+		\newcount{\x}
+		\foreach \line in {#4} {
+			\x=0
+			\foreach \t/\colorW/\colorS in \line {
+				\coordinate (W) at ($ (origin) + ( \boxsize * \x , -\boxsize * \y ) + ( 0      , \boxsize / 2 ) $);
+				\coordinate (E) at ($ (origin) + ( \boxsize * \x , -\boxsize * \y ) + ( \boxsize     , \boxsize / 2 ) $);
+				\coordinate (N) at ($ (origin) + ( \boxsize * \x , -\boxsize * \y ) + ( \boxsize / 2 , \boxsize     ) $);
+				\coordinate (S) at ($ (origin) + ( \boxsize * \x , -\boxsize * \y ) + ( \boxsize / 2 , 0 ) $);
+				\coordinate (C) at ($ (origin) + ( \boxsize * \x , -\boxsize * \y ) + ( \boxsize / 2 , \boxsize / 2 ) $);
+				\ifthenelse{\equal{\t}{e}}{
+					\ifthenelse{\equal{\colorW}{l}}{\draw[rounded corners=\boxsize * 8, color=#1, thick] (W) -- (C) -- (N);}{}
+					\ifthenelse{\equal{\colorW}{r}}{\draw[rounded corners=\boxsize * 8, color=#2, thick] (W) -- (C) -- (N);}{}
+					\ifthenelse{\equal{\colorW}{b}}{\draw[rounded corners=\boxsize * 8, color=#3] (W) -- (C) -- (N);}{}
+					\ifthenelse{\equal{\colorS}{l}}{\draw[rounded corners=\boxsize * 8, color=#1, thick] (S) -- (C) -- (E);}{}
+					\ifthenelse{\equal{\colorS}{r}}{\draw[rounded corners=\boxsize * 8, color=#2, thick] (S) -- (C) -- (E);}{}
+					\ifthenelse{\equal{\colorS}{b}}{\draw[rounded corners=\boxsize * 8, color=#3] (S) -- (C) -- (E);}{}
+				}{
+				\ifthenelse{\equal{\t}{c}}{
+					\ifthenelse{\equal{\colorW}{l}}{\draw[color=#1, thick] (W) -- (E);}{}
+					\ifthenelse{\equal{\colorW}{r}}{\draw[color=#2, thick] (W) -- (E);}{}
+					\ifthenelse{\equal{\colorS}{l}}{\draw[color=#1, thick] (S) -- (N);}{}
+					\ifthenelse{\equal{\colorS}{r}}{\draw[color=#2, thick] (S) -- (N);}{}
+				}{
+				\ifthenelse{\equal{\t}{n}}{}{\node at (C) {$\small \t$};}}}
+				\global\advance\x by 1
+			}
+			\global\advance\y by 1
+		}
+	\end{tikzpicture}%
+}
+
+\newcommand{\pipeDreamTriColor}[5]{% #1 = colorA
+                                   % #2 = colorB
+                                   % #3 = colorC
+                                   % #4 = boundary color
+                                   % #5 = list of type/colorW/colorS (c = cross, e = elbow, or n = nothing)
+	\length{#5}%
+	\begin{tikzpicture}[baseline = \value{length}*\verticalShift+\verticalOffset, scale=1]
+		\coordinate (origin) at (0,0);
+		\newcount{\y} \y=0
+		\newcount{\x}
+		\foreach \line in {#5} {
+			\x=0
+			\foreach \t/\colorW/\colorS in \line {
+				\coordinate (W) at ($ (origin) + ( \boxsize * \x , -\boxsize * \y ) + ( 0      , \boxsize / 2 ) $);
+				\coordinate (E) at ($ (origin) + ( \boxsize * \x , -\boxsize * \y ) + ( \boxsize     , \boxsize / 2 ) $);
+				\coordinate (N) at ($ (origin) + ( \boxsize * \x , -\boxsize * \y ) + ( \boxsize / 2 , \boxsize     ) $);
+				\coordinate (S) at ($ (origin) + ( \boxsize * \x , -\boxsize * \y ) + ( \boxsize / 2 , 0 ) $);
+				\coordinate (C) at ($ (origin) + ( \boxsize * \x , -\boxsize * \y ) + ( \boxsize / 2 , \boxsize / 2 ) $);
+				\ifthenelse{\equal{\t}{e}}{
+					\ifthenelse{\equal{\colorW}{l}}{\draw[rounded corners=\boxsize * 8, color=#1, thick] (W) -- (C) -- (N);}{}
+					\ifthenelse{\equal{\colorW}{m}}{\draw[rounded corners=\boxsize * 8, color=#2, thick] (W) -- (C) -- (N);}{}
+					\ifthenelse{\equal{\colorW}{r}}{\draw[rounded corners=\boxsize * 8, color=#3, thick] (W) -- (C) -- (N);}{}
+					\ifthenelse{\equal{\colorW}{b}}{\draw[rounded corners=\boxsize * 8, color=#4] (W) -- (C) -- (N);}{}
+					\ifthenelse{\equal{\colorS}{l}}{\draw[rounded corners=\boxsize * 8, color=#1, thick] (S) -- (C) -- (E);}{}
+					\ifthenelse{\equal{\colorS}{m}}{\draw[rounded corners=\boxsize * 8, color=#2, thick] (S) -- (C) -- (E);}{}
+					\ifthenelse{\equal{\colorS}{r}}{\draw[rounded corners=\boxsize * 8, color=#3, thick] (S) -- (C) -- (E);}{}
+					\ifthenelse{\equal{\colorS}{b}}{\draw[rounded corners=\boxsize * 8, color=#4] (S) -- (C) -- (E);}{}
+				}{
+				\ifthenelse{\equal{\t}{c}}{
+					\ifthenelse{\equal{\colorW}{l}}{\draw[color=#1, thick] (W) -- (E);}{}
+					\ifthenelse{\equal{\colorW}{m}}{\draw[color=#2, thick] (W) -- (E);}{}
+					\ifthenelse{\equal{\colorW}{r}}{\draw[color=#3, thick] (W) -- (E);}{}
+					\ifthenelse{\equal{\colorS}{l}}{\draw[color=#1, thick] (S) -- (N);}{}
+					\ifthenelse{\equal{\colorS}{m}}{\draw[color=#2, thick] (S) -- (N);}{}
+					\ifthenelse{\equal{\colorS}{r}}{\draw[color=#3, thick] (S) -- (N);}{}
+				}{\ifthenelse{\equal{\t}{n}}{}{\node at (C) {$\small \t$};}}}
+				\global\advance\x by 1
+			}
+			\global\advance\y by 1
+		}
+	\end{tikzpicture}%
+}
+
+%\newcommand{\pipeDreamBiColor}[4]{% #1 = colorA
+%                                  % #2 = colorB
+%                                  % #3 = boundary color
+%                                  % #4 = list of type/colorW/colorS (c = cross, e = elbow, t = top, b = bottom, tb = top-bottom, or n = nothing)
+%	\length{#4}%
+%	\begin{tikzpicture}[baseline = \value{length}*\verticalShift+\verticalOffset, scale=1]
+%		\coordinate (origin) at (0,0);
+%		\newcount{\y} \y=0
+%		\newcount{\x}
+%		\foreach \line in {#4} {
+%			\x=0
+%			\foreach \t/\colorW/\colorS in \line {
+%				\coordinate (W) at ($ (origin) + ( \boxsize * \x , -\boxsize * \y ) + ( 0      , \boxsize / 2 ) $);
+%				\coordinate (E) at ($ (origin) + ( \boxsize * \x , -\boxsize * \y ) + ( \boxsize     , \boxsize / 2 ) $);
+%				\coordinate (N) at ($ (origin) + ( \boxsize * \x , -\boxsize * \y ) + ( \boxsize / 2 , \boxsize     ) $);
+%				\coordinate (S) at ($ (origin) + ( \boxsize * \x , -\boxsize * \y ) + ( \boxsize / 2 , 0 ) $);
+%				\coordinate (C) at ($ (origin) + ( \boxsize * \x , -\boxsize * \y ) + ( \boxsize / 2 , \boxsize / 2 ) $);
+%				\ifthenelse{\equal{\t}{e}}{
+%					\ifthenelse{\equal{\colorW}{l}}{\draw[rounded corners=\boxsize * 8, color=#1, thick] (W) -- (C) -- (N);}{\draw[rounded corners=\boxsize * 8, color=#2, thick] (W) -- (C) -- (N);}
+%					\ifthenelse{\equal{\colorS}{l}}{\draw[rounded corners=\boxsize * 8, color=#1, thick] (S) -- (C) -- (E);}{\draw[rounded corners=\boxsize * 8, color=#2, thick] (S) -- (C) -- (E);}
+%				}{}
+%				\ifthenelse{\equal{\t}{c}}{
+%					\ifthenelse{\equal{\colorW}{l}}{\draw[color=#1, thick] (W) -- (E);}{\draw[color=#2, thick] (W) -- (E);}
+%					\ifthenelse{\equal{\colorS}{l}}{\draw[color=#1, thick] (S) -- (N);}{\draw[color=#2, thick] (S) -- (N);}
+%				}{}
+%				\ifthenelse{\equal{\t}{t}}{
+%					\ifthenelse{\equal{\colorW}{l}}{\draw[rounded corners=\boxsize * 8, color=#1] (W) -- (C) -- (N);}{}
+%					\ifthenelse{\equal{\colorW}{r}}{\draw[rounded corners=\boxsize * 8, color=#2] (W) -- (C) -- (N);}{}
+%					\ifthenelse{\equal{\colorW}{b}}{\draw[rounded corners=\boxsize * 8, color=#3] (W) -- (C) -- (N);}{}
+%					\ifthenelse{\equal{\colorS}{l}}{\draw[rounded corners=\boxsize * 8, color=#1, thick] (S) -- (C) -- (E);}{\draw[rounded corners=\boxsize * 8, color=#2, thick] (S) -- (C) -- (E);}
+%				}{}
+%				\ifthenelse{\equal{\t}{b}}{
+%					\ifthenelse{\equal{\colorW}{l}}{\draw[rounded corners=\boxsize * 8, color=#1, thick] (W) -- (C) -- (N);}{\draw[rounded corners=\boxsize * 8, color=#2, thick] (W) -- (C) -- (N);}
+%					\ifthenelse{\equal{\colorS}{l}}{\draw[rounded corners=\boxsize * 8, color=#1] (S) -- (C) -- (E);}{}
+%					\ifthenelse{\equal{\colorS}{r}}{\draw[rounded corners=\boxsize * 8, color=#2] (S) -- (C) -- (E);}{}
+%					\ifthenelse{\equal{\colorS}{b}}{\draw[rounded corners=\boxsize * 8, color=#3] (S) -- (C) -- (E);}{}
+%				}{}
+%				\ifthenelse{\equal{\t}{tb}}{
+%					\ifthenelse{\equal{\colorW}{l}}{\draw[rounded corners=\boxsize * 8, color=#1] (W) -- (C) -- (N);}{}
+%					\ifthenelse{\equal{\colorW}{r}}{\draw[rounded corners=\boxsize * 8, color=#2] (W) -- (C) -- (N);}{}
+%					\ifthenelse{\equal{\colorW}{b}}{\draw[rounded corners=\boxsize * 8, color=#3] (W) -- (C) -- (N);}{}
+%					\ifthenelse{\equal{\colorS}{l}}{\draw[rounded corners=\boxsize * 8, color=#1] (S) -- (C) -- (E);}{}
+%					\ifthenelse{\equal{\colorS}{r}}{\draw[rounded corners=\boxsize * 8, color=#2] (S) -- (C) -- (E);}{}
+%					\ifthenelse{\equal{\colorS}{b}}{\draw[rounded corners=\boxsize * 8, color=#3] (S) -- (C) -- (E);}{}
+%				}{}
+%				\global\advance\x by 1
+%			}
+%			\global\advance\y by1
+%		}
+%	\end{tikzpicture}%
+%}
