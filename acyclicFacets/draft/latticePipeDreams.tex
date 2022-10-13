@@ -1331,6 +1331,16 @@ with $j\in I_1$. Let $\beta=\rootFunction{I_1}{j}=\rootFunction{I_2}{j}$, then
 
 \begin{proof}
     ~\cesar{Noemie: can you please write the proof of this Lemma? I do not remember the details at the moment, but the proof is based on the paper of Jahn--Stump that we discussed during your visit in Graz.}
+    
+For the purpose of this proof, let us write~$\leqslant_B$ the strong Bruhat order, defined by~$x \leqslant_B y \iff$ a reduced expression of~$y$ has a reduced expression of~$x$ as a subword, and~$x \less_B y$ the covers of this order. We note that for any word~$Q$ and any~$x\in W$, we can find a reduced expression of~$x$ as a subword of~$Q$ if and only if~$x \leqslant_B Dem(Q)$ the demazure product of~$Q$.
+
+Let us write~$w = uv$ with~$u$ the prefix of~$w$ defined by~$I_1$ and~$I_2$ on~$Q$ until index~$j-1$ and~$v$ the suffix of~$w$ defined by the same facets from index~$j$ and onward. Let us also write~$s$ the~$j^{\text{th}}$ letter of~$Q$ and~$\alpha$ the simple root associated with~$s$. We note that~$\beta = \rootFunction{I_1}{j} = u(\alpha)$.
+
+Let us call~$Q'$ the suffix of~$Q$ starting at index~$j+1$. Since~$j \notin I_2$, we note that~$sv \less_B v$ and the restriction of~$I_2$ to~$Q'$ is a facet of~$\subwordComplex(Q', sv)$. However, since~$j \in I_1$, the restriction of~$I_1$ to~$Q'$ is a facet of~$\subwordComplex(Q', v)$. Therefore, we know that~$v \leqslant_B Dem(Q')$.
+
+We can now apply \cite{jahn_bruhat_2021, proposition 3.14} to~$I'_2$ the restriction of~$I_2$ to~$Q'$, which tells us that~$\mathcal{E}^+(sv, Dem(Q)) \subseteq \cone \Roots(I'_2)$. Since~$sv \less_B v \leqslant Dem(Q)$, then~$\alpha \in \mathcal{E}^+(sv, Dem(Q))$ and so~$\alpha \in \cone \Roots(I'_2)$.
+
+Going back to~$I_2$, we know that~$us(\Roots(I'_2)) \subseteq \Roots(I_2)$ and so~$us(\alpha) = -u(\alpha) = -\beta \in \cone \Roots(I_2)$.
 \end{proof}
 
 \begin{proof}[Proof of Proposition~\ref{prop_sweeping2}]
