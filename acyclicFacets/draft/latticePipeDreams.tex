@@ -197,6 +197,11 @@ The approach and proofs developed here are direct adaptations from~\cite[Sect.~1
 \vincent{Include an introduction}
 \vincent{cite \cite{BergeronBilley,KnutsonMiller-subwordComplex}}
 
+The \defn{weak order} on the permutations of~$[n]$ is defined as the inclusion order of inversion sets, where an inversion of a permutation~$\pi$ is a pair of values~$i, j \in [n]$ such that~$i < j$ while~${\pi^{-1}(i) > \pi^{-1}(j)}$.
+The cover relations in the weak order correspond to switching pairs of consecutive values in permutations.
+The weak order is known to be a lattice \cite{GuilbaudRosenstiehl,Bjorner}.
+For two permutations~$\sigma < \tau$, we denote by~$[\sigma, \tau]$ the weak order interval between~$\sigma$ and~$\tau$, which is again a lattice.
+
 \section{Preliminaries on pipe dreams}
 \label{sec:preliminaries}
 
@@ -233,6 +238,7 @@ For example, the flip of \cref{fig:pipeDreams} is increasing from left to right.
 The \defn{increasing flip graph} is the graph of increasing flips on~$\pipeDreams(\omega)$.
 It is clearly a directed acyclic graph, and it has a unique source and a unique sink \cite{PilaudPocchiola}, called the \defn{greedy} and \defn{antigreedy} pipe dreams, and denoted~$\greedyPipeDream$ and~$\antiGreedyPipeDream$.
 \vincent{In \cite{PilaudStump-ELlabeling}, these are called positive and negative greedy facets. Also the notations are different...}
+The \defn{increasing flip poset} is the reflexive and transitive closure of the increasing flip graph on~$\pipeDreams(\omega)$.
 
 The \defn{contact graph} of a pipe dream~$P$ is the directed graph~$P\contact$ with one node for each pipe of~$P$ and one arc for each elbow of~$P$ connecting the northwest pipe to the southeast pipe of the elbow\footnote{We have reversed the usual orientation conventions of \cite{PilaudSantos-brickPolytope, PilaudPocchiola, Pilaud-BrickAlgebra} to suit better our purposes, in particular in \cref{subsec:insertionAlgorithm}.}.
 We see equivalently the contact graph~$P\contact$ as a graph on the pipes of~$P$ or on the integers~$[n]$.
@@ -242,52 +248,48 @@ For~$\omega \in \fS_n$, we denote by~$\acyclicPipeDreams(\omega)$ the set of acy
 % We let~$\acyclicPipeDreams_n \eqdef \bigsqcup_{\omega \in \fS_n} \acyclicPipeDreams(\omega)$ and~$\acyclicPipeDreams \eqdef \bigsqcup_{n \in \N} \acyclicPipeDreams_n$.
 %\vincent{Add contact graphs to \cref{fig:pipeDreams}.}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Reversing pipe dreams}
-\label{subsec:reversingPipeDreams}
-
-We say that a pipe dream~$P \in \pipeDreams_n$ is \defn{reversing} if it fixes the first pipe and reverses the order of the remaining pipes, \ie if~$\omega_P = [1, n, n-1, \dots, 2]$ (in one-line notation).
-We denote by~$\reversingPipeDreams_n$ the reversing pipe dreams of~$\pipeDreams_n$.
-As observed by different authors~\cite{Woo, PilaudPocchiola, Pilaud-these, Stump}, the pipe dreams of~$\reversingPipeDreams_n$ belong to the Catalan family.
-\cref{fig:bijection} illustrates explicit bijections between the pipe dreams of~$\reversingPipeDreams_n$, the binary trees on $n$ vertices, and the triangulations of a convex $(n+2)$-gon.
-\vincent{figure starts with pipe $0$}
-
-\begin{figure}[h]
+\begin{example}
+\label{exm:Tamari1}
+We say that a pipe dream is \defn{reversing} if it fixes the first and last pipes and reverses the order of the remaining pipes.
+In this case, it is natural to label the pipes from~$0$ to~$n+1$, so that the permutation of the pipes is~$\rho_n \eqdef [0, n, n-1, \dots, 2, 1, n+1]$.
+% We denote by~$\reversingPipeDreams_n$ the reversing pipe dreams of~$\pipeDreams_n$.
+As observed in~\cite{Woo, PilaudPocchiola, Pilaud-these, Stump}, the family of reversing pipe dreams belong to the Catalan families.
+\cref{fig:bijection} illustrates explicit bijections between reversing pipe dreams of~$\pipeDreams(\rho_n)$, binary trees with $n$ internal nodes, and the triangulations of a convex $(n+2)$-gon.
+More precisely, the map which sends an elbow in row~$i$ and column~$j$ of the triangular shape to the diagonal~$[i,n+1-j]$ of the~$(n+2)$-gon provides the following correspondence: \\[.3cm]
+\centerline{
+\begin{tabular}{r@{$\quad\longleftrightarrow\quad$}l}
+pipe dream~$P \in \reversingPipeDreams_n$ & triangulation~$P\duality$ of the $(n+2)$-gon, \\
+pipe $i$ of~$P$ & triangle $i\duality$ of~$P\duality$ (with central vertex~$i$), \\
+elbow between pipes~$i$ and~$j$ of~$P$ & common side of triangles~$i\duality$ and~$j\duality$ of~$P\duality$, \\
+cross between pipes~$i$ and~$j$ of~$P$ & common bisector between triangles~$i\duality$ and~$j\duality$ of~$P\duality$, \\
+contact graph of~$P$ & dual binary tree of~$P\duality$, \\
+elbow flips in~$P$ & diagonal flips in~$P\duality$. \\
+%increasing flip poset & Tamari lattice.
+\end{tabular}} \\[.3cm]
+%
+\begin{figure}
 	\centerline{\includegraphics[scale=1.3]{dualiteTriangulation}}
 	\caption{The bijection between reversing pipe dreams (left), binary trees (middle) and triangulations (right).}
 	\label{fig:bijection}
 \end{figure}
-
-More precisely, the map which sends an elbow in row~$i$ and column~$j$ of the triangular shape to the diagonal~$[i,n+1-j]$ of the~$(n+2)$-gon provides the following correspondence:
-\begin{center}
-\begin{tabular}{r@{$\quad\longleftrightarrow\quad$}l}
-pipe dream~$P \in \reversingPipeDreams_n$ & triangulation~$P\duality$ of the $(n+2)$-gon, \\
-$i$th pipe of~$P$ & $i$th triangle of~$P\duality$ (with central vertex~$i$), \\
-elbows of~$P$ & diagonals of~$P\duality$, \\
-crosses of~$P$ & common bisectors between triangles of~$P\duality$, \\
-contact graph of~$P$ & dual binary tree of~$P\duality$, \\
-elbow flips in~$P$ & diagonal flips in~$P\duality$.
-\end{tabular}
-\end{center}
-
-\begin{remark}
-All reversing pipe dreams are acyclic.
-Indeed, there contact graphs are (oriented) binary trees, which are certainly acyclic.
-\end{remark}
+%
+As a consequence, this map sends the increasing flip poset on reversing pipe dreams to the \defn{Tamari lattice} on binary trees.
+This lattice is defined as the transitive closure of right rotations on binary trees, and is obtained as the quotient of the weak order by the \defn{sylvester congruence}.
+\vincent{Not sure where we want that...}
+An important point here is that all reversing pipe dreams are acyclic, since there contact graphs are (oriented) binary trees.
+\end{example}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Elementary properties of pipe dreams}
-\label{subsec:elementaryProperties}
+\subsection{Crossing and contact properties}
+\label{subsec:crossingsContacts}
 
-We gather in this section some elementary properties of pipe dreams needed later.
-\vincent{Not sure we use all these. At least say that they are just technical points.}
+We now gather some elementary properties of crossings and contacts that will be needed later to construct pipe dreams from permutations.
+For a pipe dream~$P \in \pipeDreams(\omega)$, we call pipe~$j$ the pipe which enters at row~$j$ and exits at column~$\omega^{-1}(j)$.
 
 \begin{lemma}
 \label{lem:horiVertCrossings}
-For any pipe dream~$P \in \pipeDreams(\omega)$, the pipe~$j$ of~$P$ (which enters at row~$j$ and exits at column~$\omega^{-1}(j)$) crosses
+For any pipe dream~$P \in \pipeDreams(\omega)$, the pipe~$j$ of~$P$ crosses precisely
 \begin{itemize}
 \item vertically the pipes~$i$ such that~$i < j$ while~$\omega^{-1}(i) > \omega^{-1}(j)$,
 \item horizontally the pipes~$k$ such that~$j < k$ while~$\omega^{-1}(j) > \omega^{-1}(k)$.
@@ -295,13 +297,13 @@ For any pipe dream~$P \in \pipeDreams(\omega)$, the pipe~$j$ of~$P$ (which enter
 \end{lemma}
 
 \begin{proof}
-For~$i < j$, if~$\omega^{-1}(i) > \omega^{-1}(j)$, then the pipes~$i$ and~$j$ have to cross exactly once, while if~$\omega^{-1}(i) < \omega^{-1}(j)$ the pipes~$i$ and~$j$ cannot cross.
+For~$i < j$, if~$\omega^{-1}(i) > \omega^{-1}(j)$, then the pipes~$i$ and~$j$ have to cross exactly once (and $j$ must be the vertical pipe at that crossing), while if~$\omega^{-1}(i) < \omega^{-1}(j)$ the pipes~$i$ and~$j$ cannot cross.
 The same argument applies for~${k > j}$.
 \end{proof}
 
 \begin{lemma}
 \label{lem:countingElbows}
-For any pipe dream~$P \in \pipeDreams(\omega)$, the pipe~$j$ (which enters at row~$j$ and exits at column~$\omega^{-1}(j)$) has precisely
+For any pipe dream~$P \in \pipeDreams(\omega)$, the pipe~$j$ has precisely
 \begin{itemize}
 \item $\noninversions{\omega}{j}$ many southeast elbows\!\SEelbow{}
 \item $1+\noninversions{\omega}{j}$ many northwest elbows~\WNelbow{}
@@ -330,6 +332,13 @@ This already exhausts all~$j+\omega^{-1}(j)-1$ grid points of~$j$.
 Therefore, the pipe~$j$ can only cross at most once any other pipe.
 \end{proof}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Contact graph properties}
+\label{subsec:contactGraph}
+
+We now state a simple observation about the poset~$\contactLess{P}$, and two of its consequences, that will play essential roles in the proofs in \cref{sec:latticeAcyclicPipeDreams}.
+
 \begin{lemma}
 \label{lem:rectangle}
 Let~$P$ be a pipe dream and~$i,j$ be pipes of~$P$.
@@ -349,7 +358,7 @@ By induction, there is a directed path from~$k$ to~$\ell$ in~$P\contact$, and th
 \end{proof}
 
 Note that the reciprocal assertion of \cref{lem:rectangle} is false.
-We conclude by two consequences of \cref{lem:rectangle}.
+We conclude this section by two consequences of \cref{lem:rectangle}.
 
 \begin{lemma}
 \label{lem:consequenceRectangle1}
@@ -365,18 +374,32 @@ We conclude that~$i \contactLess{P} j$ by \cref{lem:rectangle}.
 
 \begin{lemma}
 \label{lem:consequenceRectangle2}
-Let~$P$ be a pipe dream and let~$i,j,k$ be three pipes of~$P$ such that~$\min(i,k) < j$ and~$\min(\omega^{-1}(i), \omega^{-1}(k)) < \omega^{-1}(j)$.
+Let~$P$ be a pipe dream and let~$i,j,k$ be three pipes of~$P$ such that~$i < j < k$ and~$\omega^{-1}(i) > \omega^{-1}(j) > \omega^{-1}(k)$.
 If~$i \to k$ in~$P\contact$, then either~$i \contactLess{P} j \contactMore{P} k$ or~$i \contactMore{P} j \contactLess{P} k$.
-\vincent{not sure we really use this version}
 \end{lemma}
 
 \begin{proof}
-Let~$e$ denote the contact of~$i$ and~$k$ in~$P$.
+Let~$e$ denote the contact of pipes~$i$ and~$k$ in~$P$.
 Decompose the triangular shape into three regions: the region~$A$ of all points located southwest of~$e$, the region~$B$ of all points located northwest or southeast of~$e$, and the region~$C$ of all points located northeast of~$e$.
-Since~$\min(i,k) < j$ and~$\min(\omega^{-1}(i), \omega^{-1}(k)) < \omega^{-1}(j)$, the pipe~$j$ starts in region~$A$ and ends in region~$C$.
+Since~$i < j$ and~$\omega^{-1}(j) > \omega^{-1}(k)$, the pipe~$j$ starts in region~$A$ and ends in region~$C$.
 Hence, the pipe~$j$ has an elbow~$f$ in region~$B$.
 We thus obtain that~$i \contactLess{P} j \contactMore{P} k$ if this $f$ is southeast of~$e$, and that~$i \contactMore{P} j \contactLess{P} k$ if $f$ is northwest of~$e$.
 \end{proof}
+
+%\begin{lemma}
+%\label{lem:consequenceRectangle2}
+%Let~$P$ be a pipe dream and let~$i,j,k$ be three pipes of~$P$ such that~$\min(i,k) < j$ and~$\min(\omega^{-1}(i), \omega^{-1}(k)) < \omega^{-1}(j)$.
+%If~$i \to k$ in~$P\contact$, then either~$i \contactLess{P} j \contactMore{P} k$ or~$i \contactMore{P} j \contactLess{P} k$.
+%\vincent{not sure we really use this extended version}
+%\end{lemma}
+%
+%\begin{proof}
+%Let~$e$ denote the contact of pipes~$i$ and~$k$ in~$P$.
+%Decompose the triangular shape into three regions: the region~$A$ of all points located southwest of~$e$, the region~$B$ of all points located northwest or southeast of~$e$, and the region~$C$ of all points located northeast of~$e$.
+%Since~$\min(i,k) < j$ and~$\min(\omega^{-1}(i), \omega^{-1}(k)) < \omega^{-1}(j)$, the pipe~$j$ starts in region~$A$ and ends in region~$C$.
+%Hence, the pipe~$j$ has an elbow~$f$ in region~$B$.
+%We thus obtain that~$i \contactLess{P} j \contactMore{P} k$ if this $f$ is southeast of~$e$, and that~$i \contactMore{P} j \contactLess{P} k$ if $f$ is northwest of~$e$.
+%\end{proof}
 
 
 
@@ -387,12 +410,8 @@ We thus obtain that~$i \contactLess{P} j \contactMore{P} k$ if this $f$ is south
 \section{Lattice of acyclic pipe dreams}
 \label{sec:latticeAcyclicPipeDreams}
 
-\vincent{Mention here and throughout the classical sylvester example}
-
-The \defn{weak order} on the permutations of~$[n]$ is defined as the inclusion order of inversion sets, where an inversion of a permutation~$\pi$ is a pair of values~$i, j \in [n]$ such that~$i < j$ while~${\pi^{-1}(i) > \pi^{-1}(j)}$.
-The cover relations in the weak order correspond to switching pairs of consecutive values in permutations.
-The weak order is known to be a lattice \cite{GuilbaudRosenstiehl,Bjorner}.
-For two permutations~$\sigma < \tau$, we denote by~$[\sigma, \tau]$ the weak order interval between~$\sigma$ and~$\tau$, which is again a lattice.
+As already mentioned, the increasing flip poset on reversing pipe dreams is isomorphic to the Tamari lattice, which is a well known lattice quotient of the weak order.
+In this section, we extend this result to any permutation~$\omega$, by proving that the transitive closure of the increasing flip graph on acyclic pipe dreams of~$\acyclicPipeDreams(\omega)$ is the Hasse diagram of a lattice quotient of the weak order interval~$[e,\omega]$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -414,8 +433,17 @@ In this section, we prove the following structural property of~$\linearExtension
 The set~$\set{\linearExtensions(P)}{P \in \acyclicPipeDreams(\omega)}$ partitions the weak order interval~$[e,\omega]$.
 \end{theorem}
 
-We will see in \cref{sec:algorithms} different algorithms to compute the pipe dream~$P \in \acyclicPipeDreams(\omega)$ of which a given permutation~$\pi \in [e,\omega]$ is a linear extension.
-These algorithms are however not needed for the proof of \cref{thm:partitionPipeDreams}, which we break into the next three elementary lemmas.
+\begin{example}
+\label{exm:Tamari2}
+Following \cref{exm:Tamari1}, observe that the permutations of~$\{0, 1, \dots, n, n+1\}$ below $\rho_n$ are precisely the permutations of the form~$[0, \pi, n+1]$ for some~$\pi \in \fS_n$.
+It is well-known that any permutation~$\pi \in \fS_n$ is a linear extension of a unique binary tree.
+This binary tree can be obtained by inserting~$\pi$ from right to left in a binary search tree.
+Hence any permutation of~$\{0, 1, \dots, n, n+1\}$ below~$\rho_n$ is a linear extension of a unique reversing pipe dream on~$n+2$ pipes.
+For instance, the pipe dream of \cref{fig:bijection} has linear extensions~$0421356$, $0423156$, $0421536$, $0423516$, $0425136$, $0425316$, $0452136$, $0452316$.
+\end{example}
+
+We will see in \cref{sec:algorithms} insertion algorithms to compute the pipe dream~$P \in \acyclicPipeDreams(\omega)$ of which a given permutation~$\pi \in [e,\omega]$ is a linear extension, for any permutation~$\omega$.
+These algorithms are however not needed for the proof of \cref{thm:partitionPipeDreams}, which we break into the following three lemmas.
 
 \begin{lemma}
 \label{lem:lowerSetPipeDreams}
@@ -492,7 +520,16 @@ In this section, we prove the following statement.
 The pipe dream congruence~$\equiv_\omega$ is a congruence of the weak order interval~$[e,\omega]$.
 \end{theorem}
 
-We prove this statement by checking both conditions of \cref{prop:characterizationCongruences}.
+\begin{example}
+\label{exm:Tamari3}
+Following \cref{exm:Tamari1,exm:Tamari2}, observe that the congruence~$\equiv_{\rho_n}$ on the permutations of~$\{0, 1, \dots, n, n+1\}$ below~$\rho_n$ corresponds to the sylvester congruence on~$\fS_n$.
+The classes of this congruence are the sets of linear extensions of the binary trees (considered as posets, labeled in inorder, and oriented towards their roots).
+It can also be defined by the classical rewriting rule~$UikVjW \equiv UkiVjW$ for~$i < j < k$.
+\end{example}
+
+We will discuss in \cref{subsec:rewritingAlgorithm} rewriting rules for the pipe dream congruence~$\equiv_\omega$, for any permutation~$\omega$.
+This rewriting rule is however not needed for the proof of \cref{thm:pipeDreamCongruence}.
+We prove it by checking both conditions of \cref{prop:characterizationCongruences}.
 For the first condition, we need the following classical characterization of weak order intervals, see \cite{BjornerWachs} or~\cite{ChatelPilaudPons}.
 
 \begin{proposition}[{\cite[Thm.~6.8]{BjornerWachs}}]
@@ -504,7 +541,6 @@ i \less k \implies i \less j \text{ or } j \less k
 i \more k \implies i \more j \text{ or } j \more k.
 \]
 Moreover, the inversions of~$\min(I)$ are the pairs~$i,j \in [n]$ with $i < j$ and $i \more j$, and the non-inversions of~$\max(I)$ are the pairs~$i,j \in [n]$ with $i < j$ and $i \less j$.
-\vincent{Not sure I want to use that last sentence later.}
 \end{proposition}
 
 \begin{proposition}
@@ -565,14 +601,41 @@ For a congruence~$\equiv$ of a lattice~$L$, the \defn{lattice quotient}~$L/{\equ
 \item $X \le Y$ in~$L/{\equiv}$ if and only if there exist representatives~$x \in X$ and~$y \in Y$ such that~$x \le y$ in~$L$, or equivalently $\min(X) \le \min(Y)$, or equivalently $\max(X) \le \max(Y)$,
 \item $X \meet Y$ (resp.~$X \join Y$) is the congruence classe of~$x \meet y$ (resp.~of~$x \join y$) for arbitrary representatives~$x \in X$ and~$y \in Y$.
 \end{itemize}
-In this section, we prove the following statement.
+In this section, we aim at the following statement.
 
 \begin{theorem}
 \label{thm:pipeDreamQuotient}
-The lattice quotient~$[e,\omega]/{\equiv_\omega}$ is isomorphic to the increasing flip poset on~$\acyclicPipeDreams(\omega)$.
+The increasing flip graph on~$\acyclicPipeDreams(\omega)$ is isomorphic to the Hasse diagram of the lattice quotient~$[e,\omega]/{\equiv_\omega}$.
 \end{theorem}
 
-To prove this result, we need the following auxiliary statement.
+\begin{example}
+\label{exm:Tamari4}
+Following \cref{exm:Tamari1,exm:Tamari2,exm:Tamari3}, observe that the increasing flip poset on reversing pipe dreams is isomorphic to the Tamari lattice, which is the quotient of the weak order by the sylvester congruence.
+\end{example}
+
+\begin{remark}
+\label{rem:pipeDreamQuotient}
+The increasing flip poset on~$\pipeDreams(\omega)$ is the transitive closure of the increasing flip graph on~$\pipeDreams(\omega)$.
+Observe that the two natural ways to restrict to the acyclic pipe dreams of~$\acyclicPipeDreams(\omega)$ (restrict either the flip graph or the flip poset) do not coincide in general.
+Namely, the transitive closure of the subgraph of the increasing flip graph induced by~$\acyclicPipeDreams(\omega)$ may have strictly less relations than the subposet of the increasing flip poset induced by~$\acyclicPipeDreams(\omega)$.
+\cref{fig:counterExampleRestrictionIncreasingFlipPoset} illustrates two acyclic pipe dreams of~$\acyclicPipeDreams(126543)$ connected by a sequence of increasing flips in~$\pipeDreams(126543)$ but by no sequence of increasing flips in~$\acyclicPipeDreams(126543)$.
+%	* type A5,
+%	* Q = [1, 2, 3, 4, 5, 1, 2, 3, 4, 1, 2, 3, 1, 2, 1] 
+%	* w = [1, 2, 3, 1, 2, 1]
+%	* flips: 
+%	(0, 2, 3, 4, 5, 6, 7, 8, 12)
+%	(2, 3, 4, 5, 6, 7, 8, 10, 12) 
+%	(3, 4, 5, 6, 7, 8, 10, 11, 12)
+%	(3, 4, 5, 7, 8, 10, 11, 12, 14)
+
+\begin{figure}[ht]
+	\centerline{\includegraphics[scale=1.3]{counterExampleRestrictionIncreasingFlipPoset}}
+	\caption{Two acyclic pipe dreams~$\acyclicPipeDreams(126543)$ connected by a sequence of increasing flips in~$\pipeDreams(126543)$ but by no sequence of increasing flips in~$\acyclicPipeDreams(126543)$.}
+	\label{fig:counterExampleRestrictionIncreasingFlipPoset}
+\end{figure}
+\end{remark}
+
+To prove \cref{thm:pipeDreamQuotient}, we need the following auxiliary statement.
 
 \begin{lemma}
 \label{lem:flippable}
@@ -586,34 +649,30 @@ Since $P\contact$ is acyclic, there is no path from~$j$ to~$i$ in~$P\contact$.
 Assume by means of contradiction that there is a path~$i \to k_1 \to \dots \to k_p \to j$ in~$P\contact$ with~$p \ge 1$.
 Since the arcs of~$P'{}\contact$ are the arcs of~$P\contact$ where only extremities~$i$ and~$j$ can be changed, $P'{}\contact$ contains the path~$k_1 \to \dots \to k_p$ and at least one of the arcs~$i \to k_1$ or~$j \to k_1$, and at least one of the arcs~$k_p \to j$ or~$k_p \to i$.
 Consequently, since~$P'{}\contact$ contains the arc~$j \to i$ and is acyclic, it must contain the path~$j \to k_1 \to \dots \to k_p \to i$.
-We thus obtained that~$i \contactLess{P} k_1 \contactLess{P} j$ while~$i \contactMore{P'} k_1 \contactMore{P'} j$, and~$k_1$ has a contact with~$i$ in~$P$ and with~$j$ in~$P'$.
+We thus obtained that~$i \contactLess{P} k_1 \contactLess{P} j$ while~$i \contactMore{P'} k_1 \contactMore{P'} j$, and~$k_1$ has a contact with~$i$ in~$P$ that becomes a contact with~$j$ in~$P'$.
 
-Consider now the elbow~$e$ of~$P$ which is a crossing in~$P'$ and the elbow~$e'$ of~$P'$ which is a crossing of~$P$.
-Let~$R$ the rectangle with corners~$e$ and~$e'$.
+Consider now the contact~$c$ of~$P$ which is a crossing in~$P'$ and the contact~$c'$ of~$P'$ which is a crossing of~$P$.
+Let~$R$ the rectangle with corners~$c$ and~$c'$.
 Since~$k_1$ has a contact with~$i$ in~$P$ and with~$j$ in~$P'$, it must pass inside~$R$.
-Since~$i \contactLess{P} k_1 \contactLess{P} j$ and~$i \contactMore{P'} k_1 \contactMore{P'} j$, the pipe~$k$ has no elbow located northwest or southeast of~$e$ or~$e'$, hence no elbow located north, south, west or east of~$R$.
+Since~$i \contactLess{P} k_1 \contactLess{P} j$ and~$i \contactMore{P'} k_1 \contactMore{P'} j$, the pipe~$k$ has no elbow located northwest or southeast of~$c$ or~$c'$, hence no elbow located north, south, west or east of~$R$.
 We thus obtain that~$k$ must be straight before it reaches~$R$, and after it leaves~$R$.
 Hence $k_1 < i < j$ and~$\omega^{-1}(k_1) > \omega^{-1}(j) > \omega^{-1}(i)$.
-By \cref{lem:consequenceRectangle1}, this contradicts~$k_1 \contactLess{P} j$~and~$i \contactMore{P'} k_1$.
+By \cref{lem:consequenceRectangle1}, this contradicts~$i \contactLess{P} k_1$~and~$k_1 \contactMore{P'} j$.
 \end{proof}
 
 \begin{proof}[Proof of \cref{thm:pipeDreamQuotient}]
-It suffices to prove that the following conditions are equivalent for two distinct pipe dreams~$P,P' \in \acyclicPipeDreams(\omega)$:
+We need to prove that the following conditions are equivalent for two distinct pipe dreams~$P,P' \in \acyclicPipeDreams(\omega)$:
 \begin{enumerate}[(i)]
-\item $P$ covers~$P'$ in the increasing flip poset on~$\acyclicPipeDreams(\omega)$,
-\item there exist linear extensions~$\pi$ of~$P$ and~$\pi'$ of~$P'$ such that~$\pi$ covers~$\pi'$ in weak order.
+\item there is an increasing flip from $P$ to~$P'$,
+\item there exist linear extensions~$\pi$ of~$P$ and~$\pi'$ of~$P'$ such that~$\pi'$ covers~$\pi$ in weak order.
 \end{enumerate}
-\para{(ii) $\Rightarrow$ (i)}
-Follows from \cref{lem:lowerSetPipeDreams}.
-
-\para{(i) $\Rightarrow$ (ii)}
-Assume that~$P$ covers~$P'$ in the increasing flip poset.
-Let~$i < j$ be the two pipes involved in the flip between~$P$ and~$P'$.
-Hence, $j \to i$ is an arc of~$P$ while~$i \to j$ is an arc of~$P'$.
-By \cref{lem:flippable}, there is no directed path from~$j$ to~$i$ in~$P$ besides the arcs~$j \to i$ (there might be more than one such arc).
-Hence, there exists a linear extension~$\pi$ of~$P$ where~$j$ and~$i$ are consecutive.
-Write~$\pi \eqdef UjiV$ and define~$\pi' \eqdef UijV$.
-Since~$j \to i$ is an arc of~$P$, $\pi'$ is not a linear extension of~$P$.
+\cref{lem:lowerSetPipeDreams,thm:partitionPipeDreams} directly imply that (ii) $\Rightarrow$ (i).
+For (i) $\Rightarrow$ (ii), let~$i < j$ be the two pipes involved in the flip between~$P$ and~$P'$.
+Hence, $i \to j$ is an arc of~$P\contact$ while~$j \to i$ is an arc of~$P'{}\contact$.
+By \cref{lem:flippable}, there is no directed path from~$i$ to~$j$ in~$P\contact$ besides the arcs~$i \to j$ (there might be more than one such arc).
+Hence, there exists a linear extension~$\pi$ of~$P$ where~$i$ and~$j$ are consecutive.
+Write~$\pi \eqdef UijV$ and define~$\pi' \eqdef UjiV$.
+Since~$i \to j$ is an arc of~$P\contact$, $\pi'$ is not a linear extension of~$P$.
 Hence, by \cref{lem:lowerSetPipeDreams}, $\pi'$ is a linear extension of~$P'$.
 \end{proof}
 
@@ -622,7 +681,7 @@ Let us conclude by providing more equivalent characterizations of the increasing
 \begin{proposition}
 For any pipe dreams~$P, P' \in \acyclicPipeDreams(\omega)$, the following assertions are equivalent:
 \begin{enumerate}[(i)]
-\item $P < P'$ in the increasing flip poset on~$\acyclicPipeDreams(\omega)$,
+\item there is a path from $P$ to~$P'$ in the increasing flip graph on~$\acyclicPipeDreams(\omega)$,
 \item there exist linear extensions~$\pi$ of~$P$ and~$\pi'$ of~$P'$ such that~$\pi < \pi'$ in weak order,
 \item the minimal (resp.~max) linear extensions~$\pi$ of~$P$ and~$\pi'$ of~$P$ satisfy~$\pi < \pi'$ in weak order.
 \item there is no~$i < j$ such that~$i \contactMore{P} j$ and~$i \contactLess{P'} j$,
@@ -632,8 +691,9 @@ For any pipe dreams~$P, P' \in \acyclicPipeDreams(\omega)$, the following assert
 \end{proposition}
 
 \begin{proof}
-We already proved that (i) $\Leftrightarrow$ (ii).
-\vincent{todo}
+We already proved the equivalence (i) $\Leftrightarrow$ (ii) in \cref{thm:pipeDreamQuotient}.
+The equivalence (ii) $\Leftrightarrow$ (iii) is valid for any lattice quotient.
+The equivalences (iii) $\Leftrightarrow$ (iv) $\Leftrightarrow$ (v) $\Leftrightarrow$ (vi) follow from the descriptions of \cref{prop:WOIP} for the inversions of the minimum and the non-inversions of the maximum of a weak order interval.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -766,6 +826,8 @@ Note that this concludes the proof of the surjectivity left open in \cref{prop:p
 We now characterize the sets of linear extensions of pipe dreams in terms of a rewriting rule.
 We write the permutations of~$\fS_n$ as words in one-line notation.
 
+\vincent{Explain with the example of the sylvester congruence}
+
 \begin{definition}
 \label{def:congruence}
 For any permutation~$\omega \in \fS_n$, the \defn{pipe dream congruence} is the equivalence relation~$\equiv_\omega$ on the interval~$[e,\omega]$ of the weak order defined as the transitive closure of the rewriting rule~$U ac V \equiv_\omega U ca V$ if and only if
@@ -888,6 +950,8 @@ Consider a permutation~$\pi$ and let~$i < j \in [n]$ be such that~$j-i \le \#\se
 Assume that the edge~$ij$ is oriented from~$i$ to~$j$.
 Then~$\pi^{-1}(i) < \pi^{-1}(j)$, thus the pipe~$i$ is inserted before the pipe~$j$ in~$\insertion{\pi}{\omega}$, so that~$i \contactLess{\insertion{\pi}{\omega}} j$ and there is also an arc from~$i$ to~$j$ in~$\canopy{\insertion{\pi}{\omega}}$.
 \end{proof}
+
+\vincent{I want to think about congruences of the interval $[e,\omega]$ in general.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
