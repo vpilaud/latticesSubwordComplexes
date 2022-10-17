@@ -125,7 +125,7 @@
 \newcommand{\crossBiColor}[2]{\raisebox{.1cm}{\pipeDreamBiColor{#1}{#2}{black}{c/l/r}}}
 \newcommand{\NScross}[1][black]{\raisebox{-.15cm}{\includegraphics[scale=.9]{NScross}}}
 \newcommand{\WEcross}[1][black]{\raisebox{-.15cm}{\includegraphics[scale=.9]{WEcross}}}
-% elbow
+% elbows
 %\newcommand{\elbow}[1][black]{\raisebox{.1cm}{\pipeDreamMonoColor{#1}{black}{e}}}
 \newcommand{\elbow}[1][black]{\raisebox{-.15cm}{\includegraphics[scale=.9]{elbow}}}
 \newcommand{\elbowBiColor}[2]{\raisebox{.1cm}{\pipeDreamBiColor{#1}{#2}{black}{e/l/r}}}
@@ -212,8 +212,8 @@ For two permutations~$\sigma < \tau$, we denote by~$[\sigma, \tau]$ the weak ord
 \subsection{Pipe dreams}
 \label{subsec:pipeDreams}
 
-A \defn{pipe dream}~$P$ is a filling of a triangular shape with crosses~\cross{} and elbows~\elbow{} so that all pipes entering on the left side exit on the top side.
-We only consider \defn{reduced} pipe dreams, where two pipes have at most one intersection.
+A \defn{pipe dream}~$P$ is a filling of a triangular shape with crossings~\cross{} and contacts~\elbow{} so that all pipes entering on the left side exit on the top side.
+We only consider \defn{reduced} pipe dreams, where two pipes have at most one crossing.
 We label the pipes with~$1, 2, \dots, n$ in the order of their entry points from top to bottom.
 We denote by~$\omega_P \in \fS_n$ the order of the exit points of the pipes of~$P$ from left to right.
 In other words, the pipe entering at row~$i$ exits at column~$\omega^{-1}_P(i)$.
@@ -225,24 +225,25 @@ For a fixed permutation~$\omega \in \fS_n$, we denote by~$\pipeDreams(\omega)$ t
 		%\input{pipeDreams}
 		\includegraphics[scale=.9]{pipeDreams}
 	}
-	\caption{Two pipe dreams of~$\pipeDreams(1365724)$ connected by a flip (exchanging an elbow with the crossing on the two red pipes~$3$ and~$4$).}
+	\caption{Two pipe dreams of~$\pipeDreams(1365724)$ connected by a flip (exchanging a contact with the crossing on the two red pipes~$3$ and~$4$).}
 	\label{fig:pipeDreams}
 \end{figure}
 
-Two pipe dreams are related by a \defn{flip} if they define the same permutation of the pipes and only differ by the position of a cross and an elbow.
-An elbow~$e$ in a pipe dream~$P$ is \defn{flippable} if the two pipes passing through elbow~$e$ have a crossing~$c$, and the flip exchanges the elbow~$e$ with the cross~$c$.
-See \cref{fig:pipeDreams}.
-The flip is \defn{increasing} if the elbow~$e$ is weakly southwest of the crossing~$c$.
-For example, the flip of \cref{fig:pipeDreams} is increasing from left to right.
+%Two pipe dreams are related by a \defn{flip} if they only differ by the position of a crossing and a contact (in particular, they define the same permutation).
+A contact~$c$ is \defn{flippable} if the two pipes passing through contact~$c$ have a crossing~$x$.
+The \defn{flip} exchanges the contact~$c$ with the crossing~$x$.
+%See \cref{fig:pipeDreams}.
+The flip is \defn{increasing} if the contact~$c$ is weakly southwest of the crossing~$x$.
+For example, \cref{fig:pipeDreams} illustrates an increasing from the left pipe dream to the right pipe dream.
 %
 The \defn{increasing flip graph} is the graph of increasing flips on~$\pipeDreams(\omega)$.
 It is clearly a directed acyclic graph, and it has a unique source and a unique sink \cite{PilaudPocchiola}, called the \defn{greedy} and \defn{antigreedy} pipe dreams, and denoted~$\greedyPipeDream$ and~$\antiGreedyPipeDream$.
 \vincent{In \cite{PilaudStump-ELlabeling}, these are called positive and negative greedy facets. Also the notations are different...}
 The \defn{increasing flip poset} is the reflexive and transitive closure of the increasing flip graph on~$\pipeDreams(\omega)$.
 
-The \defn{contact graph} of a pipe dream~$P$ is the directed graph~$P\contact$ with one node for each pipe of~$P$ and one arc for each elbow of~$P$ connecting the northwest pipe to the southeast pipe of the elbow\footnote{We have reversed the usual orientation conventions of \cite{PilaudSantos-brickPolytope, PilaudPocchiola, Pilaud-BrickAlgebra} to suit better our purposes, in particular in \cref{subsec:insertionAlgorithm}.}.
+The \defn{contact graph} of a pipe dream~$P$ is the directed graph~$P\contact$ with one node for each pipe of~$P$ and one arc for each contact of~$P$ connecting the northwest pipe to the southeast pipe of the contact\footnote{We have reversed the usual orientation conventions of \cite{PilaudSantos-brickPolytope, PilaudPocchiola, Pilaud-BrickAlgebra} to suit better our purposes, in particular in \cref{subsec:insertionAlgorithm}.}.
 We see equivalently the contact graph~$P\contact$ as a graph on the pipes of~$P$ or on the integers~$[n]$.
-We say that a pipe dream~$P$ is \defn{acyclic} if its contact graph~$P\contact$ is (no oriented cycle).
+We say that a pipe dream~$P$ is \defn{acyclic} if its contact graph~$P\contact$ is acyclic (no oriented cycle).
 We then denote by~$\contactLess{P}$ the transitive closure of the contact graph of~$P$.
 For~$\omega \in \fS_n$, we denote by~$\acyclicPipeDreams(\omega)$ the set of acyclic pipe dreams of~$\pipeDreams(\omega)$.
 % We let~$\acyclicPipeDreams_n \eqdef \bigsqcup_{\omega \in \fS_n} \acyclicPipeDreams(\omega)$ and~$\acyclicPipeDreams \eqdef \bigsqcup_{n \in \N} \acyclicPipeDreams_n$.
@@ -255,15 +256,15 @@ In this case, it is natural to label the pipes from~$0$ to~$n+1$, so that the pe
 % We denote by~$\reversingPipeDreams_n$ the reversing pipe dreams of~$\pipeDreams_n$.
 As observed in~\cite{Woo, PilaudPocchiola, Pilaud-these, Stump}, the family of reversing pipe dreams belong to the Catalan families.
 \cref{fig:bijection} illustrates explicit bijections between reversing pipe dreams of~$\pipeDreams(\rho_n)$, binary trees with $n$ internal nodes, and the triangulations of a convex $(n+2)$-gon.
-More precisely, the map which sends an elbow in row~$i$ and column~$j$ of the triangular shape to the diagonal~$[i,n+1-j]$ of the~$(n+2)$-gon provides the following correspondence: \\[.3cm]
+More precisely, the map which sends a contact in row~$i$ and column~$j$ of the triangular shape to the diagonal~$[i,n+1-j]$ of the~$(n+2)$-gon provides the following correspondence: \\[.3cm]
 \centerline{
 \begin{tabular}{r@{$\quad\longleftrightarrow\quad$}l}
 pipe dream~$P \in \reversingPipeDreams_n$ & triangulation~$P\duality$ of the $(n+2)$-gon, \\
 pipe $i$ of~$P$ & triangle $i\duality$ of~$P\duality$ (with central vertex~$i$), \\
-elbow between pipes~$i$ and~$j$ of~$P$ & common side of triangles~$i\duality$ and~$j\duality$ of~$P\duality$, \\
-cross between pipes~$i$ and~$j$ of~$P$ & common bisector between triangles~$i\duality$ and~$j\duality$ of~$P\duality$, \\
+contact between pipes~$i$ and~$j$ of~$P$ & common side of triangles~$i\duality$ and~$j\duality$ of~$P\duality$, \\
+crossing between pipes~$i$ and~$j$ of~$P$ & common bisector of triangles~$i\duality$ and~$j\duality$ of~$P\duality$, \\
 contact graph of~$P$ & dual binary tree of~$P\duality$, \\
-elbow flips in~$P$ & diagonal flips in~$P\duality$. \\
+contact flips in~$P$ & diagonal flips in~$P\duality$. \\
 %increasing flip poset & Tamari lattice.
 \end{tabular}} \\[.3cm]
 %
@@ -321,7 +322,7 @@ The~$1+2\,\noninversions{\omega}{j}$ remaining grid points along the pipe~$j$ ar
 
 \begin{lemma}
 \label{lem:characterizationPipeDreams}
-A collection~$P$ of~$n$ pipes pairwise disjoint except at crossing and elbows and such that for each~$j \in [n]$, the pipe~$j$ enters at row~$j$, exits at column~$\omega^{-1}(j)$, and has~$\noninversions{\omega}{j}$ southeast elbows is a pipe dream of~$\pipeDreams(\omega)$.
+A collection~$P$ of~$n$ pipes pairwise disjoint except at crossing and contacts and such that for each~$j \in [n]$, the pipe~$j$ enters at row~$j$, exits at column~$\omega^{-1}(j)$, and has~$\noninversions{\omega}{j}$ southeast contacts is a pipe dream of~$\pipeDreams(\omega)$.
 \end{lemma}
 
 \begin{proof}
@@ -348,9 +349,9 @@ If there is an elbow of pipe~$i$ weakly northwest of an elbow of pipe~$j$, then~
 \begin{proof}
 Let~$x$ (resp.~$y$) be the location of an elbow of pipe~$i$ (resp.~$j$) such that~$x$ is weakly northwest of~$y$.
 We proceed by induction on the grid distance from~$x$ to~$y$.
-If they coincide, then pipes~$i$ and~$j$ share an elbow, so that there is an edge from~$i$ to~$j$ in~$P\contact$.
+If they coincide, then pipes~$i$ and~$j$ share a contact, so that there is an edge from~$i$ to~$j$ in~$P\contact$.
 Otherwise, let~$k$ be the pipe of~$P$ with a southeast elbow at~$x$ ($k$ is either the pipe~$i$ itself, or there is an edge from~$i$ to~$k$ in~$P\contact$) and~$\ell$ be the pipe of~$P$ with a northwest elbow at~$y$ ($\ell$ is either the pipe~$j$ itself, or there is an edge from~$\ell$ to~$j$ in~$P\contact$).
-Let~$R$ be the axis-parallel rectangle with elbows~$x$ and~$y$.
+Let~$R$ be the axis-parallel rectangle with corners~$x$ and~$y$.
 Since pipes~$k$ and~$\ell$ cross at most once, at least one of them has an additional elbow along the sides of~$R$.
 Assume for instance that~$k$ has an elbow at~$x'$.
 Then~$x'$ is still weakly northwest of~$y$ and $x',y$ are strictly closer than~$x,y$.
@@ -379,11 +380,11 @@ If~$i \to k$ in~$P\contact$, then either~$i \contactLess{P} j \contactMore{P} k$
 \end{lemma}
 
 \begin{proof}
-Let~$e$ denote the contact of pipes~$i$ and~$k$ in~$P$.
-Decompose the triangular shape into three regions: the region~$A$ of all points located southwest of~$e$, the region~$B$ of all points located northwest or southeast of~$e$, and the region~$C$ of all points located northeast of~$e$.
+Let~$c$ denote the contact of pipes~$i$ and~$k$ in~$P$.
+Decompose the triangular shape into three regions: the region~$A$ of all points located southwest of~$c$, the region~$B$ of all points located northwest or southeast of~$c$, and the region~$C$ of all points located northeast of~$c$.
 Since~$i < j$ and~$\omega^{-1}(j) > \omega^{-1}(k)$, the pipe~$j$ starts in region~$A$ and ends in region~$C$.
-Hence, the pipe~$j$ has an elbow~$f$ in region~$B$.
-We thus obtain that~$i \contactLess{P} j \contactMore{P} k$ if this $f$ is southeast of~$e$, and that~$i \contactMore{P} j \contactLess{P} k$ if $f$ is northwest of~$e$.
+Hence, the pipe~$j$ has an elbow~$e$ in region~$B$.
+We thus obtain that~$i \contactLess{P} j \contactMore{P} k$ if this $e$ is southeast of~$c$, and that~$i \contactMore{P} j \contactLess{P} k$ if $e$ is northwest of~$c$.
 \end{proof}
 
 %\begin{lemma}
@@ -397,7 +398,7 @@ We thus obtain that~$i \contactLess{P} j \contactMore{P} k$ if this $f$ is south
 %Let~$e$ denote the contact of pipes~$i$ and~$k$ in~$P$.
 %Decompose the triangular shape into three regions: the region~$A$ of all points located southwest of~$e$, the region~$B$ of all points located northwest or southeast of~$e$, and the region~$C$ of all points located northeast of~$e$.
 %Since~$\min(i,k) < j$ and~$\min(\omega^{-1}(i), \omega^{-1}(k)) < \omega^{-1}(j)$, the pipe~$j$ starts in region~$A$ and ends in region~$C$.
-%Hence, the pipe~$j$ has an elbow~$f$ in region~$B$.
+%Hence, the pipe~$j$ has a contact~$f$ in region~$B$.
 %We thus obtain that~$i \contactLess{P} j \contactMore{P} k$ if this $f$ is southeast of~$e$, and that~$i \contactMore{P} j \contactLess{P} k$ if $f$ is northwest of~$e$.
 %\end{proof}
 
@@ -484,10 +485,8 @@ If~$\pi$ is a linear extension of a pipe dream~$P \in \acyclicPipeDreams(\omega)
 \end{lemma}
 
 \begin{proof}
-For any~$i < j$ with~$\omega^{-1}(i) < \omega^{-1}(j)$, the pipes~$i$ and~$j$ do not cross.
-Hence, the pipe~$j$ passes southeast of every elbow of the pipe~$i$.
-This shows that~$i \contactLess{P} j$ by \cref{lem:rectangle}, thus ${\pi^{-1}(i) < \pi^{-1}(j)}$.
-In other words, any non-inversion of~$\omega$ is a non-inversion of~$\pi$, so that~${\pi < \omega}$.
+For any~$i < j$ with~$\omega^{-1}(i) < \omega^{-1}(j)$, we have~$i \contactLess{P} j$ by \cref{lem:consequenceRectangle1}, thus ${\pi^{-1}(i) < \pi^{-1}(j)}$ since~$\pi \in \linearExtensions(P)$.
+In other words, any non-inversion of~$\omega$ is a non-inversion of~$\pi$, so that~${\pi \le \omega}$.
 \end{proof}
 
 \begin{proof}[Proof of \cref{thm:partitionPipeDreams}]
@@ -549,13 +548,13 @@ For any pipe dream~$P \in \acyclicPipeDreams(\omega)$, the set~$\linearExtension
 \end{proposition}
 
 \begin{proof}
-We just need to show that the poset~$\contactLess{P}$ (given by the transitive closure of~$P\contact$) satisfies the conditions of \cref{prop:WOIP}.
+We just need to show that the poset~$\contactLess{P}$ satisfies the conditions of \cref{prop:WOIP}.
 Consider~$i < j < k$ such that~$i \contactLess{P} k$.
 If~$\omega^{-1}(i) < \omega^{-1}(j)$, then~$i \contactLess{P} j$ by \cref{lem:consequenceRectangle1}.
 Similarly, if~$\omega^{-1}(j) < \omega^{-1}(k)$, then~$j \contactLess{P} k$ by \cref{lem:consequenceRectangle1}.
-We can therefore assume that~$\omega^{-1}(i) > \omega^{-1}(j) > \omega^{-1}(k)$.
+We can thus assume that~${\omega^{-1}(i) > \omega^{-1}(j) > \omega^{-1}(k)}$.
 Decompose the triangular shape into three regions: the region~$A$ of all points located northeast of the last elbow of the pipe~$j$ of~$P$, the region~$B$ of all points located northwest or southeast of an elbow of the pipe~$j$ of~$P$, and the region~$C$ of all points located southwest of the first elbow of the pipe~$j$ of~$P$.
-Since~$i \contactLess{P} k$, there is a path~$\pi$ form the exiting point of the pipe~$i$ of~$P$ to the entering point of the pipe~$j$ of~$P$ which travels along the pipes of~$P$, possibly jumping from the northwest pipe to the southeast pipe of an elbow it encounters.
+Since~$i \contactLess{P} k$, there is a path~$\pi$ form the exiting point of the pipe~$i$ of~$P$ to the entering point of the pipe~$j$ of~$P$ which travels along the pipes of~$P$, possibly jumping from the northwest pipe to the southeast pipe of a contact it encounters.
 Since~$i < j$ and~$\omega^{-1}(j) > \omega^{-1}(k)$, the path~$\pi$ starts in region~$A$ and ends in region~$C$, so that it necessarily passes from region~$A$ to region~$C$.
 Since the southwest corner of~$A$ is located northeast of the northeast corner of~$C$, this forces an elbow~$e$ of~$\pi$ to lie in region~$B$.
 \cref{lem:rectangle} then ensures that either~$i \contactLess{P} j$ (if~$e$ is above the pipe~$j$), or~$j \contactLess{P} k$ (if~$e$ is below the pipe~$j$).
@@ -639,7 +638,7 @@ To prove \cref{thm:pipeDreamQuotient}, we need the following auxiliary statement
 
 \begin{lemma}
 \label{lem:flippable}
-Consider two acyclic pipe dreams~$P,P' \in \acyclicPipeDreams(\omega)$ connected by the flip of an elbow between their pipes~$i$ and~$j$.
+Consider two acyclic pipe dreams~$P,P' \in \acyclicPipeDreams(\omega)$ connected by the flip of a contact between their pipes~$i$ and~$j$.
 Then any directed path in~$P\contact$ or~$P'{}\contact$ between~$i$ and~$j$ is an arc.
 \end{lemma}
 
@@ -704,7 +703,8 @@ The equivalences (iii) $\Leftrightarrow$ (iv) $\Leftrightarrow$ (v) $\Leftrighta
 \label{sec:algorithms}
 
 \vincent{This section is in progress}
-In this section, we describe three algorithms to decide whether two permutations are equivalent for the pipe dream congruence~$\equiv_\omega$.
+In this section, we describe three algorithms to decide whether two permutations~$\pi$ and~$\pi'$ are equivalent for the pipe dream congruence~$\equiv_\omega$.
+The first two algorithms actually construct the unique pipe dream~$P \in \acyclicPipeDreams(\omega)$ of which~$\pi$ is a linear extension, while the last algorithm uses a rewriting technique.
 
 %To sum up, there are three equivalent ways to partition the interval~$[e,\omega]$ of the weak order:
 %\begin{itemize}
@@ -719,48 +719,67 @@ In this section, we describe three algorithms to decide whether two permutations
 \subsection{Sweeping algorithm}
 \label{subsec:sweepingAlgorithm}
 
-\vincent{adapt the following}
-We now show that~$\linearExtensions(P) \cap \linearExtensions(P') = \varnothing$ for any two distinct acyclic pipe dreams~$P, P' \in \pipeDreams(\omega)$.
-For this, we show that we can reconstructing a pipe~$P$ knowing a linear extension~$\pi \in \linearExtensions(P)$.
-For this, we sweep the pipe dream in any perturbation of the northwest direction (meaning that we sweep the grid in any order such that each point is swept before all points weakly northwest of~$p$).
-When we sweep a vertex~$v$ of the grid, we see a pipe~$p$ arriving horizontally at~$v$ and a pipe~$q$ arriving vertically at~$v$.
-If~$p > q$, then $p$ and~$q$ already crossed before, so we have no choice but imposing an elbow at~$v$.
-If~$p < q$, there are three situations:
+Our first algorithm is a \defn{sweeping algorithm} that constructs the unique pipe dream~$P \in \acyclicPipeDreams(\omega)$ of which~$\pi$ is a linear extension.
+It is inspired by the algorithm to compute greedy pipe dreams~\cite{PilaudPocchiola, PilaudStump-ELlabelings}.
+Extensions of this algorithm will be discussed in \cref{..}. \vincent{todo. Was this algorithm explicitly somewhere before? We should cite Jahn-Stump later in the paper.}
+
+\begin{proposition}
+\label{prop:sweepingAlgorithm}
+For any permutations~$\pi,\omega \in \fS_n$ such that~$\pi < \omega$ in weak order, the unique pipe dream~$P \in \acyclicPipeDreams(\omega)$ such that~$\pi \in \linearExtensions(P)$ can be constructed by sweeping the triangular shape in any perturbation of the northwest direction and inserting a crossing when sweeping a vertex~$v$ of the grid where pipe~$i$ arrives horizontally and pipe~$j$ arrives vertically if and only if
 \begin{itemize}
-\item if~$\pi^{-1}(p) > \pi^{-1}(q)$ then~$p$ and~$q$ cannot touch (otherwise $\pi$ would not be a linear extension of~$P$), so that we have no choice but imposing a crossing~at~$v$,
-\item if~$\omega^{-1}(p) < \omega^{-1}(q)$, then~$p$ and~$q$ cannot cross (otherwise~$P$ would not be a pipe dream of~$\pipeDreams(\omega)$), so that we have no choice but imposing a contact at~$v$,
-\item if~$\pi^{-1}(p) < \pi^{-1}(q)$ and~$\omega^{-1}(p) > \omega^{-1}(q)$, then we have again two situations;
+\item $i < j$ and~$\omega^{-1}(i) > \omega^{-1}(j)$, and 
+\item $\pi^{-1}(i) > \pi^{-1}(j)$ or vertex~$v$ lies in column~$\omega^{-1}(j)$.
+\end{itemize}
+See \cref{fig:sweepingAlgorithm}.
+\vincent{todo}
+
+\begin{figure}
+%	\centerline{\includegraphics[scale=.9]{sweeping}}
+	\caption{Sweeping algorithm for the permutations~$\pi = 513264$ and~$\omega = 561324$.}
+	\label{fig:sweepingAlgorithm}
+\end{figure}
+
+\end{proposition}
+
+\begin{proof}
+When we sweep vertex~$v$ where pipe~$i$ arrives horizontally and pipe~$j$ arrives vertically,
+\begin{itemize}
+\item we have no choice but imposing a contact at~$v$ if~$i > j$ (since pipes $i$ and~$j$ already crossed before) or~$\omega^{-1}(i) < \omega^{-1}(j)$ (since pipes~$i$ and~$j$ do not cross at all),
+\item if~$i < j$ and~$\omega^{-1}(i) > \omega^{-1}(j)$, then
+\begin{itemize}
+\item if~$\pi^{-1}(i) > \pi^{-1}(j)$ then pipes~$i$ and~$j$ cannot touch (otherwise $\pi$ would not be a linear extension of~$P$), so that we have no choice but imposing a crossing~at~$v$,
+\item if~$\pi^{-1}(p) < \pi^{-1}(q)$ then
 	\begin{itemize}
-	\item If $q$ needs to go straight north, then we have no choice but imposing a crossing at~$v$,
-	\item Otherwise, we have no choice but imposing an elbow at~$v$. Indeed, if there is a crossing at~$v$, then \cref{lem:rectangle} ensures that~$q$ will be below~$p$ in~$P\contact$, so that~$\pi$ would not be a linear extension of~$P$.
+	\item if $v$ lies in column~$\omega^{-1}(j)$, then pipe $j$ needs to go straight north, and we have no choice but imposing a crossing at~$v$,
+	\item otherwise, we have no choice but imposing a contact at~$v$ (otherwise \cref{lem:rectangle} ensures that~$j \contactLess{P} i$, so that~$\pi$ would not be a linear extension of~$P$).
+	\qedhere
 	\end{itemize}
 \end{itemize}
+\end{itemize}
+\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Insertion algorithm}
 \label{subsec:insertionAlgorithm}
 
-We now define a surjective map from the permutations of~$[e, \omega]$ to the pipe dreams of~$\acyclicPipeDreams(\omega)$.
-This map, adapted from~\cite{Pilaud-BrickAlgebra}, is obtained by an insertion process similar to the insertion in binary search trees.
-%To properly describe this insertion algorithm, we introduce additional notations.
-We now describe this insertion algorithm, which is illustrated in \cref{fig:insertionAlgorithm}.
+Our second algorithm is an \defn{insertion algorithm} that constructs the unique pipe dream~$P \in \acyclicPipeDreams(\omega)$ of which~$\pi$ is a linear extension.
+It is inspired from~\cite{Pilaud-BrickAlgebra} and is similar to the insertion in binary search trees.
 
-Consider a given permutation~$\pi \eqdef \pi(1) \dots \pi(n)$ (written in one-line notation) in~$[e, \omega]$.
-We start from the empty triangular shape and insert the pipes~$\pi(1), \dots, \pi(n)$ one by one in the order of the permutation~$\pi$ as northwest as possible.
-In other words, at step~$t$, we consider the set~$X_t$ of free northwest elbows in the rectangle~$[\pi(t)] \times [\omega^{-1}(\pi(t))]$.
-The pipe inserted at step~$t$ then starts in row~$\pi(t)$, ends in column~$\omega^{-1}(\pi(t))$, covers each elbow of~$X_t$ with a southeast elbow, and adds just one new free northwest elbow in between any two consecutive elbows of~$X_t$.
-We denote the resulting pipe dream by~$\insertion{\pi}{\omega}$.
+\begin{proposition}
+\label{prop:insertionAlgorithm}
+For any permutations~$\pi,\omega \in \fS_n$ such that~$\pi < \omega$ in weak order, the unique pipe dream~$P \in \acyclicPipeDreams(\omega)$ such that~$\pi \in \linearExtensions(P)$ can be constructed starting from the empty triangular shape and inserting the pipes~$\pi(1), \dots, \pi(n)$ one by one in the order of the permutation~$\pi$ as northwest as possible.
+More precisely, at step~$t$, we consider the set~$X_t$ of free southeast elbows in the rectangle~$[\pi(t)] \times [\omega^{-1}(\pi(t))]$, and we insert a pipe starting at row~$\pi(t)$, ending at column~$\omega^{-1}(\pi(t))$, covering each elbow of~$X_t$, and adding a new free southeast elbow in between any two consecutive elbows of~$X_t$
 See \cref{fig:insertionAlgorithm}.
 
-\begin{figure}[b]
-	\centerline{
-		\includegraphics[scale=.9]{insertion}
-	}
-	\caption{The insertion~$\insertion{513264}{561324}$.}
+\begin{figure}
+	\centerline{\includegraphics[scale=.9]{insertion}}
+	\caption{Insertion algorithm for the permutations~$\pi = 513264$ and~$\omega = 561324$.}
 	\label{fig:insertionAlgorithm}
 \end{figure}
+\end{proposition}
 
+\vincent{I am still working below this line.}
 We need to argue that this algorithm indeed creates a pipe dream of~$\acyclicPipeDreams(\omega)$.
 To see it, we observe that the following invariant is maintained throughout the algorithm.
 
@@ -775,13 +794,13 @@ At each step~$t$ of the insertion algorithm, we have
 
 \begin{proof}
 Fix~$t \in [n]$.
-At the beginning of the algorithm, there is no southeast elbow in the rectangle~$R_t \eqdef [\pi(t)] \times [\omega^{-1}(\pi(t))]$.
+At the beginning of the algorithm, there is no southeast contact in the rectangle~$R_t \eqdef [\pi(t)] \times [\omega^{-1}(\pi(t))]$.
 At each step~$s < t$, we have inserted a new pipe~$\pi(s)$ which enters at~$\pi(s)$ and exits at~$\omega^{-1}\big( \pi(s) \big)$.
 We conclude by considering the four possible cases:
 \begin{itemize}
-\item If~$\pi(s) < \pi(t)$ and~$\omega^{-1}\big( \pi(s) \big) < \omega^{-1}\big( \pi(t) \big)$, then the pipe~$\pi(s)$ is completely contained in the rectangle~$R_t$. Since the pipe~$\pi(s)$ has one more northwest elbow than southeast elbow, its insertion creates a new free northwest elbow in the rectangle~$R_t$.
-\item If~$\pi(s) < \pi(t)$ and~$\omega^{-1}\big( \pi(s) \big) > \omega^{-1}\big( \pi(t) \big)$, then the pipe~$\pi(s)$ enters and exits the rectangle~$R_t$ with an horizontal step, so that it has as many northwest and southeast elbows in~$R_t$, and its insertion does not modify the number of free northwest elbows in the rectangle~$R_t$.
-\item If~$\pi(s) > \pi(t)$ and~$\omega^{-1}\big( \pi(s) \big) < \omega^{-1}\big( \pi(t) \big)$, then the pipe~$\pi(s)$ enters and exits the rectangle~$R_t$ with a vertical step, so that it has as many northwest and southeast elbows in~$R_t$, and its insertion does not modify the number of free northwest elbows in the rectangle~$R_t$.
+\item If~$\pi(s) < \pi(t)$ and~$\omega^{-1}\big( \pi(s) \big) < \omega^{-1}\big( \pi(t) \big)$, then the pipe~$\pi(s)$ is completely contained in the rectangle~$R_t$. Since the pipe~$\pi(s)$ has one more northwest contact than southeast contact, its insertion creates a new free northwest contact in the rectangle~$R_t$.
+\item If~$\pi(s) < \pi(t)$ and~$\omega^{-1}\big( \pi(s) \big) > \omega^{-1}\big( \pi(t) \big)$, then the pipe~$\pi(s)$ enters and exits the rectangle~$R_t$ with an horizontal step, so that it has as many northwest and southeast contacts in~$R_t$, and its insertion does not modify the number of free northwest contacts in the rectangle~$R_t$.
+\item If~$\pi(s) > \pi(t)$ and~$\omega^{-1}\big( \pi(s) \big) < \omega^{-1}\big( \pi(t) \big)$, then the pipe~$\pi(s)$ enters and exits the rectangle~$R_t$ with a vertical step, so that it has as many northwest and southeast contacts in~$R_t$, and its insertion does not modify the number of free northwest contacts in the rectangle~$R_t$.
 \item If~$\pi(s) > \pi(t)$ and~$\omega^{-1}\big( \pi(s) \big) > \omega^{-1}\big( \pi(t) \big)$, then setting~$i = \pi(t)$ and~$j = \pi(s)$, we have~$i < j$ and~$\pi^{-1}(i) > \pi^{-1}(j)$ while~$\omega^{-1}(i) < \omega^{-1}(j)$, which contradicts our assumption that~$\pi \not< \omega$ in weak order. \qedhere
 \end{itemize}
 \end{proof}
@@ -791,12 +810,12 @@ For any~$\pi \le \omega$, the insertion algorithm creates a pipe dream~$\inserti
 \end{corollary}
 
 \begin{proof}
-The algorithm constructs a collection~$P$ of $n$ pairwise disjoint pipes except at crossings and elbows.
+The algorithm constructs a collection~$P$ of $n$ pairwise disjoint pipes except at crossings and contacts.
 For each~$t \in [n]$, the pipe~$\pi(t)$ enters at~$\pi(t)$, exits at~$\omega^{-1}\big( \pi(t) \big)$, and has 
 \[
 \# \bigset{s < t}{\pi(s) < \pi(t) \text{ and } \omega^{-1}\big( \pi(s) \big) < \omega^{-1}\big( \pi(t) \big)} = \noninversions(\omega, \pi(t))
 \]
-many $\se$ elbows by \cref{lem:rectangleInsertionAlgorithm} and since~$\pi < \omega$ in weak order.
+many $\se$ contacts by \cref{lem:rectangleInsertionAlgorithm} and since~$\pi < \omega$ in weak order.
 We thus conclude the proof by a direct application of \cref{lem:characterizationPipeDreams}.
 \vincent{Maybe we should argue that the pipes remain in the triangle.}
 \end{proof}
@@ -808,7 +827,7 @@ In particular, $\insertion{\cdot}{\omega}$ is a surjection from~$[e, \omega]$ to
 \end{proposition}
 
 \begin{proof}
-By construction of the insertion algorithm, all southeast elbows of the pipe~$\pi(t)$ inserted at step~$t$ are in contact with northwest elbows of pipes~$\pi(s)$ inserted at steps~$s < t$.
+By construction of the insertion algorithm, all southeast contacts of the pipe~$\pi(t)$ inserted at step~$t$ are in contact with northwest contacts of pipes~$\pi(s)$ inserted at steps~$s < t$.
 In other words, all edges in the contact graph of~$\insertion{\pi}{\omega}$ are of the form~$\pi(s) \to \pi(t)$ for some~$s < t$.
 It follows that the permutation~$\pi$ is a linear extension of~$\insertion{\pi}{\omega}$.
 Reciprocally, consider a linear extension~$\pi$ of a pipe dream~$P$.
@@ -852,13 +871,13 @@ Since the set of linear extensions of a poset is connected by simple transpositi
 
 Let~$t = \pi^{-1}(a) = \pi'{-1}(c)$.
 At step~$t$ of the algorithm presented in the previous section, we have inserted the word~$U$.
-At that moment, let~$X_t$ (resp.~$X'_t$, resp~$Y_t$) denote the set of free northwest elbows in the rectangle~$[a] \times [\omega^{-1}(a)]$ (resp.~$[c] \times [\omega^{-1}(c)]$, resp.~$[a] \times [\omega^{-1}(c)]$).
+At that moment, let~$X_t$ (resp.~$X'_t$, resp~$Y_t$) denote the set of free northwest contacts in the rectangle~$[a] \times [\omega^{-1}(a)]$ (resp.~$[c] \times [\omega^{-1}(c)]$, resp.~$[a] \times [\omega^{-1}(c)]$).
 Applying the same argument as in \cref{lem:rectangleInsertionAlgorithm}, we have
 \begin{gather*}
 \# Y_t = \max\big( \#\set{b \in U}{b < a \text{ and } \omega^{-1}(b) < \omega^{-1}(c)} \hspace{5cm} \\ \hspace{5cm} - \; \#\set{b \in U}{a < b < c \text{ and } \omega^{-1}(a) > \omega^{-1}(b) > \omega^{-1}(c)}, 0\big).
 \end{gather*}
 It follows that~$U ac V \equiv_\omega U ca V \iff \# Y_t = 0$.
-However, $Y_t = 0$ if and only if all elbows of~$X_t$ are in~$[a] \times [\omega^{-1}(c), \omega^{-1}(a)]$ and all elbows of~$X'_t$ are in~$[a,c] \times [\omega^{-1}(c)]$.
+However, $Y_t = 0$ if and only if all contacts of~$X_t$ are in~$[a] \times [\omega^{-1}(c), \omega^{-1}(a)]$ and all contacts of~$X'_t$ are in~$[a,c] \times [\omega^{-1}(c)]$.
 The latter is equivalent to the fact that the insertion of~$a$ and~$c$ commute.
 We conclude that
 \[
