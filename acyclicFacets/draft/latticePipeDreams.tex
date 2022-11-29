@@ -234,7 +234,7 @@ A contact~$c$ is \defn{flippable} if the two pipes passing through contact~$c$ h
 The \defn{flip} exchanges the contact~$c$ with the crossing~$x$.
 %See \cref{fig:pipeDreams}.
 The flip is \defn{increasing} if the contact~$c$ is weakly southwest of the crossing~$x$.
-For example, \cref{fig:pipeDreams} illustrates an increasing from the left pipe dream to the right pipe dream.
+For example, \cref{fig:pipeDreams} illustrates an increasing flip from the left pipe dream to the right pipe dream.
 %
 The \defn{increasing flip graph} is the graph of increasing flips on~$\pipeDreams(\omega)$.
 It is clearly a directed acyclic graph, and it has a unique source and a unique sink \cite{PilaudPocchiola}, called the \defn{greedy} and \defn{antigreedy} pipe dreams, and denoted~$\greedyPipeDream$ and~$\antiGreedyPipeDream$.
@@ -618,6 +618,7 @@ The increasing flip poset on~$\pipeDreams(\omega)$ is the transitive closure of 
 Observe that the two natural ways to restrict to the acyclic pipe dreams of~$\acyclicPipeDreams(\omega)$ (restrict either the flip graph or the flip poset) do not coincide in general.
 Namely, the transitive closure of the subgraph of the increasing flip graph induced by~$\acyclicPipeDreams(\omega)$ may have strictly less relations than the subposet of the increasing flip poset induced by~$\acyclicPipeDreams(\omega)$.
 \cref{fig:counterExampleRestrictionIncreasingFlipPoset} illustrates two acyclic pipe dreams of~$\acyclicPipeDreams(126543)$ connected by a sequence of increasing flips in~$\pipeDreams(126543)$ but by no sequence of increasing flips in~$\acyclicPipeDreams(126543)$.
+This example is minimal.
 %	* type A5,
 %	* Q = [1, 2, 3, 4, 5, 1, 2, 3, 4, 1, 2, 3, 1, 2, 1] 
 %	* w = [1, 2, 3, 1, 2, 1]
@@ -731,10 +732,9 @@ For any permutations~$\pi,\omega \in \fS_n$ such that~$\pi < \omega$ in weak ord
 \item $\pi^{-1}(i) > \pi^{-1}(j)$ or vertex~$v$ lies in column~$\omega^{-1}(j)$.
 \end{itemize}
 See \cref{fig:sweepingAlgorithm}.
-\vincent{todo}
-
+%
 \begin{figure}
-%	\centerline{\includegraphics[scale=.9]{sweeping}}
+	\centerline{\includegraphics[scale=.9]{sweeping}}
 	\caption{Sweeping algorithm for the permutations~$\pi = 513264$ and~$\omega = 561324$.}
 	\label{fig:sweepingAlgorithm}
 \end{figure}
@@ -769,7 +769,8 @@ It is inspired from~\cite{Pilaud-BrickAlgebra} and is similar to the insertion i
 \begin{proposition}
 \label{prop:insertionAlgorithm}
 For any permutations~$\pi,\omega \in \fS_n$ such that~$\pi < \omega$ in weak order, the unique pipe dream~$P \in \acyclicPipeDreams(\omega)$ such that~$\pi \in \linearExtensions(P)$ can be constructed starting from the empty triangular shape and inserting the pipes~$\pi(1), \dots, \pi(n)$ one by one in the order of the permutation~$\pi$ as northwest as possible.
-More precisely, at step~$t$, we consider the set~$X_t$ of free southeast elbows in the rectangle~$[\pi(t)] \times [\omega^{-1}(\pi(t))]$, and we insert a pipe starting at row~$\pi(t)$, ending at column~$\omega^{-1}(\pi(t))$, covering each elbow of~$X_t$, and adding a new free southeast elbow in between any two consecutive elbows of~$X_t$
+More precisely, at step~$t$, we insert a pipe starting at row~$\pi(t)$, ending at column~$\omega^{-1}(\pi(t))$, and whose northeast elbows are precisely covering the free southeast elbows in the rectangle~$[\pi(t)] \times [\omega^{-1}(\pi(t))]$.
+%More precisely, at step~$t$, we consider the set~$X_t$ of free southeast elbows in the rectangle~$[\pi(t)] \times [\omega^{-1}(\pi(t))]$, and we insert a pipe starting at row~$\pi(t)$, ending at column~$\omega^{-1}(\pi(t))$, and whose northeast elbows are precisely covering the elbows of~$X_t$, and adding a new free southeast elbow in between any two consecutive elbows of~$X_t$
 See \cref{fig:insertionAlgorithm}.
 
 \begin{figure}
@@ -785,9 +786,9 @@ To see it, we observe that the following invariant is maintained throughout the 
 
 \begin{lemma}
 \label{lem:rectangleInsertionAlgorithm}
-At each step~$t$ of the insertion algorithm, we have
+At each step~$t$ of the insertion algorithm, the number of free southeast elbows in the rectangle~$[\pi(t)] \times [\omega^{-1}(\pi(t))]$ is
 \[
-\#X_t = \# \bigset{s < t}{\pi(s) < \pi(t) \text{ and } \omega^{-1}\big( \pi(s) \big) < \omega^{-1}\big( \pi(t) \big)}.
+\# \bigset{s < t}{\pi(s) < \pi(t) \text{ and } \omega^{-1}\big( \pi(s) \big) < \omega^{-1}\big( \pi(t) \big)}.
 \]
 \vincent{Note that this is independent of~$\pi$... This can be seen from \cref{lem:interval}.}
 \end{lemma}
