@@ -41,6 +41,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % theorems
+\newtheorem*{theorem*}{Theorem}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{proposition}[theorem]{Proposition}
@@ -182,26 +183,53 @@
 \begin{document}
 
 \begin{abstract}
-We show that for any permutation~$\omega$, the increasing flip graph on acyclic pipe dreams with permutation~$\omega$ is a lattice quotient of the interval~$[e,\omega]$ of the weak order.
+We show that for any permutation~$\omega$, the increasing flip graph on acyclic pipe dreams with exiting permutation~$\omega$ is a lattice quotient of the interval~$[e,\omega]$ of the weak order.
 We then discuss conjectural generalizations of this result to acyclic facets of subword complexes on arbitrary finite Coxeter groups.
 \end{abstract}
 
+\vspace*{.2cm}
 \maketitle
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The purpose of this note is to show that for any permutation~$\omega$, the increasing flip graph on acyclic pipe dreams with permutation~$\omega$ is a lattice quotient of the interval~$[e,\omega]$ of the weak order.
-It motivates \cref{conj:Coxeter} which is the long-term perspective of this work.
-The approach and proofs developed here are direct adaptations from~\cite[Sect.~1]{Pilaud-BrickAlgebra}.
-\vincent{Include an introduction}
-\vincent{cite \cite{BergeronBilley,KnutsonMiller-subwordComplex}}
+The weak order is the lattice on permutations of~$[n]$ whose cover relations correspond to switching pairs of consecutive values in permutations.
+The Tamari lattice is the lattice on binary trees with~$n$ internal nodes whose cover relations correspond to right rotations in binary trees.
+The Tamari lattice is known to be the lattice quotient of the weak order by the sylvester congruence, defined as the equivalence relation on permutations of~$[n]$ whose equivalence classes are the sets of linear extensions of binary trees (labeled in inorder and oriented towards their leaves).
 
-The \defn{weak order} on the permutations of~$[n]$ is defined as the inclusion order of inversion sets, where an inversion of a permutation~$\pi$ is a pair of values~$i, j \in [n]$ such that~$i < j$ while~${\pi^{-1}(i) > \pi^{-1}(j)}$.
-The cover relations in the weak order correspond to switching pairs of consecutive values in permutations.
-The weak order is known to be a lattice \cite{GuilbaudRosenstiehl,Bjorner}.
-For two permutations~$\sigma < \tau$, we denote by~$[\sigma, \tau]$ the weak order interval between~$\sigma$ and~$\tau$, which is again a lattice.
+This paper develops a similar framework for acyclic pipe dreams.
+Pipe dreams were introduced by N.~Bergeron and S.~Billey in~\cite{BergeronBilley} to compute Schubert polynomials and later revisited in the context of Gr\"obner geometry by A.~Knutson and E.~Miller~\cite{KnutsonMiller-GroebnerGeometry}, who coined the name \emph{pipe dreams}.
+They have important connections and applications to various areas related to Schubert calculus and Schubert varieties~\cite{LascouxSchutzenberger-PolynomesSchubert, LascouxSchutzenberger-SchubertLittlewoudRichardson}. 
+A pipe dream is an arrangement of pipes in the triangular shape, each entering along the vertical side and exiting along the horizontal side.
+They are grouped according to their exiting permutation, given by the order in which the pipes appear along the horizontal axis.
+The pipes in a pipe dream have some crossings and some contacts, and the contact graph records all contacts of a pipe dream.
+A flip in a pipe dream exchanges a contact between with a crossing between two pipes, and the flip is increasing when the contact is southeast of the crossing involved in the flip.
+The acyclic pipe dreams are the pipe dreams with an acyclic contact graph, and they naturally appear in the study of brick polytopes~\cite{PilaudSantos-brickPolytope}.
+A brief recollection on pipe dreams is given in \cref{sec:preliminaries}.
+
+In the core \cref{sec:latticeAcyclicPipeDreams} of this paper, we show that for any permutation~$\omega$,
+\begin{itemize}
+\item the sets of linear extensions of the acyclic pipe dreams with exiting permutation~$\omega$ form a partition of the interval~$[e,\omega]$ of the weak order (\cref{subsec:linearExtensions}),
+\item the equivalence relation defined by this partition is a lattice congruence of~$[e, \omega]$, that we call the pipe dream congruence (\cref{subsec:pipeDreamCongruence}),
+\item the Hasse diagram of the corresponding lattice quotient is the increasing flip graph on acyclic pipe dreams with exiting permutation~$\omega$ (\cref{subsec:pipeDreamQuotient}).
+\end{itemize}
+In summary, we obtain the following statement.
+
+\begin{theorem*}
+For any permutation~$\omega$, the increasing flip graph on acyclic pipe dreams with exiting permutation~$\omega$ is the Hasse diagram of the lattice quotient of the interval~$[e,\omega]$ of the weak order by the pipe dream congruence of~$\omega$.
+\end{theorem*}
+
+Note that we recover the connection between the weak order and the Tamari lattice by the sylvester congruence for a well-chosen exiting permutation~$\omega$.
+
+We then explore in \cref{sec:furtherTopics} some natural further topics.
+We describe two algorithms to compute the unique acyclic pipe dream whose linear extensions contain a given permutation generalizing the binary tree insertion map on permutations (\cref{subsec:sweepingAlgorithm,subsec:insertionAlgorithm}), we describe the pipe dream congruence as the transitive closure of a local rewriting rule generalizing that of the sylvester congruence (\cref{subsec:rewritingRule}), and we describe a natural commutative diagram of lattice morphism generalizing the connection between the recoil map and the binary tree insertion map on permutations and the canopy on binary trees (\cref{subsec:canopy}).
+
+Finally, we discuss in \cref{sec:subwordComplexes} a conjectural extension of our results to subword complexes in finite Coxeter groups~\cite{KnutsonMiller-subwordComplex}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Preliminaries on pipe dreams}
 \label{sec:preliminaries}
@@ -403,8 +431,6 @@ We thus obtain that~$i \contactLess{P} j \contactMore{P} k$ if this $e$ is south
 %We thus obtain that~$i \contactLess{P} j \contactMore{P} k$ if this $f$ is southeast of~$e$, and that~$i \contactMore{P} j \contactLess{P} k$ if $f$ is northwest of~$e$.
 %\end{proof}
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -600,7 +626,7 @@ Follows from \cref{prop:characterizationCongruences}, whose conditions are guara
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Pipe dream quotient}
-\label{subsec:}
+\label{subsec:pipeDreamQuotient}
 
 For a congruence~$\equiv$ of a lattice~$L$, the \defn{lattice quotient}~$L/{\equiv}$ is the lattice on the classes of~$\equiv$ where for any two congruence classes~$X$ and~$Y$, 
 \begin{itemize}
@@ -1023,8 +1049,9 @@ Then~$\pi^{-1}(i) < \pi^{-1}(j)$, thus the pipe~$i$ is inserted before the pipe~
 
 \newpage
 \section{Subword complexes}
+\label{sec:subwordComplexes}
 
-The objective of this section is to partially extend the results about the lattice structure of acyclic pipe dreams, presented in \cref{sec:latticeAcyclicPipeDreams}, to the wider context of subword complexes of finite type.
+The objective of this section is to partially extend the results about the lattice structure of acyclic pipe dreams, presented in \cref{sec:latticeAcyclicPipeDreams}, to the wider context of subword complexes in finite Coxeter groups.
 Before doing so, we recall some preliminaries about finite Coxeter groups and subword complexes.
 We refer to~\cite{BjornerBrenti, Humphreys} for more details on Coxeter groups. 
 
@@ -1087,7 +1114,7 @@ For $J\subseteq [r]$, we denote by $Q_J$ the subword of~$Q$ consisting of the le
 The \defn{subword complex} $\subwordComplex(Q,w)$ is the simplicial complex whose facets are subsets $I\subseteq [m]$ such that $Q_{[m]\setminus I}$ is a reduced expression for $w$.
 We denote the \defn{set of facets} of $\subwordComplex(Q,w)$ by $\subwordFacets(Q,w)$.
 
-Two facets $I,J\in\subwordComplex(Q,w)$ are said to be connected by a \defn{flip} if they differ one element:
+Two facets $I,J \in \subwordFacets(Q,w)$ are said to be connected by a \defn{flip} if they differ one element:
 \[J=I\smallsetminus \{i\} \cup\{j\}\]
 for some $i\in I$ and $j\in J$ with $i\neq j$.
 If $i<j$, the flip from $I$ to $J$ is called an \defn{increasing flip}.
