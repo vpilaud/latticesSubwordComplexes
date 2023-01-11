@@ -52,6 +52,7 @@
 \newtheorem{example}[theorem]{Example}
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{question}[theorem]{Question}
+\newtheorem{notation}[theorem]{Notation}
 
 % newcommands
 % math special letters
@@ -141,12 +142,12 @@
 \newcommand{\contact}{^\#} % contact graph
 \newcommand{\se}{\textsc{se}} % southeast
 \newcommand{\nw}{\textsc{nw}} % northwest
-\newcommand{\insertion}[2]{\mathsf{ins}(#1,#2)} % insertion of permutation #1 in pipe dreams with permutation #2
 \newcommand{\duality}{^\star} % duality pipe dreams - triangulations
 \newcommand{\acyclicPipeDreams}{\Sigma} % acyclic pipe dreams
 \newcommand{\linearExtensions}{\mathcal{L}} % linear extensions
 \newcommand{\noninversions}[2]{\mathsf{ninv}(#1,#2)} % non-inversions
 \newcommand{\acyclicOrientations}{\Omega} % set of pipe dreams
+\newcommand{\insertion}[2]{\mathsf{pd}(#1,#2)} % insertion of permutation #1 in pipe dreams with permutation #2
 \newcommand{\recoils}[2]{\mathsf{rec}(#1,#2)} % recoil scheme of a pipe dream
 \newcommand{\canopy}[1]{\mathsf{can}(#1)} % canopy of a pipe dream
 \newcommand{\greedyPipeDream}{P^{\overleftarrow{gr}}} % greedy facet
@@ -494,6 +495,10 @@ In other words, any non-inversion of~$\omega$ is a non-inversion of~$\pi$, so th
 Direct consequence of \cref{lem:partition,lem:interval}.
 \end{proof}
 
+\begin{notation}
+For~$\pi \in [e, \omega]$, we denote by~$\insertion{\pi}{\omega}$ the pipe dream of~$\acyclicPipeDreams(\omega)$ such that~${\pi \in \linearExtensions(\insertion{\pi}{\omega})}$.
+\end{notation}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Pipe dream congruence}
@@ -511,7 +516,8 @@ An equivalence relation~$\equiv$ on a lattice~$L$ is a congruence if and only if
 \end{enumerate}
 \end{proposition}
 
-We call \defn{pipe dream congruence} the equivalence relation~$\equiv_\omega$ on the weak order interval~$[e,\omega]$, whose equivalence classes are the sets of linear extensions of the pipe dreams of~$\acyclicPipeDreams(\omega)$.
+We call \defn{pipe dream congruence} the equivalence relation~$\equiv_\omega$ on the weak order interval~$[e,\omega]$ whose equivalence classes are the sets of linear extensions of the pipe dreams of~$\acyclicPipeDreams(\omega)$.
+In other words, $\pi \equiv_\omega \pi'$ if and only if~$\insertion{\pi}{\omega} = \insertion{\pi'}{\omega}$.
 This indeed defines an equivalence relation by \cref{thm:partitionPipeDreams}.
 In this section, we prove the following statement.
 
@@ -524,7 +530,7 @@ The pipe dream congruence~$\equiv_\omega$ is a congruence of the weak order inte
 \label{exm:Tamari3}
 Following \cref{exm:Tamari1,exm:Tamari2}, observe that the congruence~$\equiv_{\rho_n}$ on the permutations of~$\{0, 1, \dots, n, n+1\}$ below~$\rho_n$ corresponds to the sylvester congruence on~$\fS_n$.
 The classes of this congruence are the sets of linear extensions of the binary trees (considered as posets, labeled in inorder, and oriented towards their roots).
-It can also be defined by the classical rewriting rule~$UikVjW \equiv UkiVjW$ for~$i < j < k$.
+It can also be defined by the classical rewriting rule~$UjVikW \equiv UjVkiW$ where~$i < j < k$ are elements of~$[n]$ while~$U, V, W$ are (possibly empty) words on~$[n]$.
 \end{example}
 
 We will discuss in \cref{subsec:rewritingRule} rewriting rules for the pipe dream congruence~$\equiv_\omega$, for any permutation~$\omega$.
@@ -705,9 +711,9 @@ The equivalences (iii) $\Leftrightarrow$ (iv) $\Leftrightarrow$ (v) $\Leftrighta
 \label{sec:furtherTopics}
 
 In this section, we discuss four further topics on the pipe dream congruence.
-In \cref{subsec:sweepingAlgorithm,subsec:insertionAlgorithm}, we describe two algorithms to construct the unique pipe dream~$P \in \acyclicPipeDreams(\omega)$ of which a given permutation~$\pi$ is a linear extension.
+In \cref{subsec:sweepingAlgorithm,subsec:insertionAlgorithm}, we describe two algorithms to construct the pipe dream~$\insertion{\pi}{\omega}$ of~$\acyclicPipeDreams(\omega)$ of which a given permutation~$\pi$ is a linear extension.
 In \cref{subsec:rewritingRule}, we describe the pipe dream congruence~$\equiv_\omega$ as the transitive closure of a rewriting rule on permutations of~$[e, \omega]$.
-Finally, in \cref{subsec:canopy}, we describe the natural coarsening of the pipe dream congruence~$\equiv_\omega$ by the recoil congruence~$\simeq_\omega$.
+Finally, in \cref{subsec:canopy}, we describe the natural coarsening of the pipe dream congruence~$\equiv_\omega$ by the recoil congruence~$\cong_\omega$.
 
 %To sum up, there are three equivalent ways to partition the interval~$[e,\omega]$ of the weak order:
 %\begin{itemize}
@@ -722,7 +728,7 @@ Finally, in \cref{subsec:canopy}, we describe the natural coarsening of the pipe
 \subsection{Sweeping algorithm}
 \label{subsec:sweepingAlgorithm}
 
-Our first algorithm to construct the unique pipe dream~$P \in \acyclicPipeDreams(\omega)$ with~$\pi \in \linearExtensions(P)$ is a \defn{sweeping algorithm}, inspired by the algorithm to compute greedy pipe dreams~\cite{PilaudPocchiola, PilaudStump-ELlabelings}.
+Our first algorithm to construct~$\insertion{\pi}{\omega}$ is a \defn{sweeping algorithm}, inspired by the algorithm to compute greedy pipe dreams~\cite{PilaudPocchiola, PilaudStump-ELlabelings}.
 Extensions of this algorithm will be discussed in \cref{..}. \vincent{todo. Was this algorithm explicitly somewhere before? We should cite Jahn-Stump later in the paper.}
 
 \begin{proposition}
@@ -771,7 +777,7 @@ When we sweep vertex~$v$ where pipe~$i$ arrives horizontally and pipe~$j$ arrive
 \subsection{Insertion algorithm}
 \label{subsec:insertionAlgorithm}
 
-Our second algorithm to construct the unique pipe dream~$P \in \acyclicPipeDreams(\omega)$ with~$\pi \in \linearExtensions(P)$ is an \defn{insertion algorithm} inspired from~\cite{Pilaud-BrickAlgebra} and similar to the insertion in binary search trees.
+Our second algorithm to construct~$\insertion{\pi}{\omega}$ is an \defn{insertion algorithm} inspired from~\cite{Pilaud-BrickAlgebra} and similar to the insertion in binary search trees.
 
 We call \defn{staircase} of length~$k$ a sequence~$e_1, \dots, e_k$ of southeast elbows such that~$e_i$ is located strictly southwest of~$e_{i+1}$ for each~$i \in [k-1]$. In other words, $r_1 > \dots > r_k$ and~$c_1 < \dots < c_k$ where~$e_i$ is located in row~$r_i$ and column~$c_i$.
 For~$j \in [n]$ such that~$j > r_1$ and~$c_k < \omega^{-1}(j)$, there is a unique pipe which enters at row~$j$, exits at column~$\omega^{-1}(j)$, and whose northeast elbows are precisely covering the southeast elbows~$e_1, \dots, e_k$.
@@ -817,32 +823,26 @@ The pipes constructed by the insertion algorithm are disjoint, except at crossin
 
 \begin{lemma}
 \label{lem:rectangleInsertionAlgorithm}
-For any~$1 \le t \le r \le n$, the free southeast elbows in the rectangle~$[\pi(r)] \times [\omega^{-1}(\pi(r))]$ just before step~$t$ of the insertion algorithm form a staircase of length
+For any~$t, r, c \in [n]$, the free southeast elbows in the rectangle~$[r] \times [c]$ just before step~$t$ of the insertion algorithm form a staircase of length
 \[
-{\# \bigset{s < t}{\pi(s) < \pi(r) \text{ and } \omega^{-1}(\pi(s)) < \omega^{-1}(\pi(r))}}.
+\# \set{s < t}{\pi(s) \le r \text{ and } \omega^{-1}(\pi(s)) \le c} - \# \set{s < t}{\pi(s) > r \text{ and } \omega^{-1}(\pi(s)) > c}.
 \]
 \end{lemma}
 
 \begin{proof}
-Denote by~$R$ the rectangle~$[\pi(r)] \times [\omega^{-1}(\pi(r))]$.
+Denote by~$R$ the rectangle~$[r] \times [c]$.
 The proof works by induction on~$t$.
 Before step~$1$, there is no southeast elbow in~$R$.
-Assume now that just before step~$t$, the free southeast elbows in~$R$ form a staircase~$e_1, \dots, e_k$ with~$k = \# \bigset{{s < t}}{{\pi(s) < \pi(r)} \text{ and } {\omega^{-1}(\pi(s)) < \omega^{-1}(\pi(r))}}$.
+Assume now that just before step~$t$, the free southeast elbows in~$R$ form a staircase~$e_1, \dots, e_k$ with~$k$ given by the formula of the statement.
 At step~$t$, we insert a new pipe~$\pi(t)$ which enters at~$\pi(t)$ and exits at~$\omega^{-1}(\pi(t))$.
 Let~${0 \le i < j \le k+1}$ be such that~$e_{i+1}, \dots, e_{j-1}$ are the northwest elbows of pipe~$\pi(t)$ in~$R$, and let~$e'_1, \dots, e'_\ell$ be the southeast elbows of pipe~$\pi(t)$ in~$R$.
 Hence, the free southeast elbows in~$R$ after step~$t$ form the sequence~$e_1, \dots, e_i, e'_1, \dots, e'_\ell, e_j, \dots, e_k$.
-We thus just need to see that
-\begin{itemize}
-\item $e_i$ is southwest of~$e'_1$ and~$e'_\ell$ is southwest of~$e_j$,
-\item $\ell = j-i$ if~$\pi(s) < \pi(t)$ and~$\omega^{-1}(\pi(s)) > \omega^{-1}(\pi(t))$, and $\ell = j-i-1$ otherwise.
-\end{itemize}
-This immediately follows considering the four possible cases:
-\begin{itemize}
-\item If~$\pi(t) < \pi(r)$ and~$\omega^{-1}(\pi(t)) < \omega^{-1}(\pi(r))$, then the pipe~$\pi(t)$ is completely contained in~$R$, hence it has one more northwest elbow than southeast elbow in~$R$.
-\item If~$\pi(s) < \pi(t)$ and~$\omega^{-1}(\pi(s)) > \omega^{-1}(\pi(t))$, then the pipe~$\pi(s)$ enters and exits~$R$ with an horizontal step, hence it has as many northwest and southeast elbows in~$R$.
-\item If~$\pi(s) > \pi(t)$ and~$\omega^{-1}(\pi(s)) < \omega^{-1}(\pi(t))$, then the pipe~$\pi(s)$ enters and exits~$R$ with a vertical step, hence it has as many northwest and southeast elbows in~$R$.
-\item If~$\pi(s) > \pi(t)$ and~$\omega^{-1}(\pi(s)) > \omega^{-1}(\pi(t))$, then setting~$i \eqdef \pi(t)$ and~$j \eqdef \pi(s)$, we have~${i < j}$ and~$\pi^{-1}(i) > \pi^{-1}(j)$ while~$\omega^{-1}(i) < \omega^{-1}(j)$, which contradicts our assumption that~$\pi < \omega$ in weak order. \qedhere
-\end{itemize}
+We thus just need to see that $e_i$ is southwest of~$e'_1$ and~$e'_\ell$ is southwest of~$e_j$, and that
+\[
+\ell = \begin{cases} j-i  & \text{if } \pi(s) \le r \text{ and } \omega^{-1}(\pi(s)) \le c, \\  j-i-2  & \text{if } \pi(s) > r \text{ and } \omega^{-1}(\pi(s)) > c, \\  j-i-1 & \text{otherwise.} \end{cases}
+\]
+Since the northwest and southeast elbows alternate along pipe~$\pi(t)$, this follows from the fact that the pipe~$\pi(t)$ enters~$R$ with an horizontal step if~$\pi(t) \le r$ and with a vertical step if~$\pi(s) > r$, and exits~$R$ with a vertical step if~$\omega^{-1}(\pi(t)) \le c$ and with an horizontal step if~$\omega^{-1}(\pi(s)) > c$.
+%setting~$i \eqdef \pi(t)$ and~$j \eqdef \pi(s)$, we have~${i < j}$ and~$\pi^{-1}(i) > \pi^{-1}(j)$ while~$\omega^{-1}(i) < \omega^{-1}(j)$, which contradicts our assumption that~$\pi < \omega$. \qedhere
 \end{proof}
 
 We now derive two properties of the insertion algorithm from \cref{lem:rectangleInsertionAlgorithm}.
@@ -854,13 +854,13 @@ For any~$t \in [n]$, the free southeast elbows in the rectangle~$[\pi(t)] \times
 \end{corollary}
 
 \begin{proof}
-%Fix~$t \in [n]$.
-Observe first that if there is~$s > t$ such that~$\pi(s) < \pi(t)$ and~$\omega^{-1}(\pi(s)) < \omega^{-1}(\pi(t))$, then setting~$i \eqdef \pi(s)$ and~$j \eqdef \pi(t)$, we have~$i < j$ and~$\pi^{-1}(i) > \pi^{-1}(j)$ while~$\omega^{-1}(i) < \omega^{-1}(j)$, which contradicts our assumption that~$\pi < \omega$ in weak order.
-Hence, we obtain that
-\[
-\noninversions{\omega}{\pi(t)} = \# \bigset{s < t}{\pi(s) < \pi(t) \text{ and } \omega^{-1}(\pi(s)) < \omega^{-1}(\pi(t))}.
-\]
-Hence, the result follows from~\cref{lem:rectangleInsertionAlgorithm} applied to~$t = r$.
+Observe first that if there if~$r < s$ such that~$\pi(r) > \pi(s)$ and~$\omega^{-1}(\pi(r)) > \omega^{-1}(\pi(s))$, then setting~$i \eqdef \pi(s)$ and~$j \eqdef \pi(r)$, we have~${i < j}$ and~$\pi^{-1}(i) > \pi^{-1}(j)$ while~$\omega^{-1}(i) < \omega^{-1}(j)$, which contradicts our assumption that~$\pi < \omega$.
+This implies that
+\begin{align*}
+\# \set{s < t}{\pi(s) < \pi(t) \text{ and } \omega^{-1}(\pi(s)) < \omega^{-1}(\pi(t))} & = \noninversions{\omega}{\pi(t)} \\
+\text{and}\qquad \# \set{s < t}{\pi(s) > \pi(t) \text{ and } \omega^{-1}(\pi(s)) > \omega^{-1}(\pi(t))} & = 0.
+\end{align*}
+Hence, the result follows from~\cref{lem:rectangleInsertionAlgorithm} applied to the parameters~$t, \pi(t), \omega^{-1}(\pi(t))$.
 \end{proof}
 
 \begin{corollary}
@@ -880,10 +880,6 @@ Hence, the eastmost point of pipe~$j$ in row~$i$ is at most in column~$\omega^{-
 We conclude that pipe~$j$ indeed remains in the triangular shape.
 \end{proof}
 
-%\begin{corollary}
-%For any~$\pi \le \omega$, the insertion algorithm creates a pipe dream of~$\pipeDreams(\omega)$.
-%\end{corollary}
-
 \begin{proof}[Proof of \cref{prop:insertionAlgorithm}]
 The insertion algorithm constructs a collection~$P$ of $n$ pipes in the triangular shape (by \cref{coro:rectangleInsertionAlgorithm2}), which are pairwise disjoint except at crossings and contacts (by \cref{coro:disjointPipesInsertionAlgorithm}).
 For each~$t \in [n]$, the pipe~$\pi(t)$ enters at row~$\pi(t)$, exits at column~$\omega^{-1}(\pi(t))$, and has~$\noninversions{\omega}{\pi(t)}$ many southeast contacts (by \cref{coro:rectangleInsertionAlgorithm1}).
@@ -894,131 +890,108 @@ In other words, all edges in the contact graph of~$\insertion{\pi}{\omega}$ are 
 It follows that the permutation~$\pi$ is a linear extension of the pipe dream~$P$.
 \end{proof}
 
-%\begin{proposition}
-%\label{prop:fibersInsertion}
-%For any pipe dream~$P \in \acyclicPipeDreams(\omega)$,  the permutations~$\pi \le \omega$ such that~$\insertion{\pi}{\omega} = P$ are precisely the linear extensions of the contact graph~$P\contact$ of~$P$.
-%In particular, $\insertion{\cdot}{\omega}$ is a surjection from~$[e, \omega]$ to~$\acyclicPipeDreams(\omega)$.
-%\end{proposition}
-%
-%\begin{proof}
-%By construction of the insertion algorithm, all southeast contacts of the pipe~$\pi(t)$ inserted at step~$t$ are in contact with northwest contacts of pipes~$\pi(s)$ inserted at steps~$s < t$.
-%In other words, all edges in the contact graph of~$\insertion{\pi}{\omega}$ are of the form~$\pi(s) \to \pi(t)$ for some~$s < t$.
-%It follows that the permutation~$\pi$ is a linear extension of~$\insertion{\pi}{\omega}$.
-%Reciprocally, consider a linear extension~$\pi$ of a pipe dream~$P$.
-%Then~$\insertion{\pi}{\omega}$ and~$P$ have a common linear extension~$\pi$, so that~$\insertion{\pi}{\omega} = P$ by \cref{prop:partition}.
-%\end{proof}
-%
-%In other words, the sets~$\set{\linearExtensions(P)}{P \in \acyclicPipeDreams(\omega)}$ are the fibers of the surjective insertion map~$\insertion{\cdot}{\omega}$.
-%Note that this concludes the proof of the surjectivity left open in \cref{prop:partition}.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Rewriting rule}
 \label{subsec:rewritingRule}
 
-\vincent{I am still working below this line.}
-
-Recall from \cref{exm:Tamari3} that the sylvester congruence can be defined as the transitive closure of the classical rewriting rule~$UikVjW \equiv UkiVjW$ for~$i < j < k$ (as usual, we write the permutations of~$\fS_n$ as words in one-line notation).
+Recall from \cref{exm:Tamari3} that the sylvester congruence can be defined as the transitive closure of the classical rewriting rule~$UjVikW \equiv UjVkiW$ where~$i < j < k$ are elements of~$[n]$ while~$U, V, W$ are (possibly empty) words on~$[n]$ (as usual, we write the permutations of~$\fS_n$ as words in one-line notation).
 We now describe a similar rewriting rule for the pipe dream congruence~$\equiv_\omega$.
 
 \begin{proposition}
 \label{prop:rewritingRule}
-On the interval~$[e,\omega]$ of the weak order, the pipe dream congruence~$\equiv_\omega$ coincides with the transitive closure of the rewriting rule~$U ik V \equiv_\omega U ki V$ where~$i < k$ are elements of~$[n]$ while~$U, V$ are (possibly empty) words on~$[n]$ such that
+On the interval~$[e,\omega]$ of the weak order, the pipe dream congruence~$\equiv_\omega$ coincides with the transitive closure of the rewriting rule~$U ij V \equiv_\omega U ji V$ where~$1 \le i < j \le n$ are elements of~$[n]$ while~$U, V$ are (possibly empty) words on~$[n]$ such that
 \[
-\#\set{j \in U}{i < j < k \text{ and } \omega^{-1}(i) > \omega^{-1}(j) > \omega^{-1}(k)} \ge \#\set{j \in U}{j < i \text{ and } \omega^{-1}(j) < \omega^{-1}(k)}.
-%\#\set{j \in U}{i < j < k \text{ and } \omega^{-1}(i) > \omega^{-1}(j) > \omega^{-1}(k)} \ge \#\set{j < i}{\omega^{-1}(j) < \omega^{-1}(k)},
+\# \set{k \in U}{k > i} \ge \# \set{k \in U}{\omega^{-1}(k) < \omega^{-1}(j)}.
 \]
-\vincent{Note that $b \in U$ on the right hand side by \cref{lem:interval}.}
-% The letters~$j \in U$ such that~$i < j < k$ while~$\omega^{-1}(i) > \omega^{-1}(j) > \omega^{-1}(k)$ are called \defn{pipe dream congruence witnesses} for the exchange of~$i$ and~$k$.
-%\vincent{Another option to write this is $d \ge u$ where $d \eqdef \set{b \in U}{b > a}$ and~$u \eqdef \set{b \in U}{\omega^{-1}(b) < \omega^{-1}(c)}$.
-%Or $dr \ge \ell u$ where $dr \eqdef \set{b \in U}{b > a \text{ and } \omega^{-1}(b) > \omega^{-1}(c)}$ and~$\ell u \eqdef \set{b \in U}{b < a \text{ and } \omega^{-1}(b) < \omega^{-1}(c)}$.}
-\end{proposition}
-
-\begin{proposition}
-\label{prop:congruence}
-For any~$\pi, \pi' \in [e,\omega]$, we have~${\pi \equiv_\omega \pi' \!\iff\! \insertion{\pi}{\omega} = \insertion{\pi'}{\omega} \!\iff\! \pi}$~and~$\pi'$ are linear extensions of a same pipe dream.
 \end{proposition}
 
 \begin{proof}
-By \cref{prop:fibersInsertion}, each fiber of~$\insertion{\cdot}{\omega}$ gathers the linear extensions of a pipe dream of~$\pipeDreams(\omega)$.
-Since the set of linear extensions of a poset is connected by simple transpositions, we just need to show that~$\pi \equiv_\omega \pi' \!\iff\! \insertion{\pi}{\omega} = \insertion{\pi'}{\omega}$ for any two permutations~$\pi = UacV$ and~$\pi' = UcaV$ of~$[e,\omega]$ which differ by the inversion of two consecutive values.
-
-Let~$t = \pi^{-1}(a) = \pi'{-1}(c)$.
-At step~$t$ of the algorithm presented in the previous section, we have inserted the word~$U$.
-At that moment, let~$X_t$ (resp.~$X'_t$, resp~$Y_t$) denote the set of free northwest contacts in the rectangle~$[a] \times [\omega^{-1}(a)]$ (resp.~$[c] \times [\omega^{-1}(c)]$, resp.~$[a] \times [\omega^{-1}(c)]$).
-Applying the same argument as in \cref{lem:rectangleInsertionAlgorithm}, we have
-\begin{gather*}
-\# Y_t = \max\big( \#\set{b \in U}{b < a \text{ and } \omega^{-1}(b) < \omega^{-1}(c)} \hspace{5cm} \\ \hspace{5cm} - \; \#\set{b \in U}{a < b < c \text{ and } \omega^{-1}(a) > \omega^{-1}(b) > \omega^{-1}(c)}, 0\big).
-\end{gather*}
-It follows that~$U ac V \equiv_\omega U ca V \iff \# Y_t = 0$.
-However, $Y_t = 0$ if and only if all contacts of~$X_t$ are in~$[a] \times [\omega^{-1}(c), \omega^{-1}(a)]$ and all contacts of~$X'_t$ are in~$[a,c] \times [\omega^{-1}(c)]$.
-The latter is equivalent to the fact that the insertion of~$a$ and~$c$ commute.
-We conclude that
+As they are linear extensions of posets, the congruence classes of $\equiv_\omega$ are connected by simple transpositions.
+We thus just need to show that any two permutations~$\pi \eqdef UijV$ and~$\pi' \eqdef UjiV$ of~$[e, \omega]$ which differ by the inversion of two consecutive values are equivalent for~$\equiv_\omega$ if and only if~$\# \set{k \in U}{k > i} \ge \# \set{k \in U}{\omega^{-1}(k) < \omega^{-1}(j)}$.
+Moreover, by \cref{prop:insertionAlgorithm}, $\pi \equiv_\omega \pi'$ if and only if they are sent to the same pipe dream by the insertion algorithm.
+Let~$t \eqdef \pi^{-1}(i) = \pi'^{-1}(j)$.
+Before step~$t$ of the insertion algorithm, we insert the word~$U$ both for~$\pi$ and for~$\pi'$.
+The insertion of~$i$ and~$j$ then commute if and only if there is no currently free elbow in the rectangle~$[i] \times [\omega^{-1}(j)]$.
+By \cref{lem:rectangleInsertionAlgorithm} applied to the parameters~$t, i, \omega^{-1}(j)$, this is equivalent to
 \[
-U ac V \equiv_\omega U ca V \iff \insertion{UacV}{\omega} = \insertion{UcaV}{\omega},
+\# \set{s < t}{\pi(s) \le i \text{ and } \omega^{-1}(\pi(s)) \le \omega^{-1}(j)} \le \# \set{s < t}{\pi(s) > i \text{ and } \omega^{-1}(\pi(s)) > \omega^{-1}(j)}.
 \]
-which concludes the proof since the set of linear extensions of a poset is connected by simple transpositions.
+or written differently,
+\[
+\# \set{k \in U}{k < i \text{ and } \omega^{-1}(k) < \omega^{-1}(j)} \le \# \set{k \in U}{k > i \text{ and } \omega^{-1}(k) > \omega^{-1}(j)}.
+\]
+(note that  to replace large by strict inequalities in the first set, we used that~$k \ne i$ and ${\omega^{-1}(k) \ne \omega^{-1}(j)}$ since~$i,j \notin U$ while~$k \in U$).
+Finally, observe that adding~$\# \set{k \in U}{k > i \text{ and } \omega^{-1}(k) < \omega^{-1}(j)}$ from both side, we obtain the equivalent condition
+\[
+\# \set{k \in U}{\omega^{-1}(k) < \omega^{-1}(j)} \le \# \set{k \in U}{k > i}.
+\qedhere
+\]
 \end{proof}
 
-\begin{proposition}
-\label{prop:patternAvoiding}
-The minimal (resp.~maximal) permutations in the partition
-\(
-{[e,\omega] = \bigsqcup_{P \in \acyclicPipeDreams(\omega)} \linearExtensions(P)}
-\)
-are the permutations avoiding the patterns~$b_1 - \cdots - b_k - ca$ (resp.~$b_1 - \cdots - b_k - ac$) where $k = \#\set{b < a}{\omega^{-1}(b) < \omega^{-1}(c)}$.
-\end{proposition}
+\begin{remark}
+\label{rem:rewritingRule}
+Observe from the proof that the condition of \cref{prop:rewritingRule} is equivalent to
+\[
+\# \set{k \in U}{k < i \text{ and } \omega^{-1}(k) < \omega^{-1}(j)} \le \# \set{k \in U}{k > i \text{ and } \omega^{-1}(k) > \omega^{-1}(j)}.
+\]
+Observe moreover that since~$\pi \le \omega$ and~$i < j$, we have
+\begin{align*}
+\set{k \in U}{k < i \text{ and } \omega^{-1}(k) < \omega^{-1}(j)} & = \set{k \in [i]}{\omega^{-1}(k) < \omega^{-1}(j)} \qquad \text{and}\\
+\set{k \in U}{k > i \text{ and } \omega^{-1}(k) > \omega^{-1}(j)} & = \set{k \in [n]}{i < k < j \text{ and } \omega^{-1}(i) > \omega^{-1}(k) > \omega^{-1}(j)}.
+\end{align*}
+\end{remark}
+
+We close this section by two immediate consequences of \cref{prop:rewritingRule,rem:rewritingRule}.
+
+\begin{corollary}
+\label{coro:patternAvoiding}
+A permutation is minimal (resp.~maximal) in its pipe dream congruence class if and only if it avoids the patters~$k_1 - \cdots - k_p - ji$ (resp.~$k_1 - \cdots - k_p - ij$) where~$k_q > i$ and~$\omega^{-1}(k_q) > \omega^{-1}(j)$ for~$q \in [p]$ and~$p = \# \set{k \in [i]}{\omega^{-1}(k) < \omega^{-1}(j)}$.
+\end{corollary}
 
 \begin{proof}
-This is an immediate consequence of \cref{prop:congruence}: a permutation~$\pi$ is minimal (resp.~maximal) in its $\equiv_\omega$-congruence class if and only if it contains no consecutive exchangeable entries~$ca$ (resp.~$ac$) with~$a < c$.
+This is an immediate consequence of \cref{prop:rewritingRule}: a permutation~$\pi$ is minimal (resp.~maximal) in its $\equiv_\omega$-congruence class if and only if it contains no consecutive exchangeable entries~$ji$ (resp.~$ij$) with~$i < j$.
 \end{proof}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{corollary}
+\label{coro:canopy}
+If~$1 \le i < j \le n$ and~$j-i \le \#\set{k \in [i]}{\omega^{-1}(k) < \omega^{-1}(j)}$, then the pipes~$i$ and~$j$ are comparable for $\contactLess{P}$ in any acyclic pipe dream~$P \in \acyclicPipeDreams(\omega)$.
+\end{corollary}
+
+\begin{proof}
+If pipes~$i$ and~$j$ were incomparable in~$\contactLess{P}$, there would be two permutations~$UijV \equiv_\omega UjiV$.
+However, $j-i \le \#\set{k \in [i]}{\omega^{-1}(k) < \omega^{-1}(j)}$ implies that the condition of \cref{prop:rewritingRule} cannot hold, by \cref{rem:rewritingRule}
+\end{proof}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Canopy}
-\label{sec:canopy}
+\subsection{Recoils and canopy}
+\label{subsec:canopy}
 
+To conclude, we generalize the notion of recoils of permutations and of canopy of a binary trees to show a natural commutative diagram of lattice homomorphisms.
+We start with the easy generalization of recoils of a permutation.
+
+\begin{definition}
+\label{def:recoils}
+Consider the graph~$G(\omega)$ with vertex set~$[n]$ and edge set
+\[
+\set{ik}{i < j \text{ and } j-i \le \#\set{k \in [i]}{\omega^{-1}(k) < \omega^{-1}(j)}}.
+\]
+Let~$\acyclicOrientations(\omega)$ denote the set of acyclic orientations of~$G(\omega)$.
+The \defn{$\omega$-recoil congruence} is the equivalence relation on the weak order interval~$[e, \omega]$ whose equivalence classes are the sets of linear extensions of the acyclic orientations of~$G(\omega)$.
+The \defn{$\omega$-recoils} of a permutation~$\pi \in [e,\omega]$ is the acyclic orientation~${\recoils{\pi}{\omega} \in \acyclicOrientations(\omega)}$ such that~$\pi$ is a linear extension of~$\recoils{\pi}{\omega}$.
+\end{definition}
+
+We now generalize the canopy of a binary tree.
 Recall that the \defn{canopy} of a binary tree~$T$ with~$n$ internal nodes is the sign sequence~${\canopy{T} \in \{{-},{+}\}^{n-1}}$ defined by~$\canopy{T}_i = {-}$ if the $(i+1)$st leaf of~$T$ is a left leaf and~$\canopy{T}_i = {+}$ if the $(i+1)$st leaf of~$T$ is a right leaf.
 Equivalently, $\canopy{T}_i = -$ if the node~$i$ of~$T$ is above the node~$i+1$ of~$T$ and~$\canopy{T}_i = +$ otherwise.
 This map was already used by J.-L.~Loday in~\cite{LodayRonco, Loday}, but the name ``canopy'' was coined by X.~Viennot~\cite{Viennot}.
-% The binary search tree insertion map and the canopy map factorize the recoil map: $\surjectionBrickZono[] \circ \surjectionPermBrick[] = \surjectionPermZono[]$. This combinatorial fact can also be understood on the geometry of the normal fans of the permutahedron, the associahedron and the cube, see \cref{subsec:normalFans}.
-
-Before introducing the canopy, let us define the $\omega$-recoils.
-For this, consider the graph~$G(\omega)$ with vertex set~$[n]$ and edge set
-\[
-\bigset{ij}{i < j \text{ and } j-i \le \#\set{k < i}{\omega^{-1}(k) < \omega^{-1}(j)}}.
-\]
-Let~$\acyclicOrientations(\omega)$ denote the set of acyclic orientations of~$G(\omega)$.
-
-\begin{definition}
-The \defn{$\omega$-recoil scheme} of a permutation~$\pi \in [e,\omega]$ is the orientation~${\recoils{\pi}{\omega} \in \acyclicOrientations(\omega)}$ where for all~$i < j \in [n]$ such that~$j-i \le \#\set{k < i}{\omega^{-1}(k) < \omega^{-1}(j)}$, the edge~$ij$ is oriented~$i \to j$ if~$\pi^{-1}(i) < \pi^{-1}(j)$ and~$j \to i$ if~$\pi^{-1}(j) < \pi^{-1}(i)$.
-We call \defn{$\omega$-recoil map} the map~$\recoils{\cdot}{\omega} : [e,\omega] \to \acyclicOrientations(\omega)$.
-\end{definition}
-
-\begin{remark}
-The fiber of an acyclic orientation~$O \in \acyclicOrientations(\omega)$ under the $\omega$-recoil map~$\recoils{\cdot}{\omega}$ are the linear extensions of~$O$ in~$[e,\omega]$.
-\end{remark}
-
-We now define a generalization of the canopy map for pipe dreams in~$\acyclicPipeDreams(\omega)$.
-To ensure that \cref{def:canopy} is valid, we need the following simple observation on comparisons of ``close'' pipes in a pipe dream.
-
-\begin{lemma}
-\label{lem:canopy}
-If~$i < j$ satisfy~$j-i \le \#\set{k < i}{\omega^{-1}(k) < \omega^{-1}(j)}$, then the pipes~$i$ and~$j$ in any acyclic pipe dream~$P \in \acyclicPipeDreams(\omega)$ are comparable~for~$\contactLess{P}$.
-\end{lemma}
-
-\begin{proof}
-If pipes~$i$ and~$j$ were incomparable in~$\contactLess{P}$, there would be two $\equiv_\omega$-congruent permutations~$UijV \equiv_\omega UjiV$.
-However, the assumption contradicts the definition of the $\equiv_\omega$-conguence in \cref{def:congruence}.
-\end{proof}
+We now define a generalization of the canopy map for pipe dreams in~$\acyclicPipeDreams(\omega)$, using \cref{coro:canopy}.
 
 \begin{definition}
 \label{def:canopy}
-The \defn{canopy} of a pipe dream~$P \in \acyclicPipeDreams(\omega)$ is the orientation~$\canopy{P} \in \acyclicOrientations(\omega)$ where for all~$i < j \in [n]$ such that~$j-i \le \#\set{k < i}{\omega^{-1}(k) < \omega^{-1}(j)}$, the edge~$ij$ is oriented~$i \to j$ if~$i \contactLess{P} j$ and~$j \to i$ if~$j \contactLess{P} i$.
-It indeed defines an acyclic orientation of~$G(\omega)$ by \cref{lem:canopy}.
-We call \defn{canopy} the map~$\canopy{\cdot}: \acyclicPipeDreams(\omega) \to \acyclicOrientations(\omega)$.
+The \defn{canopy} of a pipe dream~$P \in \acyclicPipeDreams(\omega)$ is the orientation~$\canopy{P} \in \acyclicOrientations(\omega)$ where each edge~$ij$ is oriented~$i \to j$ if~$i \contactLess{P} j$ and~$j \to i$ if~$j \contactLess{P} i$.
 \end{definition}
 
 \begin{proposition}
@@ -1043,91 +1016,6 @@ Consider a permutation~$\pi$ and let~$i < j \in [n]$ be such that~$j-i \le \#\se
 Assume that the edge~$ij$ is oriented from~$i$ to~$j$.
 Then~$\pi^{-1}(i) < \pi^{-1}(j)$, thus the pipe~$i$ is inserted before the pipe~$j$ in~$\insertion{\pi}{\omega}$, so that~$i \contactLess{\insertion{\pi}{\omega}} j$ and there is also an arc from~$i$ to~$j$ in~$\canopy{\insertion{\pi}{\omega}}$.
 \end{proof}
-
-\vincent{I want to think about congruences of the interval $[e,\omega]$ in general.}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Future work}
-\label{sec:futureWork}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Sortability and alignement}
-
-We should describe the minimum (or maximum) of the congruence classes of~$\equiv_\omega$ by
-\begin{itemize}
-\item a pattern avoiding condition, see \cref{prop:patternAvoiding}.
-\item ``$\omega$-sortability'', see~\cite{Reading-sortableElements}.
-\item ``$\omega$-alignement'', see~\cite{Reading-sortableElements}.
-\end{itemize}
-
-\subsection{Other Coxeter groups}
-
-\vincent{This part is not up-to-date.  We have new (hopefully correct) conjectures.}
-All the arguments presented above should extend to type A Cambrian pipe dreams... This means that we consider the increasing flip poset of the type~$A$ subword complex~$\subwordComplex(\wo(c),\omega)$ for any Coxeter element~$c$ and any permutation~$\omega$ of~$\fS_n$. Similar arguments where already developed in~\cite{Pilaud-BrickAlgebra} for the particular case of the permutation
-\[
-\omega = [1, \dots, k, n-k, n-k-1, \dots, k+2, k+1, n-k+1, \dots, n].
-\]
-More generally, we can consider the following conjecture.
-
-\begin{conjecture}
-\label{conj:Coxeter}
-For any finite Coxeter group~$W$, any Coxeter element~$c$ of~$W$, and any element~$w \in W$, the increasing flip poset on the acyclic facets of the subword complex~$\subwordComplex(\wo(c),w)$ is a lattice quotient of the interval~$[e,w]$ of the weak order on~$W$.
-\end{conjecture}
-
-Let's be a little more precise here: for an acyclic facet~$F$ of the subword complex~$\subwordComplex(\wo(c),w)$, one can consider the set~$\set{\pi \in W}{\R_{\ge 0} \pi(\Delta) \supseteq \R_{\ge 0} \Roots(F)}$, \ie the elements of~$W$ whose dual Coxeter chamber belongs to the cone generated by the root configuration of~$F$. I hope that this defines a lattice congruence of~$[e,w]$.
-
-We should actually consider the lattice properties of the acyclic facets of~$\subwordComplex(c^k\wo(c),w)$ for any~$k$ and any~$w$. In type~$A$, this is the same as any subword complex~$\subwordComplex(c^k\wo(c),w)$ can be embedded in a bigger~$\subwordComplex(\wo(c'),w')$. In other types however it is a more general question.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Hopf algebra}
-
-Define an equivalence relation~$\equiv$ on intervals~$[\pi,\omega]$ of the weak order by~$[\pi,\omega] \equiv [\pi',\omega'] \iff \omega = \omega' \text{ and } \pi \equiv_\omega \pi'$. Essentially, we proved that the collection of all acyclic pipe dreams is in bijection with the equivalence classes of~$\equiv$. Now is there a Hopf algebra on intervals of the weak order such that the equivalence relation~$\equiv$ gives a subalgebra?
-\vincent{I believe that this part should disappear.}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Subword complexes}
-\label{subsec:subwordComplexes}
-
-Pipe dreams are a very particular family of the family of subword complexes.
-Consider a Coxeter system~$(W,S)$, where~$W$ is a finite Coxeter group and~$S$ is the set of simple reflections of~$W$.
-We denote by~$e$ (resp.~$\wo$) the identity (resp.~longest element) of~$W$.
-Let~$Q \eqdef q_1 \dots q_m \in S^*$ be a word on the alphabet formed by the simple generators of~$W$ and~$w \in W$.
-The \defn{subword complex}~$\subwordComplex(Q,w)$ is the simplicial complex whose ground set~$[m]$ are the positions in~$Q$ and whose facets are the complements of the reduced expressions for~$w$ in~$Q$.
-
-It is known that~$\subwordComplex(Q,w)$ is either a ball or a sphere, in particular it is a pseudomanifold (with or without boundary).
-The flip graph of~$\subwordComplex(Q,w)$ is the graph whose vertices are the facets of~$\subwordComplex(Q,w)$ and whose edges are the ridges of~$\subwordComplex(Q,w)$.
-If~$F,F'$ are two adjacent facets with~$F \ssm \{p\} = F' \ssm \{p'\}$, we say that the flip is \defn{increasing} when~$p < p'$.
-The increasing flip graph was studied in particular in~\cite{PilaudStump-ELlabelings}.
-It is known to be acyclic, and its transitive closure is an EL-shellable poset (see~\cite{PilaudStump-ELlabelings} for the precise definition and references).
-
-There is also a notion of acyclicity for subword complexes.
-It is based on the notion of \defn{root configuration}~$\Roots(F)$ of a facet~$F$ of~$\subwordComplex(Q,w)$.
-We skip the details and refer to~\cite{CeballosLabbeStump, PilaudStump-brickPolytope} for details.
-The facet~$F$ is \defn{acyclic} if its root configuration is pointed (meaning that it generates a pointed cone).
-
-\begin{example}
-Consider the symmetric group~$\fS_{n+1}$ generated by the set of simple transpositions $\set{\tau_i}{i \in [n]}$ where~$\tau_i \eqdef (i \; i+1)$.
-For a permutation~$\omega \in \fS_{n+1}$, the pipe dreams of~$\pipeDreams(\omega)$ correspond to the facets of the subword complex~$\subwordComplex(Q,\omega)$ with~$Q = \tau_1, \tau_2, \dots, \tau_n, \tau_1, \tau_2, \dots, \tau_{n-1}, \dots, \tau_1, \tau_2, \tau_1$.
-% The notions of flips, increasing flips and acyclic pipe dreams transpose in the world of subword complexes.
-\end{example}
-
-\begin{example}
-For any Coxeter group~$W$ and any Coxeter element~$c \in W$ (a product of all generators of~$S$ in a given arbitrary order), let~$\wo(c)$ denote the $c$-sorting word of~$\wo$ (see \cite{Reading-CambrianLattices} for details).
-Extending the observation of \cref{subsec:reversingPipeDreams}, it was shown in~\cite{CeballosLabbeStump} that the subword complex~$\subwordComplex(c\wo(c), \wo)$ is isomorphic to the cluster complex of type~$W$.
-In particular, the increasing flip graph is the Hasse diagram of the $c$-Cambrian lattice of~\cite{Reading-CambrianLattices}.
-\end{example}
-
-In contrast to the previous example, consider the word~$Q = \tau_1 \tau_2 \tau_3 \tau_2 \tau_1 \tau_2 \tau_3 \tau_2 \tau_1$ on the simple generators of the symmetric group~$\fS_4$ and the subword complex~$\subwordComplex(Q,\wo)$.
-Note that all facets in this subword complex are acyclic.
-It is shown in~\cite[Rem.~5.12]{PilaudStump-brickPolytope} that its increasing flip poset is not a lattice.
-This shows that neither the increasing flip poset, nor the acyclic increasing flip poset are lattices in general, even in type~$A$.
-In this note, we investigate the case of acyclic pipe~dreams.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
