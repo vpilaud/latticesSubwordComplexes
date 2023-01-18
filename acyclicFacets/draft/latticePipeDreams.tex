@@ -46,7 +46,9 @@
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{conjecture*}{Conjecture}
 \newtheorem{conjecture}[theorem]{Conjecture}
+\crefname{conjecture}{Conjecture}{Conjectures}
 
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
@@ -140,6 +142,7 @@
 \newcommand{\duality}{^\star} % duality pipe dreams - triangulations
 \newcommand{\acyclicPipeDreams}{\Sigma} % acyclic pipe dreams
 \newcommand{\linearExtensions}{\mathcal{L}} % linear extensions
+\newcommand{\strictLinearExtensions}{\mathcal{L}^\star} % strict linear extensions
 \newcommand{\noninversions}[2]{\mathsf{ninv}(#1,#2)} % non-inversions
 \newcommand{\acyclicOrientations}{\Omega} % set of pipe dreams
 \newcommand{\insertion}[2]{\mathsf{pd}(#1,#2)} % insertion of permutation #1 in pipe dreams with permutation #2
@@ -154,10 +157,12 @@
 \newcommand{\Roots}{\mathrm{R}} % root configuration
 \newcommand{\rootFunction}[2]{\mathrm{r}_{#1}(#2)} % root function
 \newcommand{\subwordFacets}{\mathcal{F}} % subword complex
-\newcommand{\subwordAcyclicFacets}{\mathcal{F}^\mathrm{ac}} % subword complex
+\newcommand{\subwordAcyclicFacets}{\mathcal{F}^\bullet} % subword complex
+\newcommand{\subwordStrictAcyclicFacets}{\mathcal{F}^\star} % subword complex
 \newcommand{\greedyFacet}{I^{\overleftarrow{gr}}} % greedy facet
 \newcommand{\antiGreedyFacet}{I^{\overrightarrow{gr}}} % antigreedy facet
 \newcommand{\sweepingAlgorithm}{\mathsf{sweep}} % sweeping algorithm
+\newcommand{\brickPolyhedron}{\mathsf{Brick}} % brick polyhedron
 
 % lattices
 \newcommand{\meet}{\wedge} % meet
@@ -206,12 +211,12 @@ In the core \cref{sec:latticeAcyclicPipeDreams} of this paper, we show that for 
 \begin{itemize}
 \item the sets of linear extensions of the acyclic pipe dreams with exiting permutation~$\omega$ form a partition of the interval~$[e,\omega]$ of the weak order (\cref{subsec:linearExtensions}),
 \item the equivalence relation defined by this partition is a lattice congruence of~$[e, \omega]$, that we call the pipe dream congruence (\cref{subsec:pipeDreamCongruence}),
-\item the Hasse diagram of the corresponding lattice quotient is the increasing flip graph on acyclic pipe dreams with exiting permutation~$\omega$ (\cref{subsec:pipeDreamQuotient}).
+\item the Hasse diagram of the corresponding lattice quotient is isomorphic to the increasing flip graph on acyclic pipe dreams with exiting permutation~$\omega$ (\cref{subsec:pipeDreamQuotient}).
 \end{itemize}
 In summary, we obtain the following statement.
 
 \begin{theorem*}
-For any permutation~$\omega$, the increasing flip graph on acyclic pipe dreams with exiting permutation~$\omega$ is the Hasse diagram of the lattice quotient of the interval~$[e,\omega]$ of the weak order by the pipe dream congruence of~$\omega$.
+For any permutation~$\omega$, the Hasse diagram of the lattice quotient of the interval~$[e,\omega]$ of the weak order by the pipe dream congruence of~$\omega$ is isomorphic to the increasing flip graph on acyclic pipe dreams with exiting permutation~$\omega$.
 \end{theorem*}
 
 Note that we recover the connection between the weak order and the Tamari lattice by the sylvester congruence for a well-chosen exiting permutation~$\omega$.
@@ -222,13 +227,13 @@ We describe two algorithms to compute the unique acyclic pipe dream whose linear
 Finally, we discuss in \cref{sec:subwordComplexes} a conjectural extension of our results to subword complexes in finite Coxeter groups~\cite{KnutsonMiller-subwordComplex}.
 
 
-\begin{conjecture}
+\begin{conjecture*}
 For any sorting and alternating word~$Q$ and any~$\omega \in W$, the 
 
 
 
 the subword complex congruence~$\equiv_{Q,\omega}$ is a lattice congruence of the interval~$[e,\omega]$ of the weak order.
-\end{conjecture}
+\end{conjecture*}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -654,7 +659,7 @@ In this section, we aim at the following statement.
 
 \begin{theorem}
 \label{thm:pipeDreamQuotient}
-The increasing flip graph on~$\acyclicPipeDreams(\omega)$ is isomorphic to the Hasse diagram of the lattice quotient~$[e,\omega]/{\equiv_\omega}$.
+The Hasse diagram of the lattice quotient~$[e,\omega]/{\equiv_\omega}$ is isomorphic to the increasing flip graph on~$\acyclicPipeDreams(\omega)$.
 \end{theorem}
 
 \begin{example}
@@ -1136,7 +1141,7 @@ The \defn{increasing flip poset} is the transitive closure of the increasing fli
 An important tool to study subword complexes are the root functions introduced in~\cite{CeballosLabbeStump}.
 For a facet $I$ of~$\subwordComplex(Q,\omega)$, the \defn{root function} $\rootFunction{I}{\cdot}:[m]\rightarrow \Phi$ sends a position~$k$ in the word $Q$ to the root~$ \rootFunction{I}{k}$ defined by 
 \[
-\rootFunction{I}{k} \eqdef \prod Q_{[k-1]\smallsetminus I}(\alpha_{q_k}).
+\rootFunction{I}{k} \eqdef \prod Q_{[k-1]\ssm I}(\alpha_{q_k}).
 \]
 The \defn{root configuration} is the set $\Roots(I)=\set{\rootFunction{I}{i}}{i\in I}$.
 The facet $I$ is called \defn{acyclic} if $\cone \Roots(I)$ is a pointed cone.
@@ -1149,18 +1154,18 @@ Let $I$ be a facet of the subword complex~$\subwordComplex(Q,\omega)$.
 Then
 \begin{enumerate}
 \item $i \in I$ is flippable if and only if $\pm \rootFunction{I}{i} \in \Inv(\omega)$.
-\item If $i \in I$ is flippable, it can be flipped to the unique $j\in [m]\smallsetminus I$ such that $\rootFunction{I}{j} = \pm\rootFunction{I}{i}$.
+\item If $i \in I$ is flippable, it can be flipped to the unique $j\in [m]\ssm I$ such that $\rootFunction{I}{j} = \pm\rootFunction{I}{i}$.
 The flip is increasing ($i<j$) when $\rootFunction{I}{i}\in \Phi^+$ and decreasing ($i>j$) when $\rootFunction{I}{i}\in \Phi^-$.
 \label{lem:rootFunctionFlips2}
-\item If $I'=I\smallsetminus \{i\}\cap \{i'\}$ is a facet obtained from $I$ by flipping $i$ to $i'$ with $i<i'$, then
+\item If $I$ and $J$ are two facets related by a flip, with $I \ssm \{i\} = J \ssm  \{j\}$ and $i < j$, then
 \[
-\rootFunction{I'}{k} = 
+\rootFunction{J}{k} = 
 \begin{cases}
-s_\beta(\rootFunction{I}{k}), & \text{for } i < k \leq i' \\
+s_\beta(\rootFunction{I}{k}), & \text{for } i < k \leq j \\
 \rootFunction{I}{k}, & \text{otherwise}
 \end{cases}
 \]
-where $\beta=\rootFunction{I}{i}$ and $s_\beta\in W$ is the reflection orthogonal to the root $\beta$.
+where $\beta \eqdef \rootFunction{I}{i}$ and $s_\beta\in W$ is the reflection orthogonal to the root $\beta$.
 \label{lem:rootFunctionFlips3}
 \item $i \in I$ is not flippable if and only if $\rootFunction{I}{i}\in \Ninv(\omega)$.
 \end{enumerate}
@@ -1324,14 +1329,14 @@ Now,
 \]
 and 
 \[
-\Inv(\pi') =\Inv(\pi) \smallsetminus \{\beta\}
+\Inv(\pi') =\Inv(\pi) \ssm \{\beta\}
 \qquad\text{and}\qquad
 \Ninv(\pi') = \Ninv(\pi) \cup \{\beta\}
 \]
 for $\beta=\pi'(\alpha_s)$.
 Therefore,
 \begin{align*}
-    \pi'(\Phi^+) = \pi(\Phi^+) \smallsetminus \{-\beta\} \cup \{\beta\}.
+    \pi'(\Phi^+) = \pi(\Phi^+) \ssm \{-\beta\} \cup \{\beta\}.
 \end{align*}
 
 \begin{center}
@@ -1380,7 +1385,7 @@ s_\beta(\pi(\Phi^+))=\pi'(\Phi^+).
 \]
 Since $s_\beta(\beta)= -\beta$, then $s_\beta$ preserves the set 
 \[
-\pi(\Phi^+) \smallsetminus \{-\beta\} = \pi'(\Phi^+) \smallsetminus \{\beta\} = \pi(\Phi^+) \cap \pi'(\Phi^+).
+\pi(\Phi^+) \ssm \{-\beta\} = \pi'(\Phi^+) \ssm \{\beta\} = \pi(\Phi^+) \cap \pi'(\Phi^+).
 \]
 This observation will be useful to prove the statement in the second of the following two cases.
 \vincent{I believe we could shorten all this discussion. Also the picture is not really useful.}
@@ -1389,7 +1394,7 @@ This observation will be useful to prove the statement in the second of the foll
 \paragraph{\bf Case 1:} $-\beta \notin \Roots(I)$.
 
 In this case, 
-$\Roots(I)\subseteq \pi(\Phi^+) \smallsetminus \{-\beta\} \subseteq \pi'(\Phi^+)$.
+$\Roots(I)\subseteq \pi(\Phi^+) \ssm \{-\beta\} \subseteq \pi'(\Phi^+)$.
 Taking $I'=I$, we have 
 $\pi'\in \linearExtensions(I')$ 
 as wanted.
@@ -1416,7 +1421,7 @@ The sequence of $-\beta$'s could in principle be empty and so does the sequence 
 But if there is a $-\beta$ in this list, then there should be at least one $\beta$ preceding it.
 The position $i$ of the last $\beta$ is used in the reduced expression of $\omega$ in the complement of $I$, that is $i\notin I$.
 The positions of the other $\beta$'s and $-\beta$'s all belong to~$I$, and can all be flipped to $i$ (see \cref{lem:rootFunctionFlips}~\eqref{lem:rootFunctionFlips2}).   
-In particular, the position $j$ of the last $-\beta$ belongs to $I$, and it can be flipped to $i$ creating a new facet $I'=I\smallsetminus \{j\} \cap \{i\}$.
+In particular, the position $j$ of the last $-\beta$ belongs to $I$, and it can be flipped to $i$ creating a new facet $I'=I\ssm \{j\} \cap \{i\}$.
 
 Now, since $\beta\notin \pi(\Phi^+)$.
 There must be only one $\beta$ in the list.
@@ -1429,7 +1434,7 @@ So, our restricted list corresponding to $I$ looks like
       i && j
 \end{array}    
 \end{equation}
-By  \cref{lem:rootFunctionFlips}~\eqref{lem:rootFunctionFlips3}, we obtain that flipping $j$ to $i$ creates the new facet $I' = I \smallsetminus \{j\} \cap \{i\}$ whose corresponding restricted list looks like
+By  \cref{lem:rootFunctionFlips}~\eqref{lem:rootFunctionFlips3}, we obtain that flipping $j$ to $i$ creates the new facet $I' = I \ssm \{j\} \cap \{i\}$ whose corresponding restricted list looks like
 \begin{equation}
 \begin{array}{ccc}
   \beta &, \beta, \dots, &\beta.\\
@@ -1439,7 +1444,7 @@ By  \cref{lem:rootFunctionFlips}~\eqref{lem:rootFunctionFlips3}, we obtain that 
 
 Moreover, since the reflection $s_\beta$ preserves the set 
 \[
-\pi'(\Phi^+) \smallsetminus \{\beta\} = \pi(\Phi^+) \smallsetminus \{-\beta\} = \pi(\Phi^+) \cap \pi'(\Phi^+).
+\pi'(\Phi^+) \ssm \{\beta\} = \pi(\Phi^+) \ssm \{-\beta\} = \pi(\Phi^+) \cap \pi'(\Phi^+).
 \]
 then $\Roots(I') \subseteq \pi'(\Phi^+)$.
 Thus, $\pi'\in \linearExtensions(I')$ as desired.
@@ -1468,9 +1473,10 @@ If both fall into Case 1, then $I_1'=I_1$ and $I_2'=I_2$ and so $I_1=I_2$ as des
 If both fall into Case 2, then we just need to flip back the performed flip to obtain $I_1=I_2$.
 \end{proof}
 
-Since $\linearExtensions(I)\neq \varnothing$ if and only if $I$ is acyclic by \cref{lem:linearExtensionsAcyclic}, we have the following straight forward corollary.
+Since $\linearExtensions(I)\neq \varnothing$ if and only if $I$ is acyclic by \cref{lem:linearExtensionsAcyclic}, and~$\linearExtensions(I) \ne \linearExtensions(J)$ for~$I \ne J$ by \cref{thm:linearExtensionsPartitionSubwordComplexA}~\eqref{item:partition}, we have the following straight forward corollary.
 
-\begin{corollary}\label{coro:linearExtensionsPartitionSubwordComplexes}
+\begin{corollary}
+\label{coro:linearExtensionsPartitionSubwordComplexes}
 For any word~$Q$ and element~$\omega$,
 \[
 \linearExtensions(Q,\omega) = \bigsqcup_{I\in\subwordAcyclicFacets(Q,\omega)} \linearExtensions(I).
@@ -1493,7 +1499,8 @@ If the word $Q$ is sorting, then the linear extensions of acyclic facets of $\su
 
 The proof is based on the following statement, which follows from~\cite[Thm.~3.1 \& Coro.~3.3]{JahnStump}.
 
-\begin{proposition}[{\cite{JahnStump}}]\label{prop_jahnStump_intersection}
+\begin{proposition}[{\cite{JahnStump}}]
+\label{prop:intersectionRootConfigurations}
 If the word $Q$ is sorting, then 
 \[
 \Big( \bigcap_{I\in \subwordFacets(Q,\omega)} \cone \Roots(I) \Big) \cap \Phi^+ = \Ninv(\omega).
@@ -1516,7 +1523,7 @@ C^+(\omega,\wo)\cap \Phi^+ = \Inv(\omega \wo) = \Ninv(\omega).
 \end{proof}
 
 \begin{proof}[Proof of \cref{thm:linearExtensionsPartitionSubwordComplexB}]
-If $\pi \in \linearExtensions(I)$ for some facet~$I$ of~$\subwordComplex(Q, \omega)$, then by \cref{prop_jahnStump_intersection} we have 
+If $\pi \in \linearExtensions(I)$ for some facet~$I$ of~$\subwordComplex(Q, \omega)$, then by \cref{prop:intersectionRootConfigurations} we have 
 \[
 \Ninv(\omega) \subseteq \cone \Roots(I) \cap \Phi^+ \subseteq \cone \pi(\Phi^+) \cap \Phi^+  = \Ninv(\pi).
 \]
@@ -1529,35 +1536,92 @@ Thus $\pi \le \omega$ as desired.
 \label{subsec:twoConjectures}
 
 In this section, we present two conjectural generalizations of the results of \cref{subsec:pipeDreamCongruence,subsec:pipeDreamQuotient}.
-We first introduce the analogue of \cref{def:pipeDreamCongruence} for subword complexes.
+By \cref{coro:linearExtensionsPartitionSubwordComplexes}, we have
+\[
+\linearExtensions(Q,\omega) = \bigsqcup_{I \in \subwordAcyclicFacets(Q, \omega)} \linearExtensions(I)
+\]
+which naturally defines an equivalence relation on~$\linearExtensions(Q,\omega)$.
+However, this equivalence relation is in general not a lattice congruence for two obvious reasons:
+\begin{enumerate}[(i)]
+\item while~$\linearExtensions(Q,\omega)$ is a lower set of the weak order containing~$[e, \omega]$ by \cref{thm:linearExtensionsPartitionSubwordComplexA}, it does not always coincides with~$[e, \omega]$ by \cref{rem:linearExtensionsPartitionSubwordComplexA}, and in fact it does not necessarily have a maximal element, hence it is not necessarily a lattice,
+\item while the sets~$\linearExtensions(I)$ are always order convex in the weak order by \cref{thm:linearExtensionsPartitionSubwordComplexA}~\eqref{item:convex}, they are not necessarily intervals in the weak order by \cref{rem:linearExtensionsPartitionSubwordComplexA}.
+\end{enumerate}
+To bypass Issue~(i), we could restrict our attention to the situation when the word~$Q$ is sorting by~\cref{thm:linearExtensionsPartitionSubwordComplexB} (we will do that in \cref{conj:latticeQuotientSortingAlternating}).
+Here, we want to be slightly more general, so we will instead consider general words~$Q$, but restrict our attention to the interval~$[e, \omega]$ as follows.
+For a facet~$I$ of~$\subwordComplex(Q, \omega)$, we define~$\strictLinearExtensions(I) \eqdef \linearExtensions(I) \cap [e, \omega]$.
+We say that~$I$ is \defn{strictly acyclic}~$\strictLinearExtensions(I) \ne \varnothing$, and we denote by~$\subwordStrictAcyclicFacets(Q, \omega)$ the set of strictly acyclic facets of~$\subwordComplex(Q, \omega)$.
+Note that by \cref{thm:linearExtensionsPartitionSubwordComplexA}~\eqref{item:partition}, we have
+\[
+[e, \omega] = \bigsqcup_{I\in\subwordStrictAcyclicFacets(Q,\omega)} \strictLinearExtensions(I).
+\]
+We can thus now define the analogue of the pipe dream congruence of \cref{def:pipeDreamCongruence} for subword complexes as follows.
 
 \begin{definition}
 \label{def:pipeDreamCongruenceSubwordComplexes}
-For a non-empty subword complex $\subwordComplex(Q,\omega)$, the \defn{subword complex congruence} is the equivalence relation~$\equiv_{Q,\omega}$ on the set~$\linearExtensions(Q,\omega) \eqdef \sqcup_{I \in \subwordAcyclicFacets(Q, \omega)} \linearExtensions(I)$  whose equivalence classes are the sets~$\linearExtensions(I)$ of linear extensions of the acyclic facets~$I$ of~$\subwordComplex(Q, \omega)$.
+For a non-empty subword complex $\subwordComplex(Q,\omega)$, the \defn{subword complex congruence} is the equivalence relation~$\equiv_{Q,\omega}$ on the interval~$[e, \omega]$  whose equivalence classes are the sets~$\strictLinearExtensions(I)$ of linear extensions of strictly acyclic facets~$I$ of~$\subwordStrictAcyclicFacets(Q, \omega)$.
 In other words, $\pi \equiv_{Q,\omega} \pi'$ if and only if $\pi$ and $\pi'$ are linear extensions of the same facet.  
 \end{definition}
 
-Note that the subword complex congruence indeed defines an equivalence relation by \cref{coro:linearExtensionsPartitionSubwordComplexes}.
-However, it is in general not a lattice congruence for two obvious reasons:
-\begin{itemize}
-\item while~$\linearExtensions(Q,\omega)$ is a lower set of the weak order containing~$[e, \omega]$ by \cref{thm:linearExtensionsPartitionSubwordComplexA}, it does not necessarily have a maximal element, hence it is not necessarily a lattice,
-\item while the sets~$\linearExtensions(I)$ are always order convex in the weak order by \cref{thm:linearExtensionsPartitionSubwordComplexA}~\eqref{item:convex}, they are not necessarily intervals in the weak order by \cref{rem:linearExtensionsPartitionSubwordComplexA}.
-\end{itemize}
-These two issues can however be bypassed with additional assumptions on the word~$Q$.
-Recall that a word~$Q$ is
-\begin{itemize}
-\item \defn{sorting} if it contains a reduced expression of $\wo$ (see just before \cref{thm:linearExtensionsPartitionSubwordComplexB}),
-\item \defn{alternating} if all non-commuting pairs $s, t\in S$ alternate within $Q$ (see \cite{PilaudSantos-brickPolytope, CeballosLabbeStump}).
-\end{itemize}
-By \cref{thm:linearExtensionsPartitionSubwordComplexB}, $\linearExtensions(Q,\omega) = [e, \omega]$ if $Q$ is sorting.
+Despite its name, this equivalence relation is not always a congruence because of Issue~(ii) above.
+To fix it, we now assume that the word~$Q$ is \defn{alternating}, meaning that all non-commuting pairs $s, t\in S$ alternate within $Q$ (this notion was already considered in \cite{PilaudSantos-brickPolytope, CeballosLabbeStump}).
+This enables us to state our first conjecture, intended to extend~\cref{thm:pipeDreamCongruence}.
 
 \begin{conjecture}
-If the word~$Q$ is sorting and alternating, then for any~$\omega \in W$, the subword complex congruence~$\equiv_{Q,\omega}$ is a lattice congruence of the interval~$[e,\omega]$ of the weak order.
+\label{conj:latticeCongruenceAlternating}
+For a non-empty subword complex $\subwordComplex(Q,\omega)$ where~$Q$ is alternating, the subword complex congruence~$\equiv_{Q,\omega}$ is a lattice congruence of the interval~$[e,\omega]$ of the weak order.
 \end{conjecture}
 
-This conjecture holds in type~$A_n$: our specific proof of~\cref{thm:pipeDreamCongruence} can be extended to arbitrary sorting and alternating words in type~$A_n$ as shown in~\cite{Cartier}.
-It is also supported by extensive computer experiments: we verified it in types...
-\cesarm{Noemie: in which cases did you check this conjecture? Type $A_n$ for n=???, B,C,D,....?} 
+We now intend to understand the quotient~$[e, \omega]/\equiv_{Q, \omega}$.
+First, its elements correspond to the congruence classes of~$\equiv_{Q, \omega}$, hence to the strictly acyclic facets in~$\subwordStrictAcyclicFacets(Q, \omega)$.
+The cover relations are certain increasing flips between the facets in~$\subwordStrictAcyclicFacets(Q, \omega)$.
+However, in contrast to \cref{thm:pipeDreamQuotient}, not all increasing flips between two facets in~$\subwordStrictAcyclicFacets(Q, \omega)$ yields a cover relation of~$\subwordStrictAcyclicFacets(Q, \omega)$, as illustrated by the following example.
+
+\begin{example}\label{ex_acyclicflip_not_weakorder_related}
+\vincent{work this out}
+    Let $W=S_3$ be the symmetric group generated by simple transpositions $S=\{s_1,s_2\}$ with $s_i=(i, i+1 )$.
+Let $Q=(s_1,s_2,s_1,s_2,s_1,s_2)$ and $\omega=\wo=s_1s_2s_1=s_2s_1s_2$.
+The subword complex $\subwordComplex(Q,\omega)$ has eight facets, six of which are acyclic.
+    All the fibers of $\equiv_{Q,\omega}$ are singletons and the lattice quotient~$[e,\omega]/\equiv_{Q,\omega}$ coincides with the weak order of type $A_2$.
+    On the other hand there are two facets, $I_1=\{1,3,4\}$ and $I_2=\{3,4,6\}$, which are connected by a flip but whose corresponding elements $\pi_1$ and $\pi_2$ are not related in weak order.
+    \cesar{To do: Double check and expand this example in detail. Add figure.}
+\end{example}
+
+We say that a flip between two facets~$I, J \in \subwordStrictAcyclicFacets(Q, \omega)$ with~$I \ssm \{i\} = J \ssm \{j\}$ is \defn{extremal} if the root~$\rootFunction{I}{i}$ is a ray of the root configuration~$\Roots(I)$ (or equivalently, $\rootFunction{J}{j}$ is a ray~$\Roots(J)$).
+This enables us to state our second conjecture, intended to extend~\cref{thm:pipeDreamQuotient}.
+
+\begin{conjecture}
+\label{conj:latticeQuotientAlternating}
+For a non-empty subword complex $\subwordComplex(Q,\omega)$ where~$Q$ is alternating, the Hasse diagram of the lattice quotient~$[e, \omega]/\equiv_{Q, \omega}$ is isomorphic to the graph of extremal increasing flips between strictly acyclic facets of~$\subwordStrictAcyclicFacets(Q, \omega)$.
+\end{conjecture}
+
+\cref{conj:latticeCongruenceAlternating,conj:latticeQuotientAlternating} holds in type~$A_n$: our specific proof of~\cref{thm:pipeDreamCongruence,thm:pipeDreamQuotient} can be extended to arbitrary alternating words in type~$A_n$ as will be shown in~\cite{Cartier}.
+They are also supported by computer experiments: we verified it for all alternating words of length at most~$\ell(\wo)$ in types~$B_2, B_3, D_4$ and~$H_3$.
+\vincent{Noemie check that.} 
+
+We now specialize \cref{conj:latticeCongruenceAlternating,conj:latticeQuotientAlternating} to the case of sorting and alternating words.
+In this case, all acyclic facets are strictly acyclic by \cref{thm:linearExtensionsPartitionSubwordComplexB}.
+Note that this is precisely the situation we had in~\cref{sec:latticeAcyclicPipeDreams}.
+
+\begin{conjecture}
+\label{conj:latticeQuotientSortingAlternating}
+For a non-empty subword complex $\subwordComplex(Q,\omega)$ where~$Q$ is sorting and alternating, the Hasse diagram of the lattice quotient~$[e, \omega]/\equiv_{Q, \omega}$ is isomorphic to the graph of extremal increasing flips between acyclic facets of~$\subwordAcyclicFacets(Q, \omega)$.
+\end{conjecture}
+
+Moreover, there is a close connection with the brick polyhedra introduced in~\cite{JahnStump} as generalizations of the brick polytopes of~\cite{PilaudSantos-brickPolytope, PilaudStump-brickPolytope}.
+We refer to the original papers~\cite{PilaudSantos-brickPolytope, PilaudStump-brickPolytope, JahnStump} for a definition of these polyhedra.
+We just need to know here that the brick polyhedron~$\brickPolyhedron(Q, \omega)$~has
+\begin{itemize}
+\item a vertex for each acyclic facet of~$\subwordAcyclicFacets(Q, \omega)$, and
+\item an edge for each extremal flip between two acyclic facets,
+\end{itemize}
+and that the graph of extremal increasing flips on acyclic facets is isomorphic to the finite part (meaning forgetting the unbounded rays) of the graph of the brick polyhedron~$\brickPolyhedron(Q, \omega)$ oriented in a suitable direction~$\delta$.
+This can be derived from \cite[Thm.~4.4]{JahnStump}.
+\cref{conj:latticeQuotientSortingAlternating} can thus be translated geometrically as follows.
+
+\begin{conjecture}
+\label{conj:latticeQuotientSortingAlternatingGeometric}
+For a non-empty subword complex $\subwordComplex(Q,\omega)$ where~$Q$ is sorting and alternating, the finite part of the oriented graph of the brick polyhedron~$\brickPolyhedron(Q, \omega)$ is isomorphic to the Hasse diagram of the lattice quotient~$[e, \omega]/\equiv_{Q, \omega}$.
+\end{conjecture}
 
 \vincent{I am working below this line}
 
@@ -1600,6 +1664,7 @@ The Chute lattice conjecture~\cite[Conjecture~2.8]{Rubey} might be an indication
 
 \subsection{The sweeping algorithm}
 \label{subsec:sweepingAlgorithmSubwordComplexes}
+\vincent{I have not checked this part yet.}
 
 Given a linear extension $\pi \in \linearExtensions(Q,\omega)$, one natural question is whether we can recover the unique acyclic facet $I$ such that $\pi \in \linearExtensions(I)$.
 We can recover this facet via a sweeping algorithm which we now introduce.
@@ -1615,9 +1680,9 @@ $\sweepingAlgorithm$ : & $W$  &$\longrightarrow$ &$\subwordFacets(Q,\omega)$\\
 We start by setting $I^0=\varnothing$ to be the empty set.
 Then we scan the word $Q=(q_1,\dots ,q_m)$ from left to right.
 At position $j\in [m]$ we produce a new set $I^j$ obtained from the previous one $I^{j-1}$ by either adding $j$ or not, according to certain rules.
-We let $Q^j=Q_{[j]\smallsetminus I^j}$ and denote by
+We let $Q^j=Q_{[j]\ssm I^j}$ and denote by
     \[
-    \rootFunction{I^j}{k} = \prod Q_{[k-1]\smallsetminus I^j}(\alpha_{q_k}).
+    \rootFunction{I^j}{k} = \prod Q_{[k-1]\ssm I^j}(\alpha_{q_k}).
     \]
 the partial root function for $k\leq j$.  
 The rules are the following:
@@ -1636,7 +1701,7 @@ The rules are the following:
     \item If $\rootFunction{I^j}{j}\in \Inv(\omega) \cap \Ninv (\pi)$ then we consider two cases: 
     \label{sweeping_case3} 
     \begin{enumerate}
-        \item If $Q_{[m]\smallsetminus I^{j-1}\smallsetminus \{j\}}$ contains a reduced expression of $\omega$ with prefix $Q^{j-1}$ then let 
+        \item If $Q_{[m]\ssm I^{j-1}\ssm \{j\}}$ contains a reduced expression of $\omega$ with prefix $Q^{j-1}$ then let 
         \[
         I^j=I^{j-1}\cup \{j\}.
         \]        
@@ -1668,17 +1733,17 @@ If $\beta \in -\Inv(\omega)$ we can simply not take it (Case~\eqref{sweeping_cas
 \end{proposition}
 
 \begin{proof}
-    Let $I^j$ and $Q^j=Q_{[j]\smallsetminus I^j}$ be as defined in the sweeping algorithm for $\pi$. 
+    Let $I^j$ and $Q^j=Q_{[j]\ssm I^j}$ be as defined in the sweeping algorithm for $\pi$. 
     The proposition follows by applying the following claim for $j=m$.
     \smallskip
     
-    {\bf Claim}: $Q^j$ is a reduced expression which is the prefix of a reduced expression of $\omega$ in $Q_{[m]\smallsetminus I^j}$.
+    {\bf Claim}: $Q^j$ is a reduced expression which is the prefix of a reduced expression of $\omega$ in $Q_{[m]\ssm I^j}$.
 
     \smallskip
     We prove the claim by induction on $j$.
 
     For $j=0$, $Q^0$ is the empty word which is reduced by definition.
-    Furthermore, $Q_{[m]\smallsetminus I^0 }=Q$ contains a reduced expression of $\omega$ because the subword complex is non-empty.
+    Furthermore, $Q_{[m]\ssm I^0 }=Q$ contains a reduced expression of $\omega$ because the subword complex is non-empty.
 The empty word is a prefix of this reduced expression. 
 
     Now assume that the claim holds for $j-1$ and prove it for $j$.
@@ -1694,20 +1759,20 @@ The empty word is a prefix of this reduced expression.
     \begin{enumerate}
     \item If $\rootFunction{I^j}{j}\in \Ninv(\omega)$ then 
     $Q^j=Q^{j-1}$, which is reduced by induction hypothesis.
-    Moreover, it is a prefix of a reduced expression of $\omega$ in $Q_{[m]\smallsetminus I^{j-1}}$.
-    Since $\rootFunction{I^j}{j}\in \Ninv(\omega)$, this reduced expression can not use the letter $q_j$; so, it is a reduced expression of $\omega$ in $Q_{[m]\smallsetminus I^{j}}$ as desired.
+    Moreover, it is a prefix of a reduced expression of $\omega$ in $Q_{[m]\ssm I^{j-1}}$.
+    Since $\rootFunction{I^j}{j}\in \Ninv(\omega)$, this reduced expression can not use the letter $q_j$; so, it is a reduced expression of $\omega$ in $Q_{[m]\ssm I^{j}}$ as desired.
     \item If $\rootFunction{I^j}{j}\in \Inv(\omega) \cap \Inv (\pi)$ then $Q^j= Q^{j-1}\circ (q_j)$, which is a reduced expression because~$Q^{j-1}$ is reduced and $\rootFunction{I^j}{j}\in \Inv(\omega)$.
     
-    Now let $\widetilde Q$ be a subword of $Q_{[m]\smallsetminus I^{j-1}}=Q_{[m]\smallsetminus I^{j}}$ which is a reduced expression of $\omega$ with prefix $Q^{j-1}$, and let $\widetilde I$ be the corresponding facet.
+    Now let $\widetilde Q$ be a subword of $Q_{[m]\ssm I^{j-1}}=Q_{[m]\ssm I^{j}}$ which is a reduced expression of $\omega$ with prefix $Q^{j-1}$, and let $\widetilde I$ be the corresponding facet.
     
     If $j\notin \widetilde I$, then $q_j$ is used in $\widetilde Q$ and we are done because $\widetilde Q$ has $Q^j$ as a prefix.
 
     If $j\in \widetilde I$, then we can flip it to a position $j'>j$ (by \cref{lem:rootFunctionFlips}~\eqref{lem:rootFunctionFlips2}), creating a new reduced expression $\widetilde Q'$ of $\omega$ which uses $q_j$, and thus has $Q^j$ as a prefix.
 
 
-    \item[(3)(a)] If $\rootFunction{I^j}{j}\in \Inv(\omega) \cap \Ninv (\pi)$ and $Q_{[m]\smallsetminus I^{j-1}\smallsetminus \{j\}}$ contains a reduced expression of $\omega$ with prefix $Q^{j-1}$, then $Q^j=Q^{j-1}$.
+    \item[(3)(a)] If $\rootFunction{I^j}{j}\in \Inv(\omega) \cap \Ninv (\pi)$ and $Q_{[m]\ssm I^{j-1}\ssm \{j\}}$ contains a reduced expression of $\omega$ with prefix $Q^{j-1}$, then $Q^j=Q^{j-1}$.
     Therefore, $Q^j$ is reduced and it is a prefix of a reduced expression of $\omega$ in 
-    $Q_{[m]\smallsetminus I^{j-1}\smallsetminus \{j\}}=Q_{[m]\smallsetminus I^j}$.
+    $Q_{[m]\ssm I^{j-1}\ssm \{j\}}=Q_{[m]\ssm I^j}$.
 
     \item[(3)(b)] In this case, $\rootFunction{I^j}{j}\in \Inv(\omega) \cap \Ninv (\pi)$ but $Q^j= Q^{j-1}\circ (q_j)$. The proof is similar to the proof of (2).
 
@@ -1741,7 +1806,7 @@ Our proof is based on the following lemma.
     Let $I_1,I_2\in \subwordComplex(Q,\omega)$ be two different facets, and $j\in [m]$ be the first position where they differ.
     Without loss of generality assume 
     \[
-I_2\cap [j] = I_1\cap [j] \smallsetminus \{j\}
+I_2\cap [j] = I_1\cap [j] \ssm \{j\}
     \]
 with $j\in I_1$.
 Let $\beta=\rootFunction{I_1}{j}=\rootFunction{I_2}{j}$, then 
@@ -1774,10 +1839,10 @@ and
 We analyze the possible cases in the sweeping algorithm.
 
 \begin{enumerate}
-    \item If $\rootFunction{I^j}{j}\in \Ninv(\omega)$ then clearly $j\in I$ is forced. Otherwise $Q_{[m]\smallsetminus I}$ would not be a reduced expression of $\omega$.
+    \item If $\rootFunction{I^j}{j}\in \Ninv(\omega)$ then clearly $j\in I$ is forced. Otherwise $Q_{[m]\ssm I}$ would not be a reduced expression of $\omega$.
     \item If $\rootFunction{I^j}{j}\in \Inv(\omega) \cap \Inv (\pi)$ then $j\notin I$ is forced. 
     Otherwise we would have an inversion of $\pi$ in the root configuration, which contradicts $\pi \in \linearExtensions(I)$.
-    \item[(3)(a)] If $\rootFunction{I^j}{j}\in \Inv(\omega) \cap \Ninv (\pi)$ and $Q_{[m]\smallsetminus I^{j-1}\smallsetminus \{j\}}$ contains a reduced expression of $\omega$ with prefix $Q^{j-1}$ then $j\in I^j$ is forced. 
+    \item[(3)(a)] If $\rootFunction{I^j}{j}\in \Inv(\omega) \cap \Ninv (\pi)$ and $Q_{[m]\ssm I^{j-1}\ssm \{j\}}$ contains a reduced expression of $\omega$ with prefix $Q^{j-1}$ then $j\in I^j$ is forced. 
 
     We argue this by contradiction. 
     Assume $j\notin I^j$ ($j\notin I$). Let $I_1=\sweepingAlgorithm(Q,\omega,\pi)$ and $I_2=I$. Applying \cref{lem_negativeroot}, we deduce that $\beta=\rootFunction{I^j}{j}=\rootFunction{I}{j}$ satisfies 
@@ -1785,7 +1850,7 @@ We analyze the possible cases in the sweeping algorithm.
     -\beta \in \cone \Roots(I).
     \]
     But $\beta \in \Ninv(\pi)$. This contradicts $\pi\in \linearExtensions(I)$.
-    \item[(3)(b)]  If $\rootFunction{I^j}{j}\in \Inv(\omega) \cap \Ninv (\pi)$ and $Q_{[m]\smallsetminus I^{j-1}\smallsetminus \{j\}}$ does not contain a reduced expression of $\omega$ with prefix $Q^{j-1}$ then $j\notin I^j$ is forced. Otherwise, the complement of $I$ would not be a reduced expression of $\omega$.
+    \item[(3)(b)]  If $\rootFunction{I^j}{j}\in \Inv(\omega) \cap \Ninv (\pi)$ and $Q_{[m]\ssm I^{j-1}\ssm \{j\}}$ does not contain a reduced expression of $\omega$ with prefix $Q^{j-1}$ then $j\notin I^j$ is forced. Otherwise, the complement of $I$ would not be a reduced expression of $\omega$.
     \item[(4)] If $\rootFunction{I^j}{j}\in -\Inv(\omega)$ then $j\in I^j$ is clearly forced. Otherwise, the complement of $I$ would not be a reduced expression.
 \end{enumerate}
 \end{proof}
