@@ -1,4 +1,4 @@
-\documentclass{amsart}
+\documentclass[reqno]{amsart}
 
 \usepackage{enumerate, amsmath, amsfonts, amssymb, amsthm, wasysym, graphics, graphicx, xcolor, url, hyperref, hypcap, a4wide, pdflscape, multido, xargs, colortbl, multicol, multirow, calc, shuffle}
 \hypersetup{colorlinks=true, citecolor=PineGreen, linkcolor=PineGreen}
@@ -112,12 +112,7 @@
 
 % permutations
 \newcommand{\fS}{\mathfrak{S}} % symmetric group
-\newcommand{\gdproduct}{\bullet} % global descent product
-\newcommand{\gdshuffle}{\shuffle_\gdproduct} % global descent shuffle product
-\newcommand{\gddeconcat}{\coproduct_\gdproduct} % global descent deconcatenation coproduct
-\newcommand{\HS}{{\bk\fS}} % Hopf Algebra of permutations
-\newcommand{\shiftedShuffle}{\,\bar\shuffle\,} % shifted shuffle
-\newcommand{\convolution}{\star} % convolution
+\newcommand{\fR}{\mathfrak{R}} % subset symmetric group
 
 % pipe dreams
 \input{pipeDreamsTikz}
@@ -138,7 +133,6 @@
 \newcommand{\waving}{\mathsf{wav}}%{\raisebox{-.2cm}{\begin{tikzpicture}[scale=1]\pipeDreamBiColor{.2}{(0,0)}{black}{white}{{t/r/l},{t/l/l},{t/l/r}}\end{tikzpicture}}}
 \newcommand{\transpose}{\mathsf{transp}}
 \newcommand{\pipeDreams}{\Pi} % set of pipe dreams
-\newcommand{\HP}{{\bk\pipeDreams}} % Hopf Algebra of pipe dreams
 \newcommand{\reversingPipeDreams}{\Omega} % reversing pipe dreams
 \newcommand{\contact}{^\#} % contact graph
 \newcommand{\se}{\textsc{se}} % southeast
@@ -155,15 +149,15 @@
 \newcommand{\antiGreedyPipeDream}{P^{\overrightarrow{gr}}} % antigreedy facet
 
 % Subword complexes
-\newcommand{\wo}{w_\circ} % longest element
+\newcommand{\wo}{\omega_\circ} % longest element
 \newcommand{\subwordComplex}{\mathcal{SC}} % subword complex
 \newcommand{\Roots}{\mathrm{R}} % root configuration
 \newcommand{\rootFunction}[2]{\mathrm{r}_{#1}(#2)} % root function
 \newcommand{\subwordFacets}{\mathcal{F}} % subword complex
-\newcommand{\subwordAcyclicFacets}{\mathcal{F}^{ac}} % subword complex
+\newcommand{\subwordAcyclicFacets}{\mathcal{F}^\mathrm{ac}} % subword complex
 \newcommand{\greedyFacet}{I^{\overleftarrow{gr}}} % greedy facet
 \newcommand{\antiGreedyFacet}{I^{\overrightarrow{gr}}} % antigreedy facet
-\newcommand{\sweepingAlgorithm}{\mathrm{sweep}} % sweeping algorithm
+\newcommand{\sweepingAlgorithm}{\mathsf{sweep}} % sweeping algorithm
 
 % lattices
 \newcommand{\meet}{\wedge} % meet
@@ -226,6 +220,16 @@ We then explore in \cref{sec:furtherTopics} some natural further topics.
 We describe two algorithms to compute the unique acyclic pipe dream whose linear extensions contain a given permutation generalizing the binary tree insertion map on permutations (\cref{subsec:sweepingAlgorithm,subsec:insertionAlgorithm}), we describe the pipe dream congruence as the transitive closure of a local rewriting rule generalizing that of the sylvester congruence (\cref{subsec:rewritingRule}), and we describe a natural commutative diagram of lattice morphism generalizing the connection between the recoil map and the binary tree insertion map on permutations and the canopy on binary trees (\cref{subsec:canopy}).
 
 Finally, we discuss in \cref{sec:subwordComplexes} a conjectural extension of our results to subword complexes in finite Coxeter groups~\cite{KnutsonMiller-subwordComplex}.
+
+
+\begin{conjecture}
+For any sorting and alternating word~$Q$ and any~$\omega \in W$, the 
+
+
+
+the subword complex congruence~$\equiv_{Q,\omega}$ is a lattice congruence of the interval~$[e,\omega]$ of the weak order.
+\end{conjecture}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -438,8 +442,8 @@ We thus obtain that~$i \contactLess{P} j \contactMore{P} k$ if this $e$ is south
 \section{Lattice of acyclic pipe dreams}
 \label{sec:latticeAcyclicPipeDreams}
 
-As already mentioned, the increasing flip poset on reversing pipe dreams is isomorphic to the Tamari lattice, which is a well known lattice quotient of the weak order.
-In this section, we extend this result to any permutation~$\omega$, by proving that the transitive closure of the increasing flip graph on acyclic pipe dreams of~$\acyclicPipeDreams(\omega)$ is the Hasse diagram of a lattice quotient of the weak order interval~$[e,\omega]$.
+As already mentioned, the increasing flip poset on reversing pipe dreams is isomorphic to the Tamari lattice, which is a lattice quotient of the weak order.
+In this section, we extend this result to any permutation~$\omega$ by showing that the sets of linear extensions of pipe dreams of~$\acyclicPipeDreams(\omega)$ partition the interval~$[e,w]$ (\cref{subsec:linearExtensions}), that this partition actually defines a lattice congruence of the weak order on~$[e,w]$ (\cref{subsec:pipeDreamCongruence}), and that the Hasse diagram of the quotient by this congruence is the increasing flip graph on acyclic pipe dreams of~$\acyclicPipeDreams(\omega)$ (\cref{subsec:pipeDreamQuotient}).
 This section goes straight to the proof of this property, and leaves alternative perspectives on this quotient to \cref{sec:furtherTopics}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -447,14 +451,21 @@ This section goes straight to the proof of this property, and leaves alternative
 \subsection{Linear extensions of pipe dreams}
 \label{subsec:linearExtensions}
 
+The main characters in this section are the following sets of permutations.
+
 %Recall that a \defn{linear extension} of a binary relation~$\less$ on~$[n]$ is a permutation~$\pi \in \fS_n$ such that~$i \less j$ implies $\pi^{-1}(i) < \pi^{-1}(j)$.
 %We denote by~$\linearExtensions(\less)$ the set of linear extensions of~$\less$.
 %Consider an acyclic pipe dream~$P$, and recall that we denote by~$\contactLess{P}$ the transitive closure of the contact graph~$P\contact$ of~$P$.
 %We denote by~$\linearExtensions(P)$ the set of linear extensions of~$\contactLess{P}$, and we say abusively that the permutations of~$\linearExtensions(P)$ are linear extensions of~$P$.
 %In other words, $\pi \in \linearExtensions(P)$ if and only if~$\pi^{-1}(i) < \pi^{-1}(j)$ for all arcs~$i \to j$ in~$P\contact$.
+
+\begin{definition}
+\label{def:linearExtensions}
 We say that a permutation~$\pi$ is a \defn{linear extension} of a pipe dream~$P \in \pipeDreams(\omega)$ if~$\pi^{-1}(i) < \pi^{-1}(j)$ for every arc~$i \to j$ in~$P\contact$ (we should say linear extension of~$\contactLess{P}$, but prefer to simplify notation).
 We denote by~$\linearExtensions(P)$ the set of linear extensions of~$P$.
 %For a pipe dream~$P \in \pipeDreams(\omega)$, we denote by~$\linearExtensions(P)$ the set of \defn{linear extensions} of~$P$, \ie the permutations~$\pi$ of~$[n]$ such that~$\pi^{-1}(i) < \pi^{-1}(j)$ for every arc~$i \to j$ in~$P\contact$.
+\end{definition}
+
 In this section, we prove the following structural property of~$\linearExtensions(P)$.
 
 \begin{theorem}
@@ -471,7 +482,7 @@ Hence any permutation of~$\{0, 1, \dots, n, n+1\}$ below~$\rho_n$ is a linear ex
 For instance, the pipe dream of \cref{fig:bijection} has linear extensions~$0421356$, $0423156$, $0421536$, $0423516$, $0425136$, $0425316$, $0452136$, $0452316$.
 \end{example}
 
-We will see in \cref{sec:furtherTopics} insertion algorithms to compute the pipe dream~$P \in \acyclicPipeDreams(\omega)$ of which a given permutation~$\pi \in [e,\omega]$ is a linear extension, for any permutation~$\omega$.
+We will see in \cref{sec:furtherTopics} insertion algorithms to compute the pipe dream~$P \in \acyclicPipeDreams(\omega)$ such that~$\pi \in \linearExtensions(P)$ for given permutations~$\pi < \omega$.
 These algorithms are however not needed for the proof of \cref{thm:partitionPipeDreams}, which we break into the following three lemmas.
 
 \begin{lemma}
@@ -542,10 +553,16 @@ An equivalence relation~$\equiv$ on a lattice~$L$ is a congruence if and only if
 \end{enumerate}
 \end{proposition}
 
-We call \defn{pipe dream congruence} the equivalence relation~$\equiv_\omega$ on the weak order interval~$[e,\omega]$ whose equivalence classes are the sets of linear extensions of the pipe dreams of~$\acyclicPipeDreams(\omega)$.
+We now focus on the following congruence.
+
+\begin{definition}
+\label{def:pipeDreamCongruence}
+The \defn{pipe dream congruence} is the equivalence relation~$\equiv_\omega$ on the weak order interval~$[e,\omega]$ whose equivalence classes are the sets~$\linearExtensions(P)$ of linear extensions of the pipe dreams~$P$ of~$\acyclicPipeDreams(\omega)$.
 In other words, $\pi \equiv_\omega \pi'$ if and only if~$\insertion{\pi}{\omega} = \insertion{\pi'}{\omega}$.
-This indeed defines an equivalence relation by \cref{thm:partitionPipeDreams}.
-In this section, we prove the following statement.
+\end{definition}
+
+Note that the pipe dream congruence indeed defines an equivalence relation by \cref{thm:partitionPipeDreams}.
+In this section, we prove that it is a lattice congruence.
 
 \begin{theorem}
 \label{thm:pipeDreamCongruence}
@@ -737,9 +754,9 @@ The equivalences (iii) $\Leftrightarrow$ (iv) $\Leftrightarrow$ (v) $\Leftrighta
 \label{sec:furtherTopics}
 
 In this section, we discuss four further topics on the pipe dream congruence.
-In \cref{subsec:sweepingAlgorithm,subsec:insertionAlgorithm}, we describe two algorithms to construct the pipe dream~$\insertion{\pi}{\omega}$ of~$\acyclicPipeDreams(\omega)$ of which a given permutation~$\pi$ is a linear extension.
-In \cref{subsec:rewritingRule}, we describe the pipe dream congruence~$\equiv_\omega$ as the transitive closure of a rewriting rule on permutations of~$[e, \omega]$.
-Finally, in \cref{subsec:canopy}, we describe the natural coarsening of the pipe dream congruence~$\equiv_\omega$ by the recoil congruence~$\cong_\omega$.
+We first describe two algorithms to construct the pipe dream~$\insertion{\pi}{\omega}$ of~$\acyclicPipeDreams(\omega)$ of which a given permutation~$\pi$ is a linear extension (\cref{subsec:sweepingAlgorithm,subsec:insertionAlgorithm}).
+We then describe the pipe dream congruence~$\equiv_\omega$ as the transitive closure of a rewriting rule on permutations of~$[e, \omega]$ (\cref{subsec:rewritingRule}).
+Finally, we describe the natural coarsening of the pipe dream congruence~$\equiv_\omega$ by the recoil congruence~$\cong_\omega$ (\cref{subsec:canopy}).
 
 %To sum up, there are three equivalent ways to partition the interval~$[e,\omega]$ of the weak order:
 %\begin{itemize}
@@ -1047,252 +1064,270 @@ Then~$\pi^{-1}(i) < \pi^{-1}(j)$, thus the pipe~$i$ is inserted before the pipe~
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newpage
 \section{Subword complexes}
 \label{sec:subwordComplexes}
 
-The objective of this section is to partially extend the results about the lattice structure of acyclic pipe dreams, presented in \cref{sec:latticeAcyclicPipeDreams}, to the wider context of subword complexes in finite Coxeter groups.
-Before doing so, we recall some preliminaries about finite Coxeter groups and subword complexes.
-We refer to~\cite{BjornerBrenti, Humphreys} for more details on Coxeter groups. 
+The objective of this section is to partially extend our results about the lattice structure of acyclic pipe dreams (\cref{sec:latticeAcyclicPipeDreams}) to the wider context of subword complexes in finite Coxeter groups.
+We start with some basic preliminaries on finite Coxeter groups (\cref{subsec:finiteCoxeterGroups}) and subword complexes (\cref{subsec:subwordComplexes}).
+We then define linear extensions of facets of subword complexes (\cref{subsec:linearExtensionsFacets}) and present two theorems (\cref{subsec:twoTheorems}) and two conjectures (\cref{subsec:twoConjectures}) about them.
+To conclude, we present a sweeping algorithm to construct the facet with a given linear extension (\cref{subsec:sweepingAlgorithmSubwordComplexes})
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Finite coxeter groups} 
-%a~\cesar{To do:\\
-%Coxeter groups of finite type, root systems, weak order, Bruhat order, inversions, non-inversions. 
-%}
-We consider a \defn{finite root system} $\Phi=\Phi^+\cup \Phi^-$ in an $n$-dimensional euclidian space $V$, with \defn{simple roots} $\Delta=\{\alpha_1,\dots,\alpha_n\} \subseteq \Phi^+$.
-The reflections along the hyperplanes orthogonal to the roots in $\Phi$ generate a finite Coxeter group $W$. 
-This group is generated by the simple transpositions $S=\{s_1,\dots ,s_n\}$, where $s_i$ is the reflection along the hyperplane orthogonal to the simple root $\alpha_i$.
-We also denote by $\alpha_s$ the simple root associated to $s\in S$.
-Throughout this paper, we only consider Coxeter groups which are finite.
-They are classified in terms of Dynkin diagrams, and arise from finite root systems, see~\cite{Humphreys}. 
+\label{subsec:finiteCoxeterGroups}
 
-Abstractly, the \defn{Coxeter group} $W$ is the group generated by a collection $S=\{s_1,\dots, s_n\}$ which satisfies the relations $(s_is_j)^{m_{ij}}=1$, where $m_{ii}=1$ and $m_{ij}\geq 2$ for~$i\neq j$.
-The pair $(W,S)$ is called a \defn{Coxeter system}.
-The \defn{length} $\ell(w)$ of an element $w\in W$ is the smallest~$\ell$ such that it can be written of the form $w=w_1w_2\dots w_\ell$ where $w_i\in S$.
-A \defn{reduced expression} of~$w$ is an expression of minimal length.
-We denote by $\wo$ the \defn{unique longest} element in $W$.
+We refer to~\cite{BjornerBrenti, Humphreys} for detailed references on Coxeter groups. 
+We consider a \defn{finite root system} $\Phi$ with \defn{positive roots}~$\Phi^+$, \defn{negative roots}~$\Phi^+-$, and \defn{simple roots} $\Delta \subseteq \Phi^+$.
+The reflections along the hyperplanes orthogonal to the roots in $\Phi$ generate a \defn{finite Coxeter group} $W$.
+We denote by~$s_\alpha \in W$ the reflection orthogonal to a root~$\alpha \in \Phi$, and by~$\alpha_s \in \Phi^+$ the positive root orthogonal to a reflection~$s \in W$.
+The group~$W$ is actually generated by the simple reflections~$S = \set{s_\alpha}{\alpha \in \Delta}$, and the pair~$(W,S)$ is a \defn{finite Coxeter system}.
+Finite root systems and finite Coxeter systems are classified in terms of Dynkin diagrams, see~\cite{Humphreys}. 
 
-For a finite Coxeter $W$ associated to a root system $\Phi$, the length $\ell(w)$ can be geometrically interpreted as the cardinality of the \defn{inversion set} $\Inv(w)$ of $w$, which is defined as
-\begin{align}\label{def_inversionset}
-\Inv(w) \eqdef \Phi^+ \cap w(\Phi^-).
-\end{align}
-Indeed, this set can be written as 
-\begin{align}\label{def_inversionset2}
-\Inv(w) \eqdef \{\alpha_{w_1}, w_1(\alpha_{w_2}),\dots , w_1w_2\dots w_{\ell-1}(\alpha_{w_\ell})\}
-\end{align}
-for any reduced expression $w=w_1w_2\dots w_\ell$ of $w$.
+The \defn{inversion set}~$\Inv(\omega)$ and the \defn{non-inversion set}~$\Ninv(\omega)$ of an element~$\omega \in W$ are
+\[
+\Inv(\omega) \eqdef \Phi^+ \cap \omega(\Phi^-)
+\qquad\text{and}\qquad
+\Ninv(\omega) \eqdef \Phi^+ \cap \omega(\Phi^+).
+\]
+Note that
+\[
+\Phi^+ = \Inv(\omega) \sqcup \Ninv(\omega)
+\qquad\text{and}\qquad
+\omega(\Phi^+) = -\Inv(\omega) \sqcup \Ninv(\omega).
+\]
 
-The \defn{non-inversion set} $\Ninv (w)$ of $w$ is defined as
-\begin{align}
-\Ninv(w) & \eqdef \Phi^+ \cap w(\Phi^+) \label{def_noninversionset} \\
-& =\Inv(w\wo)
-\end{align}
+A \defn{reduced expression} of~$\omega$ is a product~$s_1 s_2 \dots s_\ell = \omega$ of simple reflections~$s_i \in S$ such that~$\ell$ is minimal.
+This minimal~$\ell$ is the \defn{length} $\ell(\omega)$ of~$\omega$.
+The length of~$\omega$ coincides with the size of its inversion set~$\Inv(\omega)$ since $\Inv(\omega) \eqdef \{\alpha_{s_1}, s_1(\alpha_{s_2}), s_1s_2(\alpha_{s_3}), \dots, s_1s_2 \dots s_{\ell-1}(\alpha_{s_\ell})\}$.
 
-In particular, 
-\begin{align}
-\Phi^+=\Inv(w) \sqcup \Ninv (w).
-\end{align}
+The \defn{weak order} on $W$ is the partial order $\le$ defined by $\sigma \leq \omega$ if there exists $\tau \in W$ such that $\sigma\tau = \omega$ and $\ell(\sigma) + \ell(\tau) = \ell(\omega)$.
+In other words, the element $\omega$ has a reduced expression with a prefix which is a reduced expression of $\sigma$.
+Equivalently, the weak order corresponds to the inclusion order on inversion sets, that is $\sigma \leq \omega$ if and only if $\Inv(\sigma) \subseteq \Inv(\omega)$.
+This order defines a lattice structure on the elements of~$W$.
+The minimal element is the identity $e \in W$ and the maximal element is the \defn{unique longest element} $\wo$ of~$W$.
+Note that~$\Inv(e) = \varnothing = \Ninv(\wo)$ and~$\Ninv(e) = \Phi^+ = \Inv(\wo)$, so that~$\ell(e) = 0$ while~$\ell(\wo) = |\Phi^+|$.
+% Note also that~$\Ninv(\omega) =\Inv(\omega\wo)$.
 
-The \defn{weak order} on $W$ is the partial order $\leq$ defined by $u \leq w$ if there exists $v \in W$ such that $uv = w$ and $\ell(u) + \ell(v) = \ell(w)$.
-In other words, the element $w$ has a reduced expression with a prefix which is a reduced expression of $u$.
-Equivalently, the weak order corresponds to the inclusion order on inversion sets, that is $u \leq w$ if and only if $\Inv(u) \subseteq \Inv(w)$.
-This order defines a lattice structure on the elements of W.
-The minimal element is the identity $e \in W$ and the maximal element is $\wo$.
+\begin{example}
+\vincent{todo}
+Type A
+\end{example}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Subword complexes}
-%~\cesar{To do:\\
-%subword complexes, flips, greedy facets, \sout{root function, root configuration, acyclic facets}. 
-%}
+\label{subsec:subwordComplexes}
 
-Motivated by their study of Gröbner geometry of Schubert varieties~\cite{KnutsonMiller-GroebnerGeometry}, Knutson and Miller~\cite{KnutsonMiller-subwordComplex} introduced a remarkable family of simplicial complexes in the context of Coxeter groups.
+Motivated by their study of Gröbner geometry of Schubert varieties~\cite{KnutsonMiller-GroebnerGeometry}, A.~Knutson and E.~Miller introduced in~\cite{KnutsonMiller-subwordComplex} the following remarkable family of simplicial complexes in the context of Coxeter groups.
 
-Let $(W,S)$ be a Coxeter system of finite type, $Q=(q_1,\dots,q_m)$ be a word in the generators $S$, and $w\in W$ be an element of the group.
+Let $(W,S)$ be a finite Coxeter system, $Q=(q_1,\dots,q_m)$ be a word in the simple reflections $S$, and $\omega \in W$ be an element of the group.
 For $J\subseteq [r]$, we denote by $Q_J$ the subword of~$Q$ consisting of the letters with positions in $J$.
-The \defn{subword complex} $\subwordComplex(Q,w)$ is the simplicial complex whose facets are subsets $I\subseteq [m]$ such that $Q_{[m]\setminus I}$ is a reduced expression for $w$.
-We denote the \defn{set of facets} of $\subwordComplex(Q,w)$ by $\subwordFacets(Q,w)$.
+The \defn{subword complex} $\subwordComplex(Q,\omega)$ is the simplicial complex whose facets are subsets $I\subseteq [m]$ such that $Q_{[m]\setminus I}$ is a reduced expression for $\omega$.
+We denote by $\subwordFacets(Q,\omega)$ the set of facets of $\subwordComplex(Q,\omega)$.
 
-Two facets $I,J \in \subwordFacets(Q,w)$ are said to be connected by a \defn{flip} if they differ one element:
-\[J=I\smallsetminus \{i\} \cup\{j\}\]
-for some $i\in I$ and $j\in J$ with $i\neq j$.
-If $i<j$, the flip from $I$ to $J$ is called an \defn{increasing flip}.
-
-The increasing flip graph on facets of the subword complex is an acyclic graph which has a unique source and a unique sink~\cite{Pilaud-greedyFlipTree, PilaudStump-ELlabelings}.
+Two facets $I,J \in \subwordFacets(Q,\omega)$ are connected by a \defn{flip} if they differ one element: $I \ssm \{i\} = J \ssm \{j\}$ for some $i\in I$ and $j\in J$ with $i \ne j$.
+The flip from $I$ to $J$ is called \defn{increasing} if~$i < j$, and \defn{decreasing} otherwise.
+The \defn{increasing flip graph} on the facets of the subword complex is an acyclic graph which has a unique source and a unique sink~\cite{Pilaud-greedyFlipTree, PilaudStump-ELlabelings}.
 These two special facets are called the \defn{greedy facet} $\greedyFacet$ and the \defn{antigreedy facet} $\antiGreedyFacet$.
 They are the lexicographically smallest and largest facets of $\subwordComplex(Q,\pi)$, respectively.
+The \defn{increasing flip poset} is the transitive closure of the increasing flip graph.
 
-The poset on the set of facets induced by increasing flips is called the \defn{increasing flip poset}.
-
-\begin{definition}[{\cite{CeballosLabbeStump}}]
-    The \defn{root function} $\rootFunction{I}{\cdot}:[m]\rightarrow \Phi$ associated to a facet $I$ is the map from positions in the word $Q$ to roots defined by 
-    \[
-    \rootFunction{I}{k} \eqdef \prod Q_{[k-1]\smallsetminus I}(\alpha_{q_k}).
-    \]
-    The \defn{root configuration} is the set $\Roots(I)=\set{\rootFunction{I}{i}}{i\in I}$.
-    The facet $I$ is called \defn{acyclic} if $\cone \Roots(I)$ is a pointed cone.
-    We denote the \defn{set of acyclic facets} by $\subwordAcyclicFacets(Q,w)$.
-\end{definition}
-
-The root function is a useful and well established tool in the study of subword complexes.
-For instance, they can be used to fully understand flips.
+An important tool to study subword complexes are the root functions introduced in~\cite{CeballosLabbeStump}.
+For a facet $I$ of~$\subwordComplex(Q,\omega)$, the \defn{root function} $\rootFunction{I}{\cdot}:[m]\rightarrow \Phi$ sends a position~$k$ in the word $Q$ to the root~$ \rootFunction{I}{k}$ defined by 
+\[
+\rootFunction{I}{k} \eqdef \prod Q_{[k-1]\smallsetminus I}(\alpha_{q_k}).
+\]
+The \defn{root configuration} is the set $\Roots(I)=\set{\rootFunction{I}{i}}{i\in I}$.
+The facet $I$ is called \defn{acyclic} if $\cone \Roots(I)$ is a pointed cone.
+We denote by $\subwordAcyclicFacets(Q,\omega)$ the set of acyclic facets of the subword complex~$\subwordComplex(Q,\omega)$.
+We will use the following statement that enables to perform flips using the root function.
 
 \begin{lemma}[{\cite{CeballosLabbeStump, KnutsonMiller-subwordComplex}}]
-\label{lem_rootfunction_flips}
-Let $I$ be a facet of the subword complex~$\subwordComplex(Q,w)$.
-The following hold:
+\label{lem:rootFunctionFlips}
+Let $I$ be a facet of the subword complex~$\subwordComplex(Q,\omega)$.
+Then
 \begin{enumerate}
-    \item $i \in I$ is flippable if and only if $\pm \rootFunction{I}{i} \in \Inv(w)$.
-    \item If $i \in I$ is flippable, it can be flipped to the unique $j\in [m]\smallsetminus I$ such that $\rootFunction{I}{j} = \pm\rootFunction{I}{i}$.
-    The flip is increasing ($i<j$) when $\rootFunction{I}{i}\in \Phi^+$ and decreasing ($i>j$) when $\rootFunction{I}{i}\in \Phi^-$.\label{lem_rootfunction_flips2}
-    \item If $I'=I\smallsetminus \{i\}\cap \{i'\}$ is a facet obtained from $I$ by flipping $i$ to $i'$ with $i<i'$, then
-    \begin{equation}\label{eq_rootfunction_flip}
-         \rootFunction{I'}{k} = 
-  \begin{cases}
-    s_\beta(\rootFunction{I}{k}), & \text{for } i < k \leq i' \\
-    \rootFunction{I}{k}, & \text{otherwise}
-  \end{cases}
-    \end{equation}
-    where $\beta=\rootFunction{I}{i}$ and $s_\beta\in W$ is the reflection orthogonal to the root $\beta$.
-    \item $i \in I$ is not flippable if and only if $\rootFunction{I}{i}\in \Ninv(w)$.
+\item $i \in I$ is flippable if and only if $\pm \rootFunction{I}{i} \in \Inv(\omega)$.
+\item If $i \in I$ is flippable, it can be flipped to the unique $j\in [m]\smallsetminus I$ such that $\rootFunction{I}{j} = \pm\rootFunction{I}{i}$.
+The flip is increasing ($i<j$) when $\rootFunction{I}{i}\in \Phi^+$ and decreasing ($i>j$) when $\rootFunction{I}{i}\in \Phi^-$.
+\label{lem:rootFunctionFlips2}
+\item If $I'=I\smallsetminus \{i\}\cap \{i'\}$ is a facet obtained from $I$ by flipping $i$ to $i'$ with $i<i'$, then
+\[
+\rootFunction{I'}{k} = 
+\begin{cases}
+s_\beta(\rootFunction{I}{k}), & \text{for } i < k \leq i' \\
+\rootFunction{I}{k}, & \text{otherwise}
+\end{cases}
+\]
+where $\beta=\rootFunction{I}{i}$ and $s_\beta\in W$ is the reflection orthogonal to the root $\beta$.
+\label{lem:rootFunctionFlips3}
+\item $i \in I$ is not flippable if and only if $\rootFunction{I}{i}\in \Ninv(\omega)$.
 \end{enumerate}
 \end{lemma}
 
+\begin{example}
+\vincent{todo}
+Connection root configuration --- contact graph.
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Linear extensions of facets}
+\label{subsec:linearExtensionsFacets}
+
+We now introduce the analogue of \cref{def:linearExtensions} for subword complexes.
+\vincent{Is linear extension a good term? Should we say $W$-extension?}.
 
 \begin{definition}
-Let $\subwordComplex(Q,w)$ be a non-empty subword complex and $I\in \subwordComplex(Q,w)$ be a facet.
-An element $\pi\in W$ is called a \defn{linear extension} of $I$ if the root configuration $\Roots(I)\subseteq \pi(\Phi^+)$.
-The \defn{set of linear extensions} of $I$ is denoted by
-\begin{align}
-\linearExtensions(I)=
-\set{\pi\in W}{\Roots(I)\subseteq \pi(\Phi^+)}.   
-\end{align}
+\label{def:linearExtensionsSubwordComplexes}
+Let $\subwordComplex(Q,\omega)$ be a non-empty subword complex and $I\in \subwordComplex(Q,\omega)$ be a facet.
+A \defn{linear extension} of $I$ is an element $\pi \in W$ such that~$\Roots(I) \subseteq \pi(\Phi^+)$.
+We denote by~$\linearExtensions(I)$ the set of linear extensions of $I$, and by
+\[
+\linearExtensions(Q,\omega) \eqdef \bigcup_{I\in\subwordFacets(Q,\omega)} \linearExtensions(I)
+\]
+the set of linear extensions of all facets of~$\subwordComplex(Q,\omega)$.
 \end{definition}
 
 \begin{lemma}
-\label{lem_acyclic_nonempty}
-$\linearExtensions(I)\neq \varnothing$ if and only if $I$ is acyclic.
+\label{lem:linearExtensionsAcyclic}
+A facet~$I$ is acyclic if and only if~$\linearExtensions(I)\neq \varnothing$.
 \end{lemma}
+
 \begin{proof}
-Let $\Phi=\Phi^+\sqcup\Phi^-$ be the root system associated to $W$.
-A known result for root systems of finite type states that any other choice of a positive root system $\Phi^+$ for $\Phi$ is of the form $\widetilde \Phi^+=\pi(\Phi^+)$ for some $w\in W$.
-Since any pointed cone is contained in some $\widetilde \Phi^+$, then 
+%Let $\Phi = \Phi^+ \sqcup \Phi^-$ be the root system associated to $W$.
+A classical result for finite root systems states that for any generic linear halfspace~$H^+$ the intersection~$\Phi \cap H^+$ is of the form $\pi(\Phi^+)$ for some $\pi \in W$.
+Since any pointed cone is contained in some generic linear halfspace, we obtain
 \[
 \begin{array}{rcl}
 I \text{ is acyclic}  & \longleftrightarrow  &  \cone \Roots(I) \text{ is pointed} \\
   & \longleftrightarrow  & \cone \Roots(I)\subseteq \pi(\Phi^+) \text{ for some } \pi\in W \\
   & \longleftrightarrow  &  \Roots(I)\subseteq \pi(\Phi^+) \text{ for some } \pi\in W \\
   & \longleftrightarrow  &  \linearExtensions(I) \neq \varnothing 
+  \qedhere
 \end{array}
 \]
 \end{proof}
 
-\begin{lemma}
-\label{lem_pi_phiplus_inv_ninv}
-The following holds,
-\[
-\pi(\Phi^+)=-\Inv(\pi)\sqcup \Ninv(\pi).
-\]
-\end{lemma}
-
-\begin{proof}
-This is straight forward from the definition of inversions and non-inversion of $\pi$.
-In fact, multiplying Equation~\eqref{def_inversionset} by $-1$ we deduce $\pi(\Phi^+)\cap \Phi^-=-\Inv(\pi)$.
-Furthermore,  
-$\pi(\Phi^+)\cap \Phi^+=\Ninv(\pi)$ by Equation~\eqref{def_noninversionset}.
-\end{proof}
-
 The following lemma regards linear extensions of the greedy and antigreedy facets.
 
-\begin{lemma}\label{lem_linearext_greedyfacets}
-    Let $\greedyFacet$ and $\antiGreedyFacet$ be the greedy and antigreedy facets of $\subwordComplex(Q,w)$, respectively.
+\begin{lemma}
+\label{lem:linearExtensionsGreedyFacets}
+Let $\greedyFacet$ and $\antiGreedyFacet$ be the greedy and antigreedy facets of $\subwordComplex(Q,\omega)$, respectively.
 Then 
-    \begin{enumerate}
-        \item $e\in \linearExtensions(\greedyFacet)$.
-        \item $w \in \linearExtensions(\antiGreedyFacet)$.
-        \item If $e\in \linearExtensions(I)$ then $I=\greedyFacet$.
-    \end{enumerate}
+\begin{enumerate}
+\item $e\in \linearExtensions(\greedyFacet)$.
+\item $\omega \in \linearExtensions(\antiGreedyFacet)$.
+\item If $e\in \linearExtensions(I)$ then $I=\greedyFacet$.
+\end{enumerate}
 \end{lemma}
+
 \begin{proof}
-    Let $e\in W$ be the minimal element of the week order.
-    The greedy facet $\greedyFacet$ is the unique facet for which every flip (if any) is increasing.
-By \cref{lem_rootfunction_flips}~\eqref{lem_rootfunction_flips2}, this implies that $\greedyFacet$ is the unique facet $I$ such that $\Roots(I)\subseteq \Phi^+ = e(\Phi^+)$.
+The greedy facet $\greedyFacet$ is the unique facet for which every flip (if any) is increasing.
+By \cref{lem:rootFunctionFlips}~\eqref{lem:rootFunctionFlips2}, this implies that $\greedyFacet$ is the unique facet $I$ such that $\Roots(I)\subseteq \Phi^+ = e(\Phi^+)$.
 This proves parts (1) and (3) of the Lemma.   
     
-    For part (2) we need to analyze the possibilities for the set $\Roots(\antiGreedyFacet)$.
- By \cref{lem_rootfunction_flips}~\eqref{lem_rootfunction_flips2}, if $i\in \antiGreedyFacet$ is flippable then $\rootFunction{\antiGreedyFacet}{i}\in -\Inv(w)$.
-Furthermore, if $i\in \antiGreedyFacet$ is not flippable then $\rootFunction{\antiGreedyFacet}{i}\in \Ninv(w)$.
-Therefore, $\Roots(\antiGreedyFacet)\subseteq w(\Phi^+)=-\Inv(w)\sqcup \Ninv(w)$.
+For part (2) we need to analyze the possibilities for the set $\Roots(\antiGreedyFacet)$.
+By \cref{lem:rootFunctionFlips}~\eqref{lem:rootFunctionFlips2}, if $i\in \antiGreedyFacet$ is flippable then $\rootFunction{\antiGreedyFacet}{i}\in -\Inv(\omega)$.
+Furthermore, if $i\in \antiGreedyFacet$ is not flippable then $\rootFunction{\antiGreedyFacet}{i}\in \Ninv(\omega)$.
+Therefore, $\Roots(\antiGreedyFacet)\subseteq \omega(\Phi^+)=-\Inv(\omega)\sqcup \Ninv(\omega)$.
 \end{proof}
 
-\begin{remark}
-The concept of linear extensions of acyclic facets of subword complexes are a natural generalization of linear extensions of contact graphs of acyclic pipe dreams that we introduced in \cref{subsec:linearExtensions}.
-Indeed ... 
-\cesar{make this connection crystal clear...}
-\end{remark}
+\begin{example}
+%The concept of linear extensions of acyclic facets of subword complexes are a natural generalization of linear extensions of contact graphs of acyclic pipe dreams that we introduced in \cref{subsec:linearExtensions}.
+Connection linear extensions of contact graphs.
+\end{example}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Two fundamental theorems about linear extensions}
-In this section, we present our two main results about linear extensions for subword complexes, \cref{thm_subword_linearextensions_A} and \cref{thm_subword_linearextensions_B}.
+\subsection{Two theorems on linear extensions of facets}
+\label{subsec:twoTheorems}
 
-We say that a subset $A$ of the weak order is a \defn{lower set} if $a<b$ and $b\in A$ implies $a\in A$.
-We say that $A$ is \defn{closed by intervals} if $a,b\in A$ implies that $[a,b]\in A$, where $[a,b]=\{c: a \leq c\leq b\}$.
-\vincent{I usually say ``order-convex''}
+In this section, we present our two main results about linear extensions for subword complexes (\cref{thm:linearExtensionsPartitionSubwordComplexA,thm:linearExtensionsPartitionSubwordComplexB}), extending the results of \cref{subsec:linearExtensions}.
 
-\begin{theorem}\label{thm_subword_linearextensions_A}
-Let~$\subwordComplex(Q,w)$ be a non-empty subword complex.
-The following hold:
+A subset $\fR$ of the weak order is 
+\begin{itemize}
+\item a \defn{lower set} if $\sigma < \tau$ and $\tau \in \fR$ implies~$\sigma \in \fR$,
+\item \defn{order convex} if $\sigma < \tau < \rho$ and~$\sigma, \rho \in \fR$ implies~$\tau \in \R$.
+\end{itemize}
+
+\begin{theorem}
+\label{thm:linearExtensionsPartitionSubwordComplexA}
+Let~$\subwordComplex(Q,\omega)$ be a non-empty subword complex.
+Then
 \begin{enumerate}
-\item  $\bigcup_{I\in\subwordFacets(Q,w)} \linearExtensions(I)$ is a lower set of the weak order.
-\label{thmA_item1}
+\item For any facet~$I$ of~$\subwordComplex(Q,\omega)$ set $\linearExtensions(I)$ is order convex.
+\label{item:convex}
+\hfill (convex) 
+\item  $\linearExtensions(Q,\omega)$ is a lower set of the weak order.
+\label{item:lowerSet}
 \hfill (lower set)
-\item $[e,w] \subseteq \bigcup_{I\in\subwordFacets(Q,w)} \linearExtensions(I)$ 
-\label{thmA_item2}
-\hfill (containment)
+\item $[e,\omega] \subseteq \linearExtensions(Q,\omega).$
+\label{item:cover}
+\hfill (cover)
 \item If $I_1\neq I_2$ then $\linearExtensions(I_1)\cap \linearExtensions(I_2)=\varnothing$.
-\label{thmA_item3}
+\label{item:partition}
 \hfill (partition)
-\item The set $\linearExtensions(I)$ is closed by intervals.
-\label{thmA_item4}
-\hfill (interval closed) 
 \end{enumerate}
-\vincent{Replace ``containement'' by ``cover'' and ``partition'' by ``disjoint''?}
 \end{theorem}
 
-\begin{remark}\label{rem_thmA}
-Before proving this theorem, we would like to make the following remarks about items~\eqref{thmA_item2} and~\eqref{thmA_item4}.
+\begin{remark}
+\label{rem:linearExtensionsPartitionSubwordComplexA}
+Before proving this theorem, we would like to make the following remarks about items~\eqref{item:cover} and~\eqref{item:convex}.
 \begin{enumerate}
-  \setcounter{enumi}{1}
-\item There are cases where $[e,w] \neq \bigcup_{I\in\subwordFacets(Q,w)}$. \cesarm{add discussion}
+\setcounter{enumi}{1}
+\item There are cases where $[e,\omega] \ne \linearExtensions(Q,\omega)$. \cesarm{add discussion}
+%
 \begin{figure}[h]
 \includegraphics[width=0.52\textwidth]{interval_not_contained1} \quad
 \includegraphics[width=0.43\textwidth]{interval_not_contained2}
 \end{figure}
-  \setcounter{enumi}{3}
+%
+\setcounter{enumi}{3}
 \item $\linearExtensions(I)$ is not an interval in general. See for instance the example~\cite[Figure~9]{PilaudStump-brickPolytope}. 
 In that figure, the elements of the week order $\mathfrak{S}_4$ that are linear extensions of the same acyclic facet of a given subword complex are grouped together. Some of the groups in the figure are not intervals.  \\
 \end{enumerate}
 \end{remark}
 
-We will prove the items of the theorem one by one.
+We will now prove the four points of \cref{thm:linearExtensionsPartitionSubwordComplexA} one by one.
 
-\begin{proof}[Proof of \cref{thm_subword_linearextensions_A} \eqref{thmA_item1}]
-Let $\pi\in \linearExtensions(I)$ for some facet $I$.
-We need to show that if $\pi'<\pi$ then there exist another facet $I'$ such that $\pi'\in \linearExtensions(I')$.
-It is enough to show this when $\pi=\pi' s$ for some $s\in S$ such that $\ell(\pi')<\ell(\pi)$.
+\begin{proof}[Proof of \cref{thm:linearExtensionsPartitionSubwordComplexA}~\eqref{item:convex}]
+Let $\sigma < \tau < \rho$ be such that~$\sigma, \rho \in \linearExtensions(I)$.
+By definition of linear extensions, we have
+\[
+\Roots(I) \subseteq \sigma(\Phi^+)=-\Inv(\sigma) \sqcup \Ninv(\sigma)
+\quad\text{and}\quad
+\Roots(I) \subseteq \rho(\Phi^+)=-\Inv(\rho) \sqcup \Ninv(\rho).
+\]
+Restricting to the set of negative and positive roots, respectively, we deduce
+\[
+\Roots(I) \cap \Phi^- \subseteq -\Inv(\sigma) \subseteq -\Inv(\tau) \qquad 
+\Roots(I) \cap \Phi^+ \subseteq \Ninv(\rho)  \subseteq \Ninv(\tau)
+\]
+since~$\sigma < \tau < \rho$. Therefore
+\[
+\Roots(I) \subseteq -\Inv(\tau) \sqcup \Ninv(\tau) = \tau(\Phi^+)
+\]
+and so $\tau \in \linearExtensions(I)$.
+\end{proof}
 
-By definition, $\pi\in \linearExtensions(I)$ if and only if $\Roots(I)\subseteq \pi(\Phi^+)$.
-Now, 
+\begin{proof}[Proof of \cref{thm:linearExtensionsPartitionSubwordComplexA} \eqref{item:lowerSet}]
+Let $\pi \in \linearExtensions(I)$ for some facet $I$.
+We need to show that if $\pi' < \pi$ then there exist another facet $I'$ such that $\pi' \in \linearExtensions(I')$.
+It is enough to show this when $\pi = \pi's$ for some descent~$s$ of~$\pi$ (\ie some $s\in S$ such that $\ell(\pi') < \ell(\pi)$).
+
+By definition, $\pi \in \linearExtensions(I)$ if and only if $\Roots(I) \subseteq \pi(\Phi^+)$.
+Now,
 \[
 \pi(\Phi^+)= -\Inv(\pi)\sqcup \Ninv(\pi)
-\]  
+\]
 and 
-\begin{align*}
-    \Inv(\pi') &=\Inv(\pi)\smallsetminus \{\beta\} \\
-    \Ninv(\pi') &= \Ninv(\pi) \cup \{\beta\}
-\end{align*}
+\[
+\Inv(\pi') =\Inv(\pi) \smallsetminus \{\beta\}
+\qquad\text{and}\qquad
+\Ninv(\pi') = \Ninv(\pi) \cup \{\beta\}
+\]
 for $\beta=\pi'(\alpha_s)$.
 Therefore,
 \begin{align*}
@@ -1345,14 +1380,13 @@ s_\beta(\pi(\Phi^+))=\pi'(\Phi^+).
 \]
 Since $s_\beta(\beta)= -\beta$, then $s_\beta$ preserves the set 
 \[
-\pi(\Phi^+)\smallsetminus \{-\beta\}=
-\pi'(\Phi^+)\smallsetminus \{\beta\}=
-\pi(\Phi^+)\cap \pi'(\Phi^+).
+\pi(\Phi^+) \smallsetminus \{-\beta\} = \pi'(\Phi^+) \smallsetminus \{\beta\} = \pi(\Phi^+) \cap \pi'(\Phi^+).
 \]
 This observation will be useful to prove the statement in the second of the following two cases.
+\vincent{I believe we could shorten all this discussion. Also the picture is not really useful.}
 
 \medskip
-{\bf Case 1}: $-\beta \notin \Roots(I)$.
+\paragraph{\bf Case 1:} $-\beta \notin \Roots(I)$.
 
 In this case, 
 $\Roots(I)\subseteq \pi(\Phi^+) \smallsetminus \{-\beta\} \subseteq \pi'(\Phi^+)$.
@@ -1361,13 +1395,13 @@ $\pi'\in \linearExtensions(I')$
 as wanted.
 
 \medskip
-{\bf Case 2}: $-\beta \in \Roots(I)$.
+\paragraph{\bf Case 2:} $-\beta \in \Roots(I)$.
 
 In this case, we need to remove $-\beta$ from the root configuration.
 We will achieve this by flipping the position of the last $-\beta$ in $I$ to create a new facet $I'$.
 This position is indeed flippable as we will argue now. 
 
-Given a facet $I$ of a subword complex~$\subwordComplex(Q,w)$ and a positive root $\beta\in \Phi^+$, the restriction of the list of roots 
+Given a facet $I$ of a subword complex~$\subwordComplex(Q,\omega)$ and a positive root $\beta\in \Phi^+$, the restriction of the list of roots 
 \[
 \rootFunction{I}{1}, \rootFunction{I}{2}, \dots , \rootFunction{I}{m}.
 \]
@@ -1380,8 +1414,8 @@ to the set $\{\beta,-\beta\}$ is of the form
 \]
 The sequence of $-\beta$'s could in principle be empty and so does the sequence of $\beta$'s.
 But if there is a $-\beta$ in this list, then there should be at least one $\beta$ preceding it.
-The position $i$ of the last $\beta$ is used in the reduced expression of $w$ in the complement of $I$, that is $i\notin I$.
-The positions of the other $\beta$'s and $-\beta$'s all belong to~$I$, and can all be flipped to $i$ (see \cref{lem_rootfunction_flips}~\eqref{lem_rootfunction_flips2}).   
+The position $i$ of the last $\beta$ is used in the reduced expression of $\omega$ in the complement of $I$, that is $i\notin I$.
+The positions of the other $\beta$'s and $-\beta$'s all belong to~$I$, and can all be flipped to $i$ (see \cref{lem:rootFunctionFlips}~\eqref{lem:rootFunctionFlips2}).   
 In particular, the position $j$ of the last $-\beta$ belongs to $I$, and it can be flipped to $i$ creating a new facet $I'=I\smallsetminus \{j\} \cap \{i\}$.
 
 Now, since $\beta\notin \pi(\Phi^+)$.
@@ -1395,172 +1429,188 @@ So, our restricted list corresponding to $I$ looks like
       i && j
 \end{array}    
 \end{equation}
-Flipping $j$ to $i$ creates the new facet $I'=I\smallsetminus \{j\} \cap \{i\}$ whose corresponding restricted list looks like
+By  \cref{lem:rootFunctionFlips}~\eqref{lem:rootFunctionFlips3}, we obtain that flipping $j$ to $i$ creates the new facet $I' = I \smallsetminus \{j\} \cap \{i\}$ whose corresponding restricted list looks like
 \begin{equation}
 \begin{array}{ccc}
   \beta &, \beta, \dots, &\beta.\\
       i && j
 \end{array}    
 \end{equation}
-Indeed, Equation~\eqref{eq_rootfunction_flip} describes how the root function is modified after a flip.
-For a position $k$ satisfying $i<k\leq j$, we have $\rootFunction{I'}{k}=s_\beta (\rootFunction{I}{k})$; otherwise we have $\rootFunction{I'}{k}=\rootFunction{I}{k}$.
-Then, all $-\beta$'s get transformed into $\beta$'s.
 
 Moreover, since the reflection $s_\beta$ preserves the set 
-$$\pi'(\Phi^+)\smallsetminus \{\beta\} =
-\pi(\Phi^+)\smallsetminus \{-\beta\} =
-\pi(\Phi^+) \cap \pi'(\Phi^+).
-$$
-then $\Roots(I')\subseteq \pi'(\Phi^+)$.
+\[
+\pi'(\Phi^+) \smallsetminus \{\beta\} = \pi(\Phi^+) \smallsetminus \{-\beta\} = \pi(\Phi^+) \cap \pi'(\Phi^+).
+\]
+then $\Roots(I') \subseteq \pi'(\Phi^+)$.
 Thus, $\pi'\in \linearExtensions(I')$ as desired.
 \end{proof}
 
-\begin{proof}[Proof of \cref{thm_subword_linearextensions_A}~\eqref{thmA_item2}]
-By part \eqref{thmA_item1}, the union of all linear extensions of facets is a lower set.
-So, we just need to show that $w$ belongs to this set.
-This follows from $w\in \linearExtensions(\antiGreedyFacet)$, which was proven in \cref{lem_linearext_greedyfacets}.
+\begin{proof}[Proof of \cref{thm:linearExtensionsPartitionSubwordComplexA}~\eqref{item:cover}]
+By part \eqref{item:lowerSet}, the union of all linear extensions of facets is a lower set.
+So, we just need to show that $\omega$ belongs to this set.
+This follows from $\omega\in \linearExtensions(\antiGreedyFacet)$, which was proven in \cref{lem:linearExtensionsGreedyFacets}.
 \end{proof}
 
-\begin{proof}[Proof of \cref{thm_subword_linearextensions_A}~\eqref{thmA_item3}]
-We will show that if there is an element $\pi\in \linearExtensions(I_1)\cap \linearExtensions(I_2)$ then $I_1= I_2$.
-We already showed this for $\pi=e$ in \cref{lem_linearext_greedyfacets}.
+\begin{proof}[Proof of \cref{thm:linearExtensionsPartitionSubwordComplexA}~\eqref{item:partition}]
+We show that if there is two facets~$I_1, I_2$ of~$\subwordComplex(Q, \omega)$ and an element~$\pi \in W$ such that $\pi \in \linearExtensions(I_1) \cap \linearExtensions(I_2)$ then~$I_1= I_2$.
+The proof works by induction on the length~$\ell(\pi)$ of~$\pi$.
+We already showed this for $\pi = e$ in \cref{lem:linearExtensionsGreedyFacets}.
 
-Let $I_1, I_2$ be two facets such that $e\neq \pi \in \linearExtensions(I_1)\cap \linearExtensions(I_2)$.
-As in the proof of part \eqref{thmA_item1}, let $\pi'=\pi s$ for some $s\in S$ such that $\ell(\pi')<\ell(\pi)$, and let $I_1',I_2'$ be the corresponding facets obtained using the same steps of the proof.
-These new facets satisfy $\pi'\in \linearExtensions(I_1')\cap \linearExtensions(I_2')$.
+Let $I_1, I_2$ be two facets such that $e \neq \pi \in \linearExtensions(I_1)\cap \linearExtensions(I_2)$.
+As in the proof of part \eqref{item:lowerSet}, let $\pi'=\pi s$ for some $s\in S$ such that $\ell(\pi')<\ell(\pi)$, and let $I_1',I_2'$ be the corresponding facets obtained using the same steps of the proof.
+These new facets satisfy $\pi' \in \linearExtensions(I_1')\cap \linearExtensions(I_2')$, so that~$I_1' = I_2'$ by induction.
 
-We claim that $I_1=I_2$ if and only if $I_1'=I_2'$.
-The forward direction is clear.
-For the reverse direction we analyze the two cases if the proof of part \eqref{thmA_item1}.
+We now claim that it implies that~$I_1 = I_2$.
+We analyze the two cases if the proof of part \eqref{item:lowerSet}.
 Note that in Case~1, the resulting facet~$I'$ obtained from $I$ satisfies $\beta\notin \Roots(I')$, while in Case 2 we have $\beta \in \Roots(I')$. 
-Therefore, if $I_1'=I_2'$ then both $I_1$ and $I_2$ fall into Case 1 or both into Case 2.
+As $I_1' = I_2'$, this shows that $I_1$ and $I_2$ fall either both into Case 1 or both into Case 2.
 If both fall into Case 1, then $I_1'=I_1$ and $I_2'=I_2$ and so $I_1=I_2$ as desired.
 If both fall into Case 2, then we just need to flip back the performed flip to obtain $I_1=I_2$.
-
-Now we need to show that $I_1=I_2$.
-We proceed by contradiction.
-If $I_1\neq I_2$, then $I_1'\neq I_2'$ and $\pi'\in \linearExtensions(I_1')\cap \linearExtensions(I_2')$.
-We can continue going down in the week order until reaching the minimal element $e$.
-The resulting two facets are different and their linear extensions contain $e$.
-This is a contradiction to \cref{lem_linearext_greedyfacets}.  
-\vincent{This paragraph is not needed. Say it better in the first paragraph of the proof of (3).}
 \end{proof}
 
-\begin{proof}[Proof of \cref{thm_subword_linearextensions_A}~\eqref{thmA_item4}]
-Let $\pi_1,\pi_2\in \linearExtensions(I)$ and assume $\pi_1<\pi_2$.
-We need to show that if $\pi_1\leq \pi \leq \pi_2$ then~$\pi \in \linearExtensions(I)$.
-By definition of linear extensions and \cref{lem_pi_phiplus_inv_ninv} we have
-\[
-\Roots(I) \subseteq \pi_i(\Phi^+)=-\Inv(\pi_i)\sqcup \Ninv(\pi_i)
-\]
-for $i=1,2$.
-Restricting to the set of negative and positive roots, respectively, we deduce
-\[
-\Roots(I)\cap \Phi^- \subseteq -\Inv(\pi_1) \subseteq -\Inv(\pi) \qquad 
-\Roots(I)\cap \Phi^+ \subseteq \Ninv(\pi_2)  \subseteq \Ninv(\pi)
-\]
-Therefore
-\[
-\Roots(I) \subseteq \pi(\Phi^+)=-\Inv(\pi)\sqcup \Ninv(\pi)
-\]
-and so $\pi\in \linearExtensions(I)$.
-\end{proof}
+Since $\linearExtensions(I)\neq \varnothing$ if and only if $I$ is acyclic by \cref{lem:linearExtensionsAcyclic}, we have the following straight forward corollary.
 
-
-
-For simplicity, we denote by 
+\begin{corollary}\label{coro:linearExtensionsPartitionSubwordComplexes}
+For any word~$Q$ and element~$\omega$,
 \[
-\linearExtensions(Q,w) = \bigcup_{I\in\subwordFacets(Q,w)} \linearExtensions(I)
+\linearExtensions(Q,\omega) = \bigsqcup_{I\in\subwordAcyclicFacets(Q,\omega)} \linearExtensions(I).
 \]
-the \defn{set of linear extensions of all facets} of $\subwordComplex(Q,w)$.
-Since $\linearExtensions(I)\neq \varnothing$ if and only if $I$ is acyclic (\cref{lem_acyclic_nonempty}), we have the following straight forward corollary.
-
-\begin{corollary}\label{cor_linearextensions_partition}
-The following holds:    
-\begin{align}
-    \linearExtensions(Q,w) =
-    \bigsqcup_{I\in\subwordAcyclicFacets(Q,w)} \linearExtensions(I).
-\end{align}
 \end{corollary}
 
-As pointed out in \cref{rem_thmA}, there are subword complexes for which $[e,w] \neq \bigcup_{I\in\subwordFacets(Q,w)}$.
+As pointed out in \cref{rem:linearExtensionsPartitionSubwordComplexA}, there are subword complexes for which $[e,\omega] \neq \linearExtensions(Q,\omega)$.
 Our second fundamental theorem describes a large family of cases where equality holds.
+We say that a word~$Q$ is \defn{sorting} if it contains a reduced expression of $\wo$.
+Equivalently~$Q$ contains a reduced expression for any element~$w \in W$.
+Still equivalently, $\DemazureProduct(Q) = \wo$ where~$\DemazureProduct(Q)$ denotes the \defn{Demazure product} of~$Q$, defined by~$\DemazureProduct(\varepsilon) = e$ and~$\DemazureProduct(Qs) = \max(\DemazureProduct(Q), \DemazureProduct(Q)s)$ (where the $\max$ is in weak order).
 
-\begin{theorem}\label{thm_subword_linearextensions_B}
-
-Let $\subwordComplex(Q,w)$ be a non-empty subword complex such that the word $Q$ contains a reduced expression of $\wo$.
-The linear extensions of acyclic facets of $\subwordComplex(Q,w)$ form a partition of the interval $[e,w]$:
-\begin{align}
-    [e,w] =
-    \bigsqcup_{I\in\subwordAcyclicFacets(Q,w)} \linearExtensions(I).
-\end{align}
+\begin{theorem}
+\label{thm:linearExtensionsPartitionSubwordComplexB}
+If the word $Q$ is sorting, then the linear extensions of acyclic facets of $\subwordComplex(Q,\omega)$ form a partition of the interval $[e,\omega]$, that is
+\[
+[e,\omega] = \bigsqcup_{I\in\subwordAcyclicFacets(Q,\omega)} \linearExtensions(I).
+\]
 \end{theorem}
 
-The proof of this theorem is based on the following proposition, which follows from~\cite[Theorem~3.1 and Corollary 3.3]{JahnStump}.
+The proof is based on the following statement, which follows from~\cite[Thm.~3.1 \& Coro.~3.3]{JahnStump}.
 
 \begin{proposition}[{\cite{JahnStump}}]\label{prop_jahnStump_intersection}
-    Let $\subwordComplex(Q,w)$ be a non-empty subword complex such that the word $Q$ contains a reduced expression of $\wo$.
-Then 
-    \[
-\left(
-\bigcap_{I\in \subwordFacets(Q,\pi)} \cone \Roots(I) 
-\right)
-\cap \Phi
-= 
-\Ninv(w).
-    \]
+If the word $Q$ is sorting, then 
+\[
+\Big( \bigcap_{I\in \subwordFacets(Q,\omega)} \cone \Roots(I) \Big) \cap \Phi^+ = \Ninv(\omega).
+\]
 \end{proposition}
+
 \begin{proof}
-    We include a short proof here for self containment.
-We refer to~\cite{JahnStump} for the description of the notation $C^+(w,\cdot)$.
-    By~\cite[Theorem~3.1]{JahnStump} we have
-    \[
-\bigcap_{I\in \subwordFacets(Q,\pi)} \cone \Roots(I) =
-C^+(w,\DemazureProduct(Q)).
-    \]
-    The word $Q$ contains a reduced expression of $\wo$ if and only if $\DemazureProduct(Q)=\wo$.
+We include a short proof here for self containment.
+We refer to~\cite{JahnStump} for the description of the notation $C^+(\omega,\cdot)$.
+By~\cite[Theorem~3.1]{JahnStump} we have
+\[
+\bigcap_{I\in \subwordFacets(Q,\pi)} \cone \Roots(I) = C^+(\omega,\DemazureProduct(Q)).
+\]
+The word $Q$ contains a reduced expression of $\wo$ if and only if $\DemazureProduct(Q)=\wo$.
 Furthermore, by~\cite[Corollary~3.3]{JahnStump} we have
-    \[
-C^+(w,\wo)\cap \Phi
-= \Inv(w \wo) = \Ninv(w).
-    \]    
+\[
+C^+(\omega,\wo)\cap \Phi^+ = \Inv(\omega \wo) = \Ninv(\omega).
+\qedhere
+\]
 \end{proof}
 
-\begin{proof}[Proof of \cref{thm_subword_linearextensions_B}]
-Assume $\pi\in \linearExtensions(I)$.
-We want to show that $\pi<w$.
-By \cref{prop_jahnStump_intersection} we have 
+\begin{proof}[Proof of \cref{thm:linearExtensionsPartitionSubwordComplexB}]
+If $\pi \in \linearExtensions(I)$ for some facet~$I$ of~$\subwordComplex(Q, \omega)$, then by \cref{prop_jahnStump_intersection} we have 
 \[
-\Ninv(w) 
-\subseteq \cone \Roots(I) 
-\subseteq \cone \pi(\Phi^+).
+\Ninv(\omega) \subseteq \cone \Roots(I) \cap \Phi^+ \subseteq \cone \pi(\Phi^+) \cap \Phi^+  = \Ninv(\pi).
 \]
-Therefore
-\[
-\Ninv(w) 
-\subseteq \cone \pi(\Phi^+) \cap \Phi^+ 
-= \Ninv(\pi).
-\]
-Thus $\pi \leq w$ as desired.
+Thus $\pi \le \omega$ as desired.
 \end{proof}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Two conjectures on linear extensions of facets}
+\label{subsec:twoConjectures}
+
+In this section, we present two conjectural generalizations of the results of \cref{subsec:pipeDreamCongruence,subsec:pipeDreamQuotient}.
+We first introduce the analogue of \cref{def:pipeDreamCongruence} for subword complexes.
+
+\begin{definition}
+\label{def:pipeDreamCongruenceSubwordComplexes}
+For a non-empty subword complex $\subwordComplex(Q,\omega)$, the \defn{subword complex congruence} is the equivalence relation~$\equiv_{Q,\omega}$ on the set~$\linearExtensions(Q,\omega) \eqdef \sqcup_{I \in \subwordAcyclicFacets(Q, \omega)} \linearExtensions(I)$  whose equivalence classes are the sets~$\linearExtensions(I)$ of linear extensions of the acyclic facets~$I$ of~$\subwordComplex(Q, \omega)$.
+In other words, $\pi \equiv_{Q,\omega} \pi'$ if and only if $\pi$ and $\pi'$ are linear extensions of the same facet.  
+\end{definition}
+
+Note that the subword complex congruence indeed defines an equivalence relation by \cref{coro:linearExtensionsPartitionSubwordComplexes}.
+However, it is in general not a lattice congruence for two obvious reasons:
+\begin{itemize}
+\item while~$\linearExtensions(Q,\omega)$ is a lower set of the weak order containing~$[e, \omega]$ by \cref{thm:linearExtensionsPartitionSubwordComplexA}, it does not necessarily have a maximal element, hence it is not necessarily a lattice,
+\item while the sets~$\linearExtensions(I)$ are always order convex in the weak order by \cref{thm:linearExtensionsPartitionSubwordComplexA}~\eqref{item:convex}, they are not necessarily intervals in the weak order by \cref{rem:linearExtensionsPartitionSubwordComplexA}.
+\end{itemize}
+These two issues can however be bypassed with additional assumptions on the word~$Q$.
+Recall that a word~$Q$ is
+\begin{itemize}
+\item \defn{sorting} if it contains a reduced expression of $\wo$ (see just before \cref{thm:linearExtensionsPartitionSubwordComplexB}),
+\item \defn{alternating} if all non-commuting pairs $s, t\in S$ alternate within $Q$ (see \cite{PilaudSantos-brickPolytope, CeballosLabbeStump}).
+\end{itemize}
+By \cref{thm:linearExtensionsPartitionSubwordComplexB}, $\linearExtensions(Q,\omega) = [e, \omega]$ if $Q$ is sorting.
+
+\begin{conjecture}
+If the word~$Q$ is sorting and alternating, then for any~$\omega \in W$, the subword complex congruence~$\equiv_{Q,\omega}$ is a lattice congruence of the interval~$[e,\omega]$ of the weak order.
+\end{conjecture}
+
+This conjecture holds in type~$A_n$: our specific proof of~\cref{thm:pipeDreamCongruence} can be extended to arbitrary sorting and alternating words in type~$A_n$ as shown in~\cite{Cartier}.
+It is also supported by extensive computer experiments: we verified it in types...
+\cesarm{Noemie: in which cases did you check this conjecture? Type $A_n$ for n=???, B,C,D,....?} 
+
+\vincent{I am working below this line}
 
 
+
+\cesarm{To do: meet to discuss about this section? put it in final form...}
+
+
+cesarm{Do we have more conjectures or questions to be included here?}
+
+\begin{remark}\label{rem_acyclicflipposet_not_latticequotient}
+In analogy to the case of pipe dreams in \cref{subsec:proofCongruence}, one might expect that the quotient~$[e,\omega]/\equiv_{Q,\omega}$ is isomorphic to the restriction of the increasing flip poset of $\subwordComplex(Q,\omega)$ to the set of acyclic facets.
+But this is not the case as shown in \cref{ex_acyclicflip_not_weakorder_related}.     
+\end{remark}
+
+\begin{example}\label{ex_acyclicflip_not_weakorder_related}
+    Let $W=S_3$ be the symmetric group generated by simple transpositions $S=\{s_1,s_2\}$ with $s_i=(i, i+1 )$.
+Let $Q=(s_1,s_2,s_1,s_2,s_1,s_2)$ and $\omega=\wo=s_1s_2s_1=s_2s_1s_2$.
+The subword complex $\subwordComplex(Q,\omega)$ has eight facets, six of which are acyclic.
+    All the fibers of $\equiv_{Q,\omega}$ are singletons and the lattice quotient~$[e,\omega]/\equiv_{Q,\omega}$ coincides with the weak order of type $A_2$.
+    On the other hand there are two facets, $I_1=\{1,3,4\}$ and $I_2=\{3,4,6\}$, which are connected by a flip but whose corresponding elements $\pi_1$ and $\pi_2$ are not related in weak order.
+    \cesar{To do: Double check and expand this example in detail. Add figure.}
+\end{example}
+
+As we have seen in \cref{cor_acyclicpipedreams_lattice}, the increasing flip poset of acyclic pipe dreams of any permutation $\omega$ is a lattice, because it is isomorphic to the lattice quotient~$[e,\omega]/\equiv_\omega$.
+This motivates the following open question for subword complexes.
+
+\begin{question}
+Let $\subwordComplex(Q,\omega)$ be a non-empty subword complex.
+Is the restriction of the increasing flip poset of $\subwordComplex(Q,\omega)$ to the set of acyclic facets a lattice?    
+\end{question}
+
+As pointed out in \cref{rem_acyclicflipposet_not_latticequotient},  we can not expect~$[e,\omega]/\equiv_{Q,\omega}$ to be isomorphic to the restriction of the increasing flip poset of $\subwordComplex(Q,\omega)$ to the set of acyclic facets.
+\cref{ex_acyclicflip_not_weakorder_related} shows that there are flips between acyclic facets that are not detected by the week order.
+One could expect that there is a natural restriction to a special class of flips that behave nicer, meaning that all of them are identified by the quotient~$[e,\omega]/\equiv_{Q,\omega}$.
+In our \cref{ex_acyclicflip_not_weakorder_related}, the generalized Chute moves from~\cite{Rubey} do the job, because the flip that is not detected by the week order is exactly the one flip which is not Chute.
+The Chute lattice conjecture~\cite[Conjecture~2.8]{Rubey} might be an indication that this is the right direction to look at.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{The sweeping algorithm}
+\label{subsec:sweepingAlgorithmSubwordComplexes}
 
-Given a linear extension $\pi \in \linearExtensions(Q,w)$, one natural question is whether we can recover the unique acyclic facet $I$ such that $\pi \in \linearExtensions(I)$.
+Given a linear extension $\pi \in \linearExtensions(Q,\omega)$, one natural question is whether we can recover the unique acyclic facet $I$ such that $\pi \in \linearExtensions(I)$.
 We can recover this facet via a sweeping algorithm which we now introduce.
-The algorithm outcomes a facet for every element~$\pi \in W$, and this will be the desired facet for each $\pi \in \linearExtensions(Q,w)$.
+The algorithm outcomes a facet for every element~$\pi \in W$, and this will be the desired facet for each $\pi \in \linearExtensions(Q,\omega)$.
 
 \[
 \begin{tabular}{cccc}
-$\sweepingAlgorithm$ : & $W$  &$\longrightarrow$ &$\subwordFacets(Q,w)$\\
-    & $\pi$ & $\longrightarrow$ & $\sweepingAlgorithm(Q,w,\pi)$
+$\sweepingAlgorithm$ : & $W$  &$\longrightarrow$ &$\subwordFacets(Q,\omega)$\\
+    & $\pi$ & $\longrightarrow$ & $\sweepingAlgorithm(Q,\omega,\pi)$
 \end{tabular}
 \]
-
-
 
 We start by setting $I^0=\varnothing$ to be the empty set.
 Then we scan the word $Q=(q_1,\dots ,q_m)$ from left to right.
@@ -1573,20 +1623,20 @@ the partial root function for $k\leq j$.
 The rules are the following:
 
 \begin{enumerate}
-    \item If $\rootFunction{I^j}{j}\in \Ninv(w)$ then let 
+    \item If $\rootFunction{I^j}{j}\in \Ninv(\omega)$ then let 
     \[
     I^j=I^{j-1}\cup\{j\}.
     \] 
     \label{sweeping_case1}
-    \item If $\rootFunction{I^j}{j}\in \Inv(w) \cap \Inv (\pi)$ then let 
+    \item If $\rootFunction{I^j}{j}\in \Inv(\omega) \cap \Inv (\pi)$ then let 
     \[
     I^j=I^{j-1}.
     \]
     \label{sweeping_case2}
-    \item If $\rootFunction{I^j}{j}\in \Inv(w) \cap \Ninv (\pi)$ then we consider two cases: 
+    \item If $\rootFunction{I^j}{j}\in \Inv(\omega) \cap \Ninv (\pi)$ then we consider two cases: 
     \label{sweeping_case3} 
     \begin{enumerate}
-        \item If $Q_{[m]\smallsetminus I^{j-1}\smallsetminus \{j\}}$ contains a reduced expression of $w$ with prefix $Q^{j-1}$ then let 
+        \item If $Q_{[m]\smallsetminus I^{j-1}\smallsetminus \{j\}}$ contains a reduced expression of $\omega$ with prefix $Q^{j-1}$ then let 
         \[
         I^j=I^{j-1}\cup \{j\}.
         \]        
@@ -1597,24 +1647,24 @@ The rules are the following:
         \]
         \label{sweeping_case3b}
     \end{enumerate}
-    \item If $\rootFunction{I^j}{j}\in -\Inv(w)$ then let
+    \item If $\rootFunction{I^j}{j}\in -\Inv(\omega)$ then let
     \[
     I^j=I^{j-1}\cup \{j\}.
     \]
     \label{sweeping_case4}
 \end{enumerate}
 
-We denote by \defn{$\sweepingAlgorithm(Q,w,\pi)$} the resulting set $I^m$ obtained at the last step of the algorithm.
+We denote by \defn{$\sweepingAlgorithm(Q,\omega,\pi)$} the resulting set $I^m$ obtained at the last step of the algorithm.
 
-Roughly speaking, the goal of the algorithm is to insert a reduced expression of $w$ in $Q$ by sweeping the word from left to right, while deciding whether we use a letter or not by looking at the root $\beta=\rootFunction{I^j}{j}$ that it produces.
-If $\beta \in \Ninv(w)$ then it can not be used (Case~\eqref{sweeping_case1}), otherwise we would not have a reduced expression for $w$.
-If $\beta \in \Inv(w)$ then we take it when $\beta \in \Inv(\pi)$ (Case~\eqref{sweeping_case2}), or delay it as much as possible when $\beta \in \Ninv(\pi)$ (Case~\eqref{sweeping_case3}).
-If $\beta \in -\Inv(w)$ we can simply not take it (Case~\eqref{sweeping_case4}).
+Roughly speaking, the goal of the algorithm is to insert a reduced expression of $\omega$ in $Q$ by sweeping the word from left to right, while deciding whether we use a letter or not by looking at the root $\beta=\rootFunction{I^j}{j}$ that it produces.
+If $\beta \in \Ninv(\omega)$ then it can not be used (Case~\eqref{sweeping_case1}), otherwise we would not have a reduced expression for $\omega$.
+If $\beta \in \Inv(\omega)$ then we take it when $\beta \in \Inv(\pi)$ (Case~\eqref{sweeping_case2}), or delay it as much as possible when $\beta \in \Ninv(\pi)$ (Case~\eqref{sweeping_case3}).
+If $\beta \in -\Inv(\omega)$ we can simply not take it (Case~\eqref{sweeping_case4}).
 
 \begin{proposition}
 \label{prop_sweeping1}
-    Let $\subwordComplex(Q,w)$ be a non-empty subword complex.
-    For every $\pi \in W$, the set $\sweepingAlgorithm(Q,w,\pi)$ is a facet of $\subwordComplex(Q,w)$.
+    Let $\subwordComplex(Q,\omega)$ be a non-empty subword complex.
+    For every $\pi \in W$, the set $\sweepingAlgorithm(Q,\omega,\pi)$ is a facet of $\subwordComplex(Q,\omega)$.
 \end{proposition}
 
 \begin{proof}
@@ -1622,13 +1672,13 @@ If $\beta \in -\Inv(w)$ we can simply not take it (Case~\eqref{sweeping_case4}).
     The proposition follows by applying the following claim for $j=m$.
     \smallskip
     
-    {\bf Claim}: $Q^j$ is a reduced expression which is the prefix of a reduced expression of $w$ in $Q_{[m]\smallsetminus I^j}$.
+    {\bf Claim}: $Q^j$ is a reduced expression which is the prefix of a reduced expression of $\omega$ in $Q_{[m]\smallsetminus I^j}$.
 
     \smallskip
     We prove the claim by induction on $j$.
 
     For $j=0$, $Q^0$ is the empty word which is reduced by definition.
-    Furthermore, $Q_{[m]\smallsetminus I^0 }=Q$ contains a reduced expression of $w$ because the subword complex is non-empty.
+    Furthermore, $Q_{[m]\smallsetminus I^0 }=Q$ contains a reduced expression of $\omega$ because the subword complex is non-empty.
 The empty word is a prefix of this reduced expression. 
 
     Now assume that the claim holds for $j-1$ and prove it for $j$.
@@ -1642,53 +1692,53 @@ The empty word is a prefix of this reduced expression.
     \end{equation}    
     We analyze the different cases of the sweeping algorithm.
     \begin{enumerate}
-    \item If $\rootFunction{I^j}{j}\in \Ninv(w)$ then 
+    \item If $\rootFunction{I^j}{j}\in \Ninv(\omega)$ then 
     $Q^j=Q^{j-1}$, which is reduced by induction hypothesis.
-    Moreover, it is a prefix of a reduced expression of $w$ in $Q_{[m]\smallsetminus I^{j-1}}$.
-    Since $\rootFunction{I^j}{j}\in \Ninv(w)$, this reduced expression can not use the letter $q_j$; so, it is a reduced expression of $w$ in $Q_{[m]\smallsetminus I^{j}}$ as desired.
-    \item If $\rootFunction{I^j}{j}\in \Inv(w) \cap \Inv (\pi)$ then $Q^j= Q^{j-1}\circ (q_j)$, which is a reduced expression because~$Q^{j-1}$ is reduced and $\rootFunction{I^j}{j}\in \Inv(w)$.
+    Moreover, it is a prefix of a reduced expression of $\omega$ in $Q_{[m]\smallsetminus I^{j-1}}$.
+    Since $\rootFunction{I^j}{j}\in \Ninv(\omega)$, this reduced expression can not use the letter $q_j$; so, it is a reduced expression of $\omega$ in $Q_{[m]\smallsetminus I^{j}}$ as desired.
+    \item If $\rootFunction{I^j}{j}\in \Inv(\omega) \cap \Inv (\pi)$ then $Q^j= Q^{j-1}\circ (q_j)$, which is a reduced expression because~$Q^{j-1}$ is reduced and $\rootFunction{I^j}{j}\in \Inv(\omega)$.
     
-    Now let $\widetilde Q$ be a subword of $Q_{[m]\smallsetminus I^{j-1}}=Q_{[m]\smallsetminus I^{j}}$ which is a reduced expression of $w$ with prefix $Q^{j-1}$, and let $\widetilde I$ be the corresponding facet.
+    Now let $\widetilde Q$ be a subword of $Q_{[m]\smallsetminus I^{j-1}}=Q_{[m]\smallsetminus I^{j}}$ which is a reduced expression of $\omega$ with prefix $Q^{j-1}$, and let $\widetilde I$ be the corresponding facet.
     
     If $j\notin \widetilde I$, then $q_j$ is used in $\widetilde Q$ and we are done because $\widetilde Q$ has $Q^j$ as a prefix.
 
-    If $j\in \widetilde I$, then we can flip it to a position $j'>j$ (by \cref{lem_rootfunction_flips}~\eqref{lem_rootfunction_flips2}), creating a new reduced expression $\widetilde Q'$ of $w$ which uses $q_j$, and thus has $Q^j$ as a prefix.
+    If $j\in \widetilde I$, then we can flip it to a position $j'>j$ (by \cref{lem:rootFunctionFlips}~\eqref{lem:rootFunctionFlips2}), creating a new reduced expression $\widetilde Q'$ of $\omega$ which uses $q_j$, and thus has $Q^j$ as a prefix.
 
 
-    \item[(3)(a)] If $\rootFunction{I^j}{j}\in \Inv(w) \cap \Ninv (\pi)$ and $Q_{[m]\smallsetminus I^{j-1}\smallsetminus \{j\}}$ contains a reduced expression of $w$ with prefix $Q^{j-1}$, then $Q^j=Q^{j-1}$.
-    Therefore, $Q^j$ is reduced and it is a prefix of a reduced expression of $w$ in 
+    \item[(3)(a)] If $\rootFunction{I^j}{j}\in \Inv(\omega) \cap \Ninv (\pi)$ and $Q_{[m]\smallsetminus I^{j-1}\smallsetminus \{j\}}$ contains a reduced expression of $\omega$ with prefix $Q^{j-1}$, then $Q^j=Q^{j-1}$.
+    Therefore, $Q^j$ is reduced and it is a prefix of a reduced expression of $\omega$ in 
     $Q_{[m]\smallsetminus I^{j-1}\smallsetminus \{j\}}=Q_{[m]\smallsetminus I^j}$.
 
-    \item[(3)(b)] In this case, $\rootFunction{I^j}{j}\in \Inv(w) \cap \Ninv (\pi)$ but $Q^j= Q^{j-1}\circ (q_j)$. The proof is similar to the proof of (2).
+    \item[(3)(b)] In this case, $\rootFunction{I^j}{j}\in \Inv(\omega) \cap \Ninv (\pi)$ but $Q^j= Q^{j-1}\circ (q_j)$. The proof is similar to the proof of (2).
 
-    \item[(4)] If $\rootFunction{I^j}{j}\in -\Inv(w)$ then $Q^j=Q^{j-1}$. The argument is similar to that of part (1).
+    \item[(4)] If $\rootFunction{I^j}{j}\in -\Inv(\omega)$ then $Q^j=Q^{j-1}$. The argument is similar to that of part (1).
     \end{enumerate}
 
 Finally, we need to argue that any position $j$ falls into one of these cases.
 The root $\rootFunction{I^j}{j}\in \Phi^+ \sqcup \Phi^-$ and we know that
 \[
-\Phi^+ = \Inv(w) \sqcup \Ninv(w) \qquad \qquad
-\Phi^- = -\Inv(w) \sqcup -\Ninv(w)  
+\Phi^+ = \Inv(\omega) \sqcup \Ninv(\omega) \qquad \qquad
+\Phi^- = -\Inv(\omega) \sqcup -\Ninv(\omega)  
 \]
 The positive roots are covered by the cases (1),(2), and (3).
-The negative roots in $-\Inv(w)$ are covered in case (4).
-Since we are inserting a reduced expression of $w$ in $Q$, the case $-\Ninv(w)$ never occurs. 
+The negative roots in $-\Inv(\omega)$ are covered in case (4).
+Since we are inserting a reduced expression of $\omega$ in $Q$, the case $-\Ninv(\omega)$ never occurs. 
 \end{proof}
 
-The following proposition shows that for every linear extension $\pi \in \linearExtensions(Q,w)$, the sweeping algorithm recovers the unique acyclic facet $I$ such that $\pi \in \linearExtensions(I)$.
+The following proposition shows that for every linear extension $\pi \in \linearExtensions(Q,\omega)$, the sweeping algorithm recovers the unique acyclic facet $I$ such that $\pi \in \linearExtensions(I)$.
 
 \begin{proposition}
 \label{prop_sweeping2}
-    If $\pi\in \linearExtensions(I)$ for some facet $I\in \subwordComplex(Q,w)$, then 
+    If $\pi\in \linearExtensions(I)$ for some facet $I\in \subwordComplex(Q,\omega)$, then 
     \[
-I = \sweepingAlgorithm(Q,w,\pi).
+I = \sweepingAlgorithm(Q,\omega,\pi).
     \]
 \end{proposition}
 
 Our proof is based on the following lemma.
 
 \begin{lemma}\label{lem_negativeroot}
-    Let $I_1,I_2\in \subwordComplex(Q,w)$ be two different facets, and $j\in [m]$ be the first position where they differ.
+    Let $I_1,I_2\in \subwordComplex(Q,\omega)$ be two different facets, and $j\in [m]$ be the first position where they differ.
     Without loss of generality assume 
     \[
 I_2\cap [j] = I_1\cap [j] \smallsetminus \{j\}
@@ -1724,86 +1774,26 @@ and
 We analyze the possible cases in the sweeping algorithm.
 
 \begin{enumerate}
-    \item If $\rootFunction{I^j}{j}\in \Ninv(w)$ then clearly $j\in I$ is forced. Otherwise $Q_{[m]\smallsetminus I}$ would not be a reduced expression of $w$.
-    \item If $\rootFunction{I^j}{j}\in \Inv(w) \cap \Inv (\pi)$ then $j\notin I$ is forced. 
+    \item If $\rootFunction{I^j}{j}\in \Ninv(\omega)$ then clearly $j\in I$ is forced. Otherwise $Q_{[m]\smallsetminus I}$ would not be a reduced expression of $\omega$.
+    \item If $\rootFunction{I^j}{j}\in \Inv(\omega) \cap \Inv (\pi)$ then $j\notin I$ is forced. 
     Otherwise we would have an inversion of $\pi$ in the root configuration, which contradicts $\pi \in \linearExtensions(I)$.
-    \item[(3)(a)] If $\rootFunction{I^j}{j}\in \Inv(w) \cap \Ninv (\pi)$ and $Q_{[m]\smallsetminus I^{j-1}\smallsetminus \{j\}}$ contains a reduced expression of $w$ with prefix $Q^{j-1}$ then $j\in I^j$ is forced. 
+    \item[(3)(a)] If $\rootFunction{I^j}{j}\in \Inv(\omega) \cap \Ninv (\pi)$ and $Q_{[m]\smallsetminus I^{j-1}\smallsetminus \{j\}}$ contains a reduced expression of $\omega$ with prefix $Q^{j-1}$ then $j\in I^j$ is forced. 
 
     We argue this by contradiction. 
-    Assume $j\notin I^j$ ($j\notin I$). Let $I_1=\sweepingAlgorithm(Q,w,\pi)$ and $I_2=I$. Applying \cref{lem_negativeroot}, we deduce that $\beta=\rootFunction{I^j}{j}=\rootFunction{I}{j}$ satisfies 
+    Assume $j\notin I^j$ ($j\notin I$). Let $I_1=\sweepingAlgorithm(Q,\omega,\pi)$ and $I_2=I$. Applying \cref{lem_negativeroot}, we deduce that $\beta=\rootFunction{I^j}{j}=\rootFunction{I}{j}$ satisfies 
     \[
     -\beta \in \cone \Roots(I).
     \]
     But $\beta \in \Ninv(\pi)$. This contradicts $\pi\in \linearExtensions(I)$.
-    \item[(3)(b)]  If $\rootFunction{I^j}{j}\in \Inv(w) \cap \Ninv (\pi)$ and $Q_{[m]\smallsetminus I^{j-1}\smallsetminus \{j\}}$ does not contain a reduced expression of $w$ with prefix $Q^{j-1}$ then $j\notin I^j$ is forced. Otherwise, the complement of $I$ would not be a reduced expression of $w$.
-    \item[(4)] If $\rootFunction{I^j}{j}\in -\Inv(w)$ then $j\in I^j$ is clearly forced. Otherwise, the complement of $I$ would not be a reduced expression.
+    \item[(3)(b)]  If $\rootFunction{I^j}{j}\in \Inv(\omega) \cap \Ninv (\pi)$ and $Q_{[m]\smallsetminus I^{j-1}\smallsetminus \{j\}}$ does not contain a reduced expression of $\omega$ with prefix $Q^{j-1}$ then $j\notin I^j$ is forced. Otherwise, the complement of $I$ would not be a reduced expression of $\omega$.
+    \item[(4)] If $\rootFunction{I^j}{j}\in -\Inv(\omega)$ then $j\in I^j$ is clearly forced. Otherwise, the complement of $I$ would not be a reduced expression.
 \end{enumerate}
 \end{proof}
 
 \begin{remark}
-    Although the sweeping algorithm produces a facet $I=\sweepingAlgorithm(Q,w,\pi)$ for every~$w\in W$, in some cases we have $\pi \notin \linearExtensions(I)$. 
-    This happens because of Case~\eqref{sweeping_case1}, when a non-inversion~$\beta\in \Ninv(w)$ of $w$ is added to the root configuration $\Roots(I)$, such that~$\beta \notin \Ninv(\pi)$. This is only potentially possible when $\pi \notin [e,w]$.
+    Although the sweeping algorithm produces a facet $I=\sweepingAlgorithm(Q,\omega,\pi)$ for every~$\omega\in W$, in some cases we have $\pi \notin \linearExtensions(I)$. 
+    This happens because of Case~\eqref{sweeping_case1}, when a non-inversion~$\beta\in \Ninv(\omega)$ of $\omega$ is added to the root configuration $\Roots(I)$, such that~$\beta \notin \Ninv(\pi)$. This is only potentially possible when $\pi \notin [e,\omega]$.
 \end{remark}
-
-
-\subsection{The subword complex congruence conjecture}\cesarm{To do: meet to discuss about this section? put it in final form...}
-By \cref{cor_linearextensions_partition}, the set $\linearExtensions(Q,w)$ of linear extensions of all facets of $\subwordComplex(Q,w)$ can be written as
-\begin{align*}
-    \linearExtensions(Q,w) =
-    \bigsqcup_{I\in\subwordAcyclicFacets(Q,w)} \linearExtensions(I).
-\end{align*}
-This partition determines a natural equivalence relation on the set $\linearExtensions(Q,w)$.
-
-\begin{definition}
-For a non-empty subword complex $\subwordComplex(Q,w)$, the \defn{subword complex congruence} is the equivalence relation~$\equiv_{Q,w}$ on the set $\linearExtensions(Q,w)\subseteq W$ of linear extensions  of all facets of $\subwordComplex(Q,w)$ determined by $\pi \equiv_{Q,w} \pi'$ if and only if $\pi$ and $\pi'$ are linear extensions of the same facet.  
-\end{definition}
-
-By \cref{thm_subword_linearextensions_B}, if $Q$ contains a reduced expression for $\wo$, this gives an equivalence relation on the interval $[e,w]$ of the week order.
-We say that a word $Q$ is \defn{alternating} if all non-commuting pairs $s, t\in S$ alternate within $Q$.
-The following conjecture is supported by extensive computer computations.\cesarm{Noemie: in which cases did you check this conjecture? Type $A_n$ for n=???, B,C,D,....?} 
-
-\begin{conjecture}
-Let $Q$ be an alternating word which contains a reduced expression for $\wo$.
-For any~$w\in W$, the subword complex congruence~$\equiv_{Q,w}$ is a lattice congruence of the interval~$[e,w]$ of the weak order.
-\end{conjecture}
-\cesarm{Do we have more conjectures or questions to be included here?}
-
-
-
-
-
-
-
-
-\begin{remark}\label{rem_acyclicflipposet_not_latticequotient}
-In analogy to the case of pipe dreams in \cref{subsec:proofCongruence}, one might expect that the quotient~$[e,\omega]/\equiv_{Q,w}$ is isomorphic to the restriction of the increasing flip poset of $\subwordComplex(Q,w)$ to the set of acyclic facets.
-But this is not the case as shown in \cref{ex_acyclicflip_not_weakorder_related}.     
-\end{remark}
-
-\begin{example}\label{ex_acyclicflip_not_weakorder_related}
-    Let $W=S_3$ be the symmetric group generated by simple transpositions $S=\{s_1,s_2\}$ with $s_i=(i, i+1 )$.
-Let $Q=(s_1,s_2,s_1,s_2,s_1,s_2)$ and $w=\wo=s_1s_2s_1=s_2s_1s_2$.
-The subword complex $\subwordComplex(Q,w)$ has eight facets, six of which are acyclic.
-    All the fibers of $\equiv_{Q,w}$ are singletons and the lattice quotient~$[e,\omega]/\equiv_{Q,w}$ coincides with the weak order of type $A_2$.
-    On the other hand there are two facets, $I_1=\{1,3,4\}$ and $I_2=\{3,4,6\}$, which are connected by a flip but whose corresponding elements $\pi_1$ and $\pi_2$ are not related in weak order.
-    \cesar{To do: Double check and expand this example in detail. Add figure.}
-\end{example}
-
-As we have seen in \cref{cor_acyclicpipedreams_lattice}, the increasing flip poset of acyclic pipe dreams of any permutation $w$ is a lattice, because it is isomorphic to the lattice quotient~$[e,\omega]/\equiv_\omega$.
-This motivates the following open question for subword complexes.
-
-\begin{question}
-Let $\subwordComplex(Q,w)$ be a non-empty subword complex.
-Is the restriction of the increasing flip poset of $\subwordComplex(Q,w)$ to the set of acyclic facets a lattice?    
-\end{question}
-
-As pointed out in \cref{rem_acyclicflipposet_not_latticequotient},  we can not expect~$[e,\omega]/\equiv_{Q,w}$ to be isomorphic to the restriction of the increasing flip poset of $\subwordComplex(Q,w)$ to the set of acyclic facets.
-\cref{ex_acyclicflip_not_weakorder_related} shows that there are flips between acyclic facets that are not detected by the week order.
-One could expect that there is a natural restriction to a special class of flips that behave nicer, meaning that all of them are identified by the quotient~$[e,\omega]/\equiv_{Q,w}$.
-In our \cref{ex_acyclicflip_not_weakorder_related}, the generalized Chute moves from~\cite{Rubey} do the job, because the flip that is not detected by the week order is exactly the one flip which is not Chute.
-The Chute lattice conjecture~\cite[Conjecture~2.8]{Rubey} might be an indication that this is the right direction to look at.
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
