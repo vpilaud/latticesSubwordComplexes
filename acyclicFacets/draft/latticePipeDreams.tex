@@ -38,6 +38,8 @@
 \email{vincent.pilaud@lix.polytechnique.fr}
 \urladdr{http://www.lix.polytechnique.fr/~pilaud/}
 
+\thanks{NC \& VP were partially supported by the French project CHARMS (ANR~19\,CE40\,0017), and by the French\,--\,Austrian project PAGCAP (ANR~21\,CE48\,0020 \& FWF I 5788).}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % theorems
@@ -48,9 +50,10 @@
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{conjecture}[theorem]{Conjecture}
+\crefname{conjecture}{Conjecture}{Conjectures}
 \newtheorem{conjectureA}{Conjecture}
 \renewcommand{\theconjectureA}{\Alph{conjectureA}}
-\crefname{conjecture}{Conjecture}{Conjectures}
+\crefname{conjectureA}{Conjecture}{Conjectures}
 
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
@@ -189,12 +192,16 @@ We show that for any permutation~$\omega$, the increasing flip graph on acyclic 
 We then discuss conjectural generalizations of this result to acyclic facets of subword complexes on arbitrary finite Coxeter groups.
 \end{abstract}
 
-\vspace*{.2cm}
 \maketitle
+
+\tableofcontents
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+\label{sec:introduction}
 
 The weak order is the lattice on permutations of~$[n]$ whose cover relations correspond to switching pairs of consecutive values in permutations.
 The Tamari lattice is the lattice on binary trees with~$n$ internal nodes whose cover relations correspond to right rotations in binary trees.
@@ -203,12 +210,21 @@ The Tamari lattice is known to be the lattice quotient of the weak order by the 
 This paper develops a similar framework for acyclic pipe dreams.
 Pipe dreams were introduced by N.~Bergeron and S.~Billey in~\cite{BergeronBilley} to compute Schubert polynomials and later revisited in the context of Gr\"obner geometry by A.~Knutson and E.~Miller~\cite{KnutsonMiller-GroebnerGeometry}, who coined the name \emph{pipe dreams}.
 They have important connections and applications to various areas related to Schubert calculus and Schubert varieties~\cite{LascouxSchutzenberger-PolynomesSchubert, LascouxSchutzenberger-SchubertLittlewoudRichardson}. 
-A pipe dream is an arrangement of pipes in the triangular shape, each entering along the vertical side and exiting along the horizontal side.
+A pipe dream is an arrangement of pipes in the triangular shape, each entering along the vertical side and exiting along the horizontal side (see \cref{fig:pipeDreams}).
 They are grouped according to their exiting permutation, given by the order in which the pipes appear along the horizontal axis.
 The linear extensions of a pipe dream are the permutations of its pipes such that for each contact the northwest pipe appears before the southeast pipe in the permutation.
 The pipe dreams with at least one linear extension are called acyclic and naturally appear in the study of brick polytopes~\cite{PilaudSantos-brickPolytope}.
-A flip in a pipe dream exchanges a contact with a crossing between two pipes, and the flip is increasing when the contact is southwest of the crossing involved in the flip.
+A flip in a pipe dream exchanges a contact with a crossing between two pipes (see \cref{fig:pipeDreams}), and the flip is increasing when the contact is southwest of the crossing involved in the flip.
 A brief recollection on pipe dreams is given in \cref{sec:preliminaries}.
+
+\begin{figure}[t]
+	\centerline{
+		%\input{pipeDreams}
+		\includegraphics[scale=.9]{pipeDreams}
+	}
+	\caption{Two pipe dreams of~$\pipeDreams(1365724)$ connected by an increasing flip (exchanging a contact with the crossing on the two red pipes~$3$ and~$4$).}
+	\label{fig:pipeDreams}
+\end{figure}
 
 In the core \cref{sec:latticeAcyclicPipeDreams} of this paper, we show that for any permutation~$\omega$,
 \begin{itemize}
@@ -219,12 +235,13 @@ In the core \cref{sec:latticeAcyclicPipeDreams} of this paper, we show that for 
 In summary, we obtain the following statement.
 
 \begin{theoremA}
+\label{thm:A}
 For any permutation~$\omega$, the Hasse diagram of the lattice quotient of the interval~$[e,\omega]$ of the weak order by the pipe dream congruence of~$\omega$ is isomorphic to the increasing flip graph on acyclic pipe dreams with exiting permutation~$\omega$.
 \end{theoremA}
 
 Note that we recover the connection between the weak order and the Tamari lattice by the sylvester congruence for a well-chosen exiting permutation~$\omega$.
 
-We then explore in \cref{sec:furtherTopics} some natural further topics.
+We then explore in \cref{sec:furtherTopics} some natural further topics on pipe dreams.
 We describe two algorithms to compute the unique acyclic pipe dream whose linear extensions contain a given permutation generalizing the binary tree insertion map on permutations (\cref{subsec:sweepingAlgorithm,subsec:insertionAlgorithm}), we describe the pipe dream congruence as the transitive closure of a local rewriting rule generalizing that of the sylvester congruence (\cref{subsec:rewritingRule}), and we describe a natural commutative diagram of lattice morphism generalizing the connection between the recoil map and the binary tree insertion map on permutations and the canopy on binary trees (\cref{subsec:canopy}).
 
 Finally, we discuss in \cref{sec:subwordComplexes} (partly conjectural) extensions of our results to subword complexes in finite Coxeter groups~\cite{KnutsonMiller-subwordComplex}.
@@ -238,6 +255,7 @@ We consider the set~$\linearExtensions(I)$ of linear extensions of a facet~$I$ o
 We prove the following statement in \cref{subsec:twoTheorems}.
 
 \begin{theoremA}
+\label{thm:B}
 For any non-empty subword complex~$\subwordComplex(Q, \omega)$, the sets~$\linearExtensions(I)$ for all facets~$I$ of~$\subwordComplex(Q, \omega)$ are order convex and form a partition of a lower set of the weak order that contains the interval~$[e, \omega]$.
 \end{theoremA}
 
@@ -246,20 +264,23 @@ However, there is a large family of subword complexes for which this cannot happ
 We say that~$Q$ is sorting if it contains a reduced expression for~$\wo$.
 
 \begin{theoremA}
+\label{thm:C}
 If~$Q$ is sorting, then the sets~$\linearExtensions(I)$ for all facets~$I$ of~$\subwordComplex(Q, \omega)$ form a partition of the interval~$[e, \omega]$.
 \end{theoremA}
 
 In the case when~$[e, \omega]$ does not contain all sets of linear extensions, it is natural to consider the restriction of this partition to~$[e, \omega]$ by the sets~$[e, \omega] \cap \linearExtensions(\omega)$.
 This defines an equivalence relation~$\equiv_{Q, \omega}$ on~$[e, \omega]$ that we call the subword complex congruence.
 However, as the sets of linear extensions are not always intervals of the weak order, this equivalence relation is not always a lattice congruence.
-This can seems to be fixed by an additional assumption on~$Q$.
+This seems to be fixed by an additional assumption on~$Q$.
 We say that~$Q$ is alternating when all non-commuting pairs $s, t\in S$ alternate within $Q$ (this notion was already considered in \cite{PilaudSantos-brickPolytope, CeballosLabbeStump}).
 
 \begin{conjectureA}
+\label{conj:A}
 If~$Q$ is alternating, then the subword complex congruence~$\equiv_{Q, \omega}$ is a lattice congruence of the interval~$[e, \omega]$ of the weak order.
 \end{conjectureA}
 
-In contrast to the case of pipe dreams, the Hasse diagram of the quotient~$[e, \omega]/{\equiv_{Q, \omega}}$ is not isomorphic to the increasing flip graph on acyclic facets of~$\subwordComplex(Q, \omega)$ for two reasons:
+When~$Q$ is alternating, we can thus consider the quotient~$[e, \omega]/{\equiv_{Q, \omega}}$.
+In contrast to the case of pipe dreams, the Hasse diagram of the quotient~$[e, \omega]/{\equiv_{Q, \omega}}$ is not always isomorphic to the increasing flip graph on acyclic facets of~$\subwordComplex(Q, \omega)$ for two reasons:
 \begin{itemize}
 \item First, not all acyclic facets of~$\subwordComplex(Q, \omega)$ appear as vertices of~$[e, \omega]/{\equiv_{Q, \omega}}$ (see \cref{rem:linearExtensionsPartitionSubwordComplexA}). We say that a facet is strongly acyclic if~$[e, \omega] \cap \linearExtensions(\omega) \ne \varnothing$.
 \item Second, not all flips between two strongly acyclic facets of~$\subwordComplex(Q, \omega)$ define a cover relation of~$[e, \omega]/{\equiv_{Q, \omega}}$ (see \cref{exm:acyclicFlipvsWeakOrder}). We say that the flip of a position~$i$ in a facet~$I$ is external if the root~$\rootFunction{I}{i}$ directing the flip is a ray of the root configuration~$\Roots(I)$.
@@ -267,21 +288,31 @@ In contrast to the case of pipe dreams, the Hasse diagram of the quotient~$[e, \
 This leads us to the following conjecture.
 
 \begin{conjectureA}
-If~$Q$ is alternating, then the Hasse diagram of the quotient~$[e, \omega]/\equiv_{Q, \omega}$ is isomorphic to the graph of extremal increasing flips between strongly acyclic facets of~$\subwordAcyclicFacets(Q, \omega)$.
+\label{conj:B}
+If~$Q$ is alternating, then the Hasse diagram of the quotient~$[e, \omega]/\equiv_{Q, \omega}$ is isomorphic to the graph of extremal increasing flips between strongly acyclic facets of~$\subwordComplex(Q, \omega)$.
 \end{conjectureA}
 
-Combining the sorting and alternating conditions, we thus obtain the following conjecture, which can be seen as the natural extension of our pipe dream result.
+Combining the sorting and alternating conditions of \cref{thm:B,conj:A,conj:B}, we thus obtain the following conjecture, which can be seen as the natural extension of~\cref{thm:A}.
 
 \begin{conjectureA}
-If~$Q$ is sorting and alternating, then the Hasse diagram of the quotient~$[e, \omega]/\equiv_{Q, \omega}$ is isomorphic to the graph of extremal increasing flips between acyclic facets of~$\subwordAcyclicFacets(Q, \omega)$.
+\label{conj:C}
+If~$Q$ is sorting and alternating, then the Hasse diagram of the quotient~$[e, \omega]/\equiv_{Q, \omega}$ is isomorphic to the graph of extremal increasing flips between acyclic facets of~$\subwordComplex(Q, \omega)$.
 \end{conjectureA}
 
-This last conjecture has a strong connection to the geometry of subword complexes given by brick polytopes of~\cite{PilaudSantos-brickPolytope, PilaudStump-brickPolytope} and the brick polyhedra of~\cite{JahnStump}.
-Namely, the extremal increasing flips between acyclic facets of~$\subwordAcyclicFacets(Q, \omega)$ is precisely the bounded part (meaning forgetting the unbounded rays) of the brick polyhedron~$\brickPolyhedron(Q, \omega)$ oriented by a natural linear functional.
+This last conjecture has a strong connection to the geometry of subword complexes given by brick polytopes~\cite{PilaudSantos-brickPolytope, PilaudStump-brickPolytope} and brick polyhedra~\cite{JahnStump}.
+Namely, the extremal increasing flips between acyclic facets of~$\subwordComplex(Q, \omega)$ is precisely the bounded part (meaning forgetting the unbounded rays) of the brick polyhedron~$\brickPolyhedron(Q, \omega)$ oriented by a natural linear functional.
+\cref{conj:C} thus translates geometrically to the following.
+
+\begin{conjectureA}
+\label{conj:D}
+If~$Q$ is sorting and alternating, then the oriented graph of the brick polyhedron~$\brickPolyhedron(Q, \omega)$ is isomorphic to the Hasse diagram of the lattice quotient~$[e, \omega]/\equiv_{Q, \omega}$.
+\end{conjectureA}
+
 In particular, when~$\omega = \wo$, we obtain the following conjecture, extending results from~\cite{Pilaud-brickAlgebra}.
 
 \begin{conjectureA}
-If~$Q$ is sorting and alternating, the oriented graph of the brick polytope~$\brickPolyhedron(Q, \wo)$ is the Hasse diagram of a lattice quotient of the weak order.
+\label{conj:E}
+If~$Q$ is sorting and alternating, then the oriented graph of the brick polytope $\brickPolyhedron(Q, \wo)$ is isomorphic to the Hasse diagram of the lattice quotient of the weak order by~$\equiv_{Q, \omega}$.
 \end{conjectureA}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -305,15 +336,6 @@ We denote by~$\omega_P \in \fS_n$ the order of the exit points of the pipes of~$
 In other words, the pipe entering at row~$i$ exits at column~$\omega^{-1}_P(i)$.
 For a fixed permutation~$\omega \in \fS_n$, we denote by~$\pipeDreams(\omega)$ the set of reduced pipe dreams~$P$ such that~$\omega_P = \omega$.
 % We let~$\pipeDreams_n \eqdef \bigsqcup_{\omega \in \fS_n} \pipeDreams(\omega)$ and~$\pipeDreams \eqdef \bigsqcup_{n \in \N} \pipeDreams_n$.
-
-\begin{figure}[ht]
-	\centerline{
-		%\input{pipeDreams}
-		\includegraphics[scale=.9]{pipeDreams}
-	}
-	\caption{Two pipe dreams of~$\pipeDreams(1365724)$ connected by a flip (exchanging a contact with the crossing on the two red pipes~$3$ and~$4$).}
-	\label{fig:pipeDreams}
-\end{figure}
 
 %Two pipe dreams are related by a \defn{flip} if they only differ by the position of a crossing and a contact (in particular, they define the same permutation).
 A contact~$c$ is \defn{flippable} if the two pipes passing through contact~$c$ have a crossing~$x$.
@@ -362,7 +384,6 @@ contact flips in~$P$ & diagonal flips in~$P\duality$. \\
 %
 As a consequence, this map sends the increasing flip poset on reversing pipe dreams to the \defn{Tamari lattice} on binary trees.
 This lattice is defined as the transitive closure of right rotations on binary trees, and is obtained as the quotient of the weak order by the \defn{sylvester congruence}.
-\vincent{Not sure where we want that...}
 An important point here is that all reversing pipe dreams are acyclic, since there contact graphs are (oriented) binary trees.
 \end{example}
 
@@ -803,7 +824,7 @@ The equivalences (iii) $\Leftrightarrow$ (iv) $\Leftrightarrow$ (v) $\Leftrighta
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Further topics}
+\section{Further topics on pipe dreams}
 \label{sec:furtherTopics}
 
 In this section, we discuss four further topics on the pipe dream congruence.
@@ -825,7 +846,7 @@ Finally, we describe the natural coarsening of the pipe dream congruence~$\equiv
 \label{subsec:sweepingAlgorithm}
 
 Our first algorithm to construct~$\insertion{\pi}{\omega}$ is a \defn{sweeping algorithm}, inspired by the algorithm to compute greedy pipe dreams~\cite{PilaudPocchiola, PilaudStump-ELlabelings}.
-Extensions of this algorithm will be discussed in \cref{..}. \vincent{todo. Was this algorithm explicitly somewhere before? We should cite Jahn-Stump later in the paper.}
+An extension of this algorithm to subword complexes will be discussed in \cref{subsec:sweepingAlgorithmSubwordComplexes}, and appeared independently in~\cite{JahnStump}.
 
 \begin{proposition}
 \label{prop:sweepingAlgorithm}
@@ -844,7 +865,7 @@ The algorithm has 15 steps, but we have grouped together steps $2$ to $9$ (secon
 We place contacts in steps $1$, $10$, $12$, $13$ and~$15$ since~$\omega^{-1}(i) < \omega^{-1}(j)$, and in step~$14$ since~$i > j$.
 We place crossings in steps $2$ to $9$ since~$i < j$, $\omega^{-1}(i) > \omega^{-1}(j)$ and we are in the column~$\omega^{-1}(j)$, and in step $11$ since~$i < j$, $\omega^{-1}(i) > \omega^{-1}(j)$ and~$\pi^{-1}(i) > \pi^{-1}(j)$.
 %
-\begin{figure}[h]
+\begin{figure}[b]
 	\centerline{\includegraphics[scale=.9]{sweeping}}
 	\caption{Sweeping algorithm for the permutations~$\pi = 513264$ and~$\omega = 561324$.} % See details in \cref{exm:sweepingAlgorithm}.}
 	\label{fig:sweepingAlgorithm}
@@ -892,7 +913,7 @@ See \cref{fig:insertionAlgorithm}.
 \cref{fig:insertionAlgorithm} illustrates the insertion algorithm for the permutations~${\pi = 513264}$ and~${\omega = 561324}$.
 For instance, when inserting the (green) pipe~$4$ in the last step, the currently free southeast elbows are the first southeast elbow of the (blue) pipe~$3$ and the two southeast elbows of the (purple) pipe~$2$.
 %
-\begin{figure}[t]
+\begin{figure}[b]
 	\centerline{\includegraphics[scale=.9]{insertion}}
 	\caption{Insertion algorithm for the permutations~$\pi = 513264$ and~$\omega = 561324$.}
 	\label{fig:insertionAlgorithm}
@@ -1122,7 +1143,7 @@ Then~$\pi^{-1}(i) < \pi^{-1}(j)$, thus the pipe~$i$ is inserted before the pipe~
 
 The objective of this section is to partially extend our results about the lattice structure of acyclic pipe dreams (\cref{sec:latticeAcyclicPipeDreams}) to the wider context of subword complexes in finite Coxeter groups.
 We start with some basic preliminaries on finite Coxeter groups (\cref{subsec:finiteCoxeterGroups}) and subword complexes (\cref{subsec:subwordComplexes}).
-We then define linear extensions of facets of subword complexes (\cref{subsec:linearExtensionsFacets}) and present two theorems (\cref{subsec:twoTheorems}) and two conjectures (\cref{subsec:twoConjectures}) about them.
+We then define linear extensions of facets of subword complexes (\cref{subsec:linearExtensionsFacets}) and present two theorems (\cref{subsec:twoTheorems}) and five conjectures (\cref{subsec:fiveConjectures}) about them.
 To conclude, we present a sweeping algorithm to construct the facet with a given linear extension (\cref{subsec:sweepingAlgorithmSubwordComplexes})
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1238,7 +1259,6 @@ In particular, the acyclic facets of~$\subwordComplex(Q, \omega)$ correspond to 
 \label{subsec:linearExtensionsFacets}
 
 We now introduce the analogue of \cref{def:linearExtensions} for subword complexes.
-\vincent{Is linear extension a good term? Should we say $W$-extension?}
 
 \begin{definition}
 \label{def:linearExtensionsSubwordComplexes}
@@ -1340,8 +1360,10 @@ Before proving this theorem, we would like to make the following remarks about i
 \item There are cases where $[e,\omega] \ne \linearExtensions(Q,\omega)$. \cesarm{add discussion}
 %
 \begin{figure}[h]
-\includegraphics[width=0.52\textwidth]{interval_not_contained1} \quad
-\includegraphics[width=0.43\textwidth]{interval_not_contained2}
+	\includegraphics[width=0.52\textwidth]{interval_not_contained1} \quad
+	\includegraphics[width=0.43\textwidth]{interval_not_contained2}
+	\caption{A facet of a subword complex~$\subwordComplex(Q, \omega)$ whose linear extensions all lie outside the interval~$[e, \omega]$.}
+	\label{fig:outOfInterval}
 \end{figure}
 %
 \setcounter{enumi}{3}
@@ -1587,8 +1609,8 @@ Thus $\pi \le \omega$ as desired.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Two conjectures on linear extensions of facets}
-\label{subsec:twoConjectures}
+\subsection{Five conjectures on linear extensions of facets}
+\label{subsec:fiveConjectures}
 
 In this section, we present two conjectural generalizations of the results of \cref{subsec:pipeDreamCongruence,subsec:pipeDreamQuotient}.
 By \cref{coro:linearExtensionsPartitionSubwordComplexes}, we have
@@ -1634,14 +1656,67 @@ However, in contrast to \cref{thm:pipeDreamQuotient}, not all increasing flips b
 \begin{example}
 \label{exm:acyclicFlipvsWeakOrder}
 Consider the type~$A_2$ Coxeter system, the word~$Q = \tau_1 \tau_2 \tau_1 \tau_2 \tau_1 \tau_2$ and the longest element~$\wo = \tau_1 \tau_2 \tau_1 = \tau_2 \tau_1 \tau_2$.
-
-\vincent{work this out}
-    Let $W=S_3$ be the symmetric group generated by simple transpositions $S=\{s_1,s_2\}$ with $s_i=(i, i+1 )$.
-Let $Q=(s_1,s_2,s_1,s_2,s_1,s_2)$ and $\omega=\wo=s_1s_2s_1=s_2s_1s_2$.
-The subword complex $\subwordComplex(Q,\omega)$ has eight facets, six of which are acyclic.
-    All the fibers of $\equiv_{Q,\omega}$ are singletons and the lattice quotient~$[e,\omega]/\equiv_{Q,\omega}$ coincides with the weak order of type $A_2$.
-    On the other hand there are two facets, $I_1=\{1,3,4\}$ and $I_2=\{3,4,6\}$, which are connected by a flip but whose corresponding elements $\pi_1$ and $\pi_2$ are not related in weak order.
-    \cesar{To do: Double check and expand this example in detail. Add figure.}
+The subword complex~$\subwordComplex(Q, \wo)$ has eight facets, six of which are acyclic.
+All the fibers of $\equiv_{Q, \wo}$ are singletons and the lattice quotient~$[e, \wo]/\equiv_{Q, \wo}$ coincides with the weak order of type~$A_2$.
+Note that the two acyclic facets~$\{1,3,4\}$ and $\{3,4,6\}$ are connected by a flip but the corresponding classes do not form a cover relation in~$[e, \wo]/\equiv_{Q, \wo}$.
+%
+\begin{figure}[h]
+	\begin{tikzpicture}[xscale=1.5,->]
+	\node (123) at (0,-2.5) {$\{1,2,3\}$};
+	\node (134) at (-1,-1.5) {$\{1,3,4\}$};
+	\node (126) at (0.3,-.5) {$\{1,2,6\}$};
+	\node (236) at (1,-1.5) {$\{2,3,6\}$};
+	\node (145) at (-1,1.5) {$\{1,4,5\}$};
+	\node (156) at (-0.3,.5) {$\{1,5,6\}$};
+	\node (346) at (1,1.5) {$\{3,4,6\}$};
+	\node (456) at (0,2.5) {$\{4,5,6\}$};
+	\draw (123)--(134);
+	\draw (123)--(126);
+	\draw (123)--(236);
+	\draw (134)--(145);
+	\draw (134)--(346);
+	\draw (126)--(156);
+	\draw (126)--(236);
+	\draw (236)--(346);
+	\draw (145)--(456);
+	\draw (145)--(156);
+	\draw (156)--(456);
+	\draw (346)--(456);
+	\end{tikzpicture}
+	\qquad
+	\begin{tikzpicture}[xscale=1.5,->]
+	\node (123) at (0,-2.5) {$\{1,2,3\}$};
+	\node (134) at (-1,-1.5) {$\{1,3,4\}$};
+	\node (236) at (1,-1.5) {$\{2,3,6\}$};
+	\node (145) at (-1,1.5) {$\{1,4,5\}$};
+	\node (346) at (1,1.5) {$\{3,4,6\}$};
+	\node (456) at (0,2.5) {$\{4,5,6\}$};
+	\draw (123)--(134);
+	\draw (123)--(236);
+	\draw (134)--(145);
+	\draw (134)--(346);
+	\draw (236)--(346);
+	\draw (145)--(456);
+	\draw (346)--(456);
+	\end{tikzpicture}
+	\qquad
+	\begin{tikzpicture}[xscale=1.5,->]
+	\node (123) at (0,-2.5) {$\{1,2,3\}$};
+	\node (134) at (-1,-1.5) {$\{1,3,4\}$};
+	\node (236) at (1,-1.5) {$\{2,3,6\}$};
+	\node (145) at (-1,1.5) {$\{1,4,5\}$};
+	\node (346) at (1,1.5) {$\{3,4,6\}$};
+	\node (456) at (0,2.5) {$\{4,5,6\}$};
+	\draw (123)--(134);
+	\draw (123)--(236);
+	\draw (134)--(145);
+	\draw (236)--(346);
+	\draw (145)--(456);
+	\draw (346)--(456);
+	\end{tikzpicture}
+	\caption{The increasing flip graph on~$\subwordComplex(Q, \wo)$ (left), its restriction to acyclic facets (middle) and the Hasse diagram of the quotient~$[e, \wo]/\equiv_{Q, \wo}$ where each class is labeled by its corresponding facet of~$\subwordComplex(Q, \wo)$ (right), for the subword complex~$\subwordComplex(Q, \wo)$ where~$Q = \tau_1 \tau_2 \tau_1 \tau_2 \tau_1 \tau_2$ and~$\wo = \tau_1 \tau_2 \tau_1 = \tau_2 \tau_1 \tau_2$. Note that the increasing flip~$\{1,3,4\} \to \{3,4,6\}$ is not a cover relation of~$[e, \wo]/\equiv_{Q, \wo}$.}
+	\label{fig:acyclicFlipvsWeakOrder}
+\end{figure}
 \end{example}
 
 We say that a flip between two facets~$I, J \in \subwordStrictAcyclicFacets(Q, \omega)$ with~$I \ssm \{i\} = J \ssm \{j\}$ is \defn{extremal} if the root~$\rootFunction{I}{i}$ is a ray of the root configuration~$\Roots(I)$ (or equivalently, $\rootFunction{J}{j}$ is a ray~$\Roots(J)$).
@@ -1662,7 +1737,7 @@ Note that this is precisely the situation we had in~\cref{sec:latticeAcyclicPipe
 
 \begin{conjecture}
 \label{conj:latticeQuotientSortingAlternating}
-For a non-empty subword complex $\subwordComplex(Q,\omega)$ where~$Q$ is sorting and alternating, the Hasse diagram of the lattice quotient~$[e, \omega]/\equiv_{Q, \omega}$ is isomorphic to the graph of extremal increasing flips between acyclic facets of~$\subwordAcyclicFacets(Q, \omega)$.
+If~$Q$ is sorting and alternating, then the Hasse diagram of the lattice quotient~$[e, \omega]/\equiv_{Q, \omega}$ is isomorphic to the graph of extremal increasing flips between acyclic facets of~$\subwordAcyclicFacets(Q, \omega)$.
 \end{conjecture}
 
 Moreover, there is a close connection with the brick polyhedra introduced in~\cite{JahnStump} as generalizations of the brick polytopes of~\cite{PilaudSantos-brickPolytope, PilaudStump-brickPolytope}.
@@ -1677,32 +1752,18 @@ This can be derived from \cite[Thm.~4.4]{JahnStump}.
 \cref{conj:latticeQuotientSortingAlternating} can thus be translated geometrically as follows.
 
 \begin{conjecture}
-\label{conj:latticeQuotientSortingAlternatingGeometric}
-For a non-empty subword complex $\subwordComplex(Q,\omega)$ where~$Q$ is sorting and alternating, the finite part of the oriented graph of the brick polyhedron~$\brickPolyhedron(Q, \omega)$ is isomorphic to the Hasse diagram of the lattice quotient~$[e, \omega]/\equiv_{Q, \omega}$.
+\label{conj:latticeQuotientSortingAlternatingBrickPolyhedra}
+If~$Q$ is sorting and alternating, then the finite part of the oriented graph of the brick polyhedron~$\brickPolyhedron(Q, \omega)$ is isomorphic to the Hasse diagram of the lattice quotient~$[e, \omega]/\equiv_{Q, \omega}$.
 \end{conjecture}
 
-\vincent{I am working below this line}
+In particular, specializing this conjecture to the brick polytopes~\cite{PilaudSantos-brickPolytope, PilaudStump-brickPolytope} for which~$\omega = \wo$, we obtain our last conjecture, intended to extend the results of~\cite{Pilaud-brickAlgebra}.
 
+\begin{conjecture}
+\label{conj:latticeQuotientSortingAlternatingBrickPolytopes}
+If~$Q$ is sorting and alternating, then the oriented graph of the brick polytope~$\brickPolyhedron(Q, \wo)$ is isomorphic to the Hasse diagram of a lattice quotient of the weak order.
+\end{conjecture}
 
-
-\cesarm{To do: meet to discuss about this section? put it in final form...}
-
-
-cesarm{Do we have more conjectures or questions to be included here?}
-
-\begin{remark}\label{rem_acyclicflipposet_not_latticequotient}
-In analogy to the case of pipe dreams in \cref{subsec:proofCongruence}, one might expect that the quotient~$[e,\omega]/\equiv_{Q,\omega}$ is isomorphic to the restriction of the increasing flip poset of $\subwordComplex(Q,\omega)$ to the set of acyclic facets.
-But this is not the case as shown in \cref{exm:acyclicFlipvsWeakOrder}.     
-\end{remark}
-
-\begin{example}\label{exm:acyclicFlipvsWeakOrder}
-    Let $W=S_3$ be the symmetric group generated by simple transpositions $S=\{s_1,s_2\}$ with $s_i=(i, i+1 )$.
-Let $Q=(s_1,s_2,s_1,s_2,s_1,s_2)$ and $\omega=\wo=s_1s_2s_1=s_2s_1s_2$.
-The subword complex $\subwordComplex(Q,\omega)$ has eight facets, six of which are acyclic.
-    All the fibers of $\equiv_{Q,\omega}$ are singletons and the lattice quotient~$[e,\omega]/\equiv_{Q,\omega}$ coincides with the weak order of type $A_2$.
-    On the other hand there are two facets, $I_1=\{1,3,4\}$ and $I_2=\{3,4,6\}$, which are connected by a flip but whose corresponding elements $\pi_1$ and $\pi_2$ are not related in weak order.
-    \cesar{To do: Double check and expand this example in detail. Add figure.}
-\end{example}
+\vincent{I want to delete the remaining of this section, but I want to discuss it with Cesar.}
 
 As we have seen in \cref{cor_acyclicpipedreams_lattice}, the increasing flip poset of acyclic pipe dreams of any permutation $\omega$ is a lattice, because it is isomorphic to the lattice quotient~$[e,\omega]/\equiv_\omega$.
 This motivates the following open question for subword complexes.
@@ -1723,6 +1784,7 @@ The Chute lattice conjecture~\cite[Conjecture~2.8]{Rubey} might be an indication
 \subsection{The sweeping algorithm}
 \label{subsec:sweepingAlgorithmSubwordComplexes}
 \vincent{I have not checked this part yet.}
+\vincent{Here, we must properly cite \cite{JahnStump} and say that we obtained this algorithm independently.}
 
 Given a linear extension $\pi \in \linearExtensions(Q,\omega)$, one natural question is whether we can recover the unique acyclic facet $I$ such that $\pi \in \linearExtensions(I)$.
 We can recover this facet via a sweeping algorithm which we now introduce.
