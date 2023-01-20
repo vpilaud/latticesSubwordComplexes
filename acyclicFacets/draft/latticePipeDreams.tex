@@ -64,6 +64,7 @@
 \newcommand{\Z}{\mathbb{Z}} % integers
 \newcommand{\I}{\mathbb{I}} % set of integers
 \newcommand{\C}{\mathbb{C}} % set of summands
+\renewcommand{\b}[1]{\boldsymbol{#1}} % bold
 
 % math commands
 \newcommand{\set}[2]{\left\{ #1 \;\middle|\; #2 \right\}} % set notation
@@ -101,9 +102,9 @@
 \newcommand{\subpara}[1]{\smallskip\noindent\textit{#1.}} % paragraph
 \definecolor{PineGreen}{RGB}{2,120,120} % pinegreen color
 \definecolor{darkgreen}{RGB}{57,181,74} % darkgreen color
-\renewcommand{\b}[1]{{\color{blue} #1}} % blue
-\renewcommand{\r}[1]{{\color{red} #1}} % red
-\newcommand{\g}[1]{{\color{darkgreen} #1}} % green
+\newcommand{\blue}[1]{{\color{blue} #1}} % blue
+\newcommand{\red}[1]{{\color{red} #1}} % red
+\newcommand{\green}[1]{{\color{darkgreen} #1}} % green
 \newcommand{\defn}[1]{\textbf{\textsf{\color{PineGreen} #1}}} % emphasis of a definition
 \usepackage{todonotes}
 \newcommand{\nantel}[1]{\todo[color=red!30]{#1 \\ \hfill --- N.}}
@@ -202,9 +203,9 @@ Pipe dreams were introduced by N.~Bergeron and S.~Billey in~\cite{BergeronBilley
 They have important connections and applications to various areas related to Schubert calculus and Schubert varieties~\cite{LascouxSchutzenberger-PolynomesSchubert, LascouxSchutzenberger-SchubertLittlewoudRichardson}. 
 A pipe dream is an arrangement of pipes in the triangular shape, each entering along the vertical side and exiting along the horizontal side.
 They are grouped according to their exiting permutation, given by the order in which the pipes appear along the horizontal axis.
-The pipes in a pipe dream have some crossings and some contacts, and the contact graph records all contacts of a pipe dream.
-A flip in a pipe dream exchanges a contact between with a crossing between two pipes, and the flip is increasing when the contact is southeast of the crossing involved in the flip.
-The acyclic pipe dreams are the pipe dreams with an acyclic contact graph, and they naturally appear in the study of brick polytopes~\cite{PilaudSantos-brickPolytope}.
+The linear extensions of a pipe dream are the permutations of its pipes such that for each contact the northwest pipe appears before the southeast pipe in the permutation.
+The pipe dreams with at least one linear extension are called acyclic and naturally appear in the study of brick polytopes~\cite{PilaudSantos-brickPolytope}.
+A flip in a pipe dream exchanges a contact with a crossing between two pipes, and the flip is increasing when the contact is southwest of the crossing involved in the flip.
 A brief recollection on pipe dreams is given in \cref{sec:preliminaries}.
 
 In the core \cref{sec:latticeAcyclicPipeDreams} of this paper, we show that for any permutation~$\omega$,
@@ -224,17 +225,58 @@ Note that we recover the connection between the weak order and the Tamari lattic
 We then explore in \cref{sec:furtherTopics} some natural further topics.
 We describe two algorithms to compute the unique acyclic pipe dream whose linear extensions contain a given permutation generalizing the binary tree insertion map on permutations (\cref{subsec:sweepingAlgorithm,subsec:insertionAlgorithm}), we describe the pipe dream congruence as the transitive closure of a local rewriting rule generalizing that of the sylvester congruence (\cref{subsec:rewritingRule}), and we describe a natural commutative diagram of lattice morphism generalizing the connection between the recoil map and the binary tree insertion map on permutations and the canopy on binary trees (\cref{subsec:canopy}).
 
-Finally, we discuss in \cref{sec:subwordComplexes} a conjectural extension of our results to subword complexes in finite Coxeter groups~\cite{KnutsonMiller-subwordComplex}.
+Finally, we discuss in \cref{sec:subwordComplexes} (partly conjectural) extensions of our results to subword complexes in finite Coxeter groups~\cite{KnutsonMiller-subwordComplex}.
+Given a finite Coxeter group~$W$ with simple reflections~$S$, a word~$Q$ on~$S$ and an element~$\omega$ of~$W$, the subword complex~$\subwordComplex(Q,\omega)$ is a simplicial complex whose facets are the complements of the reduced expressions of~$\omega$ inside the word~$Q$.
+Pipe dreams can be seen as facets of subword complexes for special words~$Q$ on the simple transpositions of the symmetric groups.
+In general, there is again a natural increasing flip graph on the facets of a subword complex, which was studied in particular in~\cite{PilaudStump-ELlabelings}.
+An important tool to understand this flip is the root function introduced in~\cite{CeballosLabbeStump}, which associates a root~$\rootFunction{I}{i}$ to each position~$i$ and each facet~$I$, and the root configuration~$\Roots(I)$ of a facet~$I$, which collects all roots~$\rootFunction{I}{i}$ at positions~$i$ in~$I$.
+A brief recollection on finite Coxeter systems and subword complexes is given in \cref{subsec:finiteCoxeterGroups,subsec:subwordComplexes}.
 
+We consider the set~$\linearExtensions(I)$ of linear extensions of a facet~$I$ of~$\subwordComplex(Q,\omega)$, that is the set of elements~$\pi$ of~$W$ such that~${\Roots(I) \subseteq \pi(\Phi^+)}$.
+We prove the following statement in \cref{subsec:twoTheorems}.
+
+\begin{theorem*}
+For any non-empty subword complex~$\subwordComplex(Q, \omega)$, the sets~$\linearExtensions(I)$ for all facets~$I$ of~$\subwordComplex(Q, \omega)$ are order convex and form a partition of a lower set of the weak order that contains the interval~$[e, \omega]$.
+\end{theorem*}
+
+In contrast to the case of pipe dreams, there are some subword complexes and some facets for which the interval~$[e, \omega]$ does not contain (even sometimes does not intersect) the set of linear extensions~$\linearExtensions(I)$.
+However, there is a large family of subword complexes for which this cannot happen.
+We say that~$Q$ is sorting if it contains a reduced expression for~$\wo$.
+
+\begin{theorem*}
+If~$Q$ is sorting, then the sets~$\linearExtensions(I)$ for all facets~$I$ of~$\subwordComplex(Q, \omega)$ form a partition of the interval~$[e, \omega]$.
+\end{theorem*}
+
+In the case when~$[e, \omega]$ does not contain all sets of linear extensions, it is natural to consider the restriction of this partition to~$[e, \omega]$ by the sets~$[e, \omega] \cap \linearExtensions(\omega)$.
+This defines an equivalence relation~$\equiv_{Q, \omega}$ on~$[e, \omega]$ that we call the subword complex congruence.
+However, as the sets of linear extensions are not always intervals of the weak order, this equivalence relation is not always a lattice congruence.
+This can seems to be fixed by an additional assumption on~$Q$.
+We say that~$Q$ is alternating when all non-commuting pairs $s, t\in S$ alternate within $Q$ (this notion was already considered in \cite{PilaudSantos-brickPolytope, CeballosLabbeStump}).
 
 \begin{conjecture*}
-For any sorting and alternating word~$Q$ and any~$\omega \in W$, the 
-
-
-
-the subword complex congruence~$\equiv_{Q,\omega}$ is a lattice congruence of the interval~$[e,\omega]$ of the weak order.
+If~$Q$ is alternating, then the subword complex congruence~$\equiv_{Q, \omega}$ is a lattice congruence of the interval~$[e, \omega]$ of the weak order.
 \end{conjecture*}
 
+In contrast to the case of pipe dreams, the Hasse diagram of the quotient~$[e, \omega]/{\equiv_{Q, \omega}}$ is not isomorphic to the increasing flip graph on acyclic facets of~$\subwordComplex(Q, \omega)$ for two reasons:
+\vincent{refer to the examples...}
+\begin{itemize}
+\item First, not all acyclic facets of~$\subwordComplex(Q, \omega)$ appear as vertices of~$[e, \omega]/{\equiv_{Q, \omega}}$. We say that a facet is strongly acyclic if~$[e, \omega] \cap \linearExtensions(\omega) \ne \varnothing$.
+\item Second, not all flips between two strongly acyclic facets of~$\subwordComplex(Q, \omega)$ define a cover relation of~$[e, \omega]/{\equiv_{Q, \omega}}$. We say that the flip of a position~$i$ in a facet~$I$ is external if the root~$\rootFunction{I}{i}$ directing the flip is a ray of the root configuration~$\Roots(I)$.
+\end{itemize}
+This leads us to the following conjecture.
+
+\begin{conjecture*}
+If~$Q$ is alternating, then the Hasse diagram of the lattice quotient~$[e, \omega]/\equiv_{Q, \omega}$ is isomorphic to the graph of extremal increasing flips between strongly acyclic facets of~$\subwordAcyclicFacets(Q, \omega)$.
+\end{conjecture*}
+
+Combining the sorting and alternating conditions, we thus obtain the following conjecture, which can be seen as the natural extension of our pipe dream result.
+
+\begin{conjecture*}
+If~$Q$ is sorting and alternating, then the Hasse diagram of the lattice quotient~$[e, \omega]/\equiv_{Q, \omega}$ is isomorphic to the graph of extremal increasing flips between acyclic facets of~$\subwordAcyclicFacets(Q, \omega)$.
+\end{conjecture*}
+
+This last conjecture has a close connection to the brick polytopes of~\cite{PilaudSanto-brickPolytope, PilaudStump-brickPolytope} and the brick polyhedra of~\cite{JahnStump}.
+\vincent{todo}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1115,8 +1157,12 @@ Note that~$\Inv(e) = \varnothing = \Ninv(\wo)$ and~$\Ninv(e) = \Phi^+ = \Inv(\wo
 % Note also that~$\Ninv(\omega) =\Inv(\omega\wo)$.
 
 \begin{example}
-\vincent{todo}
-Type A
+\label{exm:typeACoxeterSystem}
+The Coxeter system of type~$A_{n-1}$ is the symmetric group~$W = \fS_n$ with generators~$S = \set{\tau_i}{i \in [n-1]}$, where~$\tau_i$ is the simple transposition~$\tau_i = (i \; i+1)$.
+It naturally acts on~$\R^n$ by permutations of coordinates.
+Denoting by~$(\b{e}_i)_{i \in [n]}$ the canonical basis of~$\R^n$, the type~$A_{n-1}$ roots are all~$\b{r}_{i,j} \eqdef \b{e}_i - \b{e}_j$ for distinct~$i,j \in [n]$, with positive roots~$\b{r}_{i,j}$ for~$1 \le i < j \le n$ and simple roots~$\b{r}_{i,i+1}$ for~$i \in [n-1]$.
+The inversion set of~$\pi \in \fS_n$ is the set of roots~$\b{e}_i - \b{e}_j$ for the inversions~$(i,j)$ of the permutation~$\pi$.
+The longest element is the reversed permutation~$[n, n-1, \dots, 2, 1]$ (written in one line notation), and it admits the reduced expression~$\tau_1 \cdots \tau_{n-1} \tau_1 \cdots \tau_{n-2} \cdots \tau_1 \tau_2 \tau_1$.
 \end{example}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1172,8 +1218,12 @@ where $\beta \eqdef \rootFunction{I}{i}$ and $s_\beta\in W$ is the reflection or
 \end{lemma}
 
 \begin{example}
-\vincent{todo}
-Connection root configuration --- contact graph.
+\label{exm:typeARootConfiguration}
+Continuing \cref{exm:typeACoxeterSystem}, we consider the type~$A_n$ Coxeter system, the word $Q \eqdef \tau_1 \cdots \tau_{n-1} \tau_1 \cdots \tau_{n-2} \cdots \tau_1 \tau_2 \tau_1$, and a permutation~$\omega \in \fS_n$.
+The word~$Q$ naturally fits on an $n \times n$ triangular grid (place $\tau_k$ in all boxes with row~$i$ and column~$j$ such that~$i+j+k = n+1$) and each facet~$I$ of the subword complex~$\subwordComplex(Q, \omega)$ corresponds to a pipe dreams~$P_I$ of~$\pipeDreams(\omega)$ (replace each position in~$I$ by a contact in~$P_I$, and the other positions by crossings in~$P_I$).
+The root function is given~$\rootFunction{I}{i} = \b{r}_{p,q} \eqdef \b{e}_p - \b{e}_q$ where~$p$ is the pipe arriving from the west and $q$ is the pipe arriving from the south at the box of~$P_I$ corresponding to position~$i$ of~$Q$.
+Hence, the root configuration is the incidence configuration~$\Roots(I) = \bigset{\b{r}_{p,q}}{(p,q) \in P_I\contact}$ of the contact graph of~$P_I$.
+In particular, the acyclic facets of~$\subwordComplex(Q, \omega)$ correspond to the acyclic pipe dreams of~$\acyclicPipeDreams(\omega)$.
 \end{example}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1182,7 +1232,7 @@ Connection root configuration --- contact graph.
 \label{subsec:linearExtensionsFacets}
 
 We now introduce the analogue of \cref{def:linearExtensions} for subword complexes.
-\vincent{Is linear extension a good term? Should we say $W$-extension?}.
+\vincent{Is linear extension a good term? Should we say $W$-extension?}
 
 \begin{definition}
 \label{def:linearExtensionsSubwordComplexes}
@@ -1240,8 +1290,7 @@ Therefore, $\Roots(\antiGreedyFacet)\subseteq \omega(\Phi^+)=-\Inv(\omega)\sqcup
 \end{proof}
 
 \begin{example}
-%The concept of linear extensions of acyclic facets of subword complexes are a natural generalization of linear extensions of contact graphs of acyclic pipe dreams that we introduced in \cref{subsec:linearExtensions}.
-Connection linear extensions of contact graphs.
+In the situation of \cref{exm:typeACoxeterSystem,exm:typeARootConfiguration}, the linear extensions of a facet~$I$ of~$\subwordComplex(Q, \omega)$ are precisely the linear extensions of the pipe dream~$P_I$ of~$\pipeDreams(\omega)$.
 \end{example}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1577,6 +1626,8 @@ The cover relations are certain increasing flips between the facets in~$\subword
 However, in contrast to \cref{thm:pipeDreamQuotient}, not all increasing flips between two facets in~$\subwordStrictAcyclicFacets(Q, \omega)$ yields a cover relation of~$\subwordStrictAcyclicFacets(Q, \omega)$, as illustrated by the following example.
 
 \begin{example}\label{ex_acyclicflip_not_weakorder_related}
+Consider the type~$A_2$ Coxeter system, the word~$Q = \tau_1 \tau_2 \tau_1 \tau_2 \tau_1 \tau_2$ and the longest element~$\wo = \tau_1 \tau_2 \tau_1 = \tau_2 \tau_1 \tau_2$.
+
 \vincent{work this out}
     Let $W=S_3$ be the symmetric group generated by simple transpositions $S=\{s_1,s_2\}$ with $s_i=(i, i+1 )$.
 Let $Q=(s_1,s_2,s_1,s_2,s_1,s_2)$ and $\omega=\wo=s_1s_2s_1=s_2s_1s_2$.
