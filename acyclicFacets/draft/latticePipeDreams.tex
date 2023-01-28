@@ -148,7 +148,7 @@
 \newcommand{\duality}{^\star} % duality pipe dreams - triangulations
 \newcommand{\acyclicPipeDreams}{\Sigma} % acyclic pipe dreams
 \newcommand{\linearExtensions}{\mathcal{L}} % linear extensions
-\newcommand{\strictLinearExtensions}{\mathcal{L}^\star} % strict linear extensions
+\newcommand{\strongLinearExtensions}{\mathcal{L}^\star} % strict linear extensions
 \newcommand{\noninversions}[2]{\mathsf{ninv}(#1,#2)} % non-inversions
 \newcommand{\acyclicOrientations}{\Omega} % set of pipe dreams
 \newcommand{\insertion}[2]{\mathsf{pd}(#1,#2)} % insertion of permutation #1 in pipe dreams with permutation #2
@@ -164,7 +164,7 @@
 \newcommand{\rootFunction}[2]{\mathrm{r}_{#1}(#2)} % root function
 \newcommand{\subwordFacets}{\mathcal{F}} % subword complex
 \newcommand{\subwordAcyclicFacets}{\mathcal{F}^\bullet} % subword complex
-\newcommand{\subwordStrictAcyclicFacets}{\mathcal{F}^\star} % subword complex
+\newcommand{\subwordStronglyAcyclicFacets}{\mathcal{F}^\star} % subword complex
 \newcommand{\greedyFacet}{I^{\overleftarrow{gr}}} % greedy facet
 \newcommand{\antiGreedyFacet}{I^{\overrightarrow{gr}}} % antigreedy facet
 \newcommand{\sweepingAlgorithm}{\mathsf{sweep}} % sweeping algorithm
@@ -350,9 +350,9 @@ It is clearly a directed acyclic graph, and it has a unique source and a unique 
 The \defn{increasing flip poset} is the reflexive and transitive closure of the increasing flip graph on~$\pipeDreams(\omega)$.
 
 The \defn{contact graph} of a pipe dream~$P$ is the directed graph~$P\contact$ with one node for each pipe of~$P$ and one arc for each contact of~$P$ connecting the northwest pipe to the southeast pipe of the contact\footnote{We have reversed the usual orientation conventions of \cite{PilaudSantos-brickPolytope, PilaudPocchiola, Pilaud-brickAlgebra} to suit better our purposes, in particular in \cref{subsec:insertionAlgorithm}.}.
-We see equivalently the contact graph~$P\contact$ as a graph on the pipes of~$P$ or on the integers~$[n]$.
-We say that a pipe dream~$P$ is \defn{acyclic} if its contact graph~$P\contact$ is acyclic (no oriented cycle).
-We then denote by~$\contactLess{P}$ the transitive closure of the contact graph of~$P$.
+We see equivalently the contact graph~$P\contact$ as a (multi)graph on the pipes of~$P$ or on the integers~$[n]$.
+We say that a pipe dream~$P$ is \defn{acyclic} if its contact graph~$P\contact$ has no oriented cycle.
+For an acyclic pipe dream~$P$, we denote by~$\contactLess{P}$ the transitive closure of the contact graph of~$P$.
 For~$\omega \in \fS_n$, we denote by~$\acyclicPipeDreams(\omega)$ the set of acyclic pipe dreams of~$\pipeDreams(\omega)$.
 % We let~$\acyclicPipeDreams_n \eqdef \bigsqcup_{\omega \in \fS_n} \acyclicPipeDreams(\omega)$ and~$\acyclicPipeDreams \eqdef \bigsqcup_{n \in \N} \acyclicPipeDreams_n$.
 %\vincent{Add contact graphs to \cref{fig:pipeDreams}.}
@@ -364,7 +364,7 @@ In this case, it is natural to label the pipes from~$0$ to~$n+1$, so that the pe
 % We denote by~$\reversingPipeDreams_n$ the reversing pipe dreams of~$\pipeDreams_n$.
 As observed in~\cite{Woo, PilaudPocchiola, Pilaud-these, Stump}, the family of reversing pipe dreams belong to the Catalan families, meaning that it is counted by the famous Catalan numbers.
 \cref{fig:bijection} illustrates explicit bijections between reversing pipe dreams of~$\pipeDreams(\rho_n)$, binary trees with $n$ internal nodes, and the triangulations of a convex $(n+2)$-gon.
-More precisely, the map which sends a contact in row~$i$ and column~$j$ of the triangular shape to the diagonal~$[i,n+1-j]$ of the~$(n+2)$-gon provides the following correspondence: \\[.3cm]
+More precisely, the map which sends a contact in row~$i$ and column~$j$ of the triangular shape (indexed from~$0$ to~$n+1$) to the diagonal~$[i,n+1-j]$ of the~$(n+2)$-gon provides the following correspondence: \\[.3cm]
 \centerline{
 \begin{tabular}{r@{$\quad\longleftrightarrow\quad$}l}
 pipe dream~$P \in \reversingPipeDreams_n$ & triangulation~$P\duality$ of the $(n+2)$-gon, \\
@@ -1204,7 +1204,9 @@ For $J\subseteq [r]$, we denote by $Q_J$ the subword of~$Q$ consisting of the le
 The \defn{subword complex} $\subwordComplex(Q,\omega)$ is the simplicial complex whose facets are subsets $I\subseteq [m]$ such that $Q_{[m]\setminus I}$ is a reduced expression for $\omega$.
 We denote by $\subwordFacets(Q,\omega)$ the set of facets of $\subwordComplex(Q,\omega)$.
 
-Two facets $I,J \in \subwordFacets(Q,\omega)$ are connected by a \defn{flip} if they differ one element: $I \ssm \{i\} = J \ssm \{j\}$ for some $i\in I$ and $j\in J$ with $i \ne j$.
+It is known that~$\subwordComplex(Q,\omega)$ is either a ball or a sphere, in particular it is a pseudomanifold (with or without boundary).
+The flip graph of~$\subwordComplex(Q,\omega)$ is the graph whose vertices are the facets of~$\subwordComplex(Q,\omega)$ and whose edges are the ridges of~$\subwordComplex(Q,\omega)$.
+In other words, two facets $I,J \in \subwordFacets(Q,\omega)$ are connected by a \defn{flip} if they differ one element: $I \ssm \{i\} = J \ssm \{j\}$ for some $i\in I$ and $j\in J$ with~$i \ne j$.
 The flip from $I$ to $J$ is called \defn{increasing} if~$i < j$, and \defn{decreasing} otherwise.
 The \defn{increasing flip graph} on the facets of the subword complex is an acyclic graph which has a unique source and a unique sink~\cite{Pilaud-greedyFlipTree, PilaudStump-ELlabelings}.
 These two special facets are called the \defn{greedy facet} $\greedyFacet$ and the \defn{antigreedy facet} $\antiGreedyFacet$.
@@ -1252,6 +1254,21 @@ The root function is given~$\rootFunction{I}{i} = \b{r}_{p,q} \eqdef \b{e}_p - \
 Hence, the root configuration is the incidence configuration~$\Roots(I) = \bigset{\b{r}_{p,q}}{(p,q) \in P_I\contact}$ of the contact graph of~$P_I$.
 In particular, the acyclic facets of~$\subwordComplex(Q, \omega)$ correspond to the acyclic pipe dreams of~$\acyclicPipeDreams(\omega)$.
 \end{example}
+
+\begin{example}
+For any Coxeter group~$W$ and any Coxeter element~$c \in W$ (a product of all generators of~$S$ in a given arbitrary order), let~$\wo(c)$ denote the $c$-sorting word of~$\wo$ (the lexicographically minimal reduced expression for~$\wo$ in~$c^\infty$, see \cite{Reading-CambrianLattices} for details).
+Extending the observation of \cref{exm:Tamari1}, it was shown in~\cite{CeballosLabbeStump} that the subword complex~$\subwordComplex(c\wo(c), \wo)$ is isomorphic to the cluster complex of type~$W$.
+In particular, the increasing flip graph is the Hasse diagram of the $c$-Cambrian lattice of~\cite{Reading-CambrianLattices}.
+\end{example}
+
+\begin{example}
+\label{exm:counterExampleLattice}
+In contrast to the previous example, consider the word~$Q = \tau_1 \tau_2 \tau_3 \tau_2 \tau_1 \tau_2 \tau_3 \tau_2 \tau_1$ on the simple generators of the symmetric group~$\fS_4$ and the subword complex~$\subwordComplex(Q,\wo)$.
+Note that all facets in this subword complex are acyclic.
+It is shown in~\cite[Rem.~5.12]{PilaudStump-brickPolytope} that its increasing flip poset is not a lattice.
+This shows that neither the increasing flip poset, nor the acyclic increasing flip poset are lattices in general, even in type~$A$. \vincent{clean that}
+\end{example}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1612,7 +1629,7 @@ Thus $\pi \le \omega$ as desired.
 \subsection{Five conjectures on linear extensions of facets}
 \label{subsec:fiveConjectures}
 
-In this section, we present two conjectural generalizations of the results of \cref{subsec:pipeDreamCongruence,subsec:pipeDreamQuotient}.
+In this section, we present conjectural generalizations of the results of \cref{subsec:pipeDreamCongruence,subsec:pipeDreamQuotient}.
 By \cref{coro:linearExtensionsPartitionSubwordComplexes}, we have
 \[
 \linearExtensions(Q,\omega) = \bigsqcup_{I \in \subwordAcyclicFacets(Q, \omega)} \linearExtensions(I)
@@ -1625,17 +1642,17 @@ However, this equivalence relation is in general not a lattice congruence for tw
 \end{enumerate}
 To bypass Issue~(i), we could restrict our attention to the situation when the word~$Q$ is sorting by~\cref{thm:linearExtensionsPartitionSubwordComplexB} (we will do that in \cref{conj:latticeQuotientSortingAlternating}).
 Here, we want to be slightly more general, so we will instead consider general words~$Q$, but restrict our attention to the interval~$[e, \omega]$ as follows.
-For a facet~$I$ of~$\subwordComplex(Q, \omega)$, we define~$\strictLinearExtensions(I) \eqdef \linearExtensions(I) \cap [e, \omega]$.
-We say that~$I$ is \defn{strictly acyclic}~$\strictLinearExtensions(I) \ne \varnothing$, and we denote by~$\subwordStrictAcyclicFacets(Q, \omega)$ the set of strictly acyclic facets of~$\subwordComplex(Q, \omega)$.
+For a facet~$I$ of~$\subwordComplex(Q, \omega)$, we define~$\strongLinearExtensions(I) \eqdef \linearExtensions(I) \cap [e, \omega]$.
+We say that~$I$ is \defn{strongly acyclic}~$\strongLinearExtensions(I) \ne \varnothing$, and we denote by~$\subwordStronglyAcyclicFacets(Q, \omega)$ the set of strongly acyclic facets of~$\subwordComplex(Q, \omega)$.
 Note that by \cref{thm:linearExtensionsPartitionSubwordComplexA}~\eqref{item:partition}, we have
 \[
-[e, \omega] = \bigsqcup_{I\in\subwordStrictAcyclicFacets(Q,\omega)} \strictLinearExtensions(I).
+[e, \omega] = \bigsqcup_{I\in\subwordStronglyAcyclicFacets(Q,\omega)} \strongLinearExtensions(I).
 \]
 We can thus now define the analogue of the pipe dream congruence of \cref{def:pipeDreamCongruence} for subword complexes as follows.
 
 \begin{definition}
 \label{def:pipeDreamCongruenceSubwordComplexes}
-For a non-empty subword complex $\subwordComplex(Q,\omega)$, the \defn{subword complex congruence} is the equivalence relation~$\equiv_{Q,\omega}$ on the interval~$[e, \omega]$  whose equivalence classes are the sets~$\strictLinearExtensions(I)$ of linear extensions of strictly acyclic facets~$I$ of~$\subwordStrictAcyclicFacets(Q, \omega)$.
+For a non-empty subword complex $\subwordComplex(Q,\omega)$, the \defn{subword complex congruence} is the equivalence relation~$\equiv_{Q,\omega}$ on the interval~$[e, \omega]$  whose equivalence classes are the sets~$\strongLinearExtensions(I)$ of linear extensions of strongly acyclic facets~$I$ of~$\subwordStronglyAcyclicFacets(Q, \omega)$.
 In other words, $\pi \equiv_{Q,\omega} \pi'$ if and only if $\pi$ and $\pi'$ are linear extensions of the same facet.  
 \end{definition}
 
@@ -1649,9 +1666,9 @@ For a non-empty subword complex $\subwordComplex(Q,\omega)$ where~$Q$ is alterna
 \end{conjecture}
 
 We now intend to understand the quotient~$[e, \omega]/\equiv_{Q, \omega}$.
-First, its elements correspond to the congruence classes of~$\equiv_{Q, \omega}$, hence to the strictly acyclic facets in~$\subwordStrictAcyclicFacets(Q, \omega)$.
-The cover relations are certain increasing flips between the facets in~$\subwordStrictAcyclicFacets(Q, \omega)$.
-However, in contrast to \cref{thm:pipeDreamQuotient}, not all increasing flips between two facets in~$\subwordStrictAcyclicFacets(Q, \omega)$ yields a cover relation of~$\subwordStrictAcyclicFacets(Q, \omega)$, as illustrated by the following example.
+First, its elements correspond to the congruence classes of~$\equiv_{Q, \omega}$, hence to the strongly acyclic facets in~$\subwordStronglyAcyclicFacets(Q, \omega)$.
+The cover relations are certain increasing flips between the facets in~$\subwordStronglyAcyclicFacets(Q, \omega)$.
+However, in contrast to \cref{thm:pipeDreamQuotient}, not all increasing flips between two facets in~$\subwordStronglyAcyclicFacets(Q, \omega)$ yields a cover relation of~$\subwordStronglyAcyclicFacets(Q, \omega)$, as illustrated by the following example.
 
 \begin{example}
 \label{exm:acyclicFlipvsWeakOrder}
@@ -1676,10 +1693,10 @@ Note that the two acyclic facets~$\{1,3,4\}$ and $\{3,4,6\}$ are connected by a 
 	\draw (134)--(145);
 	\draw (134)--(346);
 	\draw (126)--(156);
-	\draw (126)--(236);
+	\draw (236)--(126);
 	\draw (236)--(346);
 	\draw (145)--(456);
-	\draw (145)--(156);
+	\draw (156)--(145);
 	\draw (156)--(456);
 	\draw (346)--(456);
 	\end{tikzpicture}
@@ -1719,20 +1736,16 @@ Note that the two acyclic facets~$\{1,3,4\}$ and $\{3,4,6\}$ are connected by a 
 \end{figure}
 \end{example}
 
-We say that a flip between two facets~$I, J \in \subwordStrictAcyclicFacets(Q, \omega)$ with~$I \ssm \{i\} = J \ssm \{j\}$ is \defn{extremal} if the root~$\rootFunction{I}{i}$ is a ray of the root configuration~$\Roots(I)$ (or equivalently, $\rootFunction{J}{j}$ is a ray~$\Roots(J)$).
+We say that a flip between two facets~$I, J \in \subwordStronglyAcyclicFacets(Q, \omega)$ with~$I \ssm \{i\} = J \ssm \{j\}$ is \defn{extremal} if the root~$\rootFunction{I}{i}$ is a ray of the root configuration~$\Roots(I)$ (or equivalently, $\rootFunction{J}{j}$ is a ray~$\Roots(J)$).
 This enables us to state our second conjecture, intended to extend~\cref{thm:pipeDreamQuotient}.
 
 \begin{conjecture}
 \label{conj:latticeQuotientAlternating}
-For a non-empty subword complex $\subwordComplex(Q,\omega)$ where~$Q$ is alternating, the Hasse diagram of the lattice quotient~$[e, \omega]/\equiv_{Q, \omega}$ is isomorphic to the graph of extremal increasing flips between strictly acyclic facets of~$\subwordStrictAcyclicFacets(Q, \omega)$.
+For a non-empty subword complex $\subwordComplex(Q,\omega)$ where~$Q$ is alternating, the Hasse diagram of the lattice quotient~$[e, \omega]/\equiv_{Q, \omega}$ is isomorphic to the graph of extremal increasing flips between strongly acyclic facets of~$\subwordStronglyAcyclicFacets(Q, \omega)$.
 \end{conjecture}
 
-\cref{conj:latticeCongruenceAlternating,conj:latticeQuotientAlternating} holds in type~$A_n$: our specific proof of~\cref{thm:pipeDreamCongruence,thm:pipeDreamQuotient} can be extended to arbitrary alternating words in type~$A_n$ as will be shown in~\cite{Cartier}.
-They are also supported by computer experiments: we verified it for all alternating words of length at most~$\ell(\wo)$ in types~$B_2, B_3, D_4$ and~$H_3$.
-\vincent{Noemie check that.} 
-
 We now specialize \cref{conj:latticeCongruenceAlternating,conj:latticeQuotientAlternating} to the case of sorting and alternating words.
-In this case, all acyclic facets are strictly acyclic by \cref{thm:linearExtensionsPartitionSubwordComplexB}.
+In this case, all acyclic facets are strongly acyclic by \cref{thm:linearExtensionsPartitionSubwordComplexB}.
 Note that this is precisely the situation we had in~\cref{sec:latticeAcyclicPipeDreams}.
 
 \begin{conjecture}
@@ -1762,6 +1775,13 @@ In particular, specializing this conjecture to the brick polytopes~\cite{PilaudS
 \label{conj:latticeQuotientSortingAlternatingBrickPolytopes}
 If~$Q$ is sorting and alternating, then the oriented graph of the brick polytope~$\brickPolyhedron(Q, \wo)$ is isomorphic to the Hasse diagram of a lattice quotient of the weak order.
 \end{conjecture}
+
+\begin{remark}
+\cref{conj:latticeCongruenceAlternating,conj:latticeQuotientAlternating,conj:latticeQuotientSortingAlternating,conj:latticeQuotientSortingAlternatingBrickPolyhedra,conj:latticeQuotientSortingAlternatingBrickPolytopes} holds in type~$A_n$: our specific proof of~\cref{thm:pipeDreamCongruence,thm:pipeDreamQuotient} can be extended to arbitrary alternating words in type~$A_n$ as will be shown in~\cite{Cartier}.
+They are also supported by computer experiments: we verified \cref{conj:latticeCongruenceAlternating,conj:latticeQuotientAlternating} for all alternating words of length at most~$\ell(\wo)$ (hence \cref{conj:latticeQuotientSortingAlternating,conj:latticeQuotientSortingAlternatingBrickPolyhedra,conj:latticeQuotientSortingAlternatingBrickPolytopes} for all alternating reduced expressions of~$\wo$) in types~$B_2, B_3, D_4$ and~$H_3$.
+\end{remark}
+
+
 
 \vincent{I want to delete the remaining of this section, but I want to discuss it with Cesar.}
 
