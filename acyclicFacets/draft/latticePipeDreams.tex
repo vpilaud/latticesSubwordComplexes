@@ -232,7 +232,7 @@ In the core \cref{sec:latticeAcyclicPipeDreams} of this paper, we show that for 
 \item the equivalence relation defined by this partition is a lattice congruence of~$[e, \omega]$, that we call the pipe dream congruence (\cref{subsec:pipeDreamCongruence}),
 \item the Hasse diagram of the corresponding lattice quotient is isomorphic to the increasing flip graph on acyclic pipe dreams with exiting permutation~$\omega$ (\cref{subsec:pipeDreamQuotient}).
 \end{itemize}
-In summary, we obtain the following statement.
+In summary, we obtain the following statement, illustrated in \cref{fig:latticeAcyclicPipeDreams}.
 
 \begin{theoremA}
 \label{thm:A}
@@ -519,6 +519,7 @@ We thus obtain that~$i \contactLess{P} j \contactMore{P} k$ if this $e$ is south
 As already mentioned, the increasing flip poset on reversing pipe dreams is isomorphic to the Tamari lattice, which is a lattice quotient of the weak order.
 In this section, we extend this result to any permutation~$\omega$ by showing that the sets of linear extensions of pipe dreams of~$\acyclicPipeDreams(\omega)$ partition the interval~$[e,w]$ (\cref{subsec:linearExtensions}), that this partition actually defines a lattice congruence of the weak order on~$[e,w]$ (\cref{subsec:pipeDreamCongruence}), and that the Hasse diagram of the quotient by this congruence is the increasing flip graph on acyclic pipe dreams of~$\acyclicPipeDreams(\omega)$ (\cref{subsec:pipeDreamQuotient}).
 This section goes straight to the proof of this property, and leaves alternative perspectives on this quotient to \cref{sec:furtherTopics}.
+\vincent{add picture}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -540,7 +541,7 @@ We denote by~$\linearExtensions(P)$ the set of linear extensions of~$P$.
 %For a pipe dream~$P \in \pipeDreams(\omega)$, we denote by~$\linearExtensions(P)$ the set of \defn{linear extensions} of~$P$, \ie the permutations~$\pi$ of~$[n]$ such that~$\pi^{-1}(i) < \pi^{-1}(j)$ for every arc~$i \to j$ in~$P\contact$.
 \end{definition}
 
-In this section, we prove the following structural property of~$\linearExtensions(P)$.
+In this section, we prove the following structural property of~$\linearExtensions(P)$, illustrated in \cref{fig:latticeAcyclicPipeDreams}.
 
 \begin{theorem}
 \label{thm:partitionPipeDreams}
@@ -610,6 +611,12 @@ Direct consequence of \cref{lem:partition,lem:interval}.
 For~$\pi \in [e, \omega]$, we denote by~$\insertion{\pi}{\omega}$ the pipe dream of~$\acyclicPipeDreams(\omega)$ such that~${\pi \in \linearExtensions(\insertion{\pi}{\omega})}$.
 \end{notation}
 
+\begin{figure}
+	\centerline{\includegraphics[scale=1]{latticeAcyclicPipeDreams}}
+	\caption{The pipe dream congruence on the weak order interval~$[12345, 31542]$ (left) and the increasing flip graph on acyclic pipe dreams (right). The blue bubbles represent the classes of the pipe dream congruence. The acyclic pipe dreams are represented with their contact graphs.}
+	\label{fig:latticeAcyclicPipeDreams}
+\end{figure}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Pipe dream congruence}
@@ -627,7 +634,7 @@ An equivalence relation~$\equiv$ on a lattice~$L$ is a congruence if and only if
 \end{enumerate}
 \end{proposition}
 
-We now focus on the following congruence.
+We now focus on the following congruence, illustrated in \cref{fig:latticeAcyclicPipeDreams}.
 
 \begin{definition}
 \label{def:pipeDreamCongruence}
@@ -724,7 +731,7 @@ For a congruence~$\equiv$ of a lattice~$L$, the \defn{lattice quotient}~$L/{\equ
 \item $X \le Y$ in~$L/{\equiv}$ if and only if there exist representatives~$x \in X$ and~$y \in Y$ such that~$x \le y$ in~$L$, or equivalently $\min(X) \le \min(Y)$, or equivalently $\max(X) \le \max(Y)$,
 \item $X \meet Y$ (resp.~$X \join Y$) is the congruence classe of~$x \meet y$ (resp.~of~$x \join y$) for arbitrary representatives~$x \in X$ and~$y \in Y$.
 \end{itemize}
-In this section, we aim at the following statement.
+In this section, we aim at the following statement, illustrated in \cref{fig:latticeAcyclicPipeDreams}.
 
 \begin{theorem}
 \label{thm:pipeDreamQuotient}
@@ -1093,7 +1100,7 @@ We start with the easy generalization of recoils of a permutation.
 \label{def:recoils}
 Consider the graph~$G(\omega)$ with vertex set~$[n]$ and edge set
 \[
-\set{ik}{i < j \text{ and } j-i \le \#\set{k \in [i]}{\omega^{-1}(k) < \omega^{-1}(j)}}.
+\set{ij}{i < j \text{ and } j-i \le \#\set{k \in [i]}{\omega^{-1}(k) < \omega^{-1}(j)}}.
 \]
 Let~$\acyclicOrientations(\omega)$ denote the set of acyclic orientations of~$G(\omega)$.
 The \defn{$\omega$-recoil congruence} is the equivalence relation on the weak order interval~$[e, \omega]$ whose equivalence classes are the sets of linear extensions of the acyclic orientations of~$G(\omega)$.
@@ -1370,9 +1377,9 @@ Then
 
 \begin{remark}
 \label{rem:linearExtensionsPartitionSubwordComplexA}
-Before proving this theorem, we would like to make the following remarks about items~\eqref{item:cover} and~\eqref{item:convex}.
+Before proving this theorem, we would like to make the following remarks about items~\eqref{item:convex} and~\eqref{item:cover}.
 \begin{enumerate}
-\setcounter{enumi}{1}
+\setcounter{enumi}{0}
 \item There are cases where $[e,\omega] \ne \linearExtensions(Q,\omega)$. \cesarm{add discussion}
 %
 \begin{figure}[h]
@@ -1382,7 +1389,7 @@ Before proving this theorem, we would like to make the following remarks about i
 	\label{fig:outOfInterval}
 \end{figure}
 %
-\setcounter{enumi}{3}
+\setcounter{enumi}{2}
 \item $\linearExtensions(I)$ is not an interval in general. See for instance the example~\cite[Figure~9]{PilaudStump-brickPolytope}. 
 In that figure, the elements of the week order $\mathfrak{S}_4$ that are linear extensions of the same acyclic facet of a given subword complex are grouped together. Some of the groups in the figure are not intervals.  \\
 \end{enumerate}
@@ -1808,14 +1815,13 @@ We note that this algorithm was independently described in~\cite{JahnStump}.
 
 We start from a subword complex~$\subwordComplex(Q, \omega)$ and any element~$\pi \in W$.
 The sweeping algorithm outcomes a facet for every element~$\pi \in W$, and this will be the desired facet for each $\pi \in \linearExtensions(Q,\omega)$.
-In other words, we define a function
-\[
-\begin{tabular}{cccl}
-$\sweepingAlgorithm$ : & $W$ & $\longrightarrow$ & $\subwordFacets(Q,\omega)$\\
-& $\pi$ & $\longrightarrow$ & $\sweepingAlgorithm(Q,\omega,\pi)$
-\end{tabular}
-\]
-\vincent{delete that}
+%In other words, we define a function
+%\[
+%\begin{tabular}{cccl}
+%$\sweepingAlgorithm$ : & $W$ & $\longrightarrow$ & $\subwordFacets(Q,\omega)$\\
+%& $\pi$ & $\longrightarrow$ & $\sweepingAlgorithm(Q,\omega,\pi)$
+%\end{tabular}
+%\]
 
 It starts by setting $I^0=\varnothing$ to be the empty set.
 It then scans the word $Q=(q_1,\dots ,q_m)$ from left to right.
