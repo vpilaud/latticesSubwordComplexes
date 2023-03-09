@@ -1971,15 +1971,19 @@ Let $\beta=\rootFunction{I_1}{j}=\rootFunction{I_2}{j}$, then
 \begin{proof}
     ~\cesar{Noemie: can you please write the proof of this Lemma? I do not remember the details at the moment, but the proof is based on the paper of Jahn--Stump that we discussed during your visit in Graz.}
     
-For the purpose of this proof, let us write~$\leqslant_B$ the strong Bruhat order, defined by~$x \leqslant_B y \iff$ a reduced expression of~$y$ has a reduced expression of~$x$ as a subword, and~$x \less_B y$ the covers of this order. We note that for any word~$Q$ and any~$x\in W$, we can find a reduced expression of~$x$ as a subword of~$Q$ if and only if~$x \leqslant_B Dem(Q)$ the demazure product of~$Q$.
+For the purpose of this proof, let us write~$\leqslant_B$ the strong Bruhat order, defined by~$x \leqslant_B y$ if and only if a reduced expression of~$y$ has a reduced expression of~$x$ as a subword, and~$x \prec_B y$ the covers of this order. We note that for any word~$Q$ and any~$x\in W$, we can find a reduced expression of~$x$ as a subword of~$Q$ if and only if~$x \leqslant_B Dem(Q)$ the demazure product of~$Q$.
 
-Let us write~$w = uv$ with~$u$ the prefix of~$w$ defined by~$I_1$ and~$I_2$ on~$Q$ until index~$j-1$ and~$v$ the suffix of~$w$ defined by the same facets from index~$j$ and onward. Let us also write~$s$ the~$j^{\text{th}}$ letter of~$Q$ and~$\alpha$ the simple root associated with~$s$. We note that~$\beta = \rootFunction{I_1}{j} = u(\alpha)$.
+We will use \cite[Proposition 3.14]{JahnStump}, reformulated as follows:
 
-Let us call~$Q'$ the suffix of~$Q$ starting at index~$j+1$. Since~$j \notin I_2$, we note that~$sv \less_B v$ and the restriction of~$I_2$ to~$Q'$ is a facet of~$\subwordComplex(Q', sv)$. However, since~$j \in I_1$, the restriction of~$I_1$ to~$Q'$ is a facet of~$\subwordComplex(Q', v)$. Therefore, we know that~$v \leqslant_B Dem(Q')$.
+\begin{proposition}[\cite{JahnStump}]\label{prop:JSDemazureCone}
+Let~$\subwordComplex(Q,w)$ be a non-empty subword complex. Then for any facet~$I \in \subwordComplex(Q,w)$ and for any simple root~$\alpha$ such that~$w \prec_B s_\alpha w \leqslant_B Dem(Q)$, we have~$\alpha \in \Roots(I)$.
+\end{proposition}
 
-We can now apply \cite{jahn_bruhat_2021, proposition 3.14} to~$I'_2$ the restriction of~$I_2$ to~$Q'$, which tells us that~$\mathcal{E}^+(sv, Dem(Q)) \subseteq \cone \Roots(I'_2)$. Since~$sv \less_B v \leqslant Dem(Q)$, then~$\alpha \in \mathcal{E}^+(sv, Dem(Q))$ and so~$\alpha \in \cone \Roots(I'_2)$.
+Let us write~$w = uv$ with~$u$ the prefix of~$w$ defined by~$I_1$ and~$I_2$ on~$Q$ until index~$j-1$ and~$v$ the suffix of~$w$ defined by the same facets from index~$j$ and onward. Let us also write~$s$ the~$j^{\text{th}}$ letter of~$Q$ and~$\alpha$ the simple root associated with~$s$. We note that~$\beta = \rootFunction{I_1}{j} = u(\alpha)$, and that since~$j \notin I_2$, we know that~$sv \prec_B v$ (this is also a cover of the left weak order).
 
-Going back to~$I_2$, we know that~$us(\Roots(I'_2)) \subseteq \Roots(I_2)$ and so~$us(\alpha) = -u(\alpha) = -\beta \in \cone \Roots(I_2)$.
+Let us call~$Q'$ the suffix of~$Q$ starting at index~$j+1$, and~$I'_1,I'_2$ the restrictions of~$I_1$ and~$I_2$ to~$Q'$. The subwords induced by~$I'_1$ and~$I'_2$ on~$Q'$ are suffixes of reduced subwords of~$Q$, so they are also reduced. Moreover, since~$j \in I_1$, we know that~$I'_1$ is a facet of~$\subwordComplex(Q',v)$; this means that this subword complex is not empty and that~$v \leqslant_B Dem(Q')$. Similarly, since~$j \notin I_2$, we know that~$I'_2$ is a facet of~$\subwordComplex(Q',sv)$. By combining the previous statements, we know that~$sv \prec_B v \leqslant_B Dem(Q')$ (or equivalently and with~$v' = sv$, that~$v' \prec_B sv' \leqslant_B Dem(Q')$). We can thus apply \cref{prop:JSDemazureCone} to obtain that~$\alpha \in \Roots(I'_2)$.
+
+Going back to our facets on~$Q$, we know that the prefix of~$w$ written by~$I_2$ on~$Q \cap [j]$ is~$us$, and thus~$us(\Roots(I'_2)) \subseteq \Roots(I_2)$. Therefore, we have~$us(\alpha) = u(-\alpha) = -u(\alpha) = -\beta \in \Roots(I_2)$, thus concluding the proof.
 \end{proof}
 
 \begin{proof}[Proof of \cref{prop:sweeping}]
