@@ -1362,7 +1362,7 @@ Then
 \item For any facet~$I$ of~$\subwordComplex(Q,\omega)$ set $\linearExtensions(I)$ is order convex.
 \label{item:convex}
 \hfill (convex) 
-\item  $\linearExtensions(Q,\omega)$ is a lower set of the weak order.
+\item $\linearExtensions(Q,\omega)$ is a lower set of the weak order.
 \label{item:lowerSet}
 \hfill (lower set)
 \item $[e,\omega] \subseteq \linearExtensions(Q,\omega).$
@@ -1376,10 +1376,19 @@ Then
 
 \begin{remark}
 \label{rem:linearExtensionsPartitionSubwordComplexA}
-Before proving this theorem, we would like to make the following remarks about items~\eqref{item:convex} and~\eqref{item:cover}:
+Before proving it, we would like to make the following remarks about theorem.
 \begin{enumerate}
-\setcounter{enumi}{0}
-\item There are cases where $[e,\omega] \ne \linearExtensions(Q,\omega)$. Namely, some of the sets~$\linearExtensions(I)$ may not be included in~$[e,\omega]$, and may even not meet~$[e,\omega]$. See \cref{fig:counterExample1}.
+\item While the sets~$\linearExtensions(I)$ are order convex, they may not be intervals. See \cref{fig:counterExample2}. Another example with~$\omega = \omega_\circ$ can be found in~\cite[Figure~9]{PilaudStump-brickPolytope}. 
+%
+\begin{figure}[p]
+	\centerline{\includegraphics[scale=.8]{counterExample2}}
+	\caption{The sets~$\linearExtensions(I)$ (blue bulles) are not always intervals.}
+	\label{fig:counterExample2}
+\end{figure}
+
+\item The lower set~$\linearExtensions(Q,\omega)$ may have more than one maximal element, and~$\omega$ is not necessarily maximal in~$\linearExtensions(Q,\omega)$. See \cref{fig:counterExample1}.
+
+\item Some of the sets~$\linearExtensions(I)$ may not be included in, nor even meet~$[e,\omega]$. See \cref{fig:counterExample1}.
 %
 %\begin{figure}[h]
 %	\includegraphics[width=0.52\textwidth]{interval_not_contained1} \quad
@@ -1393,17 +1402,8 @@ Before proving this theorem, we would like to make the following remarks about i
 	\caption{The sets~$\linearExtensions(I)$ (blue bubbles) are not always subsets of, and may even not meet~$[e,\omega]$ (green bubble).}
 	\label{fig:counterExample1}
 \end{figure}
-
-\setcounter{enumi}{2}
-\item Some of the sets~$\linearExtensions(I)$ may not be intervals. See \cref{fig:counterExample2}. Another example with~$\omega = \omega_\circ$ can be found in~\cite[Figure~9]{PilaudStump-brickPolytope}. 
-%
-\begin{figure}[p]
-	\centerline{\includegraphics[scale=.8]{counterExample2}}
-	\caption{The sets~$\linearExtensions(I)$ (blue bulles) are not always intervals.}
-	\label{fig:counterExample2}
-\end{figure}
 \end{enumerate}
-\cref{fig:counterExample1,fig:counterExample2} represent type~$A$ subword complexes.
+Note that \cref{fig:counterExample1,fig:counterExample2} represent type~$A$ subword complexes.
 As in~\cite{PilaudPocchiola, PilaudSantos-brickPolytope, PilaudStump-brickPolytope}, we thus use pseudoline arrangements on sorting networks to represent their facets (and we have represented their contact graphs together).
 \end{remark}
 
