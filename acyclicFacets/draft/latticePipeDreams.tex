@@ -1182,7 +1182,7 @@ A \defn{reduced expression} of~$\omega$ is a product~$s_1 s_2 \dots s_\ell = \om
 This minimal~$\ell$ is the \defn{length} $\ell(\omega)$ of~$\omega$.
 The length of~$\omega$ coincides with the size of its inversion set~$\Inv(\omega)$ since $\Inv(\omega) \eqdef \{\alpha_{s_1}, s_1(\alpha_{s_2}), s_1s_2(\alpha_{s_3}), \dots, s_1s_2 \dots s_{\ell-1}(\alpha_{s_\ell})\}$.
 
-The \defn{weak order} on $W$ is the partial order $\le$ defined by $\sigma \leq \omega$ if there exists $\tau \in W$ such that $\sigma\tau = \omega$ and $\ell(\sigma) + \ell(\tau) = \ell(\omega)$.
+The \defn{weak order} on $W$ is the partial order $\le$ defined by $\sigma \leq \omega$ if there exists $\tau \in S$  such that $\sigma\tau = \omega$ and $\ell(\sigma) + \ell(\tau) = \ell(\omega)$.
 In other words, the element $\omega$ has a reduced expression with a prefix which is a reduced expression of $\sigma$.
 Equivalently, the weak order corresponds to the inclusion order on inversion sets, that is $\sigma \leq \omega$ if and only if $\Inv(\sigma) \subseteq \Inv(\omega)$.
 This order defines a lattice structure on the elements of~$W$.
@@ -1662,6 +1662,8 @@ For a non-empty subword complex $\subwordComplex(Q,\omega)$, the \defn{subword c
 In other words, $\pi \equiv_{Q,\omega} \pi'$ if and only if $\pi$ and $\pi'$ are linear extensions of the same facet.  
 \end{definition}
 
+\nantel{it is bad to name this ``congruence". Call it equivalence, and state it is a concruence in the conjecture.}
+
 Despite its name, this equivalence relation is not always a congruence because of Issue~(ii) above.
 To fix it, we now assume that the word~$Q$ is \defn{alternating}, meaning that all non-commuting pairs $s, t\in S$ alternate within $Q$ (this notion was already considered in \cite{PilaudSantos-brickPolytope, CeballosLabbeStump}).
 This enables us to state our first conjecture, intended to extend~\cref{thm:pipeDreamCongruence}.
@@ -1790,6 +1792,8 @@ They are also supported by computer experiments: we verified \cref{conj:latticeC
 
 
 \vincent{I want to delete the remaining of this section, but I want to discuss it with Cesar.}
+
+\nantel{to be honest, I find that the paper ends well here, the rest should be part of a paper by No\'emie alone?}
 
 As we have seen in \cref{cor_acyclicpipedreams_lattice}, the increasing flip poset of acyclic pipe dreams of any permutation $\omega$ is a lattice, because it is isomorphic to the lattice quotient~$[e,\omega]/\equiv_\omega$.
 This motivates the following open question for subword complexes.
@@ -1983,7 +1987,7 @@ Let us write~$w = uv$ with~$u$ the prefix of~$w$ defined by~$I_1$ and~$I_2$ on~$
 
 Let us call~$Q'$ the suffix of~$Q$ starting at index~$j+1$. Since~$j \notin I_2$, we note that~$sv \less_B v$ and the restriction of~$I_2$ to~$Q'$ is a facet of~$\subwordComplex(Q', sv)$. However, since~$j \in I_1$, the restriction of~$I_1$ to~$Q'$ is a facet of~$\subwordComplex(Q', v)$. Therefore, we know that~$v \leqslant_B Dem(Q')$.
 
-We can now apply \cite{jahn_bruhat_2021, proposition 3.14} to~$I'_2$ the restriction of~$I_2$ to~$Q'$, which tells us that~$\mathcal{E}^+(sv, Dem(Q)) \subseteq \cone \Roots(I'_2)$. Since~$sv \less_B v \leqslant Dem(Q)$, then~$\alpha \in \mathcal{E}^+(sv, Dem(Q))$ and so~$\alpha \in \cone \Roots(I'_2)$.
+We can now apply \cite[proposition 3.14]{JahnStump} to~$I'_2$ the restriction of~$I_2$ to~$Q'$, which tells us that~$\mathcal{E}^+(sv, Dem(Q)) \subseteq \cone \Roots(I'_2)$. Since~$sv \less_B v \leqslant Dem(Q)$, then~$\alpha \in \mathcal{E}^+(sv, Dem(Q))$ and so~$\alpha \in \cone \Roots(I'_2)$.
 
 Going back to~$I_2$, we know that~$us(\Roots(I'_2)) \subseteq \Roots(I_2)$ and so~$us(\alpha) = -u(\alpha) = -\beta \in \cone \Roots(I_2)$.
 \end{proof}
