@@ -346,7 +346,6 @@ For example, \cref{fig:pipeDreams} illustrates an increasing flip from the left 
 %
 The \defn{increasing flip graph} is the graph of increasing flips on~$\pipeDreams(\omega)$.
 It is clearly a directed acyclic graph, and it has a unique source and a unique sink \cite{PilaudPocchiola}, called the \defn{greedy} and \defn{antigreedy} pipe dreams, and denoted~$\greedyPipeDream$ and~$\antiGreedyPipeDream$.
-\vincent{In \cite{PilaudStump-ELlabelings}, these are called positive and negative greedy facets. Also the notations are different...}
 The \defn{increasing flip poset} is the reflexive and transitive closure of the increasing flip graph on~$\pipeDreams(\omega)$.
 
 The \defn{contact graph} of a pipe dream~$P$ is the directed graph~$P\contact$ with one node for each pipe of~$P$ and one arc for each contact of~$P$ connecting the northwest pipe to the southeast pipe of the contact\footnote{We have reversed the usual orientation conventions of \cite{PilaudSantos-brickPolytope, PilaudPocchiola, Pilaud-brickAlgebra} to suit better our purposes, in particular in \cref{subsec:insertionAlgorithm}.}.
@@ -853,28 +852,43 @@ Finally, we describe the natural coarsening of the pipe dream congruence~$\equiv
 
 Our first algorithm to construct~$\insertion{\pi}{\omega}$ is a \defn{sweeping algorithm}, inspired by the algorithm to compute greedy pipe dreams~\cite{PilaudPocchiola, PilaudStump-ELlabelings}.
 An extension of this algorithm to subword complexes will be discussed in \cref{subsec:sweepingAlgorithmSubwordComplexes}, and appeared independently in~\cite{JahnStump}.
+We say that an order on the boxes of the triangular shape is \defn{northeast compatible} if each box~$b$ is before all boxes which are located weakly northeast of~$b$.
 
 \begin{proposition}
 \label{prop:sweepingAlgorithm}
-For any permutations~$\pi,\omega \in \fS_n$ such that~$\pi < \omega$ in weak order, the unique pipe dream~$P \in \acyclicPipeDreams(\omega)$ such that~$\pi \in \linearExtensions(P)$ can be constructed by sweeping the triangular shape in any perturbation of the northwest direction and placing a crossing when sweeping a vertex~$v$ of the grid where pipe~$i$ arrives horizontally and pipe~$j$ arrives vertically if and only if
+For any permutations~$\pi,\omega \in \fS_n$ such that~$\pi < \omega$ in weak order, the unique pipe dream~$P \in \acyclicPipeDreams(\omega)$ such that~$\pi \in \linearExtensions(P)$ can be constructed by sweeping the triangular shape in any northeast compatible order and placing a crossing when sweeping a vertex~$v$ of the grid where pipe~$i$ arrives horizontally and pipe~$j$ arrives vertically if and only if
 \begin{itemize}
 \item $i < j$ and~$\omega^{-1}(i) > \omega^{-1}(j)$, and 
 \item $\pi^{-1}(i) > \pi^{-1}(j)$ or vertex~$v$ lies in column~$\omega^{-1}(j)$.
 \end{itemize}
-See \cref{fig:sweepingAlgorithm}.
+See \cref{fig:sweepingAlgorithm1,fig:sweepingAlgorithm2}.
 \end{proposition}
 
 \begin{example}
 \label{exm:sweepingAlgorithm}
-\cref{fig:sweepingAlgorithm} illustrates the sweeping algorithm for the permutations~${\pi = 513264}$ and~${\omega = 561324}$.
+\cref{fig:sweepingAlgorithm1,fig:sweepingAlgorithm2} illustrate the sweeping algorithm for the exiting permutation ${\omega = 561324}$ and the input permutations~${\pi = 513264}$ and~${\pi = 512364}$ respectively.
 The algorithm has 15 steps, but we have grouped together steps $2$ to $9$ (second arrow) and steps $12$ to $13$ (fifth arrow) as they have the same justification.
-We place contacts in steps $1$, $10$, $12$, $13$ and~$15$ since~$\omega^{-1}(i) < \omega^{-1}(j)$, and in step~$14$ since~$i > j$.
-We place crossings in steps $2$ to $9$ since~$i < j$, $\omega^{-1}(i) > \omega^{-1}(j)$ and we are in the column~$\omega^{-1}(j)$, and in step $11$ since~$i < j$, $\omega^{-1}(i) > \omega^{-1}(j)$ and~$\pi^{-1}(i) > \pi^{-1}(j)$.
+For~${\pi = 513264}$ in \cref{fig:sweepingAlgorithm1}, we place 
+\begin{itemize}
+\item contacts at steps $1$, $10$, $12$, $13$ and~$15$ since~$\omega^{-1}(i) < \omega^{-1}(j)$, and at step~$14$ since~$i > j$,
+\item crossings at steps $2$ to $9$ since~$i < j$, $\omega^{-1}(i) > \omega^{-1}(j)$ and we are in the column~$\omega^{-1}(j)$, and at step $11$ since~$i < j$, $\omega^{-1}(i) > \omega^{-1}(j)$ and~$\pi^{-1}(i) > \pi^{-1}(j)$.
+\end{itemize}
+For~${\pi = 512364}$ in \cref{fig:sweepingAlgorithm2}, we make the same choices, except that we place 
+\begin{itemize}
+\item a contact at step~$11$ since~$\pi^{-1}(i) < \pi^{-1}(j)$ and we are not in column~$\omega^{-1}(j)$, 
+\item a crossing at step~$14$ since~$i < j$, $\omega^{-1}(i) > \omega^{-1}(j)$ and we are in the column~$\omega^{-1}(j)$.
+\end{itemize}
 %
 \begin{figure}[b]
-	\centerline{\includegraphics[scale=.9]{sweeping}}
+	\centerline{\includegraphics[scale=.9]{sweeping1}}
 	\caption{Sweeping algorithm for the permutations~$\pi = 513264$ and~$\omega = 561324$.} % See details in \cref{exm:sweepingAlgorithm}.}
-	\label{fig:sweepingAlgorithm}
+	\label{fig:sweepingAlgorithm1}
+\end{figure}
+%
+\begin{figure}[b]
+	\centerline{\includegraphics[scale=.9]{sweeping2}}
+	\caption{Sweeping algorithm for the permutations~$\pi = 512364$ and~$\omega = 561324$.} % See details in \cref{exm:sweepingAlgorithm}.}
+	\label{fig:sweepingAlgorithm2}
 \end{figure}
 \end{example}
 
@@ -911,18 +925,24 @@ Namely, it has a northeast elbow at row~$r_i$ and column~$c_i$ for each~$i \in [
 For any permutations~$\pi,\omega \in \fS_n$ such that~$\pi < \omega$ in weak order, the unique pipe dream~$P \in \acyclicPipeDreams(\omega)$ such that~$\pi \in \linearExtensions(P)$ can be constructed starting from the empty triangular shape and inserting the pipes~$\pi(1), \dots, \pi(n)$ one by one in the order of the permutation~$\pi$ as northwest as possible.
 More precisely, at step~$t$, we insert a pipe starting at row~$\pi(t)$, ending at column~$\omega^{-1}(\pi(t))$, and whose northeast elbows are precisely covering the staircase of currently free southeast elbows in the rectangle~$[\pi(t)] \times [\omega^{-1}(\pi(t))]$.
 %More precisely, at step~$t$, we consider the set~$X_t$ of free southeast elbows in the rectangle~$[\pi(t)] \times [\omega^{-1}(\pi(t))]$, and we insert a pipe starting at row~$\pi(t)$, ending at column~$\omega^{-1}(\pi(t))$, and whose northeast elbows are precisely covering the elbows of~$X_t$, and adding a new free southeast elbow in between any two consecutive elbows of~$X_t$
-See \cref{fig:insertionAlgorithm}.
+See \cref{fig:insertionAlgorithm1,fig:insertionAlgorithm2}.
 \end{proposition}
 
 \begin{example}
 \label{exm:insertionAlgorithm}
-\cref{fig:insertionAlgorithm} illustrates the insertion algorithm for the permutations~${\pi = 513264}$ and~${\omega = 561324}$.
+\cref{fig:insertionAlgorithm1,fig:insertionAlgorithm2} illustrate the insertion algorithm for the exiting permutation ${\omega = 561324}$ and the input permutations~${\pi = 513264}$ and~${\pi = 512364}$ respectively.
 For instance, when inserting the (green) pipe~$4$ in the last step, the currently free southeast elbows are the first southeast elbow of the (blue) pipe~$3$ and the two southeast elbows of the (purple) pipe~$2$.
 %
 \begin{figure}[b]
-	\centerline{\includegraphics[scale=.9]{insertion}}
+	\centerline{\includegraphics[scale=.9]{insertion1}}
 	\caption{Insertion algorithm for the permutations~$\pi = 513264$ and~$\omega = 561324$.}
-	\label{fig:insertionAlgorithm}
+	\label{fig:insertionAlgorithm1}
+\end{figure}
+%
+\begin{figure}[b]
+	\centerline{\includegraphics[scale=.9]{insertion2}}
+	\caption{Insertion algorithm for the permutations~$\pi = 512364$ and~$\omega = 561324$.}
+	\label{fig:insertionAlgorithm2}
 \end{figure}
 \end{example}
 
@@ -1181,7 +1201,7 @@ A \defn{reduced expression} of~$\omega$ is a product~$s_1 s_2 \dots s_\ell = \om
 This minimal~$\ell$ is the \defn{length} $\ell(\omega)$ of~$\omega$.
 The length of~$\omega$ coincides with the size of its inversion set~$\Inv(\omega)$ since $\Inv(\omega) \eqdef \{\alpha_{s_1}, s_1(\alpha_{s_2}), s_1s_2(\alpha_{s_3}), \dots, s_1s_2 \dots s_{\ell-1}(\alpha_{s_\ell})\}$.
 
-The \defn{weak order} on $W$ is the partial order $\le$ defined by $\sigma \leq \omega$ if there exists $\tau \in S$  such that $\sigma\tau = \omega$ and $\ell(\sigma) + \ell(\tau) = \ell(\omega)$.
+The \defn{weak order} on $W$ is the partial order $\le$ defined by $\sigma \leq \omega$ if there exists $\tau \in W$  such that $\sigma\tau = \omega$ and $\ell(\sigma) + \ell(\tau) = \ell(\omega)$.
 In other words, the element $\omega$ has a reduced expression with a prefix which is a reduced expression of $\sigma$.
 Equivalently, the weak order corresponds to the inclusion order on inversion sets, that is $\sigma \leq \omega$ if and only if $\Inv(\sigma) \subseteq \Inv(\omega)$.
 This order defines a lattice structure on the elements of~$W$.
