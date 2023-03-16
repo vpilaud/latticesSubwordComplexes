@@ -72,6 +72,7 @@
 \newcommand{\I}{\mathbb{I}} % set of integers
 \newcommand{\C}{\mathbb{C}} % set of summands
 \renewcommand{\b}[1]{\boldsymbol{#1}} % bold
+\newcommand{\cal}[1]{\mathcal{#1}} % cal
 
 % math commands
 \newcommand{\set}[2]{\left\{ #1 \;\middle|\; #2 \right\}} % set notation
@@ -1294,15 +1295,15 @@ In particular, the acyclic facets of~$\subwordComplex(Q, \omega)$ correspond to 
 \end{example}
 
 \begin{example}
-\vincent{todo: Introduce here quickly pseudoline arrangements on sorting networks and their contact graphs.}
+More generally, for the type~$A_n$ Coxeter system, the word~$Q$ can be represented by a sorting network~$\cal{N}$, a facet~$I$ of the subword complex~$\subwordComplex(Q,w)$ can be represented by a pseudoline arrangement~$P_I$ on the network~$\cal{N}$, and the root configuration~$\Roots(I)$ is again the incidence configuration of the contact graph of~$P_I$.
+We refer to~\cite{PilaudPocchiola, PilaudSantos-brickPolytope, PilaudStump-brickPolytope} for details of this representation and use it in \cref{fig:subwordComplex1,fig:subwordComplex2,fig:subwordComplex3,fig:subwordComplex4,fig:subwordComplex5}.
 \end{example}
 
 \begin{example}
 For any finite Coxeter group~$W$ and any Coxeter element~$c \in W$ (a product of all generators of~$S$ in a given arbitrary order), let~$\wo(c)$ denote the $c$-sorting word of~$\wo$ (the lexicographically minimal reduced expression for~$\wo$ in~$c^\infty$, see \cite{Reading-CambrianLattices} for details).
 Extending the observation of \cref{exm:Tamari1}, it was shown in~\cite{CeballosLabbeStump} that the subword complex~$\subwordComplex(c\wo(c), \wo)$ is isomorphic to the cluster complex of type~$W$.
 In particular, the increasing flip graph is the Hasse diagram of the $c$-Cambrian lattice of~\cite{Reading-CambrianLattices}.
-See \cref{fig:increasingFlipPosets}\,(left) for an example with~$c = \tau_2\tau_1\tau_3$ in type~$A_3$.
-See also \cref{fig:subwordComplex1}.
+See \cref{fig:increasingFlipPosets}\,(left) and \cref{fig:subwordComplex1} for an example with~$c = \tau_2\tau_1\tau_3$ in type~$A_3$.
 \end{example}
 
 \begin{example}
@@ -1310,8 +1311,8 @@ See also \cref{fig:subwordComplex1}.
 In contrast to the previous example, we have already seen in \cref{rem:increasingFlipPosetNotLattice,rem:acyclicIncreasingFlipPosetNotLattice} that neither the increasing flip poset on all facets, nor its subposet induced by the acyclic facets, are lattices in general, even in type~$A$ and even for pipe dreams.
 Here is another example in type~$A$, but in a case where all facets are actually acyclic.
 Consider the word~$Q = \tau_1 \tau_2 \tau_3 \tau_2 \tau_1 \tau_2 \tau_3 \tau_2 \tau_1$ on the simple generators of the symmetric group~$\fS_4$ and the subword complex~$\subwordComplex(Q,\wo)$.
-The increasing flip lattice of this subword complex is represented in \cref{fig:increasingFlipPosets}, and the highlighted facets in blue and red show that it is not a lattice (this was observed in~\cite[Rem.~5.12]{PilaudStump-brickPolytope}).
-See also \cref{fig:subwordComplex3}.
+The increasing flip lattice of this subword complex is represented in \cref{fig:increasingFlipPosets}\,(right) and \cref{fig:subwordComplex3}.
+In \cref{fig:increasingFlipPosets}\,(right), we have highlighted two blue facets which have no join and two red facets which have no meet, proving that it is not a lattice (this was observed in~\cite[Rem.~5.12]{PilaudStump-brickPolytope}).
 %
 \begin{figure}[t]
 	\centerline{
@@ -1386,7 +1387,7 @@ See also \cref{fig:subwordComplex3}.
 	\draw (679)--(789);
 	\end{tikzpicture}
 	}
-	\caption{The increasing flip graph on~$\subwordComplex(Q, \wo)$ where~$Q = \tau_2 \tau_1 \tau_3 \tau_2 \tau_1 \tau_3 \tau_2 \tau_1 \tau_3$ (left) and~$Q = \tau_1 \tau_2 \tau_3 \tau_2 \tau_1 \tau_2 \tau_3 \tau_2 \tau_1$ (right). The left one is the $\tau_2 \tau_1 \tau_3$-Cambrian lattice, while the right one is not a lattice (the two facets highlighted in blue have no join while the two facets highlighted in red have no meet). In both examples, all facets are acyclic.}
+	\caption{The increasing flip graph on~$\subwordComplex(Q, \wo)$ where~$Q = \tau_2 \tau_1 \tau_3 \tau_2 \tau_1 \tau_3 \tau_2 \tau_1 \tau_3$ (left) and~$Q = \tau_1 \tau_2 \tau_3 \tau_2 \tau_1 \tau_2 \tau_3 \tau_2 \tau_1$ (right) in type~$A_3$. The left one is the $\tau_2 \tau_1 \tau_3$-Cambrian lattice, while the right one is not a lattice (the two facets highlighted in blue have no join while the two facets highlighted in red have no meet). In both examples, all facets are acyclic.}
 	\label{fig:increasingFlipPosets}
 \end{figure}
 \end{example}
@@ -1492,21 +1493,33 @@ Then
 
 \begin{example}
 We have represented $5$ examples in \cref{fig:subwordComplex1,fig:subwordComplex2,fig:subwordComplex3,fig:subwordComplex4,fig:subwordComplex5}.
-The first $3$ use~$\omega = \wo$ and are spherical subword complexes (their brick polytopes are represented in \cref{fig:brickPolytope1,fig:brickPolytope2,fig:brickPolytope3}), while the last $2$ do not.
+The last $3$ use~$\omega = \wo$ and are spherical subword complexes (their brick polytopes are represented in \cref{fig:brickPolytope1,fig:brickPolytope2,fig:brickPolytope3}), while the first $2$ do not.
+%
+\begin{figure}[p]
+	\centerline{\includegraphics[scale=.7]{subwordComplex4}}
+	\caption{The subword complex equivalence (left) and the acyclic increasing flip graph (right) for~$Q = \tau_2 \tau_3 \tau_1 \tau_3 \tau_2 \tau_1 \tau_2 \tau_3 \tau_1$ and~$w = \tau_2 \tau_3 \tau_1 \tau_2 \tau_3 = 3421$ in type~$A_3$. Note that the sets~$\linearExtensions(I)$ (blue bulles) are not always intervals.}
+	\label{fig:subwordComplex4}
+\end{figure}
+%
+\begin{figure}[p]
+	\centerline{\includegraphics[scale=.7]{subwordComplex5}}
+	\caption{The subword complex equivalence (left) and the acyclic increasing flip graph (right) for~$Q = \tau_3 \tau_4 \tau_1 \tau_3 \tau_2 \tau_4 \tau_1 \tau_2$ and~$w = \tau_3 \tau_4 \tau_1 \tau_2 = 24153$ in type~$A_4$. Note that the sets~$\linearExtensions(I)$ (blue bubbles) are not always subsets of, and may even not meet~$[e,\omega]$ (green bubble).}
+	\label{fig:subwordComplex5}
+\end{figure}
 %
 \hvFloat[floatPos=p, capWidth=h, capPos=r, capAngle=90, objectAngle=90, capVPos=c, objectPos=c]{figure}
 {\includegraphics[scale=.6]{subwordComplex1}}
-{For~$Q = \tau_2 \tau_1 \tau_3 \tau_2 \tau_1 \tau_3 \tau_2 \tau_1 \tau_3$ and~$\omega = \wo$, the subword complex equivalence is a lattice congruence (left) so that the increasing flip poset is a lattice (right). It is actually the $\tau_2\tau_1\tau_3$-Cambrian lattice. The blue bubbles represent the classes of the pipe dream congruence. For each facet of the subword complex, we have represented the corresponding pseudoline arrangement on the sorting network, and the corresponding contact graph. Note that all facets are acyclic in this case.}
+{For~$Q = \tau_2 \tau_1 \tau_3 \tau_2 \tau_1 \tau_3 \tau_2 \tau_1 \tau_3$ and~$\omega = \wo = 4321$ in type~$A_3$, the subword complex equivalence is a lattice congruence (left) so that the increasing flip poset is a lattice (right). See also~\cref{fig:increasingFlipPosets}\,(left) It is actually the $\tau_2\tau_1\tau_3$-Cambrian lattice in type~$A_3$. The blue bubbles represent the classes of the pipe dream congruence. For each facet of the subword complex, we have represented the corresponding pseudoline arrangement on the sorting network, and the corresponding contact graph. Note that all facets are acyclic in this case.}
 {fig:subwordComplex1}
 %
 \hvFloat[floatPos=p, capWidth=h, capPos=r, capAngle=90, objectAngle=90, capVPos=c, objectPos=c]{figure}
 {\includegraphics[scale=.7]{subwordComplex2}}
-{For~$Q = \tau_2 \tau_3 \tau_1 \tau_3 \tau_2 \tau_1 \tau_2 \tau_3 \tau_1$ and~$\omega = \wo$, the subword complex equivalence is not a lattice congruence (left) but the increasing flip poset is a lattice (right). The blue bubbles represent the classes of the pipe dream congruence. For each facet of the subword complex, we have represented the corresponding pseudoline arrangement on the sorting network, and the corresponding contact graph. Note that all facets are acyclic in this case.}
+{For~$Q = \tau_2 \tau_3 \tau_1 \tau_3 \tau_2 \tau_1 \tau_2 \tau_3 \tau_1$ and~$\omega = \wo = 4321$ in type~$A_3$, the subword complex equivalence is not a lattice congruence (left) but the increasing flip poset is a lattice (right). The blue bubbles represent the classes of the pipe dream congruence. For each facet of the subword complex, we have represented the corresponding pseudoline arrangement on the sorting network, and the corresponding contact graph. Note that all facets are acyclic in this case.}
 {fig:subwordComplex2}
 %
 \hvFloat[floatPos=p, capWidth=h, capPos=r, capAngle=90, objectAngle=90, capVPos=c, objectPos=c]{figure}
 {\includegraphics[scale=.7]{subwordComplex3}}
-{For~$Q = \tau_1 \tau_2 \tau_3 \tau_2 \tau_1 \tau_2 \tau_3 \tau_2 \tau_1$ and~$\omega = \wo$, the subword complex equivalence is not a lattice congruence (left) and the increasing flip poset is not a lattice (right). The blue bubbles represent the classes of the pipe dream congruence. For each facet of the subword complex, we have represented the corresponding pseudoline arrangement on the sorting network, and the corresponding contact graph. Note that all facets are acyclic in this case.}
+{For~$Q = \tau_1 \tau_2 \tau_3 \tau_2 \tau_1 \tau_2 \tau_3 \tau_2 \tau_1$ and~$\omega = \wo = 4321$ in type~$A_3$, the subword complex equivalence is not a lattice congruence (left) and the increasing flip poset is not a lattice (right). See also~\cref{fig:increasingFlipPosets}\,(right). The blue bubbles represent the classes of the pipe dream congruence. For each facet of the subword complex, we have represented the corresponding pseudoline arrangement on the sorting network, and the corresponding contact graph. Note that all facets are acyclic in this case.}
 {fig:subwordComplex3}
 \end{example}
 
@@ -1515,29 +1528,8 @@ The first $3$ use~$\omega = \wo$ and are spherical subword complexes (their bric
 Before proving it, we would like to make the following remarks about theorem.
 \begin{enumerate}
 \item While the sets~$\linearExtensions(I)$ are order convex, they may not be intervals. See \cref{fig:subwordComplex2,fig:subwordComplex4} (the example of \cref{fig:subwordComplex2} is borrowed from~\cite[Figure~9]{PilaudStump-brickPolytope}).
-%
-\begin{figure}[p]
-	\centerline{\includegraphics[scale=.8]{subwordComplex4}}
-	\caption{The sets~$\linearExtensions(I)$ (blue bulles) are not always intervals.}
-	\label{fig:subwordComplex4}
-\end{figure}
-
 \item The lower set~$\linearExtensions(Q,\omega)$ may have more than one maximal element, and~$\omega$ is not necessarily maximal in~$\linearExtensions(Q,\omega)$. See \cref{fig:subwordComplex5}.
-
 \item Some of the sets~$\linearExtensions(I)$ may not be included in, nor even meet~$[e,\omega]$. See \cref{fig:subwordComplex5}.
-%
-%\begin{figure}[h]
-%	\includegraphics[width=0.52\textwidth]{interval_not_contained1} \quad
-%	\includegraphics[width=0.43\textwidth]{interval_not_contained2}
-%	\caption{A facet of a subword complex~$\subwordComplex(Q, \omega)$ whose linear extensions all lie outside the interval~$[e, \omega]$.}
-%	\label{fig:outOfInterval}
-%\end{figure}
-%
-\begin{figure}[p]
-	\centerline{\includegraphics[scale=.8]{subwordComplex5}}
-	\caption{The sets~$\linearExtensions(I)$ (blue bubbles) are not always subsets of, and may even not meet~$[e,\omega]$ (green bubble).}
-	\label{fig:subwordComplex5}
-\end{figure}
 \end{enumerate}
 Note that \cref{fig:subwordComplex4,fig:subwordComplex5} represent type~$A$ subword complexes.
 As in~\cite{PilaudPocchiola, PilaudSantos-brickPolytope, PilaudStump-brickPolytope}, we thus use pseudoline arrangements on sorting networks to represent their facets (and we have represented their contact graphs together).
@@ -1569,74 +1561,77 @@ and so $\tau \in \linearExtensions(I)$.
 Let $\pi \in \linearExtensions(I)$ for some facet $I$.
 We need to show that if $\pi' < \pi$ then there exist another facet $I'$ such that $\pi' \in \linearExtensions(I')$.
 It is enough to show this when $\pi = \pi's$ for some descent~$s$ of~$\pi$ (\ie some $s\in S$ such that $\ell(\pi') < \ell(\pi)$).
+Define~$\beta=\pi'(\alpha_s)$ and observe that~$s_\beta$ preserves the set~$\pi'(\Phi^+) \ssm \{\beta\} = \pi(\Phi^+) \ssm \{-\beta\} = \pi(\Phi^+) \cap \pi'(\Phi^+)$.
+
+%Now,
+%\[
+%\pi(\Phi^+)= -\Inv(\pi)\sqcup \Ninv(\pi)
+%\]
+%and 
+%\[
+%\Inv(\pi') =\Inv(\pi) \ssm \{\beta\}
+%\qquad\text{and}\qquad
+%\Ninv(\pi') = \Ninv(\pi) \cup \{\beta\}
+%\]
+%for $\beta=\pi'(\alpha_s)$.
+%Therefore,
+%\begin{align*}
+%\pi'(\Phi^+) = \pi(\Phi^+) \ssm \{-\beta\} \cup \{\beta\}.
+%\end{align*}
+%%
+%%\begin{center}
+%%\begin{tikzpicture}
+%%\coordinate (a) at (0,0);
+%%\coordinate (b) at (0:2);
+%%\coordinate (c) at (60:2);
+%%\coordinate (d) at (120:2);
+%%\coordinate (e) at (180:2);
+%%\draw (b) node[right] {$\beta$};
+%%\draw (e) node[left] {$-\beta$};
+%%%
+%%\path[fill=green!20] (0,0) --  (60:2) arc(60:180:2) -- cycle;
+%%%
+%%\draw[-stealth,dashed] (a) -- (b);
+%%\draw[-stealth] (a) -- (c);
+%%% \draw[-stealth] (a) -- (d);
+%%\draw[-stealth] (a) -- (e);
+%%\node at (120:1) {$\pi(\Phi^+)$};
+%%\end{tikzpicture} 
+%%%
+%%\qquad
+%%%
+%%\begin{tikzpicture}
+%%\coordinate (a) at (0,0);
+%%\coordinate (b) at (0:2);
+%%\coordinate (c) at (60:2);
+%%\coordinate (d) at (120:2);
+%%\coordinate (e) at (180:2);
+%%\draw (b) node[right] {$\beta$};
+%%\draw (e) node[left] {$-\beta$};
+%%%
+%%\path[fill=green!20] (0,0) -- (0:2) arc(0:120:2)  -- cycle;
+%%%
+%%\draw[-stealth] (a) -- (b);
+%%% \draw[-stealth] (a) -- (c);
+%%\draw[-stealth] (a) -- (d);
+%%\draw[-stealth,dashed] (a) -- (e);
+%%\node at (60:1) {$\pi'(\Phi^+)$};
+%%\end{tikzpicture} 
+%%\end{center}
+%%%
+%Note that the reflection $s_\beta=\pi's\pi'^{-1}$ orthogonal to the root $\beta$ transforms $\pi(\Phi^+)$ and $\pi'(\Phi^+)$ into each other:
+%\[
+%s_\beta(\pi(\Phi^+))=\pi'(\Phi^+).
+%\]
+%Since $s_\beta(\beta)= -\beta$, then $s_\beta$ preserves the set 
+%\[
+%\pi(\Phi^+) \ssm \{-\beta\} = \pi'(\Phi^+) \ssm \{\beta\} = \pi(\Phi^+) \cap \pi'(\Phi^+).
+%\]
+%This observation will be useful to prove the statement in the second of the following two cases.
 
 By definition, $\pi \in \linearExtensions(I)$ if and only if $\Roots(I) \subseteq \pi(\Phi^+)$.
-Now,
-\[
-\pi(\Phi^+)= -\Inv(\pi)\sqcup \Ninv(\pi)
-\]
-and 
-\[
-\Inv(\pi') =\Inv(\pi) \ssm \{\beta\}
-\qquad\text{and}\qquad
-\Ninv(\pi') = \Ninv(\pi) \cup \{\beta\}
-\]
-for $\beta=\pi'(\alpha_s)$.
-Therefore,
-\begin{align*}
-\pi'(\Phi^+) = \pi(\Phi^+) \ssm \{-\beta\} \cup \{\beta\}.
-\end{align*}
-
-\begin{center}
-\begin{tikzpicture}
-\coordinate (a) at (0,0);
-\coordinate (b) at (0:2);
-\coordinate (c) at (60:2);
-\coordinate (d) at (120:2);
-\coordinate (e) at (180:2);
-\draw (b) node[right] {$\beta$};
-\draw (e) node[left] {$-\beta$};
-%
-\path[fill=green!20] (0,0) --  (60:2) arc(60:180:2) -- cycle;
-%
-\draw[-stealth,dashed] (a) -- (b);
-\draw[-stealth] (a) -- (c);
-% \draw[-stealth] (a) -- (d);
-\draw[-stealth] (a) -- (e);
-\node at (120:1) {$\pi(\Phi^+)$};
-\end{tikzpicture} 
-%
-\qquad
-%
-\begin{tikzpicture}
-\coordinate (a) at (0,0);
-\coordinate (b) at (0:2);
-\coordinate (c) at (60:2);
-\coordinate (d) at (120:2);
-\coordinate (e) at (180:2);
-\draw (b) node[right] {$\beta$};
-\draw (e) node[left] {$-\beta$};
-%
-\path[fill=green!20] (0,0) -- (0:2) arc(0:120:2)  -- cycle;
-%
-\draw[-stealth] (a) -- (b);
-% \draw[-stealth] (a) -- (c);
-\draw[-stealth] (a) -- (d);
-\draw[-stealth,dashed] (a) -- (e);
-\node at (60:1) {$\pi'(\Phi^+)$};
-\end{tikzpicture} 
-\end{center}
-%
-Note that the reflection $s_\beta=\pi's\pi'^{-1}$ orthogonal to the root $\beta$ transforms $\pi(\Phi^+)$ and $\pi'(\Phi^+)$ into each other:
-\[
-s_\beta(\pi(\Phi^+))=\pi'(\Phi^+).
-\]
-Since $s_\beta(\beta)= -\beta$, then $s_\beta$ preserves the set 
-\[
-\pi(\Phi^+) \ssm \{-\beta\} = \pi'(\Phi^+) \ssm \{\beta\} = \pi(\Phi^+) \cap \pi'(\Phi^+).
-\]
-This observation will be useful to prove the statement in the second of the following two cases.
-\vincent{I believe we could shorten all this discussion. Also the picture is not really useful.}
+We now define a new facet $I'$ such that $\pi' \in \linearExtensions(I')$.
+We distinguish two cases, depending on whether or not~$-\beta \in \Roots(I)$.
 
 \medskip
 \paragraph{\bf Case 1:} $-\beta \notin \Roots(I)$.
@@ -1806,7 +1801,7 @@ We can thus now define the analogue of the pipe dream congruence of \cref{def:pi
 
 \begin{definition}
 \label{def:pipeDreamCongruenceSubwordComplexes}
-For a non-empty subword complex $\subwordComplex(Q,\omega)$, the \defn{subword complex equivalence} is the equivalence relation~$\equiv_{Q,\omega}$ on the interval~$[e, \omega]$  whose equivalence classes are the sets~$\strongLinearExtensions(I)$ of linear extensions of strongly acyclic facets~$I$ of~$\subwordStronglyAcyclicFacets(Q, \omega)$.
+For a non-empty subword complex $\subwordComplex(Q,\omega)$, the \defn{subword complex equivalence} is the equivalence relation~$\equiv_{Q,\omega}$ on the interval~$[e, \omega]$  whose equivalence classes are the sets~$\strongLinearExtensions(I)$ for all strongly acyclic facets~$I$ of~$\subwordStronglyAcyclicFacets(Q, \omega)$.
 In other words, $\pi \equiv_{Q,\omega} \pi'$ if and only if $\pi$ and $\pi'$ are linear extensions of the same facet.  
 \end{definition}
 
@@ -1922,13 +1917,13 @@ We just need to know here that the brick polyhedron~$\brickPolyhedron(Q, \omega)
 \item a vertex for each acyclic facet of~$\subwordAcyclicFacets(Q, \omega)$, and
 \item an edge for each extremal flip between two acyclic facets,
 \end{itemize}
-and that the graph of extremal increasing flips on acyclic facets is isomorphic to the finite part (meaning forgetting the unbounded rays) of the graph of the brick polyhedron~$\brickPolyhedron(Q, \omega)$ oriented in a suitable direction~$\delta$.
+and that the graph of extremal increasing flips on acyclic facets is isomorphic to the bounded graph (meaning forgetting the unbounded rays) of the brick polyhedron~$\brickPolyhedron(Q, \omega)$ oriented in a suitable direction~$\delta$.
 This can be derived from \cite[Thm.~4.4]{JahnStump}.
 \cref{conj:latticeQuotientSortingAlternating} can thus be translated geometrically as follows.
 
 \begin{conjecture}
 \label{conj:latticeQuotientSortingAlternatingBrickPolyhedra}
-If~$Q$ is sorting and alternating, then the finite part of the oriented graph of the brick polyhedron~$\brickPolyhedron(Q, \omega)$ is isomorphic to the Hasse diagram of the lattice quotient~$[e, \omega]/\equiv_{Q, \omega}$.
+If~$Q$ is sorting and alternating, then the bounded oriented graph of the brick polyhedron~$\brickPolyhedron(Q, \omega)$ is isomorphic to the Hasse diagram of the lattice quotient~$[e, \omega]/\equiv_{Q, \omega}$.
 \end{conjecture}
 
 In particular, specializing this conjecture to the brick polytopes~\cite{PilaudSantos-brickPolytope, PilaudStump-brickPolytope} for which~$\omega = \wo$, we obtain our last conjecture, intended to extend the results of~\cite{Pilaud-brickAlgebra}.
@@ -1944,43 +1939,33 @@ They are also supported by computer experiments: we verified \cref{conj:latticeC
 \end{remark}
 
 \begin{example}
-\vincent{todo: explain}
+We have illustrated in \cref{fig:brickPolytope1,fig:brickPolytope2,fig:brickPolytope3} the brick polytopes of the subword complexes represented in \cref{fig:subwordComplex1,fig:subwordComplex2,fig:subwordComplex3}.
+Note that the oriented graph (from bottom to top) defines a lattice in \cref{fig:brickPolytope1,fig:brickPolytope2} but not in \cref{fig:brickPolytope3}.
+%
 \begin{figure}[p]
 	\centerline{\input{figures/brickPolytope1}}
-	\caption{The brick polytope of the subword complexe...}
+	\caption{The brick polytope of~$\subwordComplex(Q,\wo)$ where~$Q = \tau_2 \tau_1 \tau_3 \tau_2 \tau_1 \tau_3 \tau_2 \tau_1 \tau_3$ in type~$A_3$. Its graph, oriented from bottom to top is the lattice of \cref{fig:increasingFlipPosets}\,(left) and \cref{fig:subwordComplex1}. This is actually the $c$-associahedron and the $c$-Cambrian lattice for the Coxeter element~$c = \tau_2\tau_1\tau_3$ of type~$A_3$.}
 	\label{fig:brickPolytope1}
 \end{figure}
 %
 \begin{figure}[p]
 	\centerline{\input{figures/brickPolytope2}}
-	\caption{The brick polytope of the subword complexe...}
+	\caption{The brick polytope of~$\subwordComplex(Q,\wo)$ where~$Q = \tau_2 \tau_3 \tau_1 \tau_3 \tau_2 \tau_1 \tau_2 \tau_3 \tau_1$ in type~$A_3$. Its graph, oriented from bottom to top is the lattice of \cref{fig:subwordComplex2}, but it is not obtained as a lattice quotient of the weak order.}
 	\label{fig:brickPolytope2}
 \end{figure}
 %
 \begin{figure}[p]
 	\centerline{\input{figures/brickPolytope3}}
-	\caption{The brick polytope of the subword complexe...}
+	\caption{The brick polytope of~$\subwordComplex(Q,\wo)$ where~$Q = \tau_1 \tau_2 \tau_3 \tau_2 \tau_1 \tau_2 \tau_3 \tau_2 \tau_1$ in type~$A_3$. Its graph, oriented from bottom to top is the poset of \cref{fig:increasingFlipPosets}\,(right) and \cref{fig:subwordComplex3}, which is not a lattice.}
 	\label{fig:brickPolytope3}
 \end{figure}
 \end{example}
 
-\vincent{I want to delete the remaining of this section, but I want to discuss it with Cesar.}
-
-\nantel{to be honest, I find that the paper ends well here, the rest should be part of a paper by No\'emie alone?}
-
-As we have seen in \cref{cor_acyclicpipedreams_lattice}, the increasing flip poset of acyclic pipe dreams of any permutation $\omega$ is a lattice, because it is isomorphic to the lattice quotient~$[e,\omega]/\equiv_\omega$.
-This motivates the following open question for subword complexes.
-
-\begin{question}
-Let $\subwordComplex(Q,\omega)$ be a non-empty subword complex.
-Is the restriction of the increasing flip poset of $\subwordComplex(Q,\omega)$ to the set of acyclic facets a lattice?    
-\end{question}
-
-As pointed out in \cref{rem_acyclicflipposet_not_latticequotient},  we can not expect~$[e,\omega]/\equiv_{Q,\omega}$ to be isomorphic to the restriction of the increasing flip poset of $\subwordComplex(Q,\omega)$ to the set of acyclic facets.
-\cref{exm:acyclicFlipvsWeakOrder} shows that there are flips between acyclic facets that are not detected by the week order.
-One could expect that there is a natural restriction to a special class of flips that behave nicer, meaning that all of them are identified by the quotient~$[e,\omega]/\equiv_{Q,\omega}$.
-In our \cref{exm:acyclicFlipvsWeakOrder}, the generalized Chute moves from~\cite{Rubey} do the job, because the flip that is not detected by the week order is exactly the one flip which is not Chute.
-The Chute lattice conjecture~\cite[Conjecture~2.8]{Rubey} might be an indication that this is the right direction to look at.
+%As pointed out in \cref{rem_acyclicflipposet_not_latticequotient},  we can not expect~$[e,\omega]/\equiv_{Q,\omega}$ to be isomorphic to the restriction of the increasing flip poset of $\subwordComplex(Q,\omega)$ to the set of acyclic facets.
+%\cref{exm:acyclicFlipvsWeakOrder} shows that there are flips between acyclic facets that are not detected by the week order.
+%One could expect that there is a natural restriction to a special class of flips that behave nicer, meaning that all of them are identified by the quotient~$[e,\omega]/\equiv_{Q,\omega}$.
+%In our \cref{exm:acyclicFlipvsWeakOrder}, the generalized Chute moves from~\cite{Rubey} do the job, because the flip that is not detected by the week order is exactly the one flip which is not Chute.
+%The Chute lattice conjecture~\cite[Conjecture~2.8]{Rubey} might be an indication that this is the right direction to look at.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
