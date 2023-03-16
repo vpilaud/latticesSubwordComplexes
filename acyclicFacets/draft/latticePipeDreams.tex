@@ -393,7 +393,7 @@ An important point here is that all reversing pipe dreams are acyclic, since the
 \begin{remark}
 \label{rem:increasingFlipPosetNotLattice}
 In contrast to \cref{exm:Tamari1}, the increasing flip poset on all pipe dreams of~$\pipeDreams(\omega)$ is not always a lattice.
-The first counter-example happens for the exiting permutation~${\omega = 1243}$.
+The first counter-example happens for the exiting permutation~${\omega = 12543}$.
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1295,6 +1295,7 @@ In particular, the acyclic facets of~$\subwordComplex(Q, \omega)$ correspond to 
 \end{example}
 
 \begin{example}
+\label{exm:sortingNetworks}
 More generally, for the type~$A_n$ Coxeter system, the word~$Q$ can be represented by a sorting network~$\cal{N}$, a facet~$I$ of the subword complex~$\subwordComplex(Q,w)$ can be represented by a pseudoline arrangement~$P_I$ on the network~$\cal{N}$, and the root configuration~$\Roots(I)$ is again the incidence configuration of the contact graph of~$P_I$.
 We refer to~\cite{PilaudPocchiola, PilaudSantos-brickPolytope, PilaudStump-brickPolytope} for details of this representation and use it in \cref{fig:subwordComplex1,fig:subwordComplex2,fig:subwordComplex3,fig:subwordComplex4,fig:subwordComplex5}.
 \end{example}
@@ -1494,6 +1495,7 @@ Then
 \begin{example}
 We have represented $5$ examples in \cref{fig:subwordComplex1,fig:subwordComplex2,fig:subwordComplex3,fig:subwordComplex4,fig:subwordComplex5}.
 The last $3$ use~$\omega = \wo$ and are spherical subword complexes (their brick polytopes are represented in \cref{fig:brickPolytope1,fig:brickPolytope2,fig:brickPolytope3}), while the first $2$ do not.
+We use the representation of the facets as pseudoline arrangements on sorting networks, see \cref{exm:sortingNetworks}.
 %
 \begin{figure}[p]
 	\centerline{\includegraphics[scale=.7]{subwordComplex4}}
@@ -1531,8 +1533,8 @@ Before proving it, we would like to make the following remarks about theorem.
 \item The lower set~$\linearExtensions(Q,\omega)$ may have more than one maximal element, and~$\omega$ is not necessarily maximal in~$\linearExtensions(Q,\omega)$. See \cref{fig:subwordComplex5}.
 \item Some of the sets~$\linearExtensions(I)$ may not be included in, nor even meet~$[e,\omega]$. See \cref{fig:subwordComplex5}.
 \end{enumerate}
-Note that \cref{fig:subwordComplex4,fig:subwordComplex5} represent type~$A$ subword complexes.
-As in~\cite{PilaudPocchiola, PilaudSantos-brickPolytope, PilaudStump-brickPolytope}, we thus use pseudoline arrangements on sorting networks to represent their facets (and we have represented their contact graphs together).
+%Note that \cref{fig:subwordComplex4,fig:subwordComplex5} represent type~$A$ subword complexes.
+%As in~\cite{PilaudPocchiola, PilaudSantos-brickPolytope, PilaudStump-brickPolytope}, we thus use pseudoline arrangements on sorting networks to represent their facets (and we have represented their contact graphs together).
 \end{remark}
 
 We will now prove the four points of \cref{thm:linearExtensionsPartitionSubwordComplexA} one by one.
