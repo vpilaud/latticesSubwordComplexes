@@ -310,7 +310,7 @@ If~$Q$ is sorting and alternating, then the Hasse diagram of the quotient~$[e, \
 \end{conjectureA}
 
 This last conjecture has a strong connection to the geometry of subword complexes given by brick polytopes~\cite{PilaudSantos-brickPolytope, PilaudStump-brickPolytope} and brick polyhedra~\cite{JahnStump}.
-Namely, the extremal increasing flips between acyclic facets of~$\subwordComplex(Q, \omega)$ are precisely the edges of the bounded part (meaning forgetting the unbounded rays) of the brick polyhedron~$\brickPolyhedron(Q, \omega)$ oriented by a natural linear functional.
+Namely, the extremal increasing flips between acyclic facets of~$\subwordComplex(Q, \omega)$ are precisely the bounded edges (meaning forgetting the unbounded rays) of the brick polyhedron~$\brickPolyhedron(Q, \omega)$ oriented by a natural linear functional.
 \cref{conj:C} thus translates geometrically to the following.
 
 \begin{conjectureA}
@@ -779,7 +779,7 @@ This example is minimal.
 \begin{figure}[ht]
 	\centerline{\includegraphics[scale=1.2]{counterExampleRestrictionIncreasingFlipPoset}}
 	\caption{Two acyclic pipe dreams in~$\acyclicPipeDreams(126543)$ connected by a sequence of increasing flips in~$\pipeDreams(126543)$ but by no sequence of increasing flips in~$\acyclicPipeDreams(126543)$.
-	The restriction of the increasing flip poset on~$\pipeDreams(126543)$ to the set of acyclic facets~$\acyclicPipeDreams(126543)$ is not a lattice. But, the poset induced by increasing flips between acyclic facets in~$\acyclicPipeDreams(126543)$ is a lattice (Theorem~\ref{thm:pipeDreamQuotient}).}
+	The restriction of the increasing flip poset on~$\pipeDreams(126543)$ to the set of acyclic facets~$\acyclicPipeDreams(126543)$ is not a lattice. But, the poset induced by increasing flips between acyclic facets in~$\acyclicPipeDreams(126543)$ is a lattice (\cref{thm:pipeDreamQuotient}).}
 	\label{fig:counterExampleRestrictionIncreasingFlipPoset}
 \end{figure}
 \end{remark}
@@ -872,7 +872,7 @@ Finally, we describe the natural coarsening of the pipe dream congruence~$\equiv
 
 Our first algorithm to construct~$\insertion{\pi}{\omega}$ is a \defn{sweeping algorithm}, inspired by the algorithm to compute greedy pipe dreams~\cite{PilaudPocchiola, PilaudStump-ELlabelings}.
 An extension of this algorithm to subword complexes will be discussed in \cref{subsec:sweepingAlgorithmSubwordComplexes}, and a related algorithm appeared independently in~\cite{JahnStump}.
-We say that a box~$b'$ is located \defn{weakly northeast} of a box~$b$, if the vector connecting the center of $b$ to the center of $b'$ is a vector in $\mathbb{R}^2_{\geq 0}$ (with non-negative real entries). 
+%We say that a box~$b'$ is located \defn{weakly northeast} of a box~$b$, if the vector connecting the center of $b$ to the center of $b'$ is a vector in $\mathbb{R}^2_{\geq 0}$ (with non-negative real entries). 
 We say that an order on the boxes of the triangular shape is \defn{northeast compatible} if each box~$b$ is before all boxes which are located weakly northeast of~$b$.
 
 \begin{proposition}
@@ -1546,8 +1546,8 @@ Before proving it, we would like to make the following remarks about theorem.
 \end{remark}
 
 \begin{remark}
-We remark that the set~$\linearExtensions(Q,\omega)$ of linear extensions has been considered independently in the work on brick polyhedra by Jahn and Stump in~\cite{JahnStump}. In particular,~$\linearExtensions(Q,\omega)$ is completely characterized using Bruhat cones in~\cite[Proposition~4.12]{JahnStump}, and the convex property~\eqref{item:convex} is equivalent to~\cite[Lemma~4.13]{JahnStump}. The other three properties also follow from their characterization, see~\cite[Section~4.2]{JahnStump}.  
-Since we found these results independently, and the techniques we use to prove them are rather different, we believe that it is relevant to keep our contributions here. Moreover, this leads to further perspectives and conjectures in connection to brick polyhedra which we present in Section~\ref{subsec:fiveConjectures}. 
+We note that the set~$\linearExtensions(Q,\omega)$ of linear extensions has been considered independently in the work on brick polyhedra by D.~Jahn and C.~Stump in~\cite{JahnStump}. In particular,~$\linearExtensions(Q,\omega)$ is completely characterized using Bruhat cones in~\cite[Prop.~4.12]{JahnStump}, and the convex property~\eqref{item:convex} is equivalent to~\cite[Lem.~4.13]{JahnStump}. The other three properties also follow from their characterization, see~\cite[Sect.~4.2]{JahnStump}.  
+Since we found these results independently, and the techniques we use to prove them are rather different, we believe that it is relevant to keep our contributions here. Moreover, this leads to further perspectives and conjectures in connection to brick polyhedra which we present in~\cref{subsec:fiveConjectures}. 
 \end{remark}
 
 We will now prove the four points of \cref{thm:linearExtensionsPartitionSubwordComplexA} one by one.
@@ -1988,7 +1988,7 @@ Note that the oriented graph (from bottom to top) defines a lattice in \cref{fig
 \label{subsec:sweepingAlgorithmSubwordComplexes}
 
 We now extend the sweeping algorithm of \cref{subsec:sweepingAlgorithm} to construct, from a linear extension $\pi \in \linearExtensions(Q,\omega)$, the unique acyclic facet~$I$ such that $\pi \in \linearExtensions(I)$.
-We note that this algorithm is related to an algorithm that was independently described in~\cite{JahnStump}, see Remark~\ref{rem_sweepJahnStump}.
+We note that this algorithm is related to an algorithm that was independently described in~\cite{JahnStump}, see~\cref{rem:sweepJahnStump}.
 
 We start from a subword complex~$\subwordComplex(Q, \omega)$ and any element~$\pi \in W$.
 The sweeping algorithm outcomes a facet for every element~$\pi \in W$, and this will be the desired facet for each $\pi \in \linearExtensions(Q,\omega)$.
@@ -2059,16 +2059,18 @@ Let $\subwordComplex(Q,\omega)$ be a non-empty subword complex. Then, for every 
 \end{enumerate}
 \end{proposition}
 
-\begin{remark}\label{rem_sweepJahnStump}
-In~\cite[Section~3.3]{JahnStump}, Jahn and Stump describe an algorithm to compute the $f$-antigreedy facet of a subword complex $\subwordComplex(Q,\omega)$ associated to a linear functional $f$.  
-The output of our algorithm coincides with the output of Jahn-Stump's algorithm whenever $f$ is positive on~$\pi(\Phi^+)$ and negative on $\pi(\Phi^-)$, see~\cite[Proposition~4.12]{JahnStump}.
-Also, compare Proposition~\ref{prop:sweeping}~\eqref{item:sweeping1} with~\cite[Theorem~3.17 (a)]{JahnStump},
-and Proposition~\ref{prop:sweeping}~\eqref{item:sweeping2} with the second part of~\cite[Proposition~4.12]{JahnStump}.
+\begin{remark}
+\label{rem:sweepJahnStump}
+In~\cite[Sect.~3.3]{JahnStump}, D.~Jahn and C.~Stump describe an algorithm to compute the $f$-antigreedy facet of a subword complex $\subwordComplex(Q,\omega)$ associated to a linear functional $f$.  
+The output of our algorithm coincides with the output of their algorithm whenever $f$ is positive on~$\pi(\Phi^+)$ and negative on $\pi(\Phi^-)$, see~\cite[Prop.~4.12]{JahnStump}.
+Also, compare \cref{prop:sweeping}~\eqref{item:sweeping1} with~\cite[Thm.~3.17 (a)]{JahnStump}, and \cref{prop:sweeping}~\eqref{item:sweeping2} with the second part of~\cite[Prop.~4.12]{JahnStump}.
 
-Although the algorithm presented in~\cite{JahnStump} is more general, we highlight that our sweeping algorithm is conceptually simpler, since we skip the step of translating the conditions on the sign of $f(\rootFunction{I^j}{j})$ in Jahn-Stump's algorithm. We remark that these two algorithms were developed independently, while approaching different problems. This shows that the sweeping algorithm has a significant importance in the combinatorial and geometric understanding of subword complexes.  
+Although the algorithm presented in~\cite{JahnStump} is more general, we highlight that our sweeping algorithm is conceptually simpler, since we skip the step of translating the conditions on the sign of $f(\rootFunction{I^j}{j})$ in the algorithm of~\cite{JahnStump}.
+We remark that these two algorithms were developed independently, while approaching different problems.
+This shows that the sweeping algorithm has a significant importance in the combinatorial and geometric understanding of subword complexes.  
 \end{remark}
 
-In order to prove Proposition~\ref{prop:sweeping}, we first need to argue that the algorithm terminates, that is, that any position $j$ falls into one of the four cases above.
+In order to prove \cref{prop:sweeping}, we first need to argue that the algorithm terminates, that is, that any position $j$ falls into one of the four cases above.
 
 \begin{lemma}
 \label{lem:sweeping1}
