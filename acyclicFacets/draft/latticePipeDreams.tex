@@ -1988,7 +1988,7 @@ Note that the oriented graph (from bottom to top) defines a lattice in \cref{fig
 \label{subsec:sweepingAlgorithmSubwordComplexes}
 
 We now extend the sweeping algorithm of \cref{subsec:sweepingAlgorithm} to construct, from a linear extension $\pi \in \linearExtensions(Q,\omega)$, the unique acyclic facet~$I$ such that $\pi \in \linearExtensions(I)$.
-We note that this algorithm was independently described in~\cite{JahnStump}.
+We note that this algorithm is related to an algorithm that was independently described in~\cite{JahnStump}, see Remark~\ref{rem_sweepJahnStump}.
 
 We start from a subword complex~$\subwordComplex(Q, \omega)$ and any element~$\pi \in W$.
 The sweeping algorithm outcomes a facet for every element~$\pi \in W$, and this will be the desired facet for each $\pi \in \linearExtensions(Q,\omega)$.
@@ -2059,7 +2059,16 @@ Let $\subwordComplex(Q,\omega)$ be a non-empty subword complex. Then, for every 
 \end{enumerate}
 \end{proposition}
 
-We first need to argue that the algorithm terminates, that is, that any position $j$ falls into one of the four cases above.
+\begin{remark}\label{rem_sweepJahnStump}
+In~\cite[Section~3.3]{JahnStump}, Jahn and Stump describe an algorithm to compute the $f$-antigreedy facet of a subword complex $\subwordComplex(Q,\omega)$ associated to a linear functional $f$.  
+The output of our algorithm coincides with the output of Jahn-Stump's algorithm whenever $f$ is positive on~$\pi(\Phi^+)$ and negative on $\pi(\Phi^-)$, see~\cite[Proposition~4.12]{JahnStump}.
+Also, compare Proposition~\ref{prop:sweeping}~\eqref{item:sweeping1} with~\cite[Theorem~3.17 (a)]{JahnStump},
+and Proposition~\ref{prop:sweeping}~\eqref{item:sweeping2} with the second part of~\cite[Proposition~4.12]{JahnStump}.
+
+Although the algorithm presented in~\cite{JahnStump} is more general, our sweeping algorithm is more direct when computing the output for the input $\pi$, since we skip the step of translating the conditions on the sign of $f(\rootFunction{I^j}{j})$ in Jahn-Stump's algorithm. We remark that these two algorithms were developed independently, while approaching different problems. This highlights the relevance of the sweeping algorithm.  
+\end{remark}
+
+In order to prove Proposition~\ref{prop:sweeping}, we first need to argue that the algorithm terminates, that is, that any position $j$ falls into one of the four cases above.
 
 \begin{lemma}
 \label{lem:sweeping1}
