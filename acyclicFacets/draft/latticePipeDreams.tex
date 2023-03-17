@@ -40,7 +40,13 @@
 \email{vincent.pilaud@lix.polytechnique.fr}
 \urladdr{http://www.lix.polytechnique.fr/~pilaud/}
 
-\thanks{NC \& VP were partially supported by the French project CHARMS (ANR~19\,CE40\,0017), and by the French\,--\,Austrian project PAGCAP (ANR~21\,CE48\,0020 \& FWF I 5788).}
+\thanks{
+CC was supported by the Austrian Science Fund FWF (Project P 33278).
+NC \& VP were partially supported by the French project CHARMS (ANR~19\,CE40\,0017).
+CC, NC \& VP were also supported by the Austrian\,--\,French project PAGCAP (ANR~21\,CE48\,0020 \& FWF I 5788).
+}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -246,7 +252,7 @@ We recover the connection between the weak order and the Tamari lattice by the s
 Note that \cref{thm:A} is the correct generalization of the Tamari lattice, as neither the increasing flip poset on all pipe dreams, nor its subposet induced by acyclic pipe dreams, are lattices in general (see \cref{rem:increasingFlipPosetNotLattice,rem:acyclicIncreasingFlipPosetNotLattice}).
 
 We then explore in \cref{sec:furtherTopics} some natural further topics on pipe dreams.
-We describe two algorithms to compute the unique acyclic pipe dream whose linear extensions contain a given permutation generalizing the binary tree insertion map on permutations (\cref{subsec:sweepingAlgorithm,subsec:insertionAlgorithm}), we describe the pipe dream congruence as the transitive closure of a local rewriting rule generalizing that of the sylvester congruence (\cref{subsec:rewritingRule}), and we describe a natural commutative diagram of lattice morphism generalizing the connection between the recoil map and the binary tree insertion map on permutations and the canopy on binary trees (\cref{subsec:canopy}).
+We describe two algorithms to compute the unique acyclic pipe dream whose linear extensions contain a given permutation generalizing the binary tree insertion map on permutations (\cref{subsec:sweepingAlgorithm,subsec:insertionAlgorithm}), we describe the pipe dream congruence as the transitive closure of a local rewriting rule generalizing that of the sylvester congruence (\cref{subsec:rewritingRule}), and we describe a natural commutative diagram of lattice morphisms generalizing the connection between the recoil map and the binary tree insertion map on permutations and the canopy on binary trees (\cref{subsec:canopy}).
 
 Finally, we discuss in \cref{sec:subwordComplexes} (partly conjectural) extensions of our results to subword complexes in finite Coxeter groups~\cite{KnutsonMiller-subwordComplex}.
 Given a finite Coxeter group~$W$ with simple reflections~$S$, a word~$Q$ on~$S$ and an element~$\omega$ of~$W$, the subword complex~$\subwordComplex(Q,\omega)$ is a simplicial complex whose facets are the complements of the reduced expressions of~$\omega$ inside the word~$Q$.
@@ -286,7 +292,7 @@ If~$Q$ is alternating, then the subword complex equivalence~$\equiv_{Q, \omega}$
 When~$Q$ is alternating, we can thus consider the quotient~$[e, \omega]/{\equiv_{Q, \omega}}$.
 In contrast to the case of pipe dreams, the Hasse diagram of the quotient~$[e, \omega]/{\equiv_{Q, \omega}}$ is not always isomorphic to the increasing flip graph on acyclic facets of~$\subwordComplex(Q, \omega)$ for two reasons:
 \begin{itemize}
-\item First, not all acyclic facets of~$\subwordComplex(Q, \omega)$ appear as vertices of~$[e, \omega]/{\equiv_{Q, \omega}}$ (see \cref{rem:linearExtensionsPartitionSubwordComplexA}). We say that a facet is strongly acyclic if~$[e, \omega] \cap \linearExtensions(\omega) \ne \varnothing$.
+\item First, not all acyclic facets of~$\subwordComplex(Q, \omega)$ appear as elements of~$[e, \omega]/{\equiv_{Q, \omega}}$ (see \cref{rem:linearExtensionsPartitionSubwordComplexA}). We say that a facet is strongly acyclic if~$[e, \omega] \cap \linearExtensions(\omega) \ne \varnothing$.
 \item Second, not all flips between two strongly acyclic facets of~$\subwordComplex(Q, \omega)$ define a cover relation of~$[e, \omega]/{\equiv_{Q, \omega}}$ (see \cref{exm:acyclicFlipvsWeakOrder}). We say that the flip of a position~$i$ in a facet~$I$ is external if the root~$\rootFunction{I}{i}$ directing the flip is a ray of the root configuration~$\Roots(I)$.
 \end{itemize}
 This leads us to the following conjecture.
@@ -304,7 +310,7 @@ If~$Q$ is sorting and alternating, then the Hasse diagram of the quotient~$[e, \
 \end{conjectureA}
 
 This last conjecture has a strong connection to the geometry of subword complexes given by brick polytopes~\cite{PilaudSantos-brickPolytope, PilaudStump-brickPolytope} and brick polyhedra~\cite{JahnStump}.
-Namely, the extremal increasing flips between acyclic facets of~$\subwordComplex(Q, \omega)$ is precisely the bounded part (meaning forgetting the unbounded rays) of the brick polyhedron~$\brickPolyhedron(Q, \omega)$ oriented by a natural linear functional.
+Namely, the extremal increasing flips between acyclic facets of~$\subwordComplex(Q, \omega)$ are precisely the edges of the bounded part (meaning forgetting the unbounded rays) of the brick polyhedron~$\brickPolyhedron(Q, \omega)$ oriented by a natural linear functional.
 \cref{conj:C} thus translates geometrically to the following.
 
 \begin{conjectureA}
@@ -559,7 +565,7 @@ The set~$\set{\linearExtensions(P)}{P \in \acyclicPipeDreams(\omega)}$ partition
 
 \begin{example}
 \label{exm:Tamari2}
-Following \cref{exm:Tamari1}, observe that the permutations of~$\{0, 1, \dots, n, n+1\}$ below $\rho_n$ are precisely the permutations of the form~$[0, \pi, n+1]$ for some~$\pi \in \fS_n$.
+Following \cref{exm:Tamari1}, observe that the permutations of~$\{0, 1, \dots, n, n+1\}$ below~$\rho_n$ are precisely the permutations of the form~$[0, \pi, n+1]$ for some~$\pi \in \fS_n$.
 It is well-known that any permutation~$\pi \in \fS_n$ is a linear extension of a unique binary tree.
 This binary tree can be obtained by inserting~$\pi$ from right to left in a binary search tree.
 Hence any permutation of~$\{0, 1, \dots, n, n+1\}$ below~$\rho_n$ is a linear extension of a unique reversing pipe dream on~$n+2$ pipes.
@@ -613,7 +619,7 @@ In other words, any non-inversion of~$\omega$ is a non-inversion of~$\pi$, so th
 \end{proof}
 
 \begin{proof}[Proof of \cref{thm:partitionPipeDreams}]
-Direct consequence of \cref{lem:partition,lem:interval}.
+This is a direct consequence of \cref{lem:partition,lem:interval}.
 \end{proof}
 
 \begin{notation}
@@ -738,14 +744,14 @@ Follows from \cref{prop:characterizationCongruences}, whose conditions are guara
 For a congruence~$\equiv$ of a lattice~$L$, the \defn{lattice quotient}~$L/{\equiv}$ is the lattice on the classes of~$\equiv$ where for any two congruence classes~$X$ and~$Y$, 
 \begin{itemize}
 \item $X \le Y$ in~$L/{\equiv}$ if and only if there exist representatives~$x \in X$ and~$y \in Y$ such that~$x \le y$ in~$L$, or equivalently $\min(X) \le \min(Y)$, or equivalently $\max(X) \le \max(Y)$,
-\item $X \meet Y$ (resp.~$X \join Y$) is the congruence classe of~$x \meet y$ (resp.~of~$x \join y$) for arbitrary representatives~$x \in X$ and~$y \in Y$.
+\item $X \meet Y$ (resp.~$X \join Y$) is the congruence class of~$x \meet y$ (resp.~of~$x \join y$) for arbitrary representatives~$x \in X$ and~$y \in Y$.
 \end{itemize}
 In this section, we aim at the following statement, illustrated in \cref{fig:latticeAcyclicPipeDreams}.
 
 \begin{theorem}
 \label{thm:pipeDreamQuotient}
 The Hasse diagram of the lattice quotient~$[e,\omega]/{\equiv_\omega}$ is isomorphic to the increasing flip graph on~$\acyclicPipeDreams(\omega)$.
-%Hence, the transitive closure of the increasing flip graph on~$\acyclicPipeDreams(\omega)$ is a lattice.
+Hence, the transitive closure of the increasing flip graph on~$\acyclicPipeDreams(\omega)$ is a lattice.
 \end{theorem}
 
 \begin{example}
@@ -772,7 +778,8 @@ This example is minimal.
 
 \begin{figure}[ht]
 	\centerline{\includegraphics[scale=1.2]{counterExampleRestrictionIncreasingFlipPoset}}
-	\caption{Two acyclic pipe dreams~$\acyclicPipeDreams(126543)$ connected by a sequence of increasing flips in~$\pipeDreams(126543)$ but by no sequence of increasing flips in~$\acyclicPipeDreams(126543)$.}
+	\caption{Two acyclic pipe dreams in~$\acyclicPipeDreams(126543)$ connected by a sequence of increasing flips in~$\pipeDreams(126543)$ but by no sequence of increasing flips in~$\acyclicPipeDreams(126543)$.
+	The restriction of the increasing flip poset on~$\pipeDreams(126543)$ to the set of acyclic facets~$\acyclicPipeDreams(126543)$ is not a lattice. But, the poset induced by increasing flips between acyclic facets in~$\acyclicPipeDreams(126543)$ is a lattice (Theorem~\ref{thm:pipeDreamQuotient}).}
 	\label{fig:counterExampleRestrictionIncreasingFlipPoset}
 \end{figure}
 \end{remark}
@@ -818,7 +825,7 @@ Since~$i \to j$ is an arc of~$P\contact$, $\pi'$ is not a linear extension of~$P
 Hence, by \cref{lem:lowerSetPipeDreams}, $\pi'$ is a linear extension of~$P'$.
 \end{proof}
 
-Let us conclude by providing more equivalent characterizations of the increasing flip lattice lattice on~$\acyclicPipeDreams(\omega)$.
+Let us conclude by providing more equivalent characterizations of the increasing flip lattice on~$\acyclicPipeDreams(\omega)$.
 
 \begin{proposition}
 For any pipe dreams~$P, P' \in \acyclicPipeDreams(\omega)$, the following assertions are equivalent:
@@ -864,7 +871,8 @@ Finally, we describe the natural coarsening of the pipe dream congruence~$\equiv
 \label{subsec:sweepingAlgorithm}
 
 Our first algorithm to construct~$\insertion{\pi}{\omega}$ is a \defn{sweeping algorithm}, inspired by the algorithm to compute greedy pipe dreams~\cite{PilaudPocchiola, PilaudStump-ELlabelings}.
-An extension of this algorithm to subword complexes will be discussed in \cref{subsec:sweepingAlgorithmSubwordComplexes}, and appeared independently in~\cite{JahnStump}.
+An extension of this algorithm to subword complexes will be discussed in \cref{subsec:sweepingAlgorithmSubwordComplexes}, and a related algorithm appeared independently in~\cite{JahnStump}.
+We say that a box~$b'$ is located \defn{weakly northeast} of a box~$b$, if the vector connecting the center of $b$ to the center of $b'$ is a vector in $\mathbb{R}^2_{\geq 0}$ (with non-negative real entries). 
 We say that an order on the boxes of the triangular shape is \defn{northeast compatible} if each box~$b$ is before all boxes which are located weakly northeast of~$b$.
 
 \begin{proposition}
@@ -1388,7 +1396,7 @@ In \cref{fig:increasingFlipPosets}\,(right), we have highlighted two blue facets
 	\draw (679)--(789);
 	\end{tikzpicture}
 	}
-	\caption{The increasing flip graph on~$\subwordComplex(Q, \wo)$ where~$Q = \tau_2 \tau_1 \tau_3 \tau_2 \tau_1 \tau_3 \tau_2 \tau_1 \tau_3$ (left) and~$Q = \tau_1 \tau_2 \tau_3 \tau_2 \tau_1 \tau_2 \tau_3 \tau_2 \tau_1$ (right) in type~$A_3$. The left one is the $\tau_2 \tau_1 \tau_3$-Cambrian lattice, while the right one is not a lattice (the two facets highlighted in blue have no join while the two facets highlighted in red have no meet). In both examples, all facets are acyclic.}
+	\caption{The increasing flip poset on~$\subwordComplex(Q, \wo)$ where~$Q = \tau_2 \tau_1 \tau_3 \tau_2 \tau_1 \tau_3 \tau_2 \tau_1 \tau_3$ (left) and~$Q = \tau_1 \tau_2 \tau_3 \tau_2 \tau_1 \tau_2 \tau_3 \tau_2 \tau_1$ (right) in type~$A_3$. The left one is the $\tau_2 \tau_1 \tau_3$-Cambrian lattice, while the right one is not a lattice (the two facets highlighted in blue have no join while the two facets highlighted in red have no meet). In both examples, all facets are acyclic.}
 	\label{fig:increasingFlipPosets}
 \end{figure}
 \end{example}
@@ -1535,6 +1543,11 @@ Before proving it, we would like to make the following remarks about theorem.
 \end{enumerate}
 %Note that \cref{fig:subwordComplex4,fig:subwordComplex5} represent type~$A$ subword complexes.
 %As in~\cite{PilaudPocchiola, PilaudSantos-brickPolytope, PilaudStump-brickPolytope}, we thus use pseudoline arrangements on sorting networks to represent their facets (and we have represented their contact graphs together).
+\end{remark}
+
+\begin{remark}
+We remark that the set~$\linearExtensions(Q,\omega)$ of linear extensions has been considered independently in the work on brick polyhedra by Jahn and Stump in~\cite{JahnStump}. In particular,~$\linearExtensions(Q,\omega)$ is completely characterized using Bruhat cones in~\cite[Proposition~4.12]{JahnStump}, and the convex property~\eqref{item:convex} is equivalent to~\cite[Lemma~4.13]{JahnStump}. The other three properties also follow from their characterization, see~\cite[Section~4.2]{JahnStump}.  
+Since we found these results independently, and the techniques we use to prove them are rather different, we believe that it is relevant to keep our contributions here. Moreover, this leads to further perspectives and conjectures in connection to brick polyhedra which we present in Section~\ref{subsec:fiveConjectures}. 
 \end{remark}
 
 We will now prove the four points of \cref{thm:linearExtensionsPartitionSubwordComplexA} one by one.
