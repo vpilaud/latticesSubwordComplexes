@@ -778,8 +778,7 @@ This example is minimal.
 
 \begin{figure}[ht]
 	\centerline{\includegraphics[scale=1.2]{counterExampleRestrictionIncreasingFlipPoset}}
-	\caption{Two acyclic pipe dreams in~$\acyclicPipeDreams(126543)$ connected by a sequence of increasing flips in~$\pipeDreams(126543)$ but by no sequence of increasing flips in~$\acyclicPipeDreams(126543)$.
-	The restriction of the increasing flip poset on~$\pipeDreams(126543)$ to the set of acyclic facets~$\acyclicPipeDreams(126543)$ is not a lattice. But, the poset induced by increasing flips between acyclic facets in~$\acyclicPipeDreams(126543)$ is a lattice (\cref{thm:pipeDreamQuotient}).}
+	\caption{Two acyclic pipe dreams in~$\acyclicPipeDreams(126543)$ connected by a sequence of increasing flips in~$\pipeDreams(126543)$ but by no sequence of increasing flips in~$\acyclicPipeDreams(126543)$. The subposet of the increasing flip poset on~$\pipeDreams(126543)$ induced by the set~$\acyclicPipeDreams(126543)$ of acyclic facets is not a lattice, but the transitive closure of the increasing flip graph between the acyclic facets of~$\acyclicPipeDreams(126543)$ is a lattice (\cref{thm:pipeDreamQuotient}).}
 	\label{fig:counterExampleRestrictionIncreasingFlipPoset}
 \end{figure}
 \end{remark}
@@ -1731,7 +1730,7 @@ If both fall into Case 1, then $I_1'=I_1$ and $I_2'=I_2$ and so $I_1=I_2$ as des
 If both fall into Case 2, then we just need to flip back the performed flip to obtain $I_1=I_2$.
 \end{proof}
 
-Since $\linearExtensions(I)\neq \varnothing$ if and only if $I\in \subwordAcyclicFacets(Q,\omega)$ (i.e. $I$ is an acyclic facet) by \cref{lem:linearExtensionsAcyclic}, and also~$\linearExtensions(I) \ne \linearExtensions(J)$ for~$I \ne J$ by \cref{thm:linearExtensionsPartitionSubwordComplexA}~\eqref{item:partition}, we have the following straight forward corollary.
+Since $\linearExtensions(I)\neq \varnothing$ if and only if $I\in \subwordAcyclicFacets(Q,\omega)$ (\ie $I$ is an acyclic facet) by \cref{lem:linearExtensionsAcyclic}, and also~$\linearExtensions(I) \ne \linearExtensions(J)$ for~$I \ne J$ by \cref{thm:linearExtensionsPartitionSubwordComplexA}~\eqref{item:partition}, we have the following straightforward corollary.
 
 \begin{corollary}
 \label{coro:linearExtensionsPartitionSubwordComplexes}
