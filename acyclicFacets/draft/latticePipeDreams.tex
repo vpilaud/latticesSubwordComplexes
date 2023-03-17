@@ -764,9 +764,10 @@ Following \cref{exm:Tamari1,exm:Tamari2,exm:Tamari3}, observe that the increasin
 The increasing flip poset on~$\pipeDreams(\omega)$ is the transitive closure of the increasing flip graph on~$\pipeDreams(\omega)$.
 Observe that the two natural ways to restrict to the acyclic pipe dreams of~$\acyclicPipeDreams(\omega)$ (restrict either the flip graph or the flip poset) do not coincide in general.
 Namely, the transitive closure of the subgraph of the increasing flip graph induced by~$\acyclicPipeDreams(\omega)$ may have strictly less relations than the subposet of the increasing flip poset induced by~$\acyclicPipeDreams(\omega)$.
-\cref{fig:counterExampleRestrictionIncreasingFlipPoset} illustrates two acyclic pipe dreams of~$\acyclicPipeDreams(126543)$ connected by a sequence of increasing flips in~$\pipeDreams(126543)$ but by no sequence of increasing flips in~$\acyclicPipeDreams(126543)$.
-In fact, the subposet of the increasing flip poset induced by~$\acyclicPipeDreams(126543)$ is not even a lattice.
+\cref{fig:counterExampleRestrictionIncreasingFlipPoset1} illustrates two acyclic pipe dreams of~$\acyclicPipeDreams(126543)$ connected by a sequence of increasing flips in~$\pipeDreams(126543)$ but by no sequence of increasing flips in~$\acyclicPipeDreams(126543)$.
+In fact, the subposet of the increasing flip poset induced by~$\acyclicPipeDreams(126543)$ is not even a lattice, as illustrated in \cref{counterExampleRestrictionIncreasingFlipPoset2}.
 This example is minimal.
+%
 %	* type A5,
 %	* Q = [1, 2, 3, 4, 5, 1, 2, 3, 4, 1, 2, 3, 1, 2, 1] 
 %	* w = [1, 2, 3, 1, 2, 1]
@@ -775,11 +776,17 @@ This example is minimal.
 %	(2, 3, 4, 5, 6, 7, 8, 10, 12) 
 %	(3, 4, 5, 6, 7, 8, 10, 11, 12)
 %	(3, 4, 5, 7, 8, 10, 11, 12, 14)
-
+%
 \begin{figure}[ht]
-	\centerline{\includegraphics[scale=1.2]{counterExampleRestrictionIncreasingFlipPoset}}
-	\caption{Two acyclic pipe dreams in~$\acyclicPipeDreams(126543)$ connected by a sequence of increasing flips in~$\pipeDreams(126543)$ but by no sequence of increasing flips in~$\acyclicPipeDreams(126543)$. The subposet of the increasing flip poset on~$\pipeDreams(126543)$ induced by the set~$\acyclicPipeDreams(126543)$ of acyclic facets is not a lattice, but the transitive closure of the increasing flip graph between the acyclic facets of~$\acyclicPipeDreams(126543)$ is a lattice (\cref{thm:pipeDreamQuotient}).}
-	\label{fig:counterExampleRestrictionIncreasingFlipPoset}
+	\centerline{\includegraphics[scale=1.2]{counterExampleRestrictionIncreasingFlipPoset1}}
+	\caption{Two acyclic pipe dreams in~$\acyclicPipeDreams(126543)$ connected by a sequence of increasing flips in~$\pipeDreams(126543)$ but by no sequence of increasing flips in~$\acyclicPipeDreams(126543)$.}
+	\label{fig:counterExampleRestrictionIncreasingFlipPoset1}
+\end{figure}
+%
+\begin{figure}[ht]
+	\centerline{\includegraphics[scale=1.2]{counterExampleRestrictionIncreasingFlipPoset2}}
+	\caption{Some acyclic pipe dreams of~$\acyclicPipeDreams(126543)$, connected by some strong arrows representing increasing flips, and by a dotted arrow representing the relation of \cref{fig:counterExampleRestrictionIncreasingFlipPoset1}. The subposet of the increasing flip poset on~$\pipeDreams(126543)$ induced by~$\acyclicPipeDreams(126543)$ contains the dotted arrow and is thus not a lattice (the two bottom elements of the picture have no join while the two top elements of the picture have no meet). In contrast, the transitive closure of the increasing flip graph on~$\acyclicPipeDreams(126543)$ does not contain the dotted arrow and is a lattice (\cref{thm:pipeDreamQuotient}).}
+	\label{fig:counterExampleRestrictionIncreasingFlipPoset2}
 \end{figure}
 \end{remark}
 
@@ -899,13 +906,13 @@ For~${\pi = 512364}$ in \cref{fig:sweepingAlgorithm2}, we make the same choices,
 \item a crossing at step~$14$ since~$i < j$, $\omega^{-1}(i) > \omega^{-1}(j)$ and we are in the column~$\omega^{-1}(j)$.
 \end{itemize}
 %
-\begin{figure}[b]
+\begin{figure}[t]
 	\centerline{\includegraphics[scale=.9]{sweeping1}}
 	\caption{Sweeping algorithm for the permutations~$\pi = 513264$ and~$\omega = 561324$.} % See details in \cref{exm:sweepingAlgorithm}.}
 	\label{fig:sweepingAlgorithm1}
 \end{figure}
 %
-\begin{figure}[b]
+\begin{figure}[t]
 	\centerline{\includegraphics[scale=.9]{sweeping2}}
 	\caption{Sweeping algorithm for the permutations~$\pi = 512364$ and~$\omega = 561324$.} % See details in \cref{exm:sweepingAlgorithm}.}
 	\label{fig:sweepingAlgorithm2}
@@ -953,13 +960,13 @@ See \cref{fig:insertionAlgorithm1,fig:insertionAlgorithm2}.
 \cref{fig:insertionAlgorithm1,fig:insertionAlgorithm2} illustrate the insertion algorithm for the exiting permutation ${\omega = 561324}$ and the input permutations~${\pi = 513264}$ and~${\pi = 512364}$ respectively.
 For instance, when inserting the (green) pipe~$4$ in the last step, the currently free southeast elbows are the first southeast elbow of the (blue) pipe~$3$ and the two southeast elbows of the (purple) pipe~$2$.
 %
-\begin{figure}[b]
+\begin{figure}[t]
 	\centerline{\includegraphics[scale=.9]{insertion1}}
 	\caption{Insertion algorithm for the permutations~$\pi = 513264$ and~$\omega = 561324$.}
 	\label{fig:insertionAlgorithm1}
 \end{figure}
 %
-\begin{figure}[b]
+\begin{figure}[t]
 	\centerline{\includegraphics[scale=.9]{insertion2}}
 	\caption{Insertion algorithm for the permutations~$\pi = 512364$ and~$\omega = 561324$.}
 	\label{fig:insertionAlgorithm2}
