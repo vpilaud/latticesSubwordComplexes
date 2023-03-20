@@ -333,7 +333,6 @@ If~$Q$ is sorting and alternating, then the oriented graph of the brick polytope
 \section{Preliminaries on pipe dreams}
 \label{sec:preliminaries}
 
-% Let $\fS_n$ denote the set of permutations of~$[n] \eqdef \{1,2,\ldots,n\}$, and let~$\fS \eqdef \bigsqcup_{n \ge 0} \fS_n$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -346,12 +345,9 @@ We label the pipes with~$1, 2, \dots, n$ in the order of their entry points from
 We denote by~$\omega_P \in \fS_n$ the order of the exit points of the pipes of~$P$ from left to right.
 In other words, the pipe entering at row~$i$ exits at column~$\omega^{-1}_P(i)$.
 For a fixed permutation~$\omega \in \fS_n$, we denote by~$\pipeDreams(\omega)$ the set of reduced pipe dreams~$P$ such that~$\omega_P = \omega$.
-% We let~$\pipeDreams_n \eqdef \bigsqcup_{\omega \in \fS_n} \pipeDreams(\omega)$ and~$\pipeDreams \eqdef \bigsqcup_{n \in \N} \pipeDreams_n$.
 
-%Two pipe dreams are related by a \defn{flip} if they only differ by the position of a crossing and a contact (in particular, they define the same permutation).
 A contact~$c$ is \defn{flippable} if the two pipes passing through contact~$c$ have a crossing~$x$.
 The \defn{flip} exchanges the contact~$c$ with the crossing~$x$.
-%See \cref{fig:pipeDreams}.
 The flip is \defn{increasing} if the contact~$c$ is weakly southwest of the crossing~$x$.
 For example, \cref{fig:pipeDreams} illustrates an increasing flip from the left pipe dream to the right pipe dream.
 %
@@ -364,14 +360,11 @@ We see equivalently the contact graph~$P\contact$ as a (multi)graph on the pipes
 We say that a pipe dream~$P$ is \defn{acyclic} if its contact graph~$P\contact$ has no oriented cycle.
 For an acyclic pipe dream~$P$, we denote by~$\contactLess{P}$ the transitive closure of the contact graph of~$P$.
 For~$\omega \in \fS_n$, we denote by~$\acyclicPipeDreams(\omega)$ the set of acyclic pipe dreams of~$\pipeDreams(\omega)$.
-% We let~$\acyclicPipeDreams_n \eqdef \bigsqcup_{\omega \in \fS_n} \acyclicPipeDreams(\omega)$ and~$\acyclicPipeDreams \eqdef \bigsqcup_{n \in \N} \acyclicPipeDreams_n$.
-%\vincent{Add contact graphs to \cref{fig:pipeDreams}.}
 
 \begin{example}
 \label{exm:Tamari1}
 We say that a pipe dream is \defn{reversing} if it fixes the first and last pipes and reverses the order of the remaining pipes.
 In this case, it is natural to label the pipes from~$0$ to~$n+1$, so that the permutation of the pipes is~$\rho_n \eqdef [0, n, n-1, \dots, 2, 1, n+1]$.
-% We denote by~$\reversingPipeDreams_n$ the reversing pipe dreams of~$\pipeDreams_n$.
 As observed in~\cite{Woo, PilaudPocchiola, Pilaud-these, Stump}, the family of reversing pipe dreams belong to the Catalan families, meaning that it is counted by the famous Catalan numbers.
 \cref{fig:bijection} illustrates explicit bijections between reversing pipe dreams of~$\pipeDreams(\rho_n)$, binary trees with $n$ internal nodes, and the triangulations of a convex $(n+2)$-gon.
 More precisely, the map which sends a contact in row~$i$ and column~$j$ of the triangular shape (indexed from~$0$ to~$n+1$) to the diagonal~$[i,n+1-j]$ of the~$(n+2)$-gon provides the following correspondence: \\[.3cm]
@@ -383,7 +376,6 @@ contact between pipes~$i$ and~$j$ of~$P$ & common side of triangles~$i\duality$ 
 crossing between pipes~$i$ and~$j$ of~$P$ & common bisector of triangles~$i\duality$ and~$j\duality$ of~$P\duality$, \\
 contact graph of~$P$ & dual binary tree of~$P\duality$, \\
 contact flips in~$P$ & diagonal flips in~$P\duality$. \\
-%increasing flip poset & Tamari lattice.
 \end{tabular}} \\[.3cm]
 %
 \begin{figure}[h]
@@ -544,17 +536,10 @@ This section goes straight to the proof of this property, and leaves alternative
 
 The main characters in this section are the following sets of permutations.
 
-%Recall that a \defn{linear extension} of a binary relation~$\less$ on~$[n]$ is a permutation~$\pi \in \fS_n$ such that~$i \less j$ implies $\pi^{-1}(i) < \pi^{-1}(j)$.
-%We denote by~$\linearExtensions(\less)$ the set of linear extensions of~$\less$.
-%Consider an acyclic pipe dream~$P$, and recall that we denote by~$\contactLess{P}$ the transitive closure of the contact graph~$P\contact$ of~$P$.
-%We denote by~$\linearExtensions(P)$ the set of linear extensions of~$\contactLess{P}$, and we say abusively that the permutations of~$\linearExtensions(P)$ are linear extensions of~$P$.
-%In other words, $\pi \in \linearExtensions(P)$ if and only if~$\pi^{-1}(i) < \pi^{-1}(j)$ for all arcs~$i \to j$ in~$P\contact$.
-
 \begin{definition}
 \label{def:linearExtensions}
 We say that a permutation~$\pi$ is a \defn{linear extension} of a pipe dream~$P \in \pipeDreams(\omega)$ if~$\pi^{-1}(i) < \pi^{-1}(j)$ for every arc~$i \to j$ in~$P\contact$ (we should say linear extension of~$\contactLess{P}$, but prefer to simplify notation).
 We denote by~$\linearExtensions(P)$ the set of linear extensions of~$P$.
-%For a pipe dream~$P \in \pipeDreams(\omega)$, we denote by~$\linearExtensions(P)$ the set of \defn{linear extensions} of~$P$, \ie the permutations~$\pi$ of~$[n]$ such that~$\pi^{-1}(i) < \pi^{-1}(j)$ for every arc~$i \to j$ in~$P\contact$.
 \end{definition}
 
 In this section, we prove the following structural property of~$\linearExtensions(P)$, illustrated in \cref{fig:latticeAcyclicPipeDreams}.
@@ -864,14 +849,6 @@ We first describe two algorithms to construct the pipe dream~$\insertion{\pi}{\o
 We then describe the pipe dream congruence~$\equiv_\omega$ as the transitive closure of a rewriting rule on permutations of~$[e, \omega]$ (\cref{subsec:rewritingRule}).
 Finally, we describe the natural coarsening of the pipe dream congruence~$\equiv_\omega$ by the recoil congruence~$\cong_\omega$ (\cref{subsec:canopy}).
 
-%To sum up, there are three equivalent ways to partition the interval~$[e,\omega]$ of the weak order:
-%\begin{itemize}
-%\item by the sets of linear extensions~$\linearExtensions(P)$ of all pipe dreams of~$\acyclicPipeDreams(\omega)$,
-%\item by the fibers of the sweeping algorithm, \vincent{choose notation}
-%\item by the fibers of the insertion map~$\insertion{\cdot}{\omega}$,
-%\item by the classes of the pipe dream congruence~$\equiv_\omega$.
-%\end{itemize}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Sweeping algorithm}
@@ -879,7 +856,6 @@ Finally, we describe the natural coarsening of the pipe dream congruence~$\equiv
 
 Our first algorithm to construct~$\insertion{\pi}{\omega}$ is a \defn{sweeping algorithm}, inspired by the algorithm to compute greedy pipe dreams~\cite{PilaudPocchiola, PilaudStump-ELlabelings}.
 An extension of this algorithm to subword complexes will be discussed in \cref{subsec:sweepingAlgorithmSubwordComplexes}, and a related algorithm appeared independently in~\cite{JahnStump}.
-%We say that a box~$b'$ is located \defn{weakly northeast} of a box~$b$, if the vector connecting the center of $b$ to the center of $b'$ is a vector in $\mathbb{R}^2_{\geq 0}$ (with non-negative real entries). 
 We say that an order on the boxes of the triangular shape is \defn{northeast compatible} if each box~$b$ is before all boxes which are located weakly northeast of~$b$.
 
 \begin{proposition}
@@ -909,13 +885,13 @@ For~${\pi = 512364}$ in \cref{fig:sweepingAlgorithm2}, we make the same choices,
 %
 \begin{figure}[t]
 	\centerline{\includegraphics[scale=.9]{sweeping1}}
-	\caption{Sweeping algorithm for the permutations~$\pi = 513264$ and~$\omega = 561324$.} % See details in \cref{exm:sweepingAlgorithm}.}
+	\caption{Sweeping algorithm for the permutations~$\pi = 513264$ and~$\omega = 561324$.}
 	\label{fig:sweepingAlgorithm1}
 \end{figure}
 %
 \begin{figure}[t]
 	\centerline{\includegraphics[scale=.9]{sweeping2}}
-	\caption{Sweeping algorithm for the permutations~$\pi = 512364$ and~$\omega = 561324$.} % See details in \cref{exm:sweepingAlgorithm}.}
+	\caption{Sweeping algorithm for the permutations~$\pi = 512364$ and~$\omega = 561324$.}
 	\label{fig:sweepingAlgorithm2}
 \end{figure}
 \end{example}
@@ -952,7 +928,6 @@ Namely, it has a northeast elbow at row~$r_i$ and column~$c_i$ for each~$i \in [
 \label{prop:insertionAlgorithm}
 For any permutations~$\pi,\omega \in \fS_n$ such that~$\pi < \omega$ in weak order, the unique pipe dream~$P \in \acyclicPipeDreams(\omega)$ such that~$\pi \in \linearExtensions(P)$ can be constructed starting from the empty triangular shape and inserting the pipes~$\pi(1), \dots, \pi(n)$ one by one in the order of the permutation~$\pi$ as northwest as possible.
 More precisely, at step~$t$, we insert a pipe starting at row~$\pi(t)$, ending at column~$\omega^{-1}(\pi(t))$, and whose northeast elbows are precisely covering the staircase of currently free southeast elbows in the rectangle~$[\pi(t)] \times [\omega^{-1}(\pi(t))]$.
-%More precisely, at step~$t$, we consider the set~$X_t$ of free southeast elbows in the rectangle~$[\pi(t)] \times [\omega^{-1}(\pi(t))]$, and we insert a pipe starting at row~$\pi(t)$, ending at column~$\omega^{-1}(\pi(t))$, and whose northeast elbows are precisely covering the elbows of~$X_t$, and adding a new free southeast elbow in between any two consecutive elbows of~$X_t$
 See \cref{fig:insertionAlgorithm1,fig:insertionAlgorithm2}.
 \end{proposition}
 
@@ -1013,7 +988,6 @@ We thus just need to see that $e_i$ is southwest of~$e'_1$ and~$e'_\ell$ is sout
 \ell = \begin{cases} j-i  & \text{if } \pi(s) \le r \text{ and } \omega^{-1}(\pi(s)) \le c, \\  j-i-2  & \text{if } \pi(s) > r \text{ and } \omega^{-1}(\pi(s)) > c, \\  j-i-1 & \text{otherwise.} \end{cases}
 \]
 Since the northwest and southeast elbows alternate along pipe~$\pi(t)$, this follows from the fact that the pipe~$\pi(t)$ enters~$R$ with an horizontal step if~$\pi(t) \le r$ and with a vertical step if~$\pi(s) > r$, and exits~$R$ with a vertical step if~$\omega^{-1}(\pi(t)) \le c$ and with an horizontal step if~$\omega^{-1}(\pi(s)) > c$.
-%setting~$i \eqdef \pi(t)$ and~$j \eqdef \pi(s)$, we have~${i < j}$ and~$\pi^{-1}(i) > \pi^{-1}(j)$ while~$\omega^{-1}(i) < \omega^{-1}(j)$, which contradicts our assumption that~$\pi < \omega$. \qedhere
 \end{proof}
 
 We now derive two properties of the insertion algorithm from \cref{lem:rectangleInsertionAlgorithm}.
@@ -1436,7 +1410,6 @@ A facet~$I$ is acyclic if and only if~$\linearExtensions(I)\neq \varnothing$.
 \end{lemma}
 
 \begin{proof}
-%Let $\Phi = \Phi^+ \sqcup \Phi^-$ be the root system associated to $W$.
 A classical result for finite root systems states that for any generic linear halfspace~$H^+$ the intersection~$\Phi \cap H^+$ is of the form $\pi(\Phi^+)$ for some $\pi \in W$.
 Since any pointed cone is contained in some generic linear halfspace, we obtain
 \[
@@ -1584,72 +1557,6 @@ Let $\pi \in \linearExtensions(I)$ for some facet $I$.
 We need to show that if $\pi' < \pi$ then there exist another facet $I'$ such that $\pi' \in \linearExtensions(I')$.
 It is enough to show this when $\pi = \pi's$ for some descent~$s$ of~$\pi$ (\ie some $s\in S$ such that $\ell(\pi') < \ell(\pi)$).
 Define~$\beta=\pi'(\alpha_s)$ and observe that~$s_\beta$ preserves the set~$\pi'(\Phi^+) \ssm \{\beta\} = \pi(\Phi^+) \ssm \{-\beta\} = \pi(\Phi^+) \cap \pi'(\Phi^+)$.
-
-%Now,
-%\[
-%\pi(\Phi^+)= -\Inv(\pi)\sqcup \Ninv(\pi)
-%\]
-%and 
-%\[
-%\Inv(\pi') =\Inv(\pi) \ssm \{\beta\}
-%\qquad\text{and}\qquad
-%\Ninv(\pi') = \Ninv(\pi) \cup \{\beta\}
-%\]
-%for $\beta=\pi'(\alpha_s)$.
-%Therefore,
-%\begin{align*}
-%\pi'(\Phi^+) = \pi(\Phi^+) \ssm \{-\beta\} \cup \{\beta\}.
-%\end{align*}
-%%
-%%\begin{center}
-%%\begin{tikzpicture}
-%%\coordinate (a) at (0,0);
-%%\coordinate (b) at (0:2);
-%%\coordinate (c) at (60:2);
-%%\coordinate (d) at (120:2);
-%%\coordinate (e) at (180:2);
-%%\draw (b) node[right] {$\beta$};
-%%\draw (e) node[left] {$-\beta$};
-%%%
-%%\path[fill=green!20] (0,0) --  (60:2) arc(60:180:2) -- cycle;
-%%%
-%%\draw[-stealth,dashed] (a) -- (b);
-%%\draw[-stealth] (a) -- (c);
-%%% \draw[-stealth] (a) -- (d);
-%%\draw[-stealth] (a) -- (e);
-%%\node at (120:1) {$\pi(\Phi^+)$};
-%%\end{tikzpicture} 
-%%%
-%%\qquad
-%%%
-%%\begin{tikzpicture}
-%%\coordinate (a) at (0,0);
-%%\coordinate (b) at (0:2);
-%%\coordinate (c) at (60:2);
-%%\coordinate (d) at (120:2);
-%%\coordinate (e) at (180:2);
-%%\draw (b) node[right] {$\beta$};
-%%\draw (e) node[left] {$-\beta$};
-%%%
-%%\path[fill=green!20] (0,0) -- (0:2) arc(0:120:2)  -- cycle;
-%%%
-%%\draw[-stealth] (a) -- (b);
-%%% \draw[-stealth] (a) -- (c);
-%%\draw[-stealth] (a) -- (d);
-%%\draw[-stealth,dashed] (a) -- (e);
-%%\node at (60:1) {$\pi'(\Phi^+)$};
-%%\end{tikzpicture} 
-%%\end{center}
-%%%
-%Note that the reflection $s_\beta=\pi's\pi'^{-1}$ orthogonal to the root $\beta$ transforms $\pi(\Phi^+)$ and $\pi'(\Phi^+)$ into each other:
-%\[
-%s_\beta(\pi(\Phi^+))=\pi'(\Phi^+).
-%\]
-%Since $s_\beta(\beta)= -\beta$, then $s_\beta$ preserves the set 
-%\[
-%\pi(\Phi^+) \ssm \{-\beta\} = \pi'(\Phi^+) \ssm \{\beta\} = \pi(\Phi^+) \cap \pi'(\Phi^+).
-%\]
-%This observation will be useful to prove the statement in the second of the following two cases.
 
 By definition, $\pi \in \linearExtensions(I)$ if and only if $\Roots(I) \subseteq \pi(\Phi^+)$.
 We now define a new facet $I'$ such that $\pi' \in \linearExtensions(I')$.
@@ -1983,12 +1890,6 @@ Note that the oriented graph (from bottom to top) defines a lattice in \cref{fig
 \end{figure}
 \end{example}
 
-%As pointed out in \cref{rem_acyclicflipposet_not_latticequotient},  we can not expect~$[e,\omega]/\equiv_{Q,\omega}$ to be isomorphic to the restriction of the increasing flip poset of $\subwordComplex(Q,\omega)$ to the set of acyclic facets.
-%\cref{exm:acyclicFlipvsWeakOrder} shows that there are flips between acyclic facets that are not detected by the week order.
-%One could expect that there is a natural restriction to a special class of flips that behave nicer, meaning that all of them are identified by the quotient~$[e,\omega]/\equiv_{Q,\omega}$.
-%In our \cref{exm:acyclicFlipvsWeakOrder}, the generalized Chute moves from~\cite{Rubey} do the job, because the flip that is not detected by the week order is exactly the one flip which is not Chute.
-%The Chute lattice conjecture~\cite[Conjecture~2.8]{Rubey} might be an indication that this is the right direction to look at.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Sweeping algorithm}
@@ -1999,13 +1900,6 @@ We note that this algorithm is related to an algorithm that was independently de
 
 We start from a subword complex~$\subwordComplex(Q, \omega)$ and any element~$\pi \in W$.
 The sweeping algorithm outcomes a facet for every element~$\pi \in W$, and this will be the desired facet for each $\pi \in \linearExtensions(Q,\omega)$.
-%In other words, we define a function
-%\[
-%\begin{tabular}{cccl}
-%$\sweepingAlgorithm$ : & $W$ & $\longrightarrow$ & $\subwordFacets(Q,\omega)$\\
-%& $\pi$ & $\longrightarrow$ & $\sweepingAlgorithm(Q,\omega,\pi)$
-%\end{tabular}
-%\]
 
 It starts by setting $I^0=\varnothing$ to be the empty set.
 It then scans the word $Q=(q_1,\dots ,q_m)$ from left to right.
@@ -2099,8 +1993,6 @@ The root $\rootFunction{I^j}{j}$ belongs to~$\Phi^+ \sqcup \Phi^-$ and we know t
 \Phi^+ = \Inv(\omega) \sqcup \Ninv(\omega) \qquad \qquad
 \Phi^- = -\Inv(\omega) \sqcup -\Ninv(\omega)  
 \]
-%The positive roots are covered by the cases (1),(2), and (3).
-%The negative roots in $-\Inv(\omega)$ are covered in case (4).
 Since we are inserting a reduced expression of $\omega$ in $Q$, the case $-\Ninv(\omega)$ never occurs.
 \end{proof}
 
