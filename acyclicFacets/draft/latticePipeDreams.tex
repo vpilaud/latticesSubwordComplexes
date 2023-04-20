@@ -70,6 +70,8 @@ CC, NC \& VP were also supported by the Austrian\,--\,French project PAGCAP (ANR
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{question}[theorem]{Question}
 \newtheorem{notation}[theorem]{Notation}
+\newtheorem{openproblem}[theorem]{Open problem}
+
 
 % newcommands
 % math special letters
@@ -1163,6 +1165,41 @@ Consider a permutation~$\pi$ and let~$i < j \in [n]$ be such that~$j-i \le \#\se
 Assume that the edge~$ij$ is oriented from~$i$ to~$j$.
 Then~$\pi^{-1}(i) < \pi^{-1}(j)$, thus the pipe~$i$ is inserted before the pipe~$j$ in~$\insertion{\pi}{\omega}$, so that~$i \contactLess{\insertion{\pi}{\omega}} j$ and there is also an arc from~$i$ to~$j$ in~$\canopy{\insertion{\pi}{\omega}}$.
 \end{proof}
+
+\subsection{The acyclic property for $\nu$-Tamari lattices}
+We would like to close this section stating an open problem that relates our results to the $\nu$-Tamari lattices introduced by Préville-Ratelle and Viennot in~\cite{preville_nu_tamari_2017}. These posets are indexed by a lattice path $\nu$ consisting of a finite number of north (N) and east (E) steps, and coincide with the classical Tamari lattices when $\nu=(NE)^n$.
+
+In~\cite{ceballos_nu_trees_2020}, it was shown that the $\nu$-Tamari lattice can be obtained as the increasing flip poset on pipe dreams~$\pipeDreams(\omega_\nu)$ for an explicit permutation $\omega_\nu$ associated to $\nu$. The permutations of the form~$\omega_\nu$ can be easily characterized as follows. We refer to~\cite{ceballos_nu_trees_2020} for details. 
+
+A permutation $\omega$ is called \defn{dominant} if its Rothe diagram, \ie the set $$\set{(\omega(j),i)}{i<j,\ \omega(i)>\omega(j)}$$ in matrix notation, is the Ferrer's diagram of a partition located at the top left corner $(1,1)$. Equivalently, a permutation~$\omega$ is dominant if and only if it is 132-avoiding. 
+
+Given a permutation $u$ of $[m]$ and a permutation $v$ of $[n]$, we denote by $u\oplus v$ the permutation of $[m+n]$ defined by 
+\[
+(u\oplus v)(i)=
+\begin{cases}
+u(i), & \text{for } 1\leq i\leq m \\
+v(i)+m, & \text{for } m<i\leq m+n.
+\end{cases}
+\] 
+The permutations $\omega_\nu$ associated to lattice paths $\nu$ are those of the form~$1\oplus w$ for some dominant permutation $w$, see~\cite{ceballos_nu_trees_2020}. 
+
+\begin{openproblem}[The acyclic property for $\nu$-Tamari lattices]
+\label{prob_nu_acyclicproperty}
+Show that if $\omega$ is a dominant permutation then all pipe dreams with permutation $1\oplus \omega$ are acyclic. %In particular, the corresponding $\nu$-Tamari lattice is the increasing flip poset on acyclic pipe dreams~$\acyclicPipeDreams(1\oplus \omega)$.
+\end{openproblem}
+
+This property is known to be true when $\omega=n\dots21$ is the reverse permutation. In this case, the increasing flip poset is the classical Tamari lattice. Removing the vertex 1 from the contact graph of a pipe dream~$P\in \pipeDreams(1\oplus \omega)$ returns the binary tree corresponding to $P$ (with the leaves removed and the internal nodes labeled appropriately with the numbers from 2 to $n+1$). The edges of the binary tree are oriented going away from the root of the tree.  
+We have also checked this property computationally for all dominant permutations up to $n=8$. 
+
+Applying our Theorem~\ref{thm:pipeDreamQuotient}, we get the following consequence.
+
+\begin{proposition}
+If the statement of Open Problem~\ref{prob_nu_acyclicproperty} holds, then the $\nu$-Tamari lattice is a lattice quotient of the interval~$[e,\omega_\nu]$.
+\end{proposition}  
+
+%\label{thm:pipeDreamQuotient}
+%The Hasse diagram of the lattice quotient~$[e,\omega]/{\equiv_\omega}$ is isomorphic to the increasing flip graph on~$\acyclicPipeDreams(\omega)$.
+%Hence, the transitive closure of the increasing flip graph on~$\acyclicPipeDreams(\omega)$ is a lattice.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
