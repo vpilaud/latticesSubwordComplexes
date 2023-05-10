@@ -9,12 +9,13 @@ In~\cite{CeballosPadrolSarmiento}, it was shown that the $\nu$-Tamari lattice ca
 The \defn{Rothe diagram} of a permutation~$\omega$ is the set $\set{(\omega(j),i)}{i<j,\ \omega(i)>\omega(j)}$ in matrix notation.
 A permutation $\omega$ is called \defn{dominant} if its Rothe diagram is the Ferrer's diagram of a partition located at the top left corner $(1,1)$. Equivalently, a permutation~$\omega$ is dominant if and only if it is 132-avoiding. 
 For a permutation~$\omega = \omega_1 \dots \omega_n \in \fS_n$, we denote by~$0\omega$ the permutation~$0 \omega_1 \dots \omega_n$ of~$\{0, 1, \dots, n\}$, and we consider here pipe dreams with pipes indexed by~$\{0, 1, \dots, n\}$. The Theorem~\ref{prob:nuAcyclicProperty} below states that all pipe dreams with permutation $0 \omega$ are acyclic if and only if $\omega$ is a dominant permutation.
+\nantel{modify intro to reflect this?}
 
 
 From \cref{exm:Tamari1}, we know that this property holds when $\omega=n\dots21$ is the reverse permutation. 
 In this case, the increasing flip poset on~$\pipeDreams(0 \omega)$ is the classical Tamari lattice. Removing vertex $0$ from the contact graph of a pipe dream~$ P\in \pipeDreams(0 \omega)$ returns the binary tree corresponding to $P$ (with the leaves removed and the internal nodes labeled from $1$ to $n$).
 The edges of the binary tree are oriented going away from the root of the tree.  
-See \cref{fig:bijection}.
+See \cref{fig:bijection}. 
 
 Before we start, we need some definition and notation. Given a pipe dream $P$, we say that a crossing is \defn{horizontally connected} if all positions west of it are crossing,
 so that the horizontal pipe of the crossing join the west boundary horizontally, without any elbows. Similarly, a crossing is  \defn{vertically connected} if all position north of it are crossing. A \defn{(general) chute move}
@@ -67,8 +68,9 @@ Therefor, it is not possible that $P$ has a contact in column $d$ and row $r<s$,
 \label{prob:nuAcyclicProperty}
 All pipe dreams with permutation $0 \omega$ are acyclic if and only if $\omega$ is a dominant permutation.
 \end{theorem}
+\nantel{add in acknowledgement that : Lucas Gagnon had a proof of converse in different contaxt}
 
-\begin{proof} For the forward direction, assume that $\omega$ is not dominant. 
+\begin{proof} For the forward implication, assume that $\omega$ is not dominant. 
 Let $P_0$ be the greedy pipe dream of $0\omega$. It has no crossing in row 0, and cannot be a partition starting at row 1.
 There must be a row $r>1$ with more crossing than in row $r-1$. 
 Considering the rightmost column $c$ of $P$ with a crossing in row $r$,  the pipes $r<k$ are crossing at $(c,r)$, $\omega^{-1}(k)<\omega^{-1}(r)$ and are in contact in position $(c+1,r-1)$.
@@ -76,8 +78,10 @@ Let $Q$ be the pipe dream obtained from $P_0$ by the flip of the crossing at $(c
 The contact of $Q$ at $(c,r)$ would gives $r\contactLess{Q} k$. In row $0$ we only have contacts and $\omega^{-1}(k)<\omega^{-1}(r)$, combining this  with Lemma~\ref{lem:rectangle} would give  that 
 $k \contactLess{Q} r$, a contradiction, hence $Q$ is not acyclic.
 
-For the reverse direction, assume we have a pipe dream $P$ that is not acyclic. The contact graph must contain a cycle $i_1 \to i_2\to\cdots\to i_m\to i_1$.
-This is only possible if some pipe $i_j$ and $i_\ell$ with some contact on both side of the crossing.
+For the converse, assume we have a pipe dream that is not acyclic. The contact graph must contain a cycle $i_1 \to i_2\to\cdots\to i_m\to i_1$.
+The contact $i_1 \to i_2$ implies that a portion of the pipe $i_2$ is southeast of $i_1$. The same is true for the contact $i_2\to i_3$ and so on.
+In the end, we have that $i_m\to i_1$ gives a portion of the pipe $i_m$ is northwest of $i_1$. 
+This is only possible if some pipe $i_j$ cross $i_1$ with the contact $i_1\to i_2$ on one side of the crossing of $i_1$ and $i_j$, and the contact $i_j \to i_{j+1 \mod m}$ on the other side.
 Hence that crossing is not horizontally nor vertically connected, therefore Lemma~\ref{lem:hv_connected} gives that $\omega$ is not dominant.
 \end{proof}
 
