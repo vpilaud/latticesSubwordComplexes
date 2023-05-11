@@ -64,11 +64,11 @@ We can only repeat this process finitely many times and after $m<s-r$ steps, we 
 Therefor, it is not possible that $P$ has a contact in column $d$ and row $r<s$, and the crossing of $Q$ in position $d,s)$ is vertically connected.
 \end{proof}
 
+\nantel{add in acknowledgement that : Lucas Gagnon had a proof of converse in different context}
 \begin{theorem}%[The acyclic property for $\nu$-Tamari lattices]
 \label{prob:nuAcyclicProperty}
 All pipe dreams with permutation $0 \omega$ are acyclic if and only if $\omega$ is a dominant permutation.
 \end{theorem}
-\nantel{add in acknowledgement that : Lucas Gagnon had a proof of converse in different contaxt}
 
 \begin{proof} For the forward implication, assume that $\omega$ is not dominant. 
 Let $P_0$ be the greedy pipe dream of $0\omega$. It has no crossing in row 0, and cannot be a partition starting at row 1.
@@ -78,11 +78,21 @@ Let $Q$ be the pipe dream obtained from $P_0$ by the flip of the crossing at $(c
 The contact of $Q$ at $(c,r)$ would gives $r\contactLess{Q} k$. In row $0$ we only have contacts and $\omega^{-1}(k)<\omega^{-1}(r)$, combining this  with Lemma~\ref{lem:rectangle} would give  that 
 $k \contactLess{Q} r$, a contradiction, hence $Q$ is not acyclic.
 
+\nantel{Here, I went a bit fast before. Here is a much more detailed version}
 For the converse, assume we have a pipe dream that is not acyclic. The contact graph must contain a cycle $i_1 \to i_2\to\cdots\to i_m\to i_1$.
-The contact $i_1 \to i_2$ implies that a portion of the pipe $i_2$ is southeast of $i_1$. The same is true for the contact $i_2\to i_3$ and so on.
-In the end, we have that $i_m\to i_1$ gives a portion of the pipe $i_m$ is northwest of $i_1$. 
-This is only possible if some pipe $i_j$ cross $i_1$ with the contact $i_1\to i_2$ on one side of the crossing of $i_1$ and $i_j$, and the contact $i_j \to i_{j+1 \mod m}$ on the other side.
-Hence that crossing is not horizontally nor vertically connected, therefore Lemma~\ref{lem:hv_connected} gives that $\omega$ is not dominant.
+The contact $i_1 \to i_2$ is southeast of $i_1$ and the contact  $i_m\to i_1$ northwest of $i_1$. 
+Let $i_k$ be the first time where $i_{k-1}\to i_k$ is a contact southeast of $i_1$ and $i_k \to i_{k+1}$\footnote{with the convention that$k+1$ is $1$ if $k=m$} is a contact northwest of $i_1$.
+This implies that the pipe $i_k$ cross $i_1$. Consider the case where $i_1<i_k$, hence $i_k$ is the vertical pipe of the crossing. 
+The contact $i_k\to i_{j+1}$ must occur after the crossing of $i_1$ and $i_k$, since it is northwest of $i_1$.
+This implies that the crossing of $i_1$ and $i_k$ cannot be vertically connected. 
+If $k=2$, then the contact of $i_1\to i_2$ is before the crossing, implying that the crossing of $i_1$ and $i_2$ cannot be horizontally connected. 
+The Lemma~\ref{lem:hv_connected} gives that $\omega$ is not dominant in this case.
+Assume $k>2$ and assume that the crossing $i_1$ and $i_k$ is horizontally connected. The contact $i_1\to i_2$ is southeast of $i_k$ and the contact $i_{k-1}\to i_k$ is northwest.
+Therefor there must be a pipe $i_j$ for $1<j<k$, such that the contact $i_{j-1}\to i_j$ is southeast of both $i_1$ and $i_k$, and the contact $i_{j}\to i_{j+1}$ is southeast of $i_1$ but northwest of $i_j$.
+This implies that the pipe $i_j$ and $i_k$ cross southeast of $i_1$ and we must have $i_j<i_k$. The crossing of $i_j$ and $i_k$ cannot be horizontally connected since $i_j$ has a contact west of it.
+It cannot be vertically connected since $i_k$ has a contact north of it. Again, Lemma~\ref{lem:hv_connected} gives that $\omega$ is not dominant in this case.
+
+The case where $i_1>i_k$ is very similar, reflecting all arguments. Hence, in all cases, if a pipe dream is not acyclic, then the permutation $\omega$ is not dominant. 
 \end{proof}
 
 Applying our Theorem~\ref{thm:pipeDreamQuotient}, we get the following consequence.
