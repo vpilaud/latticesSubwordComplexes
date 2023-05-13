@@ -260,7 +260,7 @@ We then explore in \cref{sec:furtherTopics} some natural further topics on pipe 
 We first present two algorithms to compute the unique acyclic pipe dream whose linear extensions contain a given permutation generalizing the binary tree insertion map on permutations (\cref{subsec:sweepingAlgorithm,subsec:insertionAlgorithm}).
 We then describe the pipe dream congruence as the transitive closure of a local rewriting rule generalizing that of the sylvester congruence (\cref{subsec:rewritingRule}).
 We then present a natural commutative diagram of lattice morphisms generalizing the connection between the recoil map and the binary tree insertion map on permutations and the canopy on binary trees (\cref{subsec:canopy}).
-Finally, we discuss a specific family of pipe dreams in connection to the $\nu$-Tamari lattices (\cref{subsec:nuTamari}).
+Finally, we show that all pipe dreams of $0\omega$ are acyclic whenever $\omega$ is dominant. Therefore, Theorem~\ref{thm:A} implies that the $\nu$-Tamari lattice is a quotient of the interval~$[e,\omega]$ for a well-chosen dominant permutation $\omega$ (\cref{subsec:nuTamari}).
 
 Finally, we discuss in \cref{sec:subwordComplexes} (partly conjectural) extensions of our results to subword complexes in finite Coxeter groups~\cite{KnutsonMiller-subwordComplex}.
 Given a finite Coxeter group~$W$ with simple reflections~$S$, a word~$Q$ on~$S$ and an element~$\omega$ of~$W$, the subword complex~$\subwordComplex(Q,\omega)$ is a simplicial complex whose facets are the complements of the reduced expressions of~$\omega$ inside the word~$Q$.
@@ -1171,42 +1171,67 @@ Then~$\pi^{-1}(i) < \pi^{-1}(j)$, thus the pipe~$i$ is inserted before the pipe~
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\input{nuTamari}
+\subsection{The acyclic property for $\nu$-Tamari lattices} 
+\label{subsec:nuTamari} 
 
-%
-%\subsection{The acyclic property for $\nu$-Tamari lattices}
-%\label{subsec:nuTamari}
-%
-%We close this section by stating an open problem that relates our results to the $\nu$-Tamari lattices introduced by L.-F.~Préville-Ratelle and X.~Viennot in~\cite{PrevilleRatelleViennot}. These posets are indexed by a lattice path $\nu$ consisting of a finite number of north~(N) and east~(E) steps, and coincide with the classical Tamari lattices when $\nu=(NE)^n$.
-%
-%In~\cite{CeballosPadrolSarmiento}, it was shown that the $\nu$-Tamari lattice can be obtained as the increasing flip poset on pipe dreams~$\pipeDreams(\omega_\nu)$ for an explicit permutation $\omega_\nu$ associated to $\nu$. The permutations of the form~$\omega_\nu$ can be easily characterized as follows. We refer to~\cite{CeballosPadrolSarmiento} for details. 
-%
-%The \defn{Rothe diagram} of a permutation~$\omega$ is the set $\set{(\omega(j),i)}{i<j,\ \omega(i)>\omega(j)}$ in matrix notation.
-%A permutation $\omega$ is called \defn{dominant} if its Rothe diagram is the Ferrer's diagram of a partition located at the top left corner $(1,1)$. Equivalently, a permutation~$\omega$ is dominant if and only if it is 132-avoiding. 
-%For a permutation~$\omega = \omega_1 \dots \omega_n \in \fS_n$, we denote by~$0\omega$ the permutation~$0 \omega_1 \dots \omega_n$ of~$\{0, 1, \dots, n\}$, and we consider here pipe dreams with pipes indexed by~$\{0, 1, \dots, n\}$.
-%%For instance, for the reversed permutation~$\omega = n \dots 2 1$, the permutation~$0\omega$ is the permutation~$\rho_n$ considered in \cref{exm:Tamari1}.
-%%The permutations $\omega_\nu$ associated to lattice paths $\nu$ are those of the form~$1\oplus w$ for some dominant permutation $w$, see~\cite{CeballosPadrolSarmiento}. 
-%
-%\begin{openproblem}%[The acyclic property for $\nu$-Tamari lattices]
-%\label{prob:nuAcyclicProperty}
-%Show that if $\omega$ is a dominant permutation then all pipe dreams with permutation $0 \omega$ are acyclic. %In particular, the corresponding $\nu$-Tamari lattice is the increasing flip poset on acyclic pipe dreams~$\acyclicPipeDreams(1\oplus \omega)$.
-%\end{openproblem}
-%
-%From \cref{exm:Tamari1}, we know that this property holds when $\omega=n\dots21$ is the reverse permutation. 
-%In this case, the increasing flip poset on~$\pipeDreams(0 \omega)$ is the classical Tamari lattice. Removing vertex $0$ from the contact graph of a pipe dream~$ P\in \pipeDreams(0 \omega)$ returns the binary tree corresponding to $P$ (with the leaves removed and the internal nodes labeled from $1$ to $n$).
-%The edges of the binary tree are oriented going away from the root of the tree.  
-%See \cref{fig:bijection}.
-%We have also checked this property computationally for all dominant permutations up to $n=8$. 
-%
-%Applying our Theorem~\ref{thm:pipeDreamQuotient}, we get the following consequence.
-%
-%\begin{proposition}
-%If the statement of Open Problem~\ref{prob:nuAcyclicProperty} holds, then the $\nu$-Tamari lattice is a lattice quotient of the interval~$[e,\omega_\nu]$.
-%\end{proposition}  
+We close this section with a theorem that relates our results to the $\nu$-Tamari lattices introduced by L.-F.~Pr\'eville-Ratelle and X.Viennot in\cite{PrevilleRatelleViennot}. These posets are indexed by a lattice path $\nu$ consisting of a finite number of north (N) and east (E) steps, and coincide with the classical Tamari lattices when $\nu=(NE)^n$.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In~\cite{CeballosPadrolSarmiento}, it was shown that the $\nu$-Tamari lattice can be obtained as the increasing flip poset on pipe dreams~$\pipeDreams(\omega_\nu)$ for an explicit permutation $\omega_\nu$ associated with $\nu$. The permutations of the form~$\omega_\nu$ can be easily characterized as follows. We refer to~\cite{CeballosPadrolSarmiento} for details.
+
+The \defn{Rothe diagram} of a permutation~$\omega$ is the set $\set{(\omega(j),i)}{i<j,\ \omega(i)>\omega(j)}$ in matrix notation.
+A permutation $\omega$ is called \defn{dominant} if its Rothe diagram is the Ferrers diagram of a partition located at the top left corner $(1,1)$. Equivalently, a permutation~$\omega$ is dominant if and only if it is 132-avoiding.
+For a permutation~$\omega = \omega_1 \dots \omega_n \in \fS_n$, we denote by~$0\omega$ the permutation~$0 \omega_1 \dots \omega_n$ of~${0, 1, \dots, n}$, and we consider here pipe dreams with pipes indexed by~${0, 1, \dots, n}$.
+
+From \cref{exm:Tamari1}, we see that this property holds when $\omega=n\dots21$ is the reverse permutation.
+In this case, the increasing flip poset on~$\pipeDreams(0 \omega)$ is the classical Tamari lattice. Removing vertex $0$ from the contact graph of a pipe dream~$ P\in \pipeDreams(0 \omega)$ returns the binary tree corresponding to $P$ (with the leaves removed and the internal nodes labeled from $1$ to $n$).
+The edges of the binary tree are oriented going away from the root of the tree.
+See \cref{fig:bijection}.
+
+Given a pipe dream $P$, we write $i\to j$ whenever $i$ has a contact with $j$.
+When $P$ has a cycle ${\bf C}=(i_1, i_2, \ldots, i_m)$ where $i_1 \to i_2\to\cdots\to i_m\to i_1$, we can always assume that $i_1=\min\{i_1,\ldots,i_m\}$.
+To describe the location of crossings and contacts (elbows), we use the coordinate $(c,r)$, where $r$ is the row and $c$ is the column.
+
+\begin{lemma}\label{lem:not_dominant}
+For a pipe dream $P$ with permutation $0\omega$ and crossing pipes $i<j$: if $i$ has an elbow southwest of the crossing and $j$ has an elbow northeast of the crossing, then $\omega$ is not dominant.
+\end{lemma}
+
+\begin{proof}
+Let $(c,r)$ be the position of the crossing. Since $i$ has an elbow southwest of $(c,r)$, we have $r\leq i-1$.
+Since $j$ has an elbow northeast of the crossing, there are at most $i-2$ pipes that cross north of $(c,r)$ in column $c$.
+Hence, at least $2$ pipes $<i$ reach the Northern border before column $c$.
+Excluding $0$, there is at least a pipe $0<h$ such that $h<i<j$ and $\omega^{-1}(h)< \omega^{-1}(j)<\omega^{-1}(i)$.
+This is a $132$ pattern in $\omega$, therefore $\omega$ is not dominant.
+\end{proof}
+
+\begin{theorem}
+\label{prob:nuAcyclicProperty}
+All pipe dreams with $0 \omega$ are acyclic if and only if $\omega$ is a dominant permutation.
+\end{theorem}
+
+\begin{proof}
+For the forward implication, assume that $\omega$ is not dominant. Let $P_0$ be the greedy pipe dream of $0\omega$. It has no crossing in row 0, and cannot be a partition starting at row 1. There must be a row $r>1$ with more crossing than in row $r-1$. Considering the rightmost column $c$ of $P$ with a crossing in row $r$, the pipes $r<k$ are crossing at $(c,r)$, $\omega^{-1}(k)<\omega^{-1}(r)$ and are in contact in position $(c+1,r-1)$. Let $Q$ be the pipe dream obtained from $P_0$ by the flip of the crossing at $(c,r)$ with the contact at $(c+1,r-1)$. The contact of $Q$ at $(c,r)$ gives $r\contactLess{Q} k$. In row $0$ we only have contacts, we have $\omega^{-1}(k)<\omega^{-1}(r)$ and Lemma~\ref{lem:rectangle} gives that $k \contactLess{Q} r$, hence $Q$ is not acyclic.
+
+For the converse, assume we have a pipe dream $P$ that is not acyclic. The contact graph must contain a cycle ${\bf C}=(i, j_1, \ldots, j_m)$ with $i<j_k$ for all $1\le k\le m$. The contact $i \to j_1$ is southeast of $i$ and the contact $j_m\to i$ northwest of $i$. Let $j_k$ be the first time where $j_{k-1}\to j_k$ is a contact southeast of $i$ and $j_k \to j_{k+1}$ (with the convention that $j_{m+1}=i$) is a contact northwest of $i$. This implies that the pipe $j=j_k$ cross $i$ in some position $(c,r)$. Since $i<j$, the pipe $j$ is the vertical pipe of the crossing.
+
+Remark that all contacts $j_{k'}\to j_{k'+1}$ are southeast of $i$ for $1\le k' <k$. Consider first the case $m=1$. The contact $i\to j$ implies there is an elbow of $i$ southwest of the crossing and $j\to i$ implies there is an elbow of $j$ northeast of the crossing. Lemma~\ref{lem:not_dominant} implies $\omega$ is not dominant.
+
+Consider now the case $m>1$. If $i$ has an elbow southwest of the crossing, then Lemma~\ref{lem:not_dominant} implies $\omega$ is not dominant. Thus, we may assume that $i$ has no elbow west of $(c,r)$, and therefore $r=i$. The contact $i\to j_1$ must be southeast of both $i$ and $j$, and the $j_{k-1}\to j_k=j$ is northwest of $j$. Let $j'=j_{k'}$ for $1\le k' <k$ be the first pipe such that the $j_{k'-1}\to j'$ is southeast of $j$ and $j'\to j_{k'+1}$ is northwest of $j$, and both are southeast of $i$. Hence $j$ and $j'$ are crossing at some position $(c',r')$, and the pipe $j'$ remains southeast of $i$ between these two contacts.
+
+Remark that now all contacts $j_{k''}\to j_{k''+1}$ are southeast of both pipes $i$ and $j$ for $1\le k''<k'<k$. If $j'<j$, then the contact $j'\to j_{k'+1}$ is southwest of the crossing at $(c',r')$, and $r'\le j'-1$, and $j$ has a contact north of $(c,r)$ which is north of $(c',r')$. We can apply Lemma~\ref{lem:not_dominant} to $j'<j$, and $\omega$ is not dominant.
+
+If $j'>j$, and $j$ has no elbow southwest of $(c',r')$, then the pipe $j'$ must cross $i$ in row $i$ due west of $(c,i)$. We now repeat the argument above: we have the contact $i\to j_1$ must be southeast of $i$, $j$, and $j'$, and the contact $j_{k'-1}\to j_{k'}=j'$ is northwest of $j'$. Let $j''=j_{k''}$ for $1\le k''<k'<k$ be the first pipe such that the $j_{k''-1}\to j''$ is southeast of $j'$ and $j''\to j_{k''+1}$ is northwest of $j'$, and both are southeast of $i$ and $j$. Hence $j'$ and $j''$ are crossing at some position $(c'',r'')$, and the pipe $j''$ remains southeast of $i$ and $j$ between these two contacts.
+
+Remark that now all contacts $j_{k^{(3)}}\to j_{k^{(3)}+1}$ are southeast of both pipes  $i$, $j$ and $j'$ for $1\le k^{(3)}<k'' <k' < k$.
+The process above cannot continue at infinitum since $k-1$ is finite. At one point we will find $j^{(\ell)}<j^{(\ell-1)}$ where Lemma~\ref{lem:not_dominant} applies and conclude that $\omega$ is not dominant
+in all cases. 
+\end{proof}
+
+Applying our Theorem~\ref{thm:pipeDreamQuotient}, using the Isomorphism $[0e,0\omega_\nu]\cong [e,\omega_\nu]$, we get the following consequence.
+
+\begin{corollary}
+The $\nu$-Tamari lattice is a lattice quotient of the interval~$[e,\omega_\nu]$.
+\end{corollary}  
+
 
 \section{Subword complexes}
 \label{sec:subwordComplexes}
@@ -2167,7 +2192,8 @@ We analyze the possible cases in the sweeping algorithm.
 
 \section*{Acknowledgments}
 
-We are grateful to Florent Hivert for various discussions. We also thank Martin Rubey for his comments which led us to think about Open Problem~\ref{prob:nuAcyclicProperty}. 
+We are grateful to Florent Hivert for various discussions. We also thank Martin Rubey for his comments which led us to think about Theorem~\ref{prob:nuAcyclicProperty}. 
+We are very grateful to Lucas Gagnon who shared with us an independent proof of the forward direction of Theorem~\ref{prob:nuAcyclicProperty}, this allowed us to simplify our argument.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
