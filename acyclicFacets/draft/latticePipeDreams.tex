@@ -1187,9 +1187,13 @@ In this case, the increasing flip poset on~$\pipeDreams(0 \omega)$ is the classi
 The edges of the binary tree are oriented going away from the root of the tree.
 See \cref{fig:bijection}.
 
-Given a pipe dream $P$, we write $i\to j$ whenever $i$ has a contact with $j$.
-When $P$ has a cycle ${\bf C}=(i_1, i_2, \ldots, i_m)$ where $i_1 \to i_2\to\cdots\to i_m\to i_1$, we can always assume that $i_1=\min\{i_1,\ldots,i_m\}$.
+Given a pipe dream $P$, we write $i\to j$ whenever $i$ has an elbow weakly northwest of $j$. Lemma~\ref{lem:rectangle} gives us that $i\to j$ implies $i\contactLess{P} j$. 
+When $P$ is not acyclic, we can find a cycle ${\bf C}=(i_1, i_2, \ldots, i_m)$ of the contact graph, where $i_1 \to i_2\to\cdots\to i_m\to i_1$. 
+We say that $\bf{C}$ is a \defn{reduced cycle} if it is not possible to remove any pipe from $\bf C$ and still have a cycle. 
+Given a reduced cycle $\bf C$, we can also assume that $i_1=\min{i_1,\ldots,i_m}$.
+
 To describe the location of crossings and contacts (elbows), we use the coordinate $(c,r)$, where $r$ is the row and $c$ is the column.
+
 
 \begin{lemma}\label{lem:not_dominant}
 For a pipe dream $P$ with permutation $0\omega$ and crossing pipes $i<j$: if $i$ has an elbow southwest of the crossing and $j$ has an elbow northeast of the crossing, then $\omega$ is not dominant.
@@ -1211,19 +1215,24 @@ All pipe dreams with $0 \omega$ are acyclic if and only if $\omega$ is a dominan
 \begin{proof}
 For the forward implication, assume that $\omega$ is not dominant. Let $P_0$ be the greedy pipe dream of $0\omega$. It has no crossing in row 0, and cannot be a partition starting at row 1. There must be a row $r>1$ with more crossing than in row $r-1$. Considering the rightmost column $c$ of $P$ with a crossing in row $r$, the pipes $r<k$ are crossing at $(c,r)$, $\omega^{-1}(k)<\omega^{-1}(r)$ and are in contact in position $(c+1,r-1)$. Let $Q$ be the pipe dream obtained from $P_0$ by the flip of the crossing at $(c,r)$ with the contact at $(c+1,r-1)$. The contact of $Q$ at $(c,r)$ gives $r\contactLess{Q} k$. In row $0$ we only have contacts, we have $\omega^{-1}(k)<\omega^{-1}(r)$ and Lemma~\ref{lem:rectangle} gives that $k \contactLess{Q} r$, hence $Q$ is not acyclic.
 
-For the converse, assume we have a pipe dream $P$ that is not acyclic. The contact graph must contain a cycle ${\bf C}=(i, j_1, \ldots, j_m)$ with $i<j_k$ for all $1\le k\le m$. The contact $i \to j_1$ is southeast of $i$ and the contact $j_m\to i$ northwest of $i$. Let $j_k$ be the first time where $j_{k-1}\to j_k$ is a contact southeast of $i$ and $j_k \to j_{k+1}$ (with the convention that $j_{m+1}=i$) is a contact northwest of $i$. This implies that the pipe $j=j_k$ cross $i$ in some position $(c,r)$. Since $i<j$, the pipe $j$ is the vertical pipe of the crossing.
+For the converse, assume we have a pipe dream $P$ that is not acyclic. The contact graph must contain a reduced cycle ${\bf C}=(i, j_1, \ldots, j_m)$ with $i<j_k$ for all $1\le k\le m$. 
+If $m=1$, then $i$ and $j_1$ must cross , $i\to j_1$ implies there is an elbow of $i$ southwest of the crossing and $j_1\to i$ implies there is an elbow of $j$ northeast of the crossing. Lemma~\ref{lem:not_dominant} implies $\omega$ is not dominant. We consider the case where $m>1$.
+For $i\to j_1$, the pipe $i$ must have an  elbows at $(a,b)$ weakly northwest of $(c_1,d_1)$ an elbow of the pipe $j_1$. 
+Similarly $j_m\to i$ must have $(a_m,b_m)$ weakly northwest $(c,d)$ elbows of the pipes $j_m$ and $i$, respectively. 
+Since the cycle $C$ is reduced, we must have that $(a_m,b_m)$ is not northeast $(c_1,d_1)$. That is $c_1<a_m$ or $d_1<b_m$.
 
-Remark that all contacts $j_{k'}\to j_{k'+1}$ are southeast of $i$ for $1\le k' <k$. Consider first the case $m=1$. The contact $i\to j$ implies there is an elbow of $i$ southwest of the crossing and $j\to i$ implies there is an elbow of $j$ northeast of the crossing. Lemma~\ref{lem:not_dominant} implies $\omega$ is not dominant.
+For $d_1<b_m$, we must have $a_m<c_1$ since the pipe $i$ is northwest of $(c_1,d_1)$ and southeast of $(a_m,d_m)$.
+The pipe $j_1$ cannot have an elbow southeast of $(a_m,b_m)$; otherwise $j_m\to j_1$ would contradict the fact that $\bf C$ is reduced.
+The pipes $i<j_1$ must cross in the some column $<a_m$ since $j_1$ must remain strictly west of $a_m$ in rows $>b_m$, but the pipe $i$
+must have and elbow southeast of $(a_m,b_m)$. Now, in rows $\le b_m$ the pipe $j_1$ must remain northwest of the pipe $i$. 
+It is them impossible to have an elbow in position $(c_1,d_1)$ southeast of $i$ in a row $d_1<b_1$. This is a contradiction and it exclude this case.
 
-Consider now the case $m>1$. If $i$ has an elbow southwest of the crossing, then Lemma~\ref{lem:not_dominant} implies $\omega$ is not dominant. Thus, we may assume that $i$ has no elbow west of $(c,r)$, and therefore $r=i$. The contact $i\to j_1$ must be southeast of both $i$ and $j$, and the $j_{k-1}\to j_k=j$ is northwest of $j$. Let $j'=j_{k'}$ for $1\le k' <k$ be the first pipe such that the $j_{k'-1}\to j'$ is southeast of $j$ and $j'\to j_{k'+1}$ is northwest of $j$, and both are southeast of $i$. Hence $j$ and $j'$ are crossing at some position $(c',r')$, and the pipe $j'$ remains southeast of $i$ between these two contacts.
-
-Remark that now all contacts $j_{k''}\to j_{k''+1}$ are southeast of both pipes $i$ and $j$ for $1\le k''<k'<k$. If $j'<j$, then the contact $j'\to j_{k'+1}$ is southwest of the crossing at $(c',r')$, and $r'\le j'-1$, and $j$ has a contact north of $(c,r)$ which is north of $(c',r')$. We can apply Lemma~\ref{lem:not_dominant} to $j'<j$, and $\omega$ is not dominant.
-
-If $j'>j$, and $j$ has no elbow southwest of $(c',r')$, then the pipe $j'$ must cross $i$ in row $i$ due west of $(c,i)$. We now repeat the argument above: we have the contact $i\to j_1$ must be southeast of $i$, $j$, and $j'$, and the contact $j_{k'-1}\to j_{k'}=j'$ is northwest of $j'$. Let $j''=j_{k''}$ for $1\le k''<k'<k$ be the first pipe such that the $j_{k''-1}\to j''$ is southeast of $j'$ and $j''\to j_{k''+1}$ is northwest of $j'$, and both are southeast of $i$ and $j$. Hence $j'$ and $j''$ are crossing at some position $(c'',r'')$, and the pipe $j''$ remains southeast of $i$ and $j$ between these two contacts.
-
-Remark that now all contacts $j_{k^{(3)}}\to j_{k^{(3)}+1}$ are southeast of both pipes  $i$, $j$ and $j'$ for $1\le k^{(3)}<k'' <k' < k$.
-The process above cannot continue at infinitum since $k-1$ is finite. At one point we will find $j^{(\ell)}<j^{(\ell-1)}$ where Lemma~\ref{lem:not_dominant} applies and conclude that $\omega$ is not dominant
-in all cases. 
+For $c_1<a_m$, similarly to above,  we must now have $b_m<d_1$ and the pipe $j_m$ cannot have an elbow northeast of $(c_1,d_1)$.
+The pipes $i<j_m$ must cross in some column strictly between $c_1$ and $a_m$; the pipe $j_m$ must remain strictly south of $d_1$ in columns $<c_1$, but the pipe $i$
+must have an elbow northwest of $(c_1,d_m)$. Then, $j_m$ has an elbow at $(a_m,b_m)$ northwest of $i$.
+For the crossing of $i$ and $j_m$,
+the pipe $i$ has an elbow at $(a,b)$ southeast of the crossing since $a\le c_1$ and the pipe $j_m$ has an elbow at $(a_m,b_m)$ northeast of the crossing.
+ Lemma~\ref{lem:not_dominant} implies that $\omega$ is not dominant and conclude the proof.
 \end{proof}
 
 Applying our Theorem~\ref{thm:pipeDreamQuotient}, using the Isomorphism $[0e,0\omega_\nu]\cong [e,\omega_\nu]$, we get the following consequence.
@@ -2192,8 +2201,8 @@ We analyze the possible cases in the sweeping algorithm.
 
 \section*{Acknowledgments}
 
-We are grateful to Florent Hivert for various discussions. We also thank Martin Rubey for his comments which led us to think about Theorem~\ref{prob:nuAcyclicProperty}. 
-We are very grateful to Lucas Gagnon who shared with us an independent proof of the forward direction of Theorem~\ref{prob:nuAcyclicProperty}, this allowed us to simplify our argument.
+We are grateful to Florent Hivert for various discussions. We also thank Martin Rubey for his comments which led us to think about Theorem~\ref{prob:nuAcyclicProperty} and
+we are very grateful to Lucas Gagnon who shared with us an independent proof of the converse direction of Theorem~\ref{prob:nuAcyclicProperty}, this allowed us to simplify grately our argument.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
