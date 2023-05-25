@@ -204,7 +204,7 @@ We show that for any permutation~$\omega$, the increasing flip graph on acyclic 
 We then discuss conjectural generalizations of this result to acyclic facets of subword complexes on arbitrary finite Coxeter groups.
 \end{abstract}
 
-\vspace*{.1cm}
+\vspace*{-.8cm}
 
 \maketitle
 
@@ -260,7 +260,7 @@ We then explore in \cref{sec:furtherTopics} some natural further topics on pipe 
 We first present two algorithms to compute the unique acyclic pipe dream whose linear extensions contain a given permutation generalizing the binary tree insertion map on permutations (\cref{subsec:sweepingAlgorithm,subsec:insertionAlgorithm}).
 We then describe the pipe dream congruence as the transitive closure of a local rewriting rule generalizing that of the sylvester congruence (\cref{subsec:rewritingRule}).
 We then present a natural commutative diagram of lattice morphisms generalizing the connection between the recoil map and the binary tree insertion map on permutations and the canopy on binary trees (\cref{subsec:canopy}).
-Finally, we show that all pipe dreams of $0\omega$ are acyclic whenever $\omega$ is dominant. Therefore, Theorem~\ref{thm:A} implies that the $\nu$-Tamari lattice is a quotient of the interval~$[e,\omega]$ for a well-chosen dominant permutation $\omega$ (\cref{subsec:nuTamari}).
+Finally, we show that all pipe dreams with exiting permutation $0\omega$ are acyclic whenever $\omega$ is dominant. Therefore, \cref{thm:A} implies that the $\nu$-Tamari lattice is a quotient of the interval~$[e,\omega]$ for a well-chosen dominant permutation $\omega$ (\cref{subsec:nuTamari}).
 
 Finally, we discuss in \cref{sec:subwordComplexes} (partly conjectural) extensions of our results to subword complexes in finite Coxeter groups~\cite{KnutsonMiller-subwordComplex}.
 Given a finite Coxeter group~$W$ with simple reflections~$S$, a word~$Q$ on~$S$ and an element~$\omega$ of~$W$, the subword complex~$\subwordComplex(Q,\omega)$ is a simplicial complex whose facets are the complements of the reduced expressions of~$\omega$ inside the word~$Q$.
@@ -1174,7 +1174,7 @@ Then~$\pi^{-1}(i) < \pi^{-1}(j)$, thus the pipe~$i$ is inserted before the pipe~
 \subsection{The acyclic property for $\nu$-Tamari lattices} 
 \label{subsec:nuTamari} 
 
-We close this section with a theorem that relates our results to the $\nu$-Tamari lattices introduced by L.-F.~Pr\'eville-Ratelle and X.Viennot in\cite{PrevilleRatelleViennot}. These posets are indexed by a lattice path $\nu$ consisting of a finite number of north (N) and east (E) steps, and coincide with the classical Tamari lattices when $\nu=(NE)^n$.
+We close this section with a theorem that relates our results to the $\nu$-Tamari lattices introduced by L.-F.~Pr\'eville-Ratelle and X.~Viennot in~\cite{PrevilleRatelleViennot}. These posets are indexed by a lattice path $\nu$ consisting of a finite number of north~(N) and east~(E) steps, and coincide with the classical Tamari lattices when $\nu=(NE)^n$.
 
 In~\cite{CeballosPadrolSarmiento}, it was shown that the $\nu$-Tamari lattice can be obtained as the increasing flip poset on pipe dreams~$\pipeDreams(\omega_\nu)$ for an explicit permutation $\omega_\nu$ associated with $\nu$. The permutations of the form~$\omega_\nu$ can be easily characterized as follows. We refer to~\cite{CeballosPadrolSarmiento} for details.
 
@@ -1182,65 +1182,77 @@ The \defn{Rothe diagram} of a permutation~$\omega$ is the set $\set{(\omega(j),i
 A permutation $\omega$ is called \defn{dominant} if its Rothe diagram is the Ferrers diagram of a partition located at the top left corner $(1,1)$. Equivalently, a permutation~$\omega$ is dominant if and only if it is 132-avoiding.
 For a permutation~$\omega = \omega_1 \dots \omega_n \in \fS_n$, we denote by~$0\omega$ the permutation~$0 \omega_1 \dots \omega_n$ of~${0, 1, \dots, n}$, and we consider here pipe dreams with pipes indexed by~${0, 1, \dots, n}$.
 
-From \cref{exm:Tamari1}, we see that this property holds when $\omega=n\dots21$ is the reverse permutation.
-In this case, the increasing flip poset on~$\pipeDreams(0 \omega)$ is the classical Tamari lattice. Removing vertex $0$ from the contact graph of a pipe dream~$ P\in \pipeDreams(0 \omega)$ returns the binary tree corresponding to $P$ (with the leaves removed and the internal nodes labeled from $1$ to $n$).
+The main example is when $\omega=n\dots21$ is the reverse permutation, see \cref{exm:Tamari1}.
+In this case, the increasing flip poset on~$\pipeDreams(0 \omega)$ is the classical Tamari lattice. Removing vertex $0$ from the contact graph of a pipe dream~$ P\in \pipeDreams(0 \omega)$ returns the binary tree corresponding to $P$ (with the leaves removed and the internal nodes labeled in inorder from $1$ to $n$).
 The edges of the binary tree are oriented going away from the root of the tree.
 See \cref{fig:bijection}.
 
-Given a pipe dream $P$, we write $i\to j$ whenever $i$ has an elbow weakly northwest of $j$. Lemma~\ref{lem:rectangle} gives us that $i\to j$ implies $i\contactLess{P} j$. 
+Given a pipe dream $P$, we write $i\to j$ whenever $i$ has an elbow weakly northwest of $j$. \cref{lem:rectangle} gives us that $i\to j$ implies $i\contactLess{P} j$. 
 When $P$ is not acyclic, we can find a cycle ${\bf C}=(i_1, i_2, \ldots, i_m)$ of the contact graph, where $i_1 \to i_2\to\cdots\to i_m\to i_1$. 
 We say that $\bf{C}$ is a \defn{reduced cycle} if it is not possible to remove any pipe from $\bf C$ and still have a cycle. 
-Given a reduced cycle $\bf C$, we can also assume that $i_1=\min{i_1,\ldots,i_m}$.
+Given a reduced cycle $\bf C$, we can also assume that $i_1 = \min\{i_1, \dots, i_m\}$.
 
-To describe the location of crossings and contacts (elbows), we use the coordinate $(c,r)$, where $r$ is the row and $c$ is the column.
+To describe the location of crossings and contacts (elbows), we use the coordinate $(c,r)$, where~$r$ is the row and $c$ is the column (ranging from $0$ to~$n$).
 
-
-\begin{lemma}\label{lem:not_dominant}
-For a pipe dream $P$ with permutation $0\omega$ and crossing pipes $i<j$: if $i$ has an elbow southwest of the crossing and $j$ has an elbow northeast of the crossing, then $\omega$ is not dominant.
+\begin{lemma}
+\label{lem:notDominant}
+For a pipe dream $P \in \pipeDreams(0\omega)$ with a crossing~$x$ between two pipes~$i < j$, if $i$ has an elbow southwest of~$x$ and $j$ has an elbow northeast of~$x$, then $\omega$ is not dominant.
 \end{lemma}
 
 \begin{proof}
-Let $(c,r)$ be the position of the crossing. Since $i$ has an elbow southwest of $(c,r)$, we have $r\leq i-1$.
-Since $j$ has an elbow northeast of the crossing, there are at most $i-2$ pipes that cross north of $(c,r)$ in column $c$.
-Hence, at least $2$ pipes $<i$ reach the Northern border before column $c$.
+Let $(c,r)$ denote the position of the crossing~$x$. Since $i$ has an elbow southwest of $x$, we have $r\leq i-1$.
+Since $j$ has an elbow northeast of~$x$, there are at most $r-1 \le i-2$ pipes that cross north of $(c,r)$ in column~$c$.
+Hence, at least $2$ pipes $<i$ reach the northern border before column~$c$.
 Excluding $0$, there is at least a pipe $0<h$ such that $h<i<j$ and $\omega^{-1}(h)< \omega^{-1}(j)<\omega^{-1}(i)$.
 This is a $132$ pattern in $\omega$, therefore $\omega$ is not dominant.
 \end{proof}
 
 \begin{theorem}
 \label{prob:nuAcyclicProperty}
-All pipe dreams with $0 \omega$ are acyclic if and only if $\omega$ is a dominant permutation.
+All pipe dreams of $\pipeDreams(0\omega)$ are acyclic if and only if $\omega$ is a dominant permutation.
 \end{theorem}
 
 \begin{proof}
-For the forward implication, assume that $\omega$ is not dominant. Let $P_0$ be the greedy pipe dream of $0\omega$. It has no crossing in row 0, and cannot be a partition starting at row 1. There must be a row $r>1$ with more crossing than in row $r-1$. Considering the rightmost column $c$ of $P$ with a crossing in row $r$, the pipes $r<k$ are crossing at $(c,r)$, $\omega^{-1}(k)<\omega^{-1}(r)$ and are in contact in position $(c+1,r-1)$. Let $Q$ be the pipe dream obtained from $P_0$ by the flip of the crossing at $(c,r)$ with the contact at $(c+1,r-1)$. The contact of $Q$ at $(c,r)$ gives $r\contactLess{Q} k$. In row $0$ we only have contacts, we have $\omega^{-1}(k)<\omega^{-1}(r)$ and Lemma~\ref{lem:rectangle} gives that $k \contactLess{Q} r$, hence $Q$ is not acyclic.
+For the forward implication, assume that $\omega$ is not dominant.
+Let $\greedyPipeDream$ be the greedy pipe dream of $0\omega$. 
+\vincent{I believe you wanted the antigreedy here?}
+It has no crossing in row 0, and cannot be a partition starting at row 1.
+\vincent{I don't like the way it is written here. I would say explicitly the connection between the crossings of the greedy pipe dream and the Rothe diagram of~$\omega$.}
+There must be a row $r>1$ with more crossing than in row $r-1$.
+\vincent{You mean really inclusionwise on columns?}
+Considering the rightmost column $c$ of $P$ with a crossing in row $r$, the pipes $r<k$ are crossing at $(c,r)$, $\omega^{-1}(k)<\omega^{-1}(r)$ and are in contact in position $(c+1,r-1)$.
+Let $Q$ be the pipe dream obtained from $\greedyPipeDream$ by the flip of the crossing at $(c,r)$ with the contact at $(c+1,r-1)$.
+The contact of $Q$ at $(c,r)$ gives $r\contactLess{Q} k$.
+In row $0$ we only have contacts, we have $\omega^{-1}(k)<\omega^{-1}(r)$ and \cref{lem:rectangle} gives that $k \contactLess{Q} r$, hence $Q$ is not acyclic.
 
-For the converse, assume we have a pipe dream $P$ that is not acyclic. The contact graph must contain a reduced cycle ${\bf C}=(i, j_1, \ldots, j_m)$ with $i<j_k$ for all $1\le k\le m$. 
-If $m=1$, then $i$ and $j_1$ must cross , $i\to j_1$ implies there is an elbow of $i$ southwest of the crossing and $j_1\to i$ implies there is an elbow of $j$ northeast of the crossing. Lemma~\ref{lem:not_dominant} implies $\omega$ is not dominant. We consider the case where $m>1$.
-For $i\to j_1$, the pipe $i$ must have an  elbows at $(a,b)$ weakly northwest of $(c_1,d_1)$ an elbow of the pipe $j_1$. 
-Similarly $j_m\to i$ must have $(a_m,b_m)$ weakly northwest $(c,d)$ elbows of the pipes $j_m$ and $i$, respectively. 
-Since the cycle $C$ is reduced, we must have that $(a_m,b_m)$ is not northeast $(c_1,d_1)$. That is $c_1<a_m$ or $d_1<b_m$.
+For the converse, assume we have a pipe dream $P$ that is not acyclic. The contact graph must contain a reduced cycle ${\bf C}=(i, j_1, \ldots, j_m)$ with $i<j_k$ for all $k \in [m]$. 
+If $m=1$, then $i$ and $j_1$ must cross , $i\to j_1$ implies there is an elbow of $i$ southwest of the crossing and $j_1\to i$ implies there is an elbow of $j$ northeast of the crossing. \cref{lem:notDominant} implies $\omega$ is not dominant. We consider the case where $m>1$.
+For $i\to j_1$, there is an elbow of~$i$ at $(a,b)$ weakly northwest of an elbow of~$j_1$ at $(c_1,d_1)$ an elbow.
+Similarly, for $j_m\to i$, there is an elbow of~$j_m$ at $(a_m,b_m)$ weakly northwest of an elbow of~$i$ at~$(c,d)$.
+Since the cycle $C$ is reduced, we must have that $(a_m,b_m)$ is not northwest $(c_1,d_1)$. That is $c_1<a_m$ or $d_1<b_m$.
 
-For $d_1<b_m$, we must have $a_m<c_1$ since the pipe $i$ is northwest of $(c_1,d_1)$ and southeast of $(a_m,d_m)$.
-The pipe $j_1$ cannot have an elbow southeast of $(a_m,b_m)$; otherwise $j_m\to j_1$ would contradict the fact that $\bf C$ is reduced.
-The pipes $i<j_1$ must cross in the some column $<a_m$ since $j_1$ must remain strictly west of $a_m$ in rows $>b_m$, but the pipe $i$
-must have and elbow southeast of $(a_m,b_m)$. Now, in rows $\le b_m$ the pipe $j_1$ must remain northwest of the pipe $i$. 
-It is them impossible to have an elbow in position $(c_1,d_1)$ southeast of $i$ in a row $d_1<b_1$. This is a contradiction and it exclude this case.
+For $d_1<b_m$, we must have $a_m<c_1$ since the pipe $i$ passes northwest of $(c_1,d_1)$ and southeast of $(a_m,d_m)$.
+The pipe $j_1$ cannot have an elbow southeast of $(a_m,b_m)$, as otherwise $j_m\to j_1$ would contradict the fact that $\bf C$ is reduced.
+The pipes $i<j_1$ must cross in some column $<a_m$ since $j_1$ must remain strictly west of $a_m$ in rows $>b_m$, but the pipe $i$ must have and elbow southeast of $(a_m,b_m)$.
+Now, in rows $\le b_m$ the pipe $j_1$ must remain northwest of the pipe $i$. 
+It is them impossible to have an elbow in position $(c_1,d_1)$ southeast of $i$ in a row $d_1<b_1$. This is a contradiction and it excludes this case.
 
 For $c_1<a_m$, similarly to above,  we must now have $b_m<d_1$ and the pipe $j_m$ cannot have an elbow northeast of $(c_1,d_1)$.
-The pipes $i<j_m$ must cross in some column strictly between $c_1$ and $a_m$; the pipe $j_m$ must remain strictly south of $d_1$ in columns $<c_1$, but the pipe $i$
-must have an elbow northwest of $(c_1,d_m)$. Then, $j_m$ has an elbow at $(a_m,b_m)$ northwest of $i$.
+The pipes $i<j_m$ must cross in some column strictly between $c_1$ and $a_m$, since the pipe $j_m$ must remain strictly south of $d_1$ in columns $<c_1$, but the pipe $i$ must have an elbow northwest of $(c_1,d_1)$ and the pipe $j_m$ has an elbow at $(a_m,b_m)$ northwest of $i$.
 For the crossing of $i$ and $j_m$,
 the pipe $i$ has an elbow at $(a,b)$ southeast of the crossing since $a\le c_1$ and the pipe $j_m$ has an elbow at $(a_m,b_m)$ northeast of the crossing.
- Lemma~\ref{lem:not_dominant} implies that $\omega$ is not dominant and conclude the proof.
+\cref{lem:notDominant} implies that $\omega$ is not dominant and conclude the proof.
 \end{proof}
 
-Applying our Theorem~\ref{thm:pipeDreamQuotient}, using the Isomorphism $[0e,0\omega_\nu]\cong [e,\omega_\nu]$, we get the following consequence.
+Applying our \cref{thm:pipeDreamQuotient}, using the Isomorphism $[0e,0\omega_\nu]\cong [e,\omega_\nu]$, we get the following consequence.
 
 \begin{corollary}
 The $\nu$-Tamari lattice is a lattice quotient of the interval~$[e,\omega_\nu]$.
 \end{corollary}  
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Subword complexes}
 \label{sec:subwordComplexes}
