@@ -1226,7 +1226,7 @@ Let $Q$ be the pipe dream obtained from $\greedyPipeDream$ by the flip of the cr
 The contact of $Q$ at $(c,r)$ gives $r\contactLess{Q} k$.
 In row $0$ we only have contacts, we have $\omega^{-1}(k)<\omega^{-1}(r)$ and \cref{lem:rectangle} gives that $k \contactLess{Q} r$, hence $Q$ is not acyclic.
 
-For the converse, assume we have a pipe dream $P$ that is not acyclic. The contact graph must contain a reduced cycle ${\bf C}=(i, j_1, \ldots, j_m)$ with $i<j_k$ for all $k \in [m]$. 
+For the backward direction, assume we have a pipe dream $P$ that is not acyclic. The contact graph must contain a reduced cycle ${\bf C}=(i, j_1, \ldots, j_m)$ with $i<j_k$ for all $k \in [m]$. 
 If $m=1$, then $i$ and $j_1$ must cross , $i\to j_1$ implies there is an elbow of $i$ southwest of the crossing and $j_1\to i$ implies there is an elbow of $j$ northeast of the crossing. \cref{lem:notDominant} implies $\omega$ is not dominant. We consider the case where $m>1$.
 For $i\to j_1$, there is an elbow of~$i$ at $(a,b)$ weakly northwest of an elbow of~$j_1$ at $(c_1,d_1)$ an elbow.
 Similarly, for $j_m\to i$, there is an elbow of~$j_m$ at $(a_m,b_m)$ weakly northwest of an elbow of~$i$ at~$(c,d)$.
@@ -2214,8 +2214,8 @@ We analyze the possible cases in the sweeping algorithm.
 
 \section*{Acknowledgments}
 
-We are grateful to Florent Hivert for various discussions. We also thank Martin Rubey for his comments which led us to think about Theorem~\ref{prob:nuAcyclicProperty} and
-we are very grateful to Lucas Gagnon who shared with us an independent proof of the converse direction of Theorem~\ref{prob:nuAcyclicProperty}, this allowed us to simplify grately our argument.
+We are grateful to Florent Hivert for various discussions. We also thank Martin Rubey for his comments which led us to think about~\cref{prob:nuAcyclicProperty}.
+Finally, we are grateful to Lucas Gagnon who shared with us an independent proof of the backward direction of \cref{prob:nuAcyclicProperty}, allowing us to greatly simplify our argument.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
