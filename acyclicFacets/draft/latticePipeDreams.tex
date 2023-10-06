@@ -1196,7 +1196,7 @@ All pipe dreams of $\pipeDreams(0\omega)$ are acyclic if and only if $\omega$ is
 \end{theorem}
 
 To prove this result, we will need the following observation.
-Note that throughout the proof, the pipes, rows, and column are all indexed by indices ranging from $0$ to~$n$.
+Note that throughout the proof, all pipes, rows, and column are indexed by indices ranging from $0$ to~$n$.
 
 \begin{lemma}
 \label{lem:notDominant}
@@ -1204,7 +1204,7 @@ For a pipe dream $P \in \pipeDreams(0\omega)$ with a crossing~$x$ between two pi
 \end{lemma}
 
 \begin{proof}
-Let~$r$ be the row and $c$ be the column of the crossing~$x$ (careful that all indices range from~$0$ to~$n$).
+Let~$r$ be the row and $c$ be the column of the crossing~$x$. % (careful that all indices range from~$0$ to~$n$).
 Since $i$ has an elbow southwest of $x$, we have $r \le i-1$.
 Since $j$ has an elbow northeast of~$x$, there are at most $r-1 \le i-2$ pipes that cross north of $(c,r)$ in column~$c$.
 Hence, at least two pipes smaller than~$i$ reach the northern border before column~$c$.
@@ -1219,8 +1219,8 @@ Because of this top row of contacts, $\omega^{-1}(u) < \omega^{-1}(v)$ implies~$
 We now consider the eastmost point~$x$ of pipe~$k$ along row~$i$, and let~$\ell$ denote the other pipe at this point.
 We distinguish two cases:
 \begin{enumerate}[(i)]
-\item Assume first that~$k$ and~$\ell$ cross at~$x$. Since $\omega^{-1}(k) < \omega^{-1}(\ell)$, we have~$k \contactLess{P} \ell$. Moreover, since~$\ell\ne i$, the pipe~$\ell$ must have an elbow west of~$x$ along row~$i$, which implies that~$\ell \contactLess{P} k$. Hence, we have both~$k \contactLess{P} \ell$ and~$\ell \contactLess{P} k$, so that~$P$ is cyclic.
-\item Assume now that~$k$ and~$\ell$ touch at~$x$, so that~$k \contactLess{P} \ell$. If~$\ell < k$, then~$k$ and~$\ell$ must cross before~$x$, and flipping~$x$ in~$P$ yields a cyclic facet. If~$\omega^{-1}(\ell) < \omega^{-1}(k)$, then~$\ell \contactLess{P} k$, so that~$P$ is again cyclic. Hence, we can assume that~$k < \ell$ and~$\omega^{-1}(k) < \omega^{-1}(\ell)$. By maximality of~$k$, we obtain that~$j$ and~$\ell$ do not cross, and thus that~$j$ passes northwest of~$x$. We conclude that~$j \contactLess{P} k$. Since~$\omega^{-1}(k) < \omega^{-1}(j)$, we also have~$k \contactLess{P} j$, so that~$P$ is cyclic.
+\item Assume first that~$k$ and~$\ell$ cross at~$x$. Note that $k$ is vertical while $\ell$ is horizontal at~$x$. Hence, $\omega^{-1}(k) < \omega^{-1}(\ell)$,  so that~$k \contactLess{P} \ell$. Moreover, $\ell \ne i$ (since~$i$ and~$k$ do not cross), so that~$\ell$ must have an elbow west of~$x$ along row~$i$. As $k$ must have an elbow south of~$x$, we obtain that~$\ell \contactLess{P} k$ by~\cref{lem:rectangle}. Hence, we have both~$k \contactLess{P} \ell$ and~$\ell \contactLess{P} k$, so that~$P$ is cyclic.
+\item Assume now that~$k$ and~$\ell$ touch at~$x$. Hence~$k \contactLess{P} \ell$. If~$\ell < k$, then~$k$ and~$\ell$ must cross at~$y$ before~$x$. Flipping~$x$ to~$y$, we obtain a facet~$P'$ with~$\ell \contactLess{P'} k$ (because of the contact~$y$) and~$k \contactLess{P'} \ell$ (because of the last row of elbows which is still in~$P'$), so that~$P'$ would be cyclic. If~$\omega^{-1}(\ell) < \omega^{-1}(k)$, then~$\ell \contactLess{P} k$, so that~$P$ is again cyclic. Hence, we can assume that~$k < \ell$ and~$\omega^{-1}(k) < \omega^{-1}(\ell)$. By maximality of~$k$, we obtain that~$j$ and~$\ell$ do not cross, and thus that~$j$ must have elbow northwest of~$x$. Since $x$ contain an elbow for~$k$, \cref{lem:rectangle} yield~$j \contactLess{P} k$. Since~$\omega^{-1}(k) < \omega^{-1}(j)$, we also have~$k \contactLess{P} j$, so that~$P$ is cyclic.
 \end{enumerate}
 
 For the backward implication, we introduce a local notation.
