@@ -1196,7 +1196,7 @@ All pipe dreams of $\pipeDreams(0\omega)$ are acyclic if and only if $\omega$ is
 \end{theorem}
 
 To prove this result, we will need the following observation.
-Note that throughout the proof, all pipes, rows, and column are indexed by indices ranging from $0$ to~$n$.
+Note that throughout the proof, all pipes, rows, and columns are indexed by indices ranging from $0$ to~$n$.
 
 \begin{lemma}
 \label{lem:notDominant}
@@ -1205,9 +1205,9 @@ For a pipe dream $P \in \pipeDreams(0\omega)$ with a crossing~$x$ between two pi
 
 \begin{proof}
 Let~$r$ be the row and $c$ be the column of the crossing~$x$. % (careful that all indices range from~$0$ to~$n$).
-Since $i$ has an elbow southwest of $x$, we have $r \le i-1$.
+Since $i$ has an elbow southwest of~$x$, we have $r \le i-1$.
 Since $j$ has an elbow northeast of~$x$, there are at most $r-1 \le i-2$ pipes that cross north of $(c,r)$ in column~$c$.
-Hence, at least two pipes smaller than~$i$ reach the northern border before column~$c$.
+Hence, at least two pipes smaller than~$i$ reach the northern border weakly before column~$c$.
 Excluding the pipe~$0$, there is at least one pipe $h > 0$ such that $h < i < j$ and $\omega^{-1}(h) < \omega^{-1}(j) < \omega^{-1}(i)$.
 This is a $132$ pattern in the permutation~$\omega$, therefore $\omega$ is not dominant.
 \end{proof}
@@ -1220,34 +1220,37 @@ We now consider the eastmost point~$x$ of pipe~$k$ along row~$i$, and let~$\ell$
 We distinguish two cases:
 \begin{enumerate}[(i)]
 \item Assume first that~$k$ and~$\ell$ cross at~$x$. Note that $k$ is vertical while $\ell$ is horizontal at~$x$. Hence, $\omega^{-1}(k) < \omega^{-1}(\ell)$,  so that~$k \contactLess{P} \ell$. Moreover, $\ell \ne i$ (since~$i$ and~$k$ do not cross), so that~$\ell$ must have an elbow west of~$x$ along row~$i$. As $k$ must have an elbow south of~$x$, we obtain that~$\ell \contactLess{P} k$ by~\cref{lem:rectangle}. Hence, we have both~$k \contactLess{P} \ell$ and~$\ell \contactLess{P} k$, so that~$P$ is cyclic.
-\item Assume now that~$k$ and~$\ell$ touch at~$x$. Hence~$k \contactLess{P} \ell$. If~$\ell < k$, then~$k$ and~$\ell$ must cross at~$y$ before~$x$. Flipping~$x$ to~$y$, we obtain a facet~$P'$ with~$\ell \contactLess{P'} k$ (because of the contact~$y$) and~$k \contactLess{P'} \ell$ (because of the last row of elbows which is still in~$P'$), so that~$P'$ would be cyclic. If~$\omega^{-1}(\ell) < \omega^{-1}(k)$, then~$\ell \contactLess{P} k$, so that~$P$ is again cyclic. Hence, we can assume that~$k < \ell$ and~$\omega^{-1}(k) < \omega^{-1}(\ell)$. By maximality of~$k$, we obtain that~$j$ and~$\ell$ do not cross, and thus that~$j$ must have elbow northwest of~$x$. Since $x$ contain an elbow for~$k$, \cref{lem:rectangle} yield~$j \contactLess{P} k$. Since~$\omega^{-1}(k) < \omega^{-1}(j)$, we also have~$k \contactLess{P} j$, so that~$P$ is cyclic.
+\item Assume now that~$k$ and~$\ell$ touch at~$x$. Hence~$k \contactLess{P} \ell$. If~$\ell < k$, then~$k$ and~$\ell$ must cross at~$y$ before~$x$. Flipping~$x$ to~$y$, we obtain a pipe dream~$P'$ with~$\ell \contactLess{P'} k$ (because of the contact~$y$) and~$k \contactLess{P'} \ell$ (because of the last row of elbows which is still in~$P'$), so that~$P'$ would be cyclic. If~$\omega^{-1}(\ell) < \omega^{-1}(k)$, then~$\ell \contactLess{P} k$, so that~$P$ is again cyclic. Hence, we can assume that~$k < \ell$ and~$\omega^{-1}(k) < \omega^{-1}(\ell)$. By maximality of~$k$, we obtain that~$j$ and~$\ell$ do not cross, and thus that~$j$ must have elbow northwest of~$x$. Since $x$ contain an elbow for~$k$, \cref{lem:rectangle} yields~$j \contactLess{P} k$. Since~$\omega^{-1}(k) < \omega^{-1}(j)$, we also have~$k \contactLess{P} j$, so that~$P$ is cyclic.
 \end{enumerate}
 
 For the backward implication, we introduce a local notation.
 We write~$i \to j$ if there is an elbow of pipe~$i$ weakly northwest of an elbow of pipe~$j$.
 Note that~$i \to j$ implies~$i \contactLess{P} j$ by \cref{lem:rectangle}.
 The reverse direction does not necessarily holds, but clearly holds for cover relations of~$\contactLess{P}$ (as in this case, there is an elbow of~$i$ in contact with an elbow of~$j$).
-Assume now that there is a cyclic pipe dream~$P \in \pipeDreams(\omega)$.
+Assume now that there is a cyclic pipe dream~$P \in \pipeDreams(0\omega)$.
 We can thus find a cycle~$\b{C}=(i_1, \dots, i_m)$ with~$i_1 \to \dots \to i_m \to i_1$.
 We can moreover assume that~$\b{C}$ is reduced in the sense that no subsequence of~$\b{C}$ forms a cycle for~$\to$.
 
-If~$m = 2$, then the pipes~$i_1$ and~$i_2$ must cross at some point~$x$, and $i_1 \to i_2$ implies that $i_1$ has an elbow southeast of~$x$, while $i_2 \to i_1$ implies that $i_2$ has an elbow northwest of~$x$, so that $\omega$ is not dominant by \cref{lem:notDominant}.
+If~$m = 2$, then the pipes~$i_1$ and~$i_2$ must cross at some point~$x$.
+Without loss of generality, we can assume $i_1<i_2$. 
+The fact $i_1 \to i_2$ implies that $i_1$ has an elbow southwest of~$x$, while $i_2 \to i_1$ implies that $i_2$ has an elbow northeast of~$x$, so that $\omega$ is not dominant by \cref{lem:notDominant}.
 
-Assume now that~$m \ge 3$.
+We now show that if~$\b{C}$ is reduced then the case $m\geq 3$ is impossible.
+Assume that~$m \ge 3$.
 Assume moreover that~$i_1 < i_\ell$ for all~$\ell \in [m]$ (if not, rotate the indices).
 Since~$i_m \to i_1$, there is an elbow~$e$ of~$i_m$ weakly northwest of an elbow~$e'$ of~$i_1$.
 Since~$i_1 \to i_2$, there is an elbow~$f$ of~$i_1$ weakly northwest of an elbow~$f'$ of~$i_2$.
 We now distinguish four cases:
-\begin{itemize}
+\begin{enumerate}[(i)]
 \item If~$e$ is weakly northwest of~$f$, thus of~$f'$, then~$i_m \to i_2$, contradicting the minimality of~$\b{C}$.
 \item If~$e$ is northeast of~$f$, since~$i_1 < i_m$, the pipe~$i_m$ starts southwest of~$f$ and ends northeast of~$f$, so that it has an elbow either southeast of~$f$ so that~$i_1 \to i_m$, or northwest of~$f$ thus of~$f'$ so that~$i_m \to i_2$. In both cases, this contradicts the minimality of~$\b{C}$.
-\item If~$e$ is southwest of~$f$, as~$i_1$ passes trough~$e'$ and~$f$, and $i_2$ starts south of~$i_1$ (since~$i_1 < i_2$) and passes south of~$f$, we obtain that~$i_2$ must pass south of~$e$, so that $i_m \to i_2$, which contradicts the minimality of~$\b{C}$.
+\item If~$e$ is southwest of~$f$, as~$i_1$ passes trough~$e'$ and~$f$, and $i_2$ starts south of~$i_1$ (since~$i_1 < i_2$) and passes south of~$f$, we obtain that~$i_2$ must pass south of~$e$ (otherwise $i_2$ would cross $i_1$ twice), so that $i_m \to i_2$, which contradicts the minimality of~$\b{C}$.
 \item If~$e$ is weakly southeast of~$f$, then~$e'$ is southeast of~$f$, which is impossible as $i_1$ has to pass through both~$e'$ and~$f$.
 \qedhere
-\end{itemize}
+\end{enumerate}
 \end{proof}
 
-Applying our \cref{thm:pipeDreamQuotient}, using the isomorphism $[0e,0\omega_\nu]\cong [e,\omega_\nu]$, we get the following consequence.
+Applying our \cref{thm:pipeDreamQuotient}, and using the isomorphism $[0e,0\omega_\nu]\cong [e,\omega_\nu]$, we get the following consequence.
 
 \begin{corollary}
 The $\nu$-Tamari lattice is a lattice quotient of the interval~$[e,\omega_\nu]$.
