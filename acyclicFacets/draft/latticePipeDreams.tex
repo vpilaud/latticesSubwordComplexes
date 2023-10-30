@@ -204,11 +204,13 @@ We show that for any permutation~$\omega$, the increasing flip graph on acyclic 
 We then discuss conjectural generalizations of this result to acyclic facets of subword complexes on arbitrary finite Coxeter groups.
 \end{abstract}
 
-\vspace*{-.8cm}
+\vspace*{-1cm}
 
 \maketitle
 
 \tableofcontents
+
+\vspace*{-.5cm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -255,6 +257,7 @@ For any permutation~$\omega$, the Hasse diagram of the lattice quotient of the i
 
 We recover the connection between the weak order and the Tamari lattice by the sylvester congruence for a well-chosen exiting permutation~$\omega$.
 Note that \cref{thm:A} is the correct generalization of the Tamari lattice, as neither the increasing flip poset on all pipe dreams, nor its subposet induced by acyclic pipe dreams, are lattices in general (see \cref{rem:increasingFlipPosetNotLattice,rem:acyclicIncreasingFlipPosetNotLattice}).
+Other conjectural lattice structures on pipe dreams are considered in~\cite[Conj.~2.8]{Rubey}.
 
 We then explore in \cref{sec:furtherTopics} some natural further topics on pipe dreams.
 We first present two algorithms to compute the unique acyclic pipe dream whose linear extensions contain a given permutation generalizing the binary tree insertion map on permutations (\cref{subsec:sweepingAlgorithm,subsec:insertionAlgorithm}).
@@ -1206,7 +1209,7 @@ For a pipe dream $P \in \pipeDreams(0\omega)$ with a crossing~$x$ between two pi
 \begin{proof}
 Let~$r$ be the row and $c$ be the column of the crossing~$x$. % (careful that all indices range from~$0$ to~$n$).
 Since $i$ has an elbow southwest of~$x$, we have $r \le i-1$.
-Since $j$ has an elbow northeast of~$x$, there are at most $r-1 \le i-2$ pipes that cross north of $(c,r)$ in column~$c$.
+Since $j$ has an elbow northeast of~$x$, there are at most $r-1 \le i-2$ pipes that cross north of $x$ in column~$c$.
 Hence, at least two pipes smaller than~$i$ reach the northern border weakly before column~$c$.
 Excluding the pipe~$0$, there is at least one pipe $h > 0$ such that $h < i < j$ and $\omega^{-1}(h) < \omega^{-1}(j) < \omega^{-1}(i)$.
 This is a $132$ pattern in the permutation~$\omega$, therefore $\omega$ is not dominant.
@@ -1233,7 +1236,7 @@ We can moreover assume that~$\b{C}$ is reduced in the sense that no subsequence 
 
 If~$m = 2$, then the pipes~$i_1$ and~$i_2$ must cross at some point~$x$.
 Without loss of generality, we can assume $i_1<i_2$. 
-The fact $i_1 \to i_2$ implies that $i_1$ has an elbow southwest of~$x$, while $i_2 \to i_1$ implies that $i_2$ has an elbow northeast of~$x$, so that $\omega$ is not dominant by \cref{lem:notDominant}.
+The fact $i_1 \to i_2$ implies that $i_1$ has an elbow southwest of~$x$, while the fact that $i_2 \to i_1$ implies that $i_2$ has an elbow northeast of~$x$, so that $\omega$ is not dominant by \cref{lem:notDominant}.
 
 We now show that if~$\b{C}$ is reduced then the case $m\geq 3$ is impossible.
 Assume that~$m \ge 3$.
