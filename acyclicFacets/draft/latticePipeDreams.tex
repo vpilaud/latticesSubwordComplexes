@@ -29,6 +29,7 @@
 \author[N.~Cartier]{No\'emie Cartier} 
 \address[N.~Cartier]{LISN, Université Paris Saclay}
 \email{noemie.cartier@lri.fr}
+\urladdr{https://www.lisn.upsaclay.fr/~cartier/}
 
 \author[C.~Ceballos]{Cesar Ceballos}
 \address[C.~Ceballos]{Institute of Geometry, Technische Universit\"at Graz}
@@ -481,7 +482,7 @@ Let~$R$ be the axis-parallel rectangle with corners~$x$ and~$y$.
 Since pipes~$k$ and~$\ell$ cross at most once, at least one of them has an additional elbow along the sides of~$R$.
 Assume for instance that~$k$ has an elbow at~$x'$.
 Then~$x'$ is still weakly northwest of~$y$ and $x',y$ are strictly closer than~$x,y$.
-By induction, there is a directed path from~$k$ to~$\ell$ in~$P\contact$, and thus a path directed form~$i$ to~$j$.
+By induction, there is a directed path from~$k$ to~$\ell$ in~$P\contact$, and thus a path directed from~$i$ to~$j$.
 \end{proof}
 
 Note that the reciprocal assertion of \cref{lem:rectangle} is false.
@@ -568,7 +569,7 @@ Hence any permutation of~$\{0, 1, \dots, n, n+1\}$ below~$\rho_n$ is a linear ex
 For instance, the pipe dream of \cref{fig:bijection} has linear extensions~$0421356$, $0423156$, $0421536$, $0423516$, $0425136$, $0425316$, $0452136$, $0452316$.
 \end{example}
 
-We will see in \cref{sec:furtherTopics} insertion algorithms to compute the pipe dream~$P \in \acyclicPipeDreams(\omega)$ such that~$\pi \in \linearExtensions(P)$ for given permutations~$\pi < \omega$.
+We will see in \cref{sec:furtherTopics} insertion algorithms to compute the pipe dream~$P \in \acyclicPipeDreams(\omega)$ such that~$\pi \in \linearExtensions(P)$ for given permutations~$\pi \le \omega$.
 These algorithms are however not needed for the proof of \cref{thm:partitionPipeDreams}, which we break into the following three lemmas.
 
 \begin{lemma}
@@ -696,7 +697,7 @@ If~$\omega^{-1}(i) < \omega^{-1}(j)$, then~$i \contactLess{P} j$ by \cref{lem:co
 Similarly, if~$\omega^{-1}(j) < \omega^{-1}(k)$, then~$j \contactLess{P} k$ by \cref{lem:consequenceRectangle1}.
 We can thus assume that~${\omega^{-1}(i) > \omega^{-1}(j) > \omega^{-1}(k)}$.
 Decompose the triangular shape into three regions: the region~$A$ of all points located northeast of the last elbow of the pipe~$j$ of~$P$, the region~$B$ of all points located northwest or southeast of an elbow of the pipe~$j$ of~$P$, and the region~$C$ of all points located southwest of the first elbow of the pipe~$j$ of~$P$.
-Since~$i \contactLess{P} k$, there is a path~$\pi$ form the exiting point of the pipe~$i$ of~$P$ to the entering point of the pipe~$j$ of~$P$ which travels along the pipes of~$P$, possibly jumping from the northwest pipe to the southeast pipe of a contact it encounters.
+Since~$i \contactLess{P} k$, there is a path~$\pi$ from the exiting point of the pipe~$i$ of~$P$ to the entering point of the pipe~$j$ of~$P$ which travels along the pipes of~$P$, possibly jumping from the northwest pipe to the southeast pipe of a contact it encounters.
 Since~$i < j$ and~$\omega^{-1}(j) > \omega^{-1}(k)$, the path~$\pi$ starts in region~$A$ and ends in region~$C$, so that it necessarily passes from region~$A$ to region~$C$.
 Since the southwest corner of~$A$ is located northeast of the northeast corner of~$C$, this forces an elbow~$e$ of~$\pi$ to lie in region~$B$.
 \cref{lem:rectangle} then ensures that either~$i \contactLess{P} j$ (if~$e$ is north of pipe~$j$), or~$j \contactLess{P} k$ (if~$e$ is south of pipe~$j$).
@@ -834,7 +835,7 @@ For any pipe dreams~$P, P' \in \acyclicPipeDreams(\omega)$, the following assert
 \begin{enumerate}[(i)]
 \item there is a path from $P$ to~$P'$ in the increasing flip graph on~$\acyclicPipeDreams(\omega)$,
 \item there exist linear extensions~$\pi$ of~$P$ and~$\pi'$ of~$P'$ such that~$\pi < \pi'$ in weak order,
-\item the minimal (resp.~max) linear extensions~$\pi$ of~$P$ and~$\pi'$ of~$P$ satisfy~$\pi < \pi'$ in weak order.
+\item the minimal (resp.~max) linear extensions~$\pi$ of~$P$ and~$\pi'$ of~$P'$ satisfy~$\pi < \pi'$ in weak order.
 \item there is no~$i < j$ such that~$i \contactMore{P} j$ and~$i \contactLess{P'} j$,
 \item for all~$i < j$, if~$i \contactMore{P} j$, then~$j \contactMore{P'} i$,
 \item for all~$i < j$, if~$i \contactLess{P'} j$, then~$i \contactLess{P} j$,
@@ -844,7 +845,7 @@ For any pipe dreams~$P, P' \in \acyclicPipeDreams(\omega)$, the following assert
 \begin{proof}
 We already proved the equivalence (i) $\Leftrightarrow$ (ii) in \cref{thm:pipeDreamQuotient}.
 The equivalence (ii) $\Leftrightarrow$ (iii) is valid for any lattice quotient.
-The equivalences (iii) $\Leftrightarrow$ (iv) $\Leftrightarrow$ (v) $\Leftrightarrow$ (vi) follow from the descriptions of \cref{prop:WOIP} for the inversions of the minimum and the non-inversions of the maximum of a weak order interval.
+The equivalences (iii) $\Leftrightarrow$ (iv) $\Leftrightarrow$ (v) $\Leftrightarrow$ (vi) follow from the descriptions of \cref{prop:WOIP} of the inversions of the minimum and the non-inversions of the maximum of a weak order interval.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -871,7 +872,7 @@ We say that an order on the boxes of the triangular shape is \defn{northeast com
 
 \begin{proposition}
 \label{prop:sweepingAlgorithm}
-For any permutations~$\pi,\omega \in \fS_n$ such that~$\pi < \omega$ in weak order, the unique pipe dream~$P \in \acyclicPipeDreams(\omega)$ such that~$\pi \in \linearExtensions(P)$ can be constructed by sweeping the triangular shape in any northeast compatible order and placing a crossing when sweeping a vertex~$v$ of the grid where pipe~$i$ arrives horizontally and pipe~$j$ arrives vertically if and only if
+For any permutations~$\pi,\omega \in \fS_n$ such that~$\pi \le \omega$ in weak order, the unique pipe dream~$P \in \acyclicPipeDreams(\omega)$ such that~$\pi \in \linearExtensions(P)$ can be constructed by sweeping the triangular shape in any northeast compatible order and placing a crossing when sweeping a vertex~$v$ of the grid where pipe~$i$ arrives horizontally and pipe~$j$ arrives vertically if and only if
 \begin{itemize}
 \item $i < j$ and~$\omega^{-1}(i) > \omega^{-1}(j)$, and 
 \item $\pi^{-1}(i) > \pi^{-1}(j)$ or vertex~$v$ lies in column~$\omega^{-1}(j)$.
@@ -937,7 +938,7 @@ Namely, it has a northeast elbow at row~$r_i$ and column~$c_i$ for each~$i \in [
 
 \begin{proposition}
 \label{prop:insertionAlgorithm}
-For any permutations~$\pi,\omega \in \fS_n$ such that~$\pi < \omega$ in weak order, the unique pipe dream~$P \in \acyclicPipeDreams(\omega)$ such that~$\pi \in \linearExtensions(P)$ can be constructed starting from the empty triangular shape and inserting the pipes~$\pi(1), \dots, \pi(n)$ one by one in the order of the permutation~$\pi$ as northwest as possible.
+For any permutations~$\pi,\omega \in \fS_n$ such that~$\pi \le \omega$ in weak order, the unique pipe dream~$P \in \acyclicPipeDreams(\omega)$ such that~$\pi \in \linearExtensions(P)$ can be constructed starting from the empty triangular shape and inserting the pipes~$\pi(1), \dots, \pi(n)$ one by one in the order of the permutation~$\pi$ as northwest as possible.
 More precisely, at step~$t$, we insert a pipe starting at row~$\pi(t)$, ending at column~$\omega^{-1}(\pi(t))$, and whose northeast elbows are precisely covering the staircase of currently free southeast elbows in the rectangle~$[\pi(t)] \times [\omega^{-1}(\pi(t))]$.
 See \cref{fig:insertionAlgorithm1,fig:insertionAlgorithm2}.
 \end{proposition}
@@ -1010,7 +1011,7 @@ For any~$t \in [n]$, the free southeast elbows in the rectangle~$[\pi(t)] \times
 \end{corollary}
 
 \begin{proof}
-Observe first that if there if~$r < s$ such that~$\pi(r) > \pi(s)$ and~$\omega^{-1}(\pi(r)) > \omega^{-1}(\pi(s))$, then setting~$i \eqdef \pi(s)$ and~$j \eqdef \pi(r)$, we have~${i < j}$ and~$\pi^{-1}(i) > \pi^{-1}(j)$ while~$\omega^{-1}(i) < \omega^{-1}(j)$, which contradicts our assumption that~$\pi < \omega$.
+Observe first that if there if~$r < s$ such that~$\pi(r) > \pi(s)$ and~$\omega^{-1}(\pi(r)) > \omega^{-1}(\pi(s))$, then setting~$i \eqdef \pi(s)$ and~$j \eqdef \pi(r)$, we have~${i < j}$ and~$\pi^{-1}(i) > \pi^{-1}(j)$ while~$\omega^{-1}(i) < \omega^{-1}(j)$, which contradicts our assumption that~$\pi \le \omega$.
 This implies that
 \begin{align*}
 \# \set{s < t}{\pi(s) < \pi(t) \text{ and } \omega^{-1}(\pi(s)) < \omega^{-1}(\pi(t))} & = \noninversions{\omega}{\pi(t)} \\
@@ -1021,7 +1022,7 @@ Hence, the result follows from~\cref{lem:rectangleInsertionAlgorithm} applied to
 
 \begin{corollary}
 \label{coro:rectangleInsertionAlgorithm2}
-All pipes of constructed by the insertion algorithm remain in the triangular shape.
+All pipes constructed by the insertion algorithm remain in the triangular shape.
 \end{corollary}
 
 \begin{proof}
@@ -1140,7 +1141,7 @@ The \defn{$\omega$-recoils} of a permutation~$\pi \in [e,\omega]$ is the acyclic
 \end{definition}
 
 We now generalize the canopy of a binary tree.
-Recall that the \defn{canopy} of a binary tree~$T$ with~$n$ internal nodes is the sign sequence~${\canopy{T} \in \{{-},{+}\}^{n-1}}$ defined by~$\canopy{T}_i = {-}$ if the $(i+1)$st leaf of~$T$ is a left leaf and~$\canopy{T}_i = {+}$ if the $(i+1)$st leaf of~$T$ is a right leaf.
+Recall that the \defn{canopy} of a binary tree~$T$ with~$n$ internal nodes is the sign sequence~${\canopy{T} \in \{{-},{+}\}^{n-1}}$ defined by~$\canopy{T}_i = {-}$ if the $(i+1)$-th leaf of~$T$ is a left leaf and~$\canopy{T}_i = {+}$ if the $(i+1)$-th leaf of~$T$ is a right leaf.
 Equivalently, $\canopy{T}_i = -$ if the node~$i$ of~$T$ is above the node~$i+1$ of~$T$ and~$\canopy{T}_i = +$ otherwise.
 This map was already used by J.-L.~Loday in~\cite{LodayRonco, Loday}, but the name ``canopy'' was coined by X.~Viennot~\cite{Viennot}.
 We now define a generalization of the canopy map for pipe dreams in~$\acyclicPipeDreams(\omega)$, using \cref{coro:canopy}.
@@ -1223,7 +1224,7 @@ We now consider the eastmost point~$x$ of pipe~$k$ along row~$i$, and let~$\ell$
 We distinguish two cases:
 \begin{enumerate}[(i)]
 \item Assume first that~$k$ and~$\ell$ cross at~$x$. Note that $k$ is vertical while $\ell$ is horizontal at~$x$. Hence, $\omega^{-1}(k) < \omega^{-1}(\ell)$,  so that~$k \contactLess{P} \ell$. Moreover, $\ell \ne i$ (since~$i$ and~$k$ do not cross), so that~$\ell$ must have an elbow west of~$x$ along row~$i$. As $k$ must have an elbow south of~$x$, we obtain that~$\ell \contactLess{P} k$ by~\cref{lem:rectangle}. Hence, we have both~$k \contactLess{P} \ell$ and~$\ell \contactLess{P} k$, so that~$P$ is cyclic.
-\item Assume now that~$k$ and~$\ell$ touch at~$x$. Hence~$k \contactLess{P} \ell$. If~$\ell < k$, then~$k$ and~$\ell$ must cross at~$y$ before~$x$. Flipping~$x$ to~$y$, we obtain a pipe dream~$P'$ with~$\ell \contactLess{P'} k$ (because of the contact~$y$) and~$k \contactLess{P'} \ell$ (because of the last row of elbows which is still in~$P'$), so that~$P'$ would be cyclic. If~$\omega^{-1}(\ell) < \omega^{-1}(k)$, then~$\ell \contactLess{P} k$, so that~$P$ is again cyclic. Hence, we can assume that~$k < \ell$ and~$\omega^{-1}(k) < \omega^{-1}(\ell)$. By maximality of~$k$, we obtain that~$j$ and~$\ell$ do not cross, and thus that~$j$ must have elbow northwest of~$x$. Since $x$ contain an elbow for~$k$, \cref{lem:rectangle} yields~$j \contactLess{P} k$. Since~$\omega^{-1}(k) < \omega^{-1}(j)$, we also have~$k \contactLess{P} j$, so that~$P$ is cyclic.
+\item Assume now that~$k$ and~$\ell$ touch at~$x$. Hence~$k \contactLess{P} \ell$. If~$\ell < k$, then~$k$ and~$\ell$ must cross at~$y$ before~$x$. Flipping~$x$ to~$y$, we obtain a pipe dream~$P'$ with~$\ell \contactLess{P'} k$ (because of the contact~$y$) and~$k \contactLess{P'} \ell$ (because of the last row of elbows which is still in~$P'$), so that~$P'$ would be cyclic. If~$\omega^{-1}(\ell) < \omega^{-1}(k)$, then~$\ell \contactLess{P} k$, so that~$P$ is again cyclic. Hence, we can assume that~$k < \ell$ and~$\omega^{-1}(k) < \omega^{-1}(\ell)$. By maximality of~$k$, we obtain that~$j$ and~$\ell$ do not cross, and thus that~$j$ must have an elbow northwest of~$x$. Since $x$ contain an elbow for~$k$, \cref{lem:rectangle} yields~$j \contactLess{P} k$. Since~$\omega^{-1}(k) < \omega^{-1}(j)$, we also have~$k \contactLess{P} j$, so that~$P$ is cyclic.
 \end{enumerate}
 
 For the backward implication, we introduce a local notation.
