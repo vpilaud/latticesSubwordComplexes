@@ -987,6 +987,11 @@ For any~$t, r, c \in [n]$, the free southeast elbows in the rectangle~$[r] \time
 \[
 \# \set{s < t}{\pi(s) \le r \text{ and } \omega^{-1}(\pi(s)) \le c} - \# \set{s < t}{\pi(s) > r \text{ and } \omega^{-1}(\pi(s)) > c}.
 \]
+\vincent{
+There is a bug here and in the proof. This should be $\max(0, ...)$.
+In the proof, we need to argue that as soon as we use the $\max$ (meaning that a pipe that should contribute to~$-1$ contributes to~$0$), we stay at~$0$ (as we cannot insert pipes that contribute to~$1$, because all non-inversions of~$\omega$ are non-inversions of~$\pi$!!
+Add Nathan Reading to the acknowledgements for a discussion that made me observe this bug.
+}
 \end{lemma}
 
 \begin{proof}
