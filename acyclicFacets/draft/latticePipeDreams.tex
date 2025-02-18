@@ -37,15 +37,16 @@
 \urladdr{http://www.geometrie.tugraz.at/ceballos/}
 
 \author[V.~Pilaud]{Vincent Pilaud}
-\address[V.~Pilaud]{Universitat de Barcelona}
+\address[Vincent Pilaud]{Universitat de Barcelona \& Centre de Recerca Matemàtica, Barcelona, Spain}
 \email{vincent.pilaud@ub.edu}
 \urladdr{https://www.ub.edu/comb/vincentpilaud/}
 
 \thanks{
 NB was supported by NSERC and York Research Chair in Applied Algebra.
 CC was supported by the Austrian Science Fund FWF (Project P 33278).
-NC \& VP were partially supported by the French project CHARMS (ANR~19\,CE40\,0017).
-CC, NC \& VP were also supported by the Austrian\,--\,French project PAGCAP (ANR~21\,CE48\,0020 \& FWF I 5788).
+CC, NC \& VP were supported by the Austrian\,--\,French project PAGCAP (ANR~21\,CE48\,0020 \& FWF I 5788).
+NC \& VP were also supported by the French project CHARMS (ANR~19\,CE40\,0017).
+VP was also supported by the Spanish project PID2022-137283NB-C21 of MCIN/AEI/10.13039/501100011033 / FEDER, UE, by the Spanish--German project COMPOTE (AEI PCI2024-155081-2 \& DFG 541393733), by the Severo Ochoa and María de Maeztu Program for Centers and Units of Excellence in R\&D (CEX2020-001084-M), by the Departament de Recerca i Universitats de la Generalitat de Catalunya (2021 SGR 00697).
 VP was a CNRS researcher at \'Ecole Polytechnique when this work was done.
 \\
 \hspace*{.5cm} 
@@ -207,18 +208,19 @@ We show that for any permutation~$\omega$, the increasing flip graph on acyclic 
 We then discuss conjectural generalizations of this result to acyclic facets of subword complexes on arbitrary finite Coxeter groups.
 \end{abstract}
 
-\vspace*{-1.2cm}
+%\vspace*{-1.2cm}
 
 \maketitle
 
 \tableofcontents
 
-\vspace*{-.7cm}
+%\vspace*{-.7cm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\pagebreak
 \section{Introduction}
 \label{sec:introduction}
 
@@ -236,7 +238,7 @@ The pipe dreams with at least one linear extension are called acyclic and natura
 A flip in a pipe dream exchanges a contact with a crossing between two pipes (see \cref{fig:pipeDreams}), and the flip is increasing when the contact is southwest of the crossing involved in the flip.
 A brief recollection on pipe dreams is given in \cref{sec:preliminaries}.
 
-\begin{figure}[t]
+\begin{figure}[b]
 	\centerline{
 		%\input{pipeDreams}
 		\includegraphics[scale=.9]{pipeDreams}
@@ -655,6 +657,7 @@ The \defn{pipe dream congruence} is the equivalence relation~$\equiv_\omega$ on 
 In other words, $\pi \equiv_\omega \pi'$ if and only if~$\insertion{\pi}{\omega} = \insertion{\pi'}{\omega}$.
 \end{definition}
 
+\pagebreak
 Note that the pipe dream congruence indeed defines an equivalence relation by \cref{thm:partitionPipeDreams}.
 In this section, we prove that it is a lattice congruence.
 
@@ -1517,6 +1520,7 @@ In \cref{fig:increasingFlipPosets}\,(right), we have highlighted two blue facets
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\pagebreak
 \subsection{Linear extensions of facets}
 \label{subsec:linearExtensionsFacets}
 
@@ -1558,7 +1562,6 @@ I \text{ is acyclic}  & \longleftrightarrow  &  \cone \Roots(I) \text{ is pointe
 
 The following lemma regards linear extensions of the greedy and antigreedy facets.
 
-\pagebreak
 \begin{lemma}
 \label{lem:linearExtensionsGreedyFacets}
 Let $\greedyFacet$ and $\antiGreedyFacet$ be the greedy and antigreedy facets of $\subwordComplex(Q,\omega)$, respectively.
@@ -2037,10 +2040,10 @@ The sweeping algorithm outcomes a facet for every element~$\pi \in W$, and this 
 
 It starts by setting $I^0=\varnothing$ to be the empty set.
 It then scans the word $Q=(q_1,\dots ,q_m)$ from left to right.
-At position $j\in [m]$ it produces a new set $I^j$ obtained from the previous one $I^{j-1}$ by either adding $j$ or not, according to certain rules.
+At position $j\in [m]$ it produces a new set $I^j$ obtained from the previous one~$I^{j-1}$ by either adding $j$ or not, according to certain rules.
 Roughly speaking, the goal of the algorithm is to insert a reduced expression of $\omega$ in $Q$ by sweeping the word from left to right, while deciding whether we use a letter or not by looking at the root $\beta=\rootFunction{I^j}{j}$ that it produces.
-If $\beta \in \Ninv(\omega)$ then it can not be used (Case~\ref{sweeping_case1}), otherwise we would not have a reduced expression for $\omega$.
-If $\beta \in \Inv(\omega)$ then it takes it when $\beta \in \Inv(\pi)$ (Case~\ref{sweeping_case2}), or delays it as much as possible when $\beta \in \Ninv(\pi)$ (Case~\ref{sweeping_case3}).
+If~$\beta \in \Ninv(\omega)$ then it can not be used (Case~\ref{sweeping_case1}), otherwise we would not have a reduced expression for $\omega$.
+If~$\beta \in \Inv(\omega)$ then it takes it when $\beta \in \Inv(\pi)$ (Case~\ref{sweeping_case2}), or delays it as much as possible when $\beta \in \Ninv(\pi)$ (Case~\ref{sweeping_case3}).
 If $\beta \in -\Inv(\omega)$ it can simply not take it (Case~\ref{sweeping_case4}).
 
 More precisely, let $Q^j=Q_{[j]\ssm I^j}$ and denote by
