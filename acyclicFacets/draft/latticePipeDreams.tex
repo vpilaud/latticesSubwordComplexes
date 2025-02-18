@@ -985,13 +985,8 @@ The pipes constructed by the insertion algorithm are disjoint, except at crossin
 \label{lem:rectangleInsertionAlgorithm}
 For any~$t, r, c \in [n]$, the free southeast elbows in the rectangle~$[r] \times [c]$ just before step~$t$ of the insertion algorithm form a staircase of length
 \[
-\# \set{s < t}{\pi(s) \le r \text{ and } \omega^{-1}(\pi(s)) \le c} - \# \set{s < t}{\pi(s) > r \text{ and } \omega^{-1}(\pi(s)) > c}.
+\max \big( 0, \# \set{s < t}{\pi(s) \le r \text{ and } \omega^{-1}(\pi(s)) \le c} - \# \set{s < t}{\pi(s) > r \text{ and } \omega^{-1}(\pi(s)) > c} \! \big).
 \]
-\vincent{
-There is a bug here and in the proof. This should be $\max(0, ...)$.
-In the proof, we need to argue that as soon as we use the $\max$ (meaning that a pipe that should contribute to~$-1$ contributes to~$0$), we stay at~$0$ (as we cannot insert pipes that contribute to~$1$, because all non-inversions of~$\omega$ are non-inversions of~$\pi$!!
-Add Nathan Reading to the acknowledgements for a discussion that made me observe this bug.
-}
 \end{lemma}
 
 \begin{proof}
@@ -1000,6 +995,8 @@ The proof works by induction on~$t$.
 Before step~$1$, there is no southeast elbow in~$R$.
 Assume now that just before step~$t$, the free southeast elbows in~$R$ form a staircase~$e_1, \dots, e_k$ with~$k$ given by the formula of the statement.
 At step~$t$, we insert a new pipe~$\pi(t)$ which enters at~$\pi(t)$ and exits at~$\omega^{-1}(\pi(t))$.
+
+Assume first that the new pipe~$\pi(t)$ intersects the rectangle~$R$.
 Let~${0 \le i < j \le k+1}$ be such that~$e_{i+1}, \dots, e_{j-1}$ are the northwest elbows of pipe~$\pi(t)$ in~$R$, and let~$e'_1, \dots, e'_\ell$ be the southeast elbows of pipe~$\pi(t)$ in~$R$.
 Hence, the free southeast elbows in~$R$ after step~$t$ form the sequence~$e_1, \dots, e_i, e'_1, \dots, e'_\ell, e_j, \dots, e_k$.
 We thus just need to see that $e_i$ is southwest of~$e'_1$ and~$e'_\ell$ is southwest of~$e_j$, and that
@@ -1007,6 +1004,11 @@ We thus just need to see that $e_i$ is southwest of~$e'_1$ and~$e'_\ell$ is sout
 \ell = \begin{cases} j-i  & \text{if } \pi(s) \le r \text{ and } \omega^{-1}(\pi(s)) \le c, \\  j-i-2  & \text{if } \pi(s) > r \text{ and } \omega^{-1}(\pi(s)) > c, \\  j-i-1 & \text{otherwise.} \end{cases}
 \]
 Since the northwest and southeast elbows alternate along pipe~$\pi(t)$, this follows from the fact that the pipe~$\pi(t)$ enters~$R$ with an horizontal step if~$\pi(t) \le r$ and with a vertical step if~$\pi(s) > r$, and exits~$R$ with a vertical step if~$\omega^{-1}(\pi(t)) \le c$ and with an horizontal step if~$\omega^{-1}(\pi(s)) > c$.
+
+Finally, assume that the new pipe~$\pi(t)$ does not intersect the rectangle~$R$.
+This implies that~$\pi(t) > r$ and~$\omega^{-1}(\pi(t)) > c$, and there are no free southeast elbows in~$R$ just before step~$t$.
+Moreover, there is no~$s > t$ such that~$\pi(s) \le r$ and~$\omega^{-1}(\pi(s)) \le c$ (since any inversion of~$\pi$ is an inversion of~$\omega$), and there are no free southeast elbows in~$R$ at any step after~$t$.
+We conclude that the formula still holds in this case.
 \end{proof}
 
 We now derive two properties of the insertion algorithm from \cref{lem:rectangleInsertionAlgorithm}.
@@ -1135,12 +1137,13 @@ However, $j-i \le \#\set{k \in [i]}{\omega^{-1}(k) < \omega^{-1}(j)}$ implies th
 
 We now generalize the notion of recoils of permutations and of canopy of a binary trees to show a natural commutative diagram of lattice homomorphisms.
 We start with the easy generalization of recoils of a permutation.
+See \cref{exm:canopy} for an illustration.
 
 \begin{definition}
 \label{def:recoils}
 Consider the graph~$G(\omega)$ with vertex set~$[n]$ and edge set
 \[
-\set{ij}{i < j \text{ and } j-i \le \#\set{k \in [i]}{\omega^{-1}(k) < \omega^{-1}(j)}}.
+\set{ij}{i < j \text{ and } j-i \le \#\set{k < i}{\omega^{-1}(k) < \omega^{-1}(j)}}.
 \]
 Let~$\acyclicOrientations(\omega)$ denote the set of acyclic orientations of~$G(\omega)$.
 The \defn{$\omega$-recoil congruence} is the equivalence relation on the weak order interval~$[e, \omega]$ whose equivalence classes are the sets of linear extensions of the acyclic orientations of~$G(\omega)$.
@@ -1152,6 +1155,7 @@ Recall that the \defn{canopy} of a binary tree~$T$ with~$n$ internal nodes is th
 Equivalently, $\canopy{T}_i = -$ if the node~$i$ of~$T$ is above the node~$i+1$ of~$T$ and~$\canopy{T}_i = +$ otherwise.
 This map was already used by J.-L.~Loday in~\cite{LodayRonco, Loday}, but the name ``canopy'' was coined by X.~Viennot~\cite{Viennot}.
 We now define a generalization of the canopy map for pipe dreams in~$\acyclicPipeDreams(\omega)$, using \cref{coro:canopy}.
+See \cref{exm:canopy} for an illustration.
 
 \begin{definition}
 \label{def:canopy}
@@ -1181,7 +1185,14 @@ Assume that the edge~$ij$ is oriented from~$i$ to~$j$.
 Then~$\pi^{-1}(i) < \pi^{-1}(j)$, thus the pipe~$i$ is inserted before the pipe~$j$ in~$\insertion{\pi}{\omega}$, so that~$i \contactLess{\insertion{\pi}{\omega}} j$ and there is also an arc from~$i$ to~$j$ in~$\canopy{\insertion{\pi}{\omega}}$.
 \end{proof}
 
+\begin{example}
+\label{exm:canopy}
+
+\end{example}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{The acyclic property for $\nu$-Tamari lattices} 
 \label{subsec:nuTamari} 
 
@@ -2239,8 +2250,8 @@ We analyze the possible cases in the sweeping algorithm.
 
 \section*{Acknowledgments}
 
-We are grateful to Florent Hivert for various discussions. We also thank Martin Rubey for his comments which led us to think about~\cref{prob:nuAcyclicProperty}.
-Finally, we are grateful to Lucas Gagnon who shared with us an independent proof of the backward direction of \cref{prob:nuAcyclicProperty}, allowing us to greatly simplify our argument.
+We thank Florent Hivert for various discussions, Martin Rubey for his comments which led us to think about~\cref{prob:nuAcyclicProperty}, Lucas Gagnon for sharing his independent proof of the backward direction of \cref{prob:nuAcyclicProperty}, allowing us to greatly simplify our argument, and Nathan Reading for pointing out a serious mistake in the statement and proof of a previous version of \cref{lem:rectangleInsertionAlgorithm}.
+We are grateful to an anonymous referee for comments and suggestions which greatly improved the presentation of this paper.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
