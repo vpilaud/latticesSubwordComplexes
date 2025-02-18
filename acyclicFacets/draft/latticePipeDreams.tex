@@ -413,7 +413,6 @@ The first counter-example happens for the exiting permutation~${\omega = 12543}$
 \subsection{Crossing and contact properties}
 \label{subsec:crossingsContacts}
 
-\enlargethispage{.6cm}
 We now gather some elementary properties of crossings and contacts in pipe dreams that will be needed later to construct pipe dreams from permutations.
 For a pipe dream~$P \in \pipeDreams(\omega)$, we call pipe~$j$ the pipe which enters at row~$j$ and exits at column~$\omega^{-1}(j)$.
 
@@ -846,7 +845,7 @@ For any pipe dreams~$P, P' \in \acyclicPipeDreams(\omega)$, the following assert
 
 \begin{proof}
 We already proved the equivalence (i) $\Leftrightarrow$ (ii) in \cref{thm:pipeDreamQuotient}.
-The equivalence (ii) $\Leftrightarrow$ (iii) is valid for any lattice quotient.
+The equivalence \mbox{(ii) $\Leftrightarrow$ (iii)} is valid for any lattice quotient.
 The equivalences (iii) $\Leftrightarrow$ (iv) $\Leftrightarrow$ (v) $\Leftrightarrow$ (vi) follow from the descriptions of \cref{prop:WOIP} of the inversions of the minimum and the non-inversions of the maximum of a weak order interval.
 \end{proof}
 
@@ -1146,7 +1145,7 @@ Consider the graph~$G(\omega)$ with vertex set~$[n]$ and edge set
 \set{ij}{i < j \text{ and } j-i, \; \omega^{-1}(i) > \omega^{-1}(j) \le \#\set{k < i}{\omega^{-1}(k) < \omega^{-1}(j)}}.
 \]
 Let~$\acyclicOrientations(\omega)$ denote the set of acyclic orientations of~$G(\omega)$.
-The \defn{$\omega$-recoil congruence} is the equivalence relation on the weak order interval~$[e, \omega]$ whose equivalence classes are the sets of linear extensions of the acyclic orientations of~$G(\omega)$.
+%The \defn{$\omega$-recoil congruence} is the equivalence relation on the weak order interval~$[e, \omega]$ whose equivalence classes are the sets of linear extensions of the acyclic orientations of~$G(\omega)$.
 The \defn{$\omega$-recoils} of a permutation~$\pi \in [e,\omega]$ is the acyclic orientation~${\recoils{\pi}{\omega} \in \acyclicOrientations(\omega)}$ such that~$\pi$ is a linear extension of~$\recoils{\pi}{\omega}$.
 \end{definition}
 
@@ -1164,7 +1163,7 @@ The \defn{canopy} of a pipe dream~$P \in \acyclicPipeDreams(\omega)$ is the orie
 
 \begin{proposition}
 \label{prop:latticeHomomorphisms}
-The maps~$\recoils{\cdot}{\omega}$, $\insertion{\cdot}{\omega}$, and~$\canopy{\cdot}$ define the following commutative diagram of surjective poset homomorphisms:
+The maps~$\recoils{\cdot}{\omega}$, $\insertion{\cdot}{\omega}$, and~$\canopy{\cdot}$ define the following commutative diagram of surjective lattice homomorphisms:
 \[
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=1.2em,column sep=5em,minimum width=2em]
@@ -1186,8 +1185,14 @@ Then~$\pi^{-1}(i) < \pi^{-1}(j)$, thus the pipe~$i$ is inserted before the pipe~
 \end{proof}
 
 \begin{example}
-\label{exm:canopy}
+For the permutation~$\omega = 1 n \cdots 2$, the graph~$G(\omega)$ has an isolated vertex~$1$ and a path~$2-3-\dots -n$. The orientations of this path can be seen as sign sequences, corresponding to the recoils of permutations or the canopies of binary trees.
+More generally, for the permutation~${\omega = 1 \cdots k n \dots (k+1)}$, the graph~$G(\omega)$ consist of all edges~$ij$ for~$k+1 \le i < j \le n$ such that~$|i-j| \le k$, and the $\omega$-recoil map on permutations and canopy on acyclic pipe dreams were already considered in~\cite{Pilaud-brickAlgebra}.
+\end{example}
 
+\begin{example}
+\label{exm:canopy}
+For~$\omega = 31542$, the graph~$G(\omega)$ has a single edge~$4-5$.
+We have grouped the permutations of~$[e,\omega]$ according to their $\omega$-recoils, and the pipe dreams of~$\acyclicPipeDreams(\omega)$ according to their canopy in \cref{fig:canopy}.
 %
 \begin{figure}
 	\centerline{\includegraphics[scale=1]{canopy}}
@@ -1512,7 +1517,6 @@ In \cref{fig:increasingFlipPosets}\,(right), we have highlighted two blue facets
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\pagebreak
 \subsection{Linear extensions of facets}
 \label{subsec:linearExtensionsFacets}
 
@@ -1554,6 +1558,7 @@ I \text{ is acyclic}  & \longleftrightarrow  &  \cone \Roots(I) \text{ is pointe
 
 The following lemma regards linear extensions of the greedy and antigreedy facets.
 
+\pagebreak
 \begin{lemma}
 \label{lem:linearExtensionsGreedyFacets}
 Let $\greedyFacet$ and $\antiGreedyFacet$ be the greedy and antigreedy facets of $\subwordComplex(Q,\omega)$, respectively.
@@ -1642,7 +1647,6 @@ We use the representation of the facets as pseudoline arrangements on sorting ne
 {fig:subwordComplex3}
 \end{example}
 
-\pagebreak
 \begin{remark}
 \label{rem:linearExtensionsPartitionSubwordComplexA}
 Before proving it, we would like to make the following remarks about theorem.
