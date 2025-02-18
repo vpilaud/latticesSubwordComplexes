@@ -1,0 +1,40 @@
+Reviewer A:
+
+Pipe dreams are fundamental objects in Schubert calculus. The weak (Bruhat) order is useful in studying the Coxeter groups and its quotients are closely related to cluster algebras. The authors demonstrate further interplay of these objects with classic lattice theory.
+
+The main result of the paper is a construction of lattices for acyclic pipe dreams, which the authors show to be a lattice quotient of the weak order.
+
+The above lattice is constructed using the increasing flip graph of the contacts of acyclic pipe dreams. The main results of this paper extends the classic result that the increasing flip poset on reversing pipe dreams is isomorphic to the Tamari lattice, which is a lattice quotient of the weak order.
+
+The authors also give two concrete algorithms for computing the pipe dream from a fixed permutation and another permutation representing the linear extension.
+
+In the last part of the paper, the authors investigate the subword complexes in finite Coxeter groups, which were studied by Jahn and Stump recently. The results mostly follow from Jahn and Stump's work, the authors use a different approach and technique though. I feel the content in section 5 is loosely connected to the content before and does not have many pipe dreams in it (as the title suggests). I believe this section should be shortened to keep the article focused on its main point.
+
+There are also various typographical errors and minor mistake throughout this paper. Please see my detailed comments below.
+
+Major comments
+ Page 5 - lemma 2.6: the lemma statement does not specify the types of elbow of pipes i and j; however, the proof seem to assume the elbows involved in the statement are of certain type (southeast or northwest). This lemma is cited multiple times throughout the paper and this issue needs to be clarified.
+ Page 18 -- example 5.3: this is the only connection to pipe dreams in this section but the description is quite vague. An example with picture would make it much better.
+ Page 27 -- section 5.5: it seems that some of the conjectures have been solved. Worth adding a remark on that.
+
+
+Minor comments
+ Page 5 - lemma 2.4: the first place non-inversion of a permutation is mentioned is on page 7 in the proof of lemma 3.6. The phrase 'non-inversion' should be mentioned here when its size is defined.
+ Page 6 - example 3.3: when the phrase ``below'' is first used, it should be pointed out that this refers to the weak order.
+ Page 6 -- example 3.3: add reference of the well-known fact.
+ Page 8 - proposition 3.12: the notations min(I) and max(I) should be clarified what they mean exactly.
+ Page 9 - remark 3.17: reference not showing up correctly.
+ Page 10 - proof of lemma 3.18: in the last line, the inequality $\omega^{-1}(k_1)> \omega^{-1}(j) > \omega^{-1}(i)$ should be $\omega^{-1}(k_1)< \omega^{-1}(j) < \omega^{-1}(i)$
+ Proposition 3.19 -- (v): the relation after ``then'' is the wrong direction.
+ Page 12 - 3rd line in the second paragraph in section 4.2: since you are constructing a pipe dream, it makes more sense to say ``For $j\in [n]$ such that $j>r_1$ and $c_k<\omega^{-1}(j)$, we can uniquely define a pipe dream which ...''
+ Page 12 - second to the last line in proposition 4.3: northeast should be southeast
+ Page 14 -- line 1: the second ``if'' should be an ``is''.
+ Page 15 -- cor 4.12: ``patters'' should be ``pattern''.
+ Page 15 -- section 4.4: this section needs an example.
+ Page 18 - second paragraph in section 5.2: $J\subseteq [r]$ should be $J\subseteq [m]$
+ Page 18 - root function: the product notation $\prod Q_X$ needs to be clarified.
+ Page 19 -- line 4 in example 5.5: the c-sorting word notation looks different from the one in line 2, \LaTeX error?
+
+Upon revision, I think these results will be suitable for publication and of interest to the readers of Algebraic Combinatorics.
+
+Recommendation: Revisions Required

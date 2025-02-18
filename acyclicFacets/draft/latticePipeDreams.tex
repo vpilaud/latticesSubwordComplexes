@@ -398,7 +398,7 @@ contact flips in~$P$ & diagonal flips in~$P\duality$. \\
 \end{figure}
 
 Hence, this map sends the increasing flip poset on reversing pipe dreams to the \defn{Tamari lattice} on binary trees.
-This lattice is defined as the transitive closure of right rotations on binary trees, and is obtained as the quotient of the weak order by the \defn{sylvester congruence}.
+This lattice is defined as the transitive closure of right rotations on binary trees, and is obtained as the quotient of the weak order by the \defn{sylvester congruence}~\cite{Tonks,HivertNovelliThibon-algebraBinarySearchTrees}.
 An important point here is that all reversing pipe dreams are acyclic, since their contact graphs are (oriented)~binary~trees.
 \end{example}
 
@@ -440,7 +440,7 @@ For any pipe dream~$P \in \pipeDreams(\omega)$, the pipe~$j$ has precisely
 \item $j-1-\noninversions{\omega}{j}$ vertical crossings~\NScross
 \item $\omega^{-1}(j)-1-\noninversions{\omega}{j}$ horizontal crossings~\WEcross
 \end{itemize}
-where~$\noninversions{\omega}{j} \eqdef \#\set{i \in [n]}{i < j \text{ and } \omega^{-1}(i) < \omega^{-1}(j)}$.
+where~$\noninversions{\omega}{j} \eqdef \#\set{i \in [n]}{i < j \text{ and } \omega^{-1}(i) < \omega^{-1}(j)}$ is the number of \defn{non-inversions} of~$j$ in~$\omega$.
 \end{lemma}
 
 \begin{proof}
@@ -478,7 +478,7 @@ If there is an elbow of pipe~$i$ weakly northwest of an elbow of pipe~$j$, then~
 \begin{proof}
 Let~$x$ (resp.~$y$) be the location of an elbow of pipe~$i$ (resp.~$j$) such that~$x$ is weakly northwest of~$y$.
 We proceed by induction on the grid distance from~$x$ to~$y$.
-If they coincide, then pipes~$i$ and~$j$ share a contact, so that there is an edge from~$i$ to~$j$ in~$P\contact$.
+If they coincide, then pipes~$i$ and~$j$ share a contact, and $i$ is northwest of~$j$ at this contact by assumption, so that there is an edge from~$i$ to~$j$ in~$P\contact$.
 Otherwise, let~$k$ be the pipe of~$P$ with a southeast elbow at~$x$ ($k$ is either the pipe~$i$ itself, or there is an edge from~$i$ to~$k$ in~$P\contact$) and~$\ell$ be the pipe of~$P$ with a northwest elbow at~$y$ ($\ell$ is either the pipe~$j$ itself, or there is an edge from~$\ell$ to~$j$ in~$P\contact$).
 Let~$R$ be the axis-parallel rectangle with corners~$x$ and~$y$.
 Since pipes~$k$ and~$\ell$ cross at most once, at least one of them has an additional elbow along the sides of~$R$.
@@ -564,9 +564,9 @@ The set~$\set{\linearExtensions(P)}{P \in \acyclicPipeDreams(\omega)}$ partition
 
 \begin{example}
 \label{exm:Tamari2}
-Following \cref{exm:Tamari1}, observe that the permutations of~$\{0, 1, \dots, n, n+1\}$ below~$\rho_n$ are precisely the permutations of the form~$[0, \pi, n+1]$ for some~$\pi \in \fS_n$.
-It is well-known that any permutation~$\pi \in \fS_n$ is a linear extension of a unique binary tree.
-This binary tree can be obtained by inserting~$\pi$ from right to left in a binary search tree.
+Following \cref{exm:Tamari1}, observe that the permutations of~$\{0, 1, \dots, n, n+1\}$ below~$\rho_n$ in weak order are precisely the permutations of the form~$[0, \pi, n+1]$ for some~$\pi \in \fS_n$.
+It is well-known that any permutation~$\pi \in \fS_n$ is a linear extension of a unique binary tree~\cite{Tonks}.
+This binary tree can be obtained by inserting~$\pi$ from right to left in a binary search tree~\cite{HivertNovelliThibon-algebraBinarySearchTrees}.
 Hence any permutation of~$\{0, 1, \dots, n, n+1\}$ below~$\rho_n$ is a linear extension of a unique reversing pipe dream on~$n+2$ pipes.
 For instance, the pipe dream of \cref{fig:bijection} has linear extensions~$0421356$, $0423156$, $0421536$, $0423516$, $0425136$, $0425316$, $0452136$, $0452316$.
 \end{example}
@@ -666,7 +666,7 @@ The pipe dream congruence~$\equiv_\omega$ is a congruence of the weak order inte
 
 \begin{example}
 \label{exm:Tamari3}
-Following \cref{exm:Tamari1,exm:Tamari2}, observe that the congruence~$\equiv_{\rho_n}$ on the permutations of~$\{0, 1, \dots, n, n+1\}$ below~$\rho_n$ corresponds to the sylvester congruence on~$\fS_n$.
+Following \cref{exm:Tamari1,exm:Tamari2}, observe that the congruence~$\equiv_{\rho_n}$ on the permutations of~$\{0, 1, \dots, n, n+1\}$ below~$\rho_n$ corresponds to the sylvester congruence on~$\fS_n$ defined in~\cite{HivertNovelliThibon-algebraBinarySearchTrees}.
 The classes of this congruence are the sets of linear extensions of the binary trees (considered as posets, labeled in inorder, and oriented towards their roots).
 It can also be defined by the classical rewriting rule~$UjVikW \equiv UjVkiW$ where~$i < j < k$ are elements of~$[n]$ while~$U, V, W$ are (possibly empty) words on~$[n]$.
 \end{example}
@@ -678,7 +678,7 @@ For the first condition, we need the following classical characterization of wea
 
 \begin{proposition}[{\cite[Thm.~6.8]{BjornerWachs}}]
 \label{prop:WOIP}
-The set~$\linearExtensions(\less)$ of linear extensions of a poset~$\less$ on~$[n]$ forms an interval~$I$ of the weak order if and only if for every~$i < j < k$,
+The set~$\linearExtensions(\less)$ of linear extensions of a poset~$\less$ on~$[n]$ forms an interval~$I \eqdef [\min(I), \max(I)]$ of the weak order if and only if for every~$i < j < k$,
 \[
 i \less k \implies i \less j \text{ or } j \less k
 \qquad\text{and}\qquad
@@ -764,7 +764,7 @@ The increasing flip poset on~$\pipeDreams(\omega)$ is the transitive closure of 
 Observe that the two natural ways to restrict to the acyclic pipe dreams of~$\acyclicPipeDreams(\omega)$ (restrict either the flip graph or the flip poset) do not coincide in general.
 Namely, the transitive closure of the subgraph of the increasing flip graph induced by~$\acyclicPipeDreams(\omega)$ may have strictly less relations than the subposet of the increasing flip poset induced by~$\acyclicPipeDreams(\omega)$.
 \cref{fig:counterExampleRestrictionIncreasingFlipPoset1} illustrates two acyclic pipe dreams of~$\acyclicPipeDreams(126543)$ connected by a sequence of increasing flips in~$\pipeDreams(126543)$ but by no sequence of increasing flips in~$\acyclicPipeDreams(126543)$.
-In fact, the subposet of the increasing flip poset induced by~$\acyclicPipeDreams(126543)$ is not even a lattice, as illustrated in \cref{counterExampleRestrictionIncreasingFlipPoset2}.
+In fact, the subposet of the increasing flip poset induced by~$\acyclicPipeDreams(126543)$ is not even a lattice, as illustrated in \cref{fig:counterExampleRestrictionIncreasingFlipPoset2}.
 This example is minimal.
 %
 %	* type A5,
@@ -810,7 +810,7 @@ Let~$R$ the rectangle with corners~$c$ and~$c'$.
 Since~$k_1$ has a contact with~$i$ in~$P$ and with~$j$ in~$P'$, it must pass inside~$R$.
 Since~$i \contactLess{P} k_1 \contactLess{P} j$ and~$i \contactMore{P'} k_1 \contactMore{P'} j$, the pipe~$k$ has no elbow located northwest or southeast of~$c$ or~$c'$, hence no elbow located north, south, west or east of~$R$.
 We thus obtain that~$k$ must be straight before it reaches~$R$, and after it leaves~$R$.
-Hence $k_1 < i < j$ and~$\omega^{-1}(k_1) > \omega^{-1}(j) > \omega^{-1}(i)$.
+Hence $k_1 < i < j$ and~$\omega^{-1}(k_1) < \omega^{-1}(j) < \omega^{-1}(i)$.
 By \cref{lem:consequenceRectangle1}, this contradicts~$i \contactLess{P} k_1$~and~$k_1 \contactMore{P'} j$.
 \end{proof}
 
@@ -839,8 +839,8 @@ For any pipe dreams~$P, P' \in \acyclicPipeDreams(\omega)$, the following assert
 \item there exist linear extensions~$\pi$ of~$P$ and~$\pi'$ of~$P'$ such that~$\pi < \pi'$ in weak order,
 \item the minimal (resp.~max) linear extensions~$\pi$ of~$P$ and~$\pi'$ of~$P'$ satisfy~$\pi < \pi'$ in weak order.
 \item there is no~$i < j$ such that~$i \contactMore{P} j$ and~$i \contactLess{P'} j$,
-\item for all~$i < j$, if~$i \contactMore{P} j$, then~$j \contactMore{P'} i$,
-\item for all~$i < j$, if~$i \contactLess{P'} j$, then~$i \contactLess{P} j$,
+\item for all~$i < j$, if~$i \contactMore{P} j$, then~$i \contactMore{P'} j$,
+\item for all~$i < j$, if~$i \contactLess{P'} j$, then~$i \contactLess{P} j$.
 \end{enumerate}
 \end{proposition}
 
@@ -935,13 +935,13 @@ When we sweep vertex~$v$ where pipe~$i$ arrives horizontally and pipe~$j$ arrive
 Our second algorithm to construct~$\insertion{\pi}{\omega}$ is an \defn{insertion algorithm} inspired from~\cite{Pilaud-brickAlgebra} and similar to the insertion in binary search trees.
 
 We call \defn{staircase} of length~$k$ a sequence~$e_1, \dots, e_k$ of southeast elbows such that~$e_i$ is located strictly southwest of~$e_{i+1}$ for each~$i \in [k-1]$. In other words, $r_1 > \dots > r_k$ and~$c_1 < \dots < c_k$ where~$e_i$ is located in row~$r_i$ and column~$c_i$.
-For~$j \in [n]$ such that~$j > r_1$ and~$c_k < \omega^{-1}(j)$, there is a unique pipe which enters at row~$j$, exits at column~$\omega^{-1}(j)$, and whose northeast elbows are precisely covering the southeast elbows~$e_1, \dots, e_k$.
+For~$j \in [n]$ such that~$j > r_1$ and~$c_k < \omega^{-1}(j)$, we can uniquely define a pipe which enters at row~$j$, exits at column~$\omega^{-1}(j)$, and whose northeast elbows are precisely covering the southeast elbows~$e_1, \dots, e_k$.
 Namely, it has a northeast elbow at row~$r_i$ and column~$c_i$ for each~$i \in [k]$, and a southeast elbow at row~$r_{i-1}$ and column~$c_i$ for each~$i \in [k+1]$, where by convention~$r_0 \eqdef j$ and~$c_{k+1} \eqdef \omega^{-1}(j)$.
 
 \begin{proposition}
 \label{prop:insertionAlgorithm}
 For any permutations~$\pi,\omega \in \fS_n$ such that~$\pi \le \omega$ in weak order, the unique pipe dream~$P \in \acyclicPipeDreams(\omega)$ such that~$\pi \in \linearExtensions(P)$ can be constructed starting from the empty triangular shape and inserting the pipes~$\pi(1), \dots, \pi(n)$ one by one in the order of the permutation~$\pi$ as northwest as possible.
-More precisely, at step~$t$, we insert a pipe starting at row~$\pi(t)$, ending at column~$\omega^{-1}(\pi(t))$, and whose northeast elbows are precisely covering the staircase of currently free southeast elbows in the rectangle~$[\pi(t)] \times [\omega^{-1}(\pi(t))]$.
+More precisely, at step~$t$, we insert a pipe starting at row~$\pi(t)$, ending at column~$\omega^{-1}(\pi(t))$, and whose northwest elbows are precisely covering the staircase of currently free southeast elbows in the rectangle~$[\pi(t)] \times [\omega^{-1}(\pi(t))]$.
 See \cref{fig:insertionAlgorithm1,fig:insertionAlgorithm2}.
 \end{proposition}
 
@@ -1018,7 +1018,7 @@ For any~$t \in [n]$, the free southeast elbows in the rectangle~$[\pi(t)] \times
 \end{corollary}
 
 \begin{proof}
-Observe first that if there if~$r < s$ such that~$\pi(r) > \pi(s)$ and~$\omega^{-1}(\pi(r)) > \omega^{-1}(\pi(s))$, then setting~$i \eqdef \pi(s)$ and~$j \eqdef \pi(r)$, we have~${i < j}$ and~$\pi^{-1}(i) > \pi^{-1}(j)$ while~$\omega^{-1}(i) < \omega^{-1}(j)$, which contradicts our assumption that~$\pi \le \omega$.
+Observe first that if there is~$r < s$ such that~$\pi(r) > \pi(s)$ and~$\omega^{-1}(\pi(r)) > \omega^{-1}(\pi(s))$, then setting~$i \eqdef \pi(s)$ and~$j \eqdef \pi(r)$, we have~${i < j}$ and~$\pi^{-1}(i) > \pi^{-1}(j)$ while~$\omega^{-1}(i) < \omega^{-1}(j)$, which contradicts our assumption that~$\pi \le \omega$.
 This implies that
 \begin{align*}
 \# \set{s < t}{\pi(s) < \pi(t) \text{ and } \omega^{-1}(\pi(s)) < \omega^{-1}(\pi(t))} & = \noninversions{\omega}{\pi(t)} \\
@@ -1110,7 +1110,7 @@ We close this section by two immediate consequences of \cref{prop:rewritingRule,
 
 \begin{corollary}
 \label{coro:patternAvoiding}
-A permutation is minimal (resp.~maximal) in its pipe dream congruence class if and only if it avoids the patters~$k_1 - \cdots - k_p - ji$ (resp.~$k_1 - \cdots - k_p - ij$) where~$k_q > i$ and~$\omega^{-1}(k_q) > \omega^{-1}(j)$ for~$q \in [p]$ and~$p = \# \set{k \in [i]}{\omega^{-1}(k) < \omega^{-1}(j)}$.
+A permutation is minimal (resp.~maximal) in its pipe dream congruence class if and only if it avoids the patterns~$k_1 - \cdots - k_p - ji$ (resp.~$k_1 - \cdots - k_p - ij$) where~$k_q > i$ and~$\omega^{-1}(k_q) > \omega^{-1}(j)$ for~$q \in [p]$ and~$p = \# \set{k \in [i]}{\omega^{-1}(k) < \omega^{-1}(j)}$.
 \end{corollary}
 
 \begin{proof}
@@ -1333,7 +1333,7 @@ The longest element is the reversed permutation~$[n, n-1, \dots, 2, 1]$ (written
 Motivated by their study of Gröbner geometry of Schubert varieties~\cite{KnutsonMiller-GroebnerGeometry}, A.~Knutson and E.~Miller introduced in~\cite{KnutsonMiller-subwordComplex} the following remarkable family of simplicial complexes in the context of Coxeter groups.
 
 Let $(W,S)$ be a finite Coxeter system, $Q=(q_1,\dots,q_m)$ be a word in the simple reflections $S$, and $\omega \in W$ be an element of the group.
-For $J\subseteq [r]$, we denote by $Q_J$ the subword of~$Q$ consisting of the letters with positions in $J$.
+For $J\subseteq [m]$, we denote by $Q_J$ the subword of~$Q$ consisting of the letters with positions in $J$.
 The \defn{subword complex} $\subwordComplex(Q,\omega)$ is the simplicial complex whose facets are subsets $I\subseteq [m]$ such that $Q_{[m]\setminus I}$ is a reduced expression for $\omega$.
 We denote by $\subwordFacets(Q,\omega)$ the set of facets of $\subwordComplex(Q,\omega)$.
 
@@ -1349,8 +1349,9 @@ The \defn{increasing flip poset} is the transitive closure of the increasing fli
 An important tool to study subword complexes are the root functions introduced in~\cite{CeballosLabbeStump}.
 For a facet $I$ of~$\subwordComplex(Q,\omega)$, the \defn{root function} $\rootFunction{I}{\cdot}:[m]\rightarrow \Phi$ sends a position~$k$ in the word $Q$ to the root~$ \rootFunction{I}{k}$ defined by 
 \[
-\rootFunction{I}{k} \eqdef \prod Q_{[k-1]\ssm I}(\alpha_{q_k}).
+\rootFunction{I}{k} \eqdef \prod Q_{[k-1]\ssm I}(\alpha_{q_k}),
 \]
+where~$\prod Q_{[k-1]\ssm I}$ is the product of the letters~$q_i$ for~$i \in [k-1] \ssm I$ computed in the natural order.
 The \defn{root configuration} is the set $\Roots(I)=\set{\rootFunction{I}{i}}{i\in I}$.
 The facet $I$ is called \defn{acyclic} if $\cone \Roots(I)$ is a pointed cone.
 We denote by $\subwordAcyclicFacets(Q,\omega)$ the set of acyclic facets of the subword complex~$\subwordComplex(Q,\omega)$.
@@ -1381,11 +1382,17 @@ where $\beta \eqdef \rootFunction{I}{i}$ and $s_\beta\in W$ is the reflection or
 
 \begin{example}
 \label{exm:typeARootConfiguration}
-Continuing \cref{exm:typeACoxeterSystem}, we consider the type~$A_n$ Coxeter system, the word $Q \eqdef \tau_1 \cdots \tau_{n-1} \tau_1 \cdots \tau_{n-2} \cdots \tau_1 \tau_2 \tau_1$, and a permutation~$\omega \in \fS_n$.
-The word~$Q$ naturally fits on an $n \times n$ triangular grid (place $\tau_k$ in all boxes with row~$i$ and column~$j$ such that~$i+j+k = n+1$) and each facet~$I$ of the subword complex~$\subwordComplex(Q, \omega)$ corresponds to a pipe dream~$P_I$ of~$\pipeDreams(\omega)$ (replace each position in~$I$ by a contact in~$P_I$, and the other positions by crossings in~$P_I$).
-The root function is given~$\rootFunction{I}{i} = \b{r}_{p,q} \eqdef \b{e}_p - \b{e}_q$ where~$p$ is the pipe arriving from the west and $q$ is the pipe arriving from the south at the box of~$P_I$ corresponding to position~$i$ of~$Q$.
+Continuing \cref{exm:typeACoxeterSystem}, we consider the type~$A_{n-1}$ Coxeter system, the word $Q \eqdef \tau_{n-1} \cdots \tau_1 \tau_{n-1} \cdots \tau_2 \cdots \tau_{n-1} \tau_{n-2} \tau_{n-1}$, and a permutation~$\omega \in \fS_n = A_{n-1}$.
+The word~$Q$ naturally fits on an $n \times n$ triangular grid (place $\tau_k$ in all boxes with row~$i$ and column~$j$ such that~$i+j = k+1$). 
+Moreover, each facet~$I$ of the subword complex~$\subwordComplex(Q, \omega)$ corresponds to a pipe dream~$P_I$ of~$\pipeDreams(\omega)$ (replace each position in~$I$ by a contact in~$P_I$, and the other positions by crossings in~$P_I$).
+The root function is given~$\rootFunction{I}{i} = \b{r}_{p,q} \eqdef \b{e}_q - \b{e}_p$ where~$p$ is the pipe arriving from the west and $q$ is the pipe arriving from the south at the box of~$P_I$ corresponding to position~$i$ of~$Q$.
 Hence, the root configuration is the incidence configuration~$\Roots(I) = \bigset{\b{r}_{p,q}}{(p,q) \in P_I\contact}$ of the contact graph of~$P_I$.
 In particular, the acyclic facets of~$\subwordComplex(Q, \omega)$ correspond to the acyclic pipe dreams of~$\acyclicPipeDreams(\omega)$.
+
+For a specific illustration, consider the word~$Q \eqdef \tau_6 \tau_5 \tau_4 \tau_3 \tau_2 \tau_1 \tau_6 \tau_5 \tau_4 \tau_3 \tau_2 \tau_6 \tau_5 \tau_4 \tau_3 \tau_6 \tau_5 \tau_4 \tau_6 \tau_5 \tau_6$ of~${A_6 = \fS_7}$ and the permutation~$\pi \eqdef 1365724$.
+Then~$Q$ fits in the triangle of \cref{fig:pipeDreams}.
+Moreover, the facets~$I \eqdef \{1,2,3,4,5,6,7,8,9,10,12,16,21\}$ and~$I' \eqdef \{1,2,4,5,6,7,8,9,10,12,16,17,21\}$ \linebreak of~$\subwordComplex(Q, \pi)$ give the pipe dreams of \cref{fig:pipeDreams}.
+The roots~$\rootFunction{I}{3} = \alpha_{q_3} = \alpha_4 = \b{e}_5 - \b{e}_4$ and~$\rootFunction{I'}{17} = q_3 q_{11} q_{13} q_{14} q_{15} (\alpha_{q_{17}}) = \tau_4 \tau_2 \tau_5 \tau_4 \tau_3 (\alpha_5) = - \alpha_4 = \b{e}_4 - \b{e}_5$ correspond to the pipes~$4$ and~$5$ at the corresponding crossings.
 \end{example}
 
 \begin{example}
@@ -1395,7 +1402,7 @@ We refer to~\cite{PilaudPocchiola, PilaudSantos-brickPolytope, PilaudStump-brick
 \end{example}
 
 \begin{example}
-For any finite Coxeter group~$W$ and any Coxeter element~$c \in W$ (a product of all generators of~$S$ in a given arbitrary order), let~$\wo(c)$ denote the $c$-sorting word of~$\wo$ (the lexicographically minimal reduced expression for~$\wo$ in~$c^\infty$, see \cite{Reading-CambrianLattices} for details).
+For any finite Coxeter group~$W$ and any Coxeter element~$c \in W$ (a product of all generators of~$S$ in a given arbitrary order), let~$\wo(c)$ denote the $c$-sorting word of~$\wo$ (the lexicographically minimal reduced expression for~$\wo$ in~$c^\infty$, see \cite{Reading-CambrianLattices} for details), and consider the concatenation~$c\wo(c)$.
 Extending the observation of \cref{exm:Tamari1}, it was shown in~\cite{CeballosLabbeStump} that the subword complex~$\subwordComplex(c\wo(c), \wo)$ is isomorphic to the cluster complex of type~$W$.
 In particular, the increasing flip graph is the Hasse diagram of the $c$-Cambrian lattice of~\cite{Reading-CambrianLattices}.
 See \cref{fig:increasingFlipPosets}\,(left) and \cref{fig:subwordComplex1} for an example with~$c = \tau_2\tau_1\tau_3$ in type~$A_3$.
@@ -1970,7 +1977,7 @@ If~$Q$ is sorting and alternating, then the oriented graph of the brick polytope
 \end{conjecture}
 
 \begin{remark}
-\cref{conj:latticeCongruenceAlternating,conj:latticeQuotientAlternating,conj:latticeQuotientSortingAlternating,conj:latticeQuotientSortingAlternatingBrickPolyhedra,conj:latticeQuotientSortingAlternatingBrickPolytopes} holds in type~$A_n$: our specific proof of~\cref{thm:pipeDreamCongruence,thm:pipeDreamQuotient} can be extended to arbitrary alternating words in type~$A_n$ as will be shown in~\cite{Cartier}.
+\cref{conj:latticeCongruenceAlternating,conj:latticeQuotientAlternating,conj:latticeQuotientSortingAlternating,conj:latticeQuotientSortingAlternatingBrickPolyhedra,conj:latticeQuotientSortingAlternatingBrickPolytopes} holds in type~$A_n$: our specific proof of~\cref{thm:pipeDreamCongruence,thm:pipeDreamQuotient} can be extended to arbitrary alternating words in type~$A_n$ as shown in~\cite{Cartier}.
 They are also supported by computer experiments: we verified \cref{conj:latticeCongruenceAlternating,conj:latticeQuotientAlternating} for all alternating words of length at most~$\ell(\wo)$ (hence \cref{conj:latticeQuotientSortingAlternating,conj:latticeQuotientSortingAlternatingBrickPolyhedra,conj:latticeQuotientSortingAlternatingBrickPolytopes} for all alternating reduced expressions of~$\wo$) in types~$B_2, B_3, D_4$ and~$H_3$.
 \end{remark}
 

@@ -1,0 +1,141 @@
+\documentclass{letter}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+\usepackage{shuffle}
+\usepackage{marvosym}
+\usepackage{verbatim}
+\usepackage{amsfonts, amsmath, amssymb}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[a4paper, top=1in, bottom=.8in, left=1in, right=1in]{geometry}
+\signature{%
+Nantel Bergeron, Noémie Cartier, Cesar Ceballos, and Vincent Pilaud \Letter
+}
+
+\address{\bf Nantel Bergeron \\
+\small York University, Toronto \\
+\small \texttt{bergeron@yorku.ca} \\[.3cm]
+\bf Noémie Cartier \\
+\small Université Paris Saclay \\[.3cm]
+\bf Cesar Ceballos \\
+\small Technische Universit\"at Graz \\
+\small \texttt{cesar.ceballos@tugraz.at} \\[.3cm]
+\bf Vincent Pilaud \Letter \\
+\small Universitat de Barcelona \\
+\small \texttt{vincent.pilaud@ub.edu}
+}
+
+\begin{document}
+
+\begin{letter}{{\bf Editors and Referees} \\ Algebraic Combinatorics}
+\opening{Dear Editors, dear Referee,}
+
+We are grateful to the referee for their thorough reading and their constructive suggestions on our manuscript \emph{Lattices of acyclic pipe dreams}. We would like to submit a revised version of this manuscript to the \emph{Algebraic Combinatorics}. 
+
+We agreed with most comments and suggestions of the referee and we have revised our submission accordingly. To simplify the second reading, we now answer the comments of the referee and summarize the changes from the last version:
+
+{\bf About pipe dreams and subword complexes.} The referee underlined a major point:
+
+\textsl{\color{gray} 
+In the last part of the paper, the authors investigate the subword complexes in finite Coxeter groups, which were studied by Jahn and Stump recently. The results mostly follow from Jahn and Stump's work, the authors use a different approach and technique though. I feel the content in section 5 is loosely connected to the content before and does not have many pipe dreams in it (as the title suggests). I believe this section should be shortened to keep the article focused on its main point.
+}
+
+We believe that our results on pipe dreams are the shadow of more general statements on subword complexes that are discussed in Section~5.
+These generalizations are non-obvious extensions of our results on pipe dreams, so we really want to state them here as precise conjectures.
+In fact, we obtained our results on pipe dreams in 2017 (about 6 years prior to the prepublication of the present submission), but we really struggled to obtain seemingly correct conjectures generalizing these results.
+The title of the paper focusses on pipe dreams to reflect the content nature of the results, but we believe that our conjectures on subword complexes are equally important.
+
+{\bf Major comments}
+
+\begin{itemize}
+\item \textsl{\color{gray} Page 5 - lemma 2.6: the lemma statement does not specify the types of elbow of pipes i and j; however, the proof seem to assume the elbows involved in the statement are of certain type (southeast or northwest). This lemma is cited multiple times throughout the paper and this issue needs to be clarified.} \\
+We are not sure to understand this comment.
+We make no assumption on the type of elbows of pipes~$i$ and~$j$ in the proof of Lemma~2.6.
+If~$x=y$, then we have an edge from $i$ to $j$ in~$P^\#$ since $i$ is northwest of~$j$ at~$x$ by assumption (we have added ``and $i$ is northwest of~$j$ at this contact by assumption'' to make that clear).
+If~$x \ne y$, we were actually careful to define~$k$ and~$\ell$ precisely to avoid making any assumption on the type of elbow of~$i$ and~$j$.
+Please, let us know if we misunderstood your concern.
+
+\item \textsl{\color{gray} Page 18 -- example 5.3: this is the only connection to pipe dreams in this section but the description is quite vague. An example with picture would make it much better.} \\
+We agree with the referee.
+Actually, not only this description was quite vague, but it was actually not completely correct.
+The reason is that we have decided in this paper to label the pipes from top to bottom on the left of the pipe dream, which is unusual but much more convenient for our lattice quotient considerations.
+We have corrected the description and added a specific example at the end of Example 5.3 referring to the pipe dreams of Figure~1.
+We hope it is much easier to follow now.
+
+\item \textsl{\color{gray} Page 27 -- section 5.5: it seems that some of the conjectures have been solved. Worth adding a remark on that.} \\
+We are not sure to understand this comment.
+As stated in Remark 5.26, all conjectures of Section~5.5 are proved in type~$A$.
+Namely, the case of pipe dreams treated in Section 3 settles the specific case of the word described in Example 5.3, and the paper \\[.2cm]
+Noémie Cartier, Lattice properties of acyclic Cambrian pipe dreams. \href{http://arxiv.org/abs/2311.10435}{\texttt{arXiv:2311.10435}}, 2023\\[.2cm]
+settles the case of all alternating words in type~$A$.
+However, we are not aware that any of these conjectures is solved beyond type~$A$.
+Please, let us know if we are missing something here.
+\end{itemize}
+
+{\bf Minor comments}
+
+\begin{itemize}
+\item \textsl{\color{gray} Page 5 - lemma 2.4: the first place non-inversion of a permutation is mentioned is on page 7 in the proof of lemma 3.6. The phrase 'non-inversion' should be mentioned here when its size is defined.} \\
+We have added ``is the number of \emph{non-inversions} of~$j$ in~$\omega$'' at the end of the definition of $\mathsf{ninv}(\omega, j)$.
+
+\item \textsl{\color{gray} Page 6 - example 3.3: when the phrase ``below'' is first used, it should be pointed out that this refers to the weak order.} \\
+Thank you. We have added the precision ``in weak order''.
+
+\item \textsl{\color{gray} Page 6 -- example 3.3: add reference of the well-known fact.} \\
+Thank you. We have added references to Tonks and to Hivert--Novelli--Thibon. We actually added references to Hivert--Novelli--Thibon in several places mentioning the sylvester congruence.
+
+\item \textsl{\color{gray} Page 8 - proposition 3.12: the notations min(I) and max(I) should be clarified what they mean exactly.} \\
+We have added ``$I := [\min(I), \max(I)]$'' in the second line of the proposition.
+
+\item \textsl{\color{gray} Page 9 - remark 3.17: reference not showing up correctly.} \\
+Thank you. Fixed.
+
+\item \textsl{\color{gray} Page 10 - proof of lemma 3.18: in the last line, the inequality $\omega^{-1}(k_1)> \omega^{-1}(j) > \omega^{-1}(i)$ should be $\omega^{-1}(k_1)< \omega^{-1}(j) < \omega^{-1}(i)$.} \\
+Thank you. Fixed.
+
+\item \textsl{\color{gray} Proposition 3.19 -- (v): the relation after ``then'' is the wrong direction.} \\
+Thank you. Fixed.
+
+\item \textsl{\color{gray} Page 12 - 3rd line in the second paragraph in section 4.2: since you are constructing a pipe dream, it makes more sense to say ``For $j\in [n]$ such that $j>r_1$ and $c_k<\omega^{-1}(j)$, we can uniquely define a pipe dream which ...''} \\
+Thank you. We have modified.
+
+\item \textsl{\color{gray} Page 12 - second to the last line in proposition 4.3: northeast should be southeast.} \\
+Thank you for noticing this inconsistency. We have replaced by ``northwest''.
+
+\item \textsl{\color{gray} Page 14 -- line 1: the second ``if'' should be an ``is''.} \\
+Thank you. Corrected.
+
+\item \textsl{\color{gray} Page 15 -- cor 4.12: ``patters'' should be ``pattern''.} \\
+Thank you. Corrected.
+
+\item \textsl{\color{gray} Page 15 -- section 4.4: this section needs an example.} \\
+{\color{red} TODO}
+
+\item \textsl{\color{gray} Page 18 - second paragraph in section 5.2: $J\subseteq [r]$ should be $J\subseteq [m]$.} \\
+Thank you. Corrected.
+
+\item \textsl{\color{gray} Page 18 - root function: the product notation $\prod Q_X$ needs to be clarified.} \\
+We have added ``where~$\prod Q_{[k-1]\smallsetminus I}$ is the product of the letters~$q_i$ for~$i \in [k-1] \smallsetminus I$ computed in the natural order''.
+
+\item \textsl{\color{gray} Page 19 -- line 4 in example 5.5: the c-sorting word notation looks different from the one in line 2, \LaTeX error?} \\
+We are not sure we understood your concern here. In the subword complex, we consider the word~$c\omega_\circ(c)$, obtained by concatenation of~$c$ with the $c$-sorting word~$\omega_\circ(c)$. We have added ``and consider the concatenation~$c\omega_\circ(c)$'' to make this clear.
+
+\end{itemize}
+
+{\bf Additional correction.}
+Finally, we have also slightly modified the statement and proof of Lemma 4.7.
+{\color{red} TODO + explain why.}
+
+We are really grateful for all these improvements and would like to thank the referee again for the efforts they offered to our work. We hope that we have addressed their comments carefully, but we will be happy to have any further comments on this submission.
+
+%Sincerely,
+%
+%\vspace{.5cm}
+%\hspace{8cm} Asilata Bapat and Vincent Pilaud
+
+\closing{Sincerely yours,}
+
+\end{letter}
+
+\end{document}
