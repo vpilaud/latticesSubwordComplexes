@@ -1143,7 +1143,7 @@ See \cref{exm:canopy} for an illustration.
 \label{def:recoils}
 Consider the graph~$G(\omega)$ with vertex set~$[n]$ and edge set
 \[
-\set{ij}{i < j \text{ and } j-i \le \#\set{k < i}{\omega^{-1}(k) < \omega^{-1}(j)}}.
+\set{ij}{i < j \text{ and } j-i, \; \omega^{-1}(i) > \omega^{-1}(j) \le \#\set{k < i}{\omega^{-1}(k) < \omega^{-1}(j)}}.
 \]
 Let~$\acyclicOrientations(\omega)$ denote the set of acyclic orientations of~$G(\omega)$.
 The \defn{$\omega$-recoil congruence} is the equivalence relation on the weak order interval~$[e, \omega]$ whose equivalence classes are the sets of linear extensions of the acyclic orientations of~$G(\omega)$.
@@ -1164,7 +1164,7 @@ The \defn{canopy} of a pipe dream~$P \in \acyclicPipeDreams(\omega)$ is the orie
 
 \begin{proposition}
 \label{prop:latticeHomomorphisms}
-The maps~$\recoils{\cdot}{\omega}$, $\insertion{\cdot}{\omega}$, and~$\canopy{\cdot}$ define the following commutative diagram of lattice homomorphisms:
+The maps~$\recoils{\cdot}{\omega}$, $\insertion{\cdot}{\omega}$, and~$\canopy{\cdot}$ define the following commutative diagram of surjective poset homomorphisms:
 \[
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=1.2em,column sep=5em,minimum width=2em]
@@ -1188,8 +1188,13 @@ Then~$\pi^{-1}(i) < \pi^{-1}(j)$, thus the pipe~$i$ is inserted before the pipe~
 \begin{example}
 \label{exm:canopy}
 
+%
+\begin{figure}
+	\centerline{\includegraphics[scale=1]{canopy}}
+	\caption{The pipe dream congruence (blue bubbles) and the $31542$-recoil congruence (red bubbles) on the weak order interval~$[12345, 31542]$ (left) and the canopy congruence (red bubbles) on the increasing flip graph on acyclic pipe dreams (right). Each blue bubble is contained in a red bubble.}
+	\label{fig:canopy}
+\end{figure}
 \end{example}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
